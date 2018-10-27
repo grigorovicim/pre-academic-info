@@ -12,8 +12,7 @@
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "start-production": "env-cmd ./.env.production node server.js",
-    "heroku-postbuild": "npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "start-production": "env-cmd ./.env.production node server.js"
   },
   "devDependencies": {
     "@types/jest": "^23.3.7",
