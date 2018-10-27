@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "debug": "^4.1.0",
     "env-cmd": "^8.0.2",
     "morgan": "^1.9.1",
     "react": "^16.6.0",
