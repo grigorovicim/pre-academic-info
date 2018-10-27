@@ -3,16 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "env-cmd": "^8.0.2",
     "morgan": "^1.9.1",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-scripts-ts": "3.1.0"
   },
   "scripts": {
-    "start": "env-cmd ./.env.production node server.js",
+    "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "start-production": "env-cmd ./.env.production node server.js"
   },
   "devDependencies": {
     "@types/jest": "^23.3.7",
