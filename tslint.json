@@ -1,5 +1,38 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "ordered-imports": false,
+    "member-access": false,
+    "jsx-no-lambda": false,
+    "object-literal-shorthand": false,
+    "object-literal-sort-keys": false,
+    "no-console": false,
+    "forin": false,
+    "jsx-boolean-value": false,
+    "one-variable-per-declaration": false,
+    "no-shadowed-variable": false,
+    "jsx-self-close": false,
+    "only-arrow-functions": false,
+    "no-empty": false,
+    "comment-format": false,
+    "allowSyntheticDefaultImports": true
+  },
+  "jsRules": {
+    "ordered-imports": false,
+    "member-access": false,
+    "jsx-no-lambda": false,
+    "object-literal-shorthand": false,
+    "object-literal-sort-keys": false,
+    "no-console": false,
+    "forin": false,
+    "jsx-boolean-value": false,
+    "one-variable-per-declaration": false,
+    "no-shadowed-variable": false,
+    "jsx-self-close": false,
+    "only-arrow-functions": false,
+    "no-empty": false,
+    "comment-format": false
+  },
   "linterOptions": {
     "exclude": [
       "config/**/*.js",
