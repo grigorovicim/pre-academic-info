@@ -6,7 +6,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import './App.css';
 
-import logo from './logo.svg';
+import logo from './logo.png';
 
 class App extends Component<any, any> {
   constructor(props: any) {
@@ -37,8 +37,7 @@ class App extends Component<any, any> {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <img src={logo} className="App-logo"/>
         </header>
         <p className="App-intro">
         {this.state.response}
