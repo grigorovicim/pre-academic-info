@@ -3,15 +3,16 @@
 
 .p-app-logo {
   height: 80px;
+  fill: white;
 }
 
 .p-app-header {
   position: sticky;
   display: flex;
-  background-color: rgba(66, 126, 161, 0.794);
-  height: 80px;
-  padding: 20px;
+  height: 100px;	
+  background: linear-gradient(180deg, #000000 0%, #4C4C4C 100%);
   color: white;
+  align-items: center;
 }
 
 .p-app-title {
@@ -25,16 +26,16 @@
 .p-app .p-login-button {
   height: 50px;
   width: 85px;
-  color: rgba(0, 0, 0, 0.6);
-  font-family: "Roboto";
-  font-size: 25px;
+  font-family: Copperplate;
+  font-size: 20px;
   font-weight: 10;
   letter-spacing: -0.08px;
   line-height: 15px;
   margin-top: 30px;
+  color: #FFFFFF;	
 }
 
 .p-app .p-login-button:hover {
   color: black;
-  font-size: 30px;
+  font-size: 25px;
 }

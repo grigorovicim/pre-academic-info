@@ -41,9 +41,9 @@ class Popup extends Component<any, any> {
     }
     
     return (
-      <div className="v-popup" style={{display}} onClick={this.handleClick}>
-        <div className="v-popup-core" onClick={e => {e.stopPropagation()}}>
-          <div className="v-close-button" onClick={this.handleClick}> X </div>
+      <div className="p-popup" style={{display}} onClick={this.handleClick}>
+        <div className="p-popup-core" onClick={e => {e.stopPropagation()}}>
+          <div className="p-close-button" onClick={this.handleClick}> X </div>
           {component}
         </div>
       </div>
