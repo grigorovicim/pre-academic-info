@@ -35,11 +35,11 @@ class App extends Component<any, any> {
 
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo"/>
+      <div className="p-app">
+        <header className="p-app-header">
+          <img src={logo} className="p-app-logo"/>
         </header>
-        <p className="App-intro">
+        <p className="p-app-intro">
         {this.state.response}
         </p>
       </div>

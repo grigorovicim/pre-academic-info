@@ -1,23 +1,22 @@
-.App {
-  text-align: center;
+.p-app {
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
+.p-app-logo {
   height: 80px;
 }
 
-.App-header {
-  background-color: rgba(80, 151, 192, 0.623);
-  height: 150px;
+.p-app-header {
+  background-color: rgba(66, 126, 161, 0.794);
+  height: 80px;
   padding: 20px;
   color: white;
 }
 
-.App-title {
+.p-app-title {
   font-size: 1.5em;
 }
 
-.App-intro {
+.p-app-intro {
   font-size: large;
 }
