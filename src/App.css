@@ -1,5 +1,4 @@
 .p-app {
-
 }
 
 .p-app-logo {
@@ -7,6 +6,8 @@
 }
 
 .p-app-header {
+  position: sticky;
+  display: flex;
   background-color: rgba(66, 126, 161, 0.794);
   height: 80px;
   padding: 20px;
@@ -19,4 +20,21 @@
 
 .p-app-intro {
   font-size: large;
+}
+
+.p-app .p-login-button {
+  height: 50px;
+  width: 85px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: "Roboto";
+  font-size: 25px;
+  font-weight: 10;
+  letter-spacing: -0.08px;
+  line-height: 15px;
+  margin-top: 30px;
+}
+
+.p-app .p-login-button:hover {
+  color: black;
+  font-size: 30px;
 }
