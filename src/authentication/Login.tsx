@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import './Login.css';
 import LoginActions from './Login.actions';
-class Login extends Component<any, any> {
+export default class Login extends Component<any, any> {
 
   private usernameInput: any;
   private passwordInput: any;
@@ -43,20 +43,13 @@ class Login extends Component<any, any> {
   render() {
     return (
       <div className="p-login">
-        <input ref={this.setUsernameInputRef} type="text" />
-        <input ref={this.setPasswordInputRef} type="password" />
+        <input ref={this.setUsernameInputRef} type="text" placeholder="email"/>
+        <hr className="p-line-login"/>
+        <input ref={this.setPasswordInputRef} type="password" placeholder="password"/>
+        <hr className="p-line-login"/>
         <button onClick={this.handleSubmit}>LOGIN</button>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    user: Object.assign({}, state.app.user),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-)(Login);

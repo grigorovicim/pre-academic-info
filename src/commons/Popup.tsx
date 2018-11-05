@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 
 import './Popup.css';
+import Login from 'src/authentication/Login';
 // import Login from 'src/authentication/Login';
 
 class Popup extends Component<any, any> {
@@ -35,7 +36,7 @@ class Popup extends Component<any, any> {
     if (componentType === "home") {
       return null;
     } else if (componentType === "p-login-button") {
-      component = <div>LOGIN HERE SOON!</div>//<Login/>;
+      component = <Login/>
     } else {
       component = <span></span>;
     }
