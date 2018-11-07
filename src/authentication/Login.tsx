@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import './Login.css';
 import LoginActions from './Login.actions';
 import loginLogo from './pre-academic-login-logo.png';
-export default class Login extends Component<any, any> {
+class Login extends Component<any, any> {
 
   private usernameInput: any;
   private passwordInput: any;
@@ -57,4 +57,12 @@ export default class Login extends Component<any, any> {
     );
   }
 }
+const mapStateToProps = (state: any) => {
+  return {
+    user: Object.assign({}, state.app.user),
+  };
+};
 
+export default connect(
+  mapStateToProps,
+)(Login);

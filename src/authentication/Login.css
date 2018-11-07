@@ -1,3 +1,7 @@
+:root {
+  --login-button: linear-gradient(180deg, #65842F 0%, #000000 100%);
+  --login-button-hover: linear-gradient(180deg, rgb(136, 169, 79) 0%, #343333 100%);
+}
 .p-login {
   margin-block-start: 150px;
   display: flex;
@@ -23,24 +27,23 @@
   height: 47px;
   width: 224px;
   border-radius: 23.5px;
-  background: linear-gradient(180deg, #65842F 0%, #000000 100%);
+  background: var(--login-button);
   color: #FFFFFF;
   font-family: "Helvetica Neue";
   text-align: center;
   font-size: 16px;
   font-weight: 500;
+  margin: 37px 0 0 0; 
 }
 
 button:hover {
   opacity: 0.9;
-  background-color:rgba(81, 184, 60, 0.411);
+  background-color: var(--login-button-hover);
   color: white;
 }
 
 button:active {
   background-color: rgba(15, 14, 14, 0.76);
-  box-shadow: 0 5px rgb(150, 150, 150);
-  transform: translateY(4px);
 }
 
 .p-login .p-line-login {

@@ -1,3 +1,7 @@
+:root {
+ --button-header-color: white;
+ --button-header-hover-color: #A5A5A5;
+}
 .p-app {
 }
 
@@ -32,10 +36,12 @@
   letter-spacing: -0.08px;
   line-height: 15px;
   margin-top: 30px;
-  color: #FFFFFF;	
+  color:var(--button-header-color);	
 }
 
+
+
 .p-app .p-login-button:hover {
-  color: black;
-  font-size: 25px;
+  color: var(--button-header-hover-color);
+  font-size: 21px;
 }
