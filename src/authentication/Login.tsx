@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 import './Login.css';
 import LoginActions from './Login.actions';
+import loginLogo from './pre-academic-login-logo.png';
 export default class Login extends Component<any, any> {
 
   private usernameInput: any;
@@ -43,6 +44,10 @@ export default class Login extends Component<any, any> {
   render() {
     return (
       <div className="p-login">
+        <div className="p-login-logo">
+          <div className="p-login-welcome">Welcome</div>
+          <img className="p-login-logo-image" src={loginLogo}></img>
+        </div>
         <input ref={this.setUsernameInputRef} type="text" placeholder="email"/>
         <hr className="p-line-login"/>
         <input ref={this.setPasswordInputRef} type="password" placeholder="password"/>
