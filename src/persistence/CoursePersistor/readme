@@ -1,0 +1,7 @@
+create_db.sql:
+creates a database with name "pre-academic-info" on postgres server with given configuration
+(configure file for your server)
+
+crate_tables.sql:
+creates all the tables specified at https://dbdiagram.io/d/5be57df4cf7cf50014f2aa0a
+run the script in the database created in the previous step
