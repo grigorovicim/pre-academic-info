@@ -10,7 +10,6 @@ import './App.css';
 
 import logo from './logo.png';
 import Popup from './commons/Popup';
-import DashboardCourseItem from './courses/DasboardCourseItem'
 
 class App extends Component<any, any> {
   constructor(props: any) {
@@ -67,7 +66,6 @@ class App extends Component<any, any> {
         </p>
         
         <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
-        <DashboardCourseItem name="Andrada"/>
       </div>
     );
   }
