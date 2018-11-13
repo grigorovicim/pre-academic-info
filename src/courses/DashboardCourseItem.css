@@ -31,16 +31,16 @@
     align-items: center;
 }
 
-.course-config-button-wrapper{
+.course-config-button-wrapper {
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
 }
 
-.course-config-button{
+.course-config-button {
     height: 48px;
     width: 48px;
 }
