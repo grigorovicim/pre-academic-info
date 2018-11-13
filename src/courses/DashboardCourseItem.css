@@ -27,23 +27,20 @@
     display: inline-block;
 }
 
-.add-config-button-wrapper {
+.div-config-button-wrapper {
     align-items: center;
 }
 
-.add-config-button {
-    height: 48px;
-    width: 48px;
-    background-color: rgba(0, 192, 67, 0.7);
-    border-radius: 50%;
-    display: inline-block;
-    border: transparent;
+.course-config-button-wrapper{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
 }
 
-.glyphicon {
+.course-config-button{
     height: 48px;
     width: 48px;
-    position: relative ;
-    z-index: 1;
-    color: #222222;
 }
