@@ -15,9 +15,9 @@ class DashboardCourseItem extends Component<any, any> {
 
     constructor(props: any) {
         super(props);
-        this.name = "Andrada";
+        this.name = props.name;
         this.department = "info";
-        this.isConfigured = false;
+        this.isConfigured = props.isConfigured;
     }
 
     button() {

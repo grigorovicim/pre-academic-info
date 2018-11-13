@@ -67,7 +67,8 @@ class App extends Component<any, any> {
         </p>
         
         <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
-        <DashboardCourseItem name="Andrada"/>
+        <DashboardCourseItem name="PPD" isConfigured={true}/>
+        <DashboardCourseItem name="LFTC" isConfigured={false}/>
       </div>
     );
   }
