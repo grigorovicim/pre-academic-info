@@ -5,6 +5,10 @@ const users = [
   {fullName: 'Diana Dragos', scsEmail: 'ddie2345@scs.ubbcluj.ro', type:'user', password:'1234'},
 ];
 
+var UserRoutes = require('./user-routes.js');
+app.use('/api/users', UserRoutes);
+
+
 users.forEach(user => {
   user.session = null;
 });
@@ -96,6 +100,7 @@ if (!dev) {
 if (dev) {
   app.use(morgan('dev'));
 }
+
 
 
 const server = createServer(app);

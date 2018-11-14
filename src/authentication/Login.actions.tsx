@@ -19,7 +19,7 @@ export default class LoginActions {
 
   static authenticate = (email: any, password: any) => (dispatch: any, /*getState: any*/) => {
     axios.post('/login', {email: email, password: password})
-      .then((response) => {
+      .then((response: any) => {
         if (response.data !== null) {
           LoginActions.setCookie('token', response.data.session);
           if(response.data.type === 'admin') {
@@ -45,7 +45,7 @@ export default class LoginActions {
           }
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         throw error;
       })
       .then(() => {
@@ -54,7 +54,7 @@ export default class LoginActions {
 
   static logout = (user: any) => (dispatch: any, /*getState: any*/) => {
     axios.post('/logout', {user: user})
-      .then((response) => {
+      .then((response: any) => {
         LoginActions.eraseCookie('token');
         dispatch({
             type: 'SWITCH_PAGE_TO_LOGIN',
