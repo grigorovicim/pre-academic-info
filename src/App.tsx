@@ -10,7 +10,7 @@ import './App.css';
 
 import logo from './logo.png';
 import Popup from './commons/Popup';
-import DashboardCourseItem from './courses/DasboardCourseItem'
+import Dashboard from './courses/Dashboard'
 
 class App extends Component<any, any> {
   constructor(props: any) {
@@ -56,19 +56,26 @@ class App extends Component<any, any> {
   };
 
   public render() {
+    const dummy = [
+      {id:1, name: "LFTC", department: "info", isConfigured: false},
+      {id:2, name: "PPD", department: "info", isConfigured: false},
+      {id:3, name: "PLF", department: "info", isConfigured: true},
+      {id:4, name: "Microcontrollers", department: "info", isConfigured: false},
+      {id:5, name: "ASC", department: "info", isConfigured: true},
+      {id:6, name: "MAP", department: "info", isConfigured: true},
+    ]
     return (
       <div className="p-app">
         <header className="p-app-header">
           <img src={logo} className="p-app-logo"/>
           <div className="p-login-button" onClick={this.openLoginPopup}>Login</div>
         </header>
-        <p className="p-app-intro">
+        {/* <p className="p-app-intro">
         {this.state.response}
-        </p>
+        </p> */}
         
         <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
-        <DashboardCourseItem name="PPD" isConfigured={true}/>
-        <DashboardCourseItem name="LFTC" isConfigured={false}/>
+        <Dashboard courseItems={dummy}></Dashboard>
       </div>
     );
   }

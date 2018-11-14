@@ -1,0 +1,26 @@
+.p-dashboard-header{
+    align-items: center;
+    padding-left: 120px;
+    padding-right: 160px;
+    height: 67px;	
+    width: 100%;
+	background-color: rgba(216,216,216,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.15);
+    margin-bottom: 26px;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.p-dashboard-header > span{
+    height: 24px;	
+    width: 67px; 
+	color: #262729;
+    font-family: Copperplate Gothic Light, serif;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 24px;
+}
+
+.p-dashboard-item{
+    margin-bottom: 20px;
+}

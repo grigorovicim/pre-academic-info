@@ -1,5 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min'
 import * as React from "react";
 import {Component} from "react";
 
@@ -30,10 +28,11 @@ class DashboardCourseItem extends Component<any, any> {
     render() {
         return (
             <div className="container">
-                <div className="container dashboard-course-item">
-                    <div className="dashboard-course-item-text">{this.name}</div>
-                    <div className="dashboard-course-item-text">{this.department}</div>
-                    <div className="div-config-button-wrapper">
+                <div className="container dashboard-course-item row">
+                    <div className="dashboard-course-item-text col-md-5">{this.name}</div>
+                    <div className="dashboard-course-item-text col-md-3">{this.department}</div>
+                    <div className="dashboard-course-item-text col-md-3">{this.department}</div>
+                    <div className="div-config-button-wrapper col-md-1">
                         <button className="course-config-button-wrapper">{this.button()}</button>
                     </div>
                 </div>
