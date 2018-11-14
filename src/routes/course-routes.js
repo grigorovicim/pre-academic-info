@@ -5,7 +5,7 @@ var coursesApi = require('../persistence/CoursePersistor/course-persistor.js');
  
 router.get('/getById/:id',coursesApi.getSingleCourse);
 router.get('/getAll',coursesApi.getAllCourses);
-router.put('/update', coursesApi.updateCourse);
+router.put('/update/:id', coursesApi.updateCourse);
 router.post('/create',coursesApi.createCourse);
 router.delete('/remove', coursesApi.removeCourse);
 
