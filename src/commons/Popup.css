@@ -13,7 +13,7 @@
 
 .p-popup .p-popup-core {
   overflow-y: auto;
-  height: 728px;
+  height: 700px;
   width: 44.93%;
   border-radius: 5px;
   background-color: #FFFFFF;
@@ -29,7 +29,7 @@
   font-family: arial;
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 10px;
   font-size: 18px;
   line-height: 20px;
   width: 20px;

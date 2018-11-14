@@ -1,4 +1,5 @@
-.p-dashboard-header{
+.p-dashboard-header {
+
     align-items: center;
     padding-left: 120px;
     padding-right: 160px;
@@ -12,6 +13,7 @@
 }
 
 .p-dashboard-header > span{
+  position: static;  
     height: 24px;	
     width: 67px; 
 	color: #262729;
@@ -22,5 +24,6 @@
 }
 
 .p-dashboard-item{
+  position: static;
     margin-bottom: 20px;
 }

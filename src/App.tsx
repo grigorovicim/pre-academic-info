@@ -36,7 +36,8 @@ class App extends Component<any, any> {
       isPopupVisible: false,
     });
   }
-  openLoginPopup() {
+  openLoginPopup(e: any) {
+    e.stopPropagation();
     this.setState({
       isPopupVisible: true,
       popupComponentType: 'p-login-button',

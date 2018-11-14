@@ -3,6 +3,7 @@
  --button-header-hover-color: #A5A5A5;
 }
 .p-app {
+  position: static;
 }
 
 .p-app-logo {
