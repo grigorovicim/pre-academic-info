@@ -73,9 +73,9 @@ class App extends Component<any, any> {
         {/* <p className="p-app-intro">
         {this.state.response}
         </p> */}
-        
-        <Dashboard courseItems={dummy}></Dashboard>
+
         <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
+        <Dashboard courseItems={dummy}></Dashboard>
       </div>
     );
   }
