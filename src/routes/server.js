@@ -97,6 +97,8 @@ if (dev) {
   app.use(morgan('dev'));
 }
 
+var courses = require('./course-routes.js');
+app.use('/api/courses',courses);
 
 const server = createServer(app);
 server.listen(port, err => {
