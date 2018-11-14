@@ -12,6 +12,8 @@
     "jquery": "^3.3.1",
     "jssha": "^2.3.1",
     "morgan": "^1.9.1",
+    "sequelize": "^4.41.2",
+    "pg": "^7.6.1",
     "popper.js": "^1.14.5",
     "react": "^16.6.1",
     "react-bootstrap": "^0.32.4",

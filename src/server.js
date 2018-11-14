@@ -18,12 +18,17 @@ const compression = require('compression');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const jsSHA = require("jssha");
+var StudentRoutes  = require('./student-routes');
+
 const app = express();
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 const path = require('path');
 const port = process.env.PORT || 5000;
 const dev = app.get('env') !== 'production';
+
+app.use('/student', StudentRoutes);
 
 app.get('/check-server', (req, res) => {
   res.send({ express: 'Hello From Express BACKEND!' });
@@ -67,7 +72,7 @@ app.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password; 
   if (users.find(user => user.scsEmail === email && user.password === password) === undefined) {
-    console.log("Error login: " + err);
+    console.log("Error login: Cannot find user");
   } else {
     console.log("Success.");
     const user = users.find(function(user, password) {
@@ -96,7 +101,6 @@ if (!dev) {
 if (dev) {
   app.use(morgan('dev'));
 }
-
 
 const server = createServer(app);
 server.listen(port, err => {
