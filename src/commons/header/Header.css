@@ -1,0 +1,74 @@
+.p-app-logo {
+    height: 80px;
+    fill: white;
+}
+
+.p-img-div{
+    width: 50%;
+}
+
+
+.p-app-header {
+    position: sticky;
+    display: flex;
+    height: 100px;
+    background: linear-gradient(180deg, #000000 0%, #4C4C4C 100%);
+    color: white;
+    align-items: center;
+}
+
+.p-header-button {
+    display: flex;
+    white-space: nowrap;
+    height: 100%;
+    overflow: hidden;
+    font-family: Copperplate;
+    font-size: 20px;
+    font-weight: 10;
+    letter-spacing: -0.08px;
+    line-height: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+    color:var(--button-header-color);
+}
+
+.p-menu-buttons-div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+.p-white-triangle{
+    color:var(--button-header-color);
+    position: sticky;
+}
+
+.p-app .p-header-button:hover {
+    color: var(--button-header-hover-color);
+    font-size: 20px;
+}
+
+.hero {
+    display: none;
+    position:relative;
+    background-color:#FFFFFF;
+    height:50%;
+    width:100%;
+}
+
+.hero:after {
+    content:'';
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    margin-left: -50px;
+    transform: rotate(45deg);
+    width: 0;
+    height: 0;
+    border-top: solid 40px #FFFFFF;
+    border-right: solid 40px #FFFFFF;
+}
