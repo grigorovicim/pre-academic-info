@@ -40,7 +40,7 @@ class App extends Component<any, any> {
     e.stopPropagation();
     this.setState({
       isPopupVisible: true,
-      popupComponentType: 'p-login-button',
+      popupComponentType: 'p-login-whichButton',
     });
   }
  

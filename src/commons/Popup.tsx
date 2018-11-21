@@ -35,7 +35,7 @@ class Popup extends Component<any, any> {
     let component;
     if (componentType === "home") {
       return null;
-    } else if (componentType === "p-login-button") {
+    } else if (componentType === "p-login-whichButton") {
       component = <Login/>
     } else {
       component = <span></span>;
