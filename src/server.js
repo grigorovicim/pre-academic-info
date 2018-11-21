@@ -19,6 +19,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const jsSHA = require("jssha");
 var StudentRoutes  = require('./routes/student-routes');
+var ProfessorRoutes  = require('./routes/professor-routes');
 
 const app = express();
 
@@ -29,6 +30,7 @@ const port = process.env.PORT || 5000;
 const dev = app.get('env') !== 'production';
 
 app.use('/student', StudentRoutes);
+app.use('/professor', ProfessorRoutes);
 
 app.get('/check-server', (req, res) => {
   res.send({ express: 'Hello From Express BACKEND!' });

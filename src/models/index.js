@@ -16,7 +16,6 @@ if (config.use_env_variable) {
 }
 
 let importKey = 'import';
-
 fs
   .readdirSync(__dirname)
   .filter(file => {
