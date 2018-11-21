@@ -18,7 +18,7 @@ const compression = require('compression');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const jsSHA = require("jssha");
-var StudentRoutes  = require('./student-routes');
+var StudentRoutes  = require('./routes/student-routes');
 
 const app = express();
 

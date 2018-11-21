@@ -2,14 +2,24 @@ var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
 
+/**
+ * Returns a list with all the students.
+ * @method GET the list of students
+ * @throws 'Internal Server Error! Sorry, try again!'
+ */
 router.get('/', function(_, res){
   models.Student.findAll().then(students => res.json(students), err => {
     res.status(501);
-    res.send('Internal Server Error!Sorry, try again!');
+    res.send('Internal Server Error! Sorry, try again!');
     console.log('An error has occurred: ' + err);
   });
 });
 
+/**
+ * Returns the list of students that are part of a given group.
+ * @method GET the students filtered by group number.
+ * @throws 'Internal Server Error!Sorry, try again!'
+ */
 router.get('/group/:groupNumber', function(req, res){
   const groupNumber = req.params.groupNumber;
 
@@ -18,11 +28,16 @@ router.get('/group/:groupNumber', function(req, res){
     where: {group_number : groupNumber},
   }]}).then(students => res.json(students), err => {
     res.status(501);
-    res.send('Internal Server Error!Sorry, try again!');
+    res.send('Internal Server Error! Sorry, try again!');
     console.log('An error has occurred: ' + err);
   });
 });
 
+/**
+ * Returns the list of students that are part of a given section.
+ * @method GET the list of students filtered by section name.
+ * @throws 'Internal Server Error!Sorry, try again!'
+ */
 router.get('/section/:name', function(req, res){
   const sectionName = req.params.name;
 
@@ -36,6 +51,11 @@ router.get('/section/:name', function(req, res){
   });
 });
 
+/**
+ * Returns the grades of a given student for a given course.
+ * @method GET the list of grades
+ * @throws 'Internal Server Error! Sorry, try again!'
+ */
 router.get('/grades/:studentId/:courseId', function(req, res){
   const studentId = req.params.studentId;
   const courseId = req.params.courseId;
@@ -43,20 +63,31 @@ router.get('/grades/:studentId/:courseId', function(req, res){
   models.ExamResult.findAll({where: {student_id: studentId, course_id: courseId}})
     .then(results => res.json(results),err => {
       res.status(501);
-      res.send('Internal Server Error!Sorry, try again!');
+      res.send('Internal Server Error! Sorry, try again!');
       console.log('An error has occurred: ' + err);
     }
   );
 });
 
+/**
+ * Receive a student from the client and store it in the DB.
+ * @method POST the student entity.
+ * @throws 'Internal Server Error! Sorry, try again!'
+ */
 router.post('/', function(req, res){
   models.Student.Create(req.body).then(student => res.json(student), err => {
     res.status(501);
-    res.send('Internal Server Error!Sorry, try again!');
+    res.send('Internal Server Error! Sorry, try again!');
     console.log('An error has occurred: ' + err);
   });
 });
 
+/**
+ * Updates a given student entity.
+ * @method PUT the given student entity.
+ * @throws 'Unable to update the given student. Make sure the id is correct.' if the student does not exist.
+ * @throws 'Internal Server Error! Sorry, try again!' for an unknown error.
+ */
 router.put('/:id', function(req, res){
   const studentId = req.params.id;
   
@@ -78,6 +109,12 @@ router.put('/:id', function(req, res){
   });
 });
 
+/**
+ * Deletes a given student from the DB
+ * @method DELETE the given student.
+ * @throws 'A student with the given id was not found!' if a student with the given id does not exist.
+ * @throws 'Internal Server Error! Sorry, try again!' for an unknown error.
+ */
 router.delete('/:id', function(req, res){
   const studentId = req.params.id;
 
@@ -98,7 +135,7 @@ router.delete('/:id', function(req, res){
     }
   }, function(err){
     res.status(501);
-    res.send('Internal Server Error!Sorry, try again!');
+    res.send('Internal Server Error! Sorry, try again!');
     console.log('An error has occurred: ' + err);
   });
 });

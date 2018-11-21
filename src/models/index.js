@@ -15,13 +15,15 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
+let importKey = 'import';
+
 fs
   .readdirSync(__dirname)
   .filter(file => {
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(file => {
-    const model = sequelize['import'](path.join(__dirname, file));
+    const model = sequelize[importKey](path.join(__dirname, file));
     db[model.name] = model;
   });
 
@@ -31,7 +33,11 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-sequelize.sync({force: true});
+// this will force the databse to be created once again(useful when adding new entities)
+if(config.force) {
+  sequelize.sync({force: true});
+}
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

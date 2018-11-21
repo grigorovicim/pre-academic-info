@@ -5,10 +5,12 @@ module.exports = {
     database: 'preAcademic',
     host: 'localhost',
     dialect: 'postgres',
+    force: false,
   },
   test: {
     dialect: "postgres",
-    storage: ":memory:"
+    storage: ":memory:",
+    force: false,
   },
   production: {
     username: process.env.DB_USERNAME,
@@ -16,6 +18,7 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOSTNAME,
     dialect: 'postgres',
-    use_env_variable: 'DATABASE_URL'
+    use_env_variable: 'DATABASE_URL',
+    force: false,
   }
 };
