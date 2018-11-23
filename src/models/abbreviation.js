@@ -4,7 +4,6 @@ module.exports = (sequelize, DataTypes) => {
     label: DataTypes.STRING
   }, {});
   Abbreviation.associate = function(models) {
-    // associations can be defined here
   };
   return Abbreviation;
 };

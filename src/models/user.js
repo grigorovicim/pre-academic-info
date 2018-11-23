@@ -6,13 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     is_active: DataTypes.BOOLEAN
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
-    models.User.belongsTo(models.Role, {
-      foreignKey: {
-        name: 'role_id',
-        allowNull: false,
-      }
-    });
   };
   return User;
 };
