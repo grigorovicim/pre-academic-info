@@ -1,20 +1,14 @@
 // @ts-ignore
 import React, { Component } from 'react';
 // @ts-ignore
-import axios from 'axios';
-// @ts-ignore
 import React, {Component} from 'react';
 // @ts-ignore
 import { connect } from 'react-redux';
 // @ts-ignore
 import {Route, Router, BrowserRouter} from "react-router-dom";
 import './App.css';
-// import logo from './logo.png';
 import Popup from './commons/Popup';
-// import Dashboard from './courses/Dashboard'
-// import DashboardStudentsComplex from './students/DashboardStudentsComplex';
 import DashboardProfessors from './professors/DashboardProfessors';
-// import StudentsList from './students/StudentsList';
 import CoursesPage from "./components/CoursesPage";
 import HomePage from "./components/HomePage";
 import StudentsPage from "./components/StudentsPage";
@@ -22,6 +16,7 @@ import CatalogPage from "./components/CatalogPage";
 import MyProfilePage from "./components/MyProfilePage";
 
 
+import UploadFile from "./upload_file/UploadFile";
 
 class App extends Component<any, any> {
   constructor(props: any) {
@@ -84,6 +79,7 @@ class App extends Component<any, any> {
               <Route path={"/myprofile"} component={MyProfilePage} exact/>
           </div>
         </BrowserRouter>
+        <UploadFile/>
       </div>
     );
   }
