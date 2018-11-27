@@ -1,14 +1,14 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Sections', {
+    return queryInterface.createTable('AcademicProgramme', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      label: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -19,17 +19,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      abbreviation_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Abbreviations',
-          key: 'id'
-        }
-      }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Sections');
+    return queryInterface.dropTable('AcademicProgramme');
   }
 };
