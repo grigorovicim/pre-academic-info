@@ -1,14 +1,14 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('FormOfEvaluation', {
+    return queryInterface.createTable('Professors', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      label: {
+      nickname: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -18,10 +18,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
+      }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('FormOfEvaluation');
+    return queryInterface.dropTable('Professors');
   }
 };

@@ -4,7 +4,19 @@ module.exports = (sequelize, DataTypes) => {
     label: DataTypes.STRING
   }, {});
   Semester.associate = function(models) {
-    // associations can be defined here
+    models.Semester.hasMany(models.Course, {
+      foreignKey: {
+        name: 'semester_id',
+        allowNull: false,
+      }
+    });
+
+    models.Semester.hasMany(models.Student, {
+      foreignKey: {
+        name: 'semester_id',
+        allowNull: false
+      }
+    });
   };
   return Semester;
 };
