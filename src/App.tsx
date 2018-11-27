@@ -8,9 +8,10 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 
-import logo from './logo.png';
 import Popup from './commons/Popup';
 import Dashboard from './courses/Dashboard'
+import Header from "./commons/header/Header";
+
 
 class App extends Component<any, any> {
   constructor(props: any) {
@@ -67,13 +68,8 @@ class App extends Component<any, any> {
     ]
     return (
       <div className="p-app">
-        <header className="p-app-header">
-          <img src={logo} className="p-app-logo"/>
-          <div className="p-login-button" onClick={this.openLoginPopup}>Login</div>
-        </header>
-        {/* <p className="p-app-intro">
-        {this.state.response}
-        </p> */}
+
+        <Header activeMenuItem="courses"/>
 
         <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
         <Dashboard courseItems={dummy}></Dashboard>

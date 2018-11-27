@@ -8,15 +8,23 @@ class Header extends Component<any,any>{
     constructor(props: any){
       super(props);
       this.state = {
-          displayCourses: 'none',
+          login: 'none',
+          courses: 'none',
+          students: 'none',
+          catalog: 'none',
+          myProfile: 'none'
 
       };
+      const activeMenuItem = this.props.activeMenuItem;
+      console.log(this.props);
+      this.setState({ [activeMenuItem]: 'inline'})
       this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(){
         console.log("It's working!")
     }
+
 
 
     render() {
@@ -30,23 +38,23 @@ class Header extends Component<any,any>{
                     <div className="p-menu-buttons-div">
                         <div className="p-header-button" onClick={this.handleClick}>
                             <div>LOGIN</div>
-                            <div id="login" className="hero" style={{display:'inline'}}></div>
+                            <div id="login" className="hero" style={{display: this.state.login}}/>
                         </div>
                         <div className="p-header-button">
                             <div>COURSES</div>
-                            <div id="courses" className="hero"></div>
+                            <div id="courses" className="hero" style={{display: this.state.courses}}/>
                         </div>
                         <div className="p-header-button">
                             <div>STUDENTS</div>
-                            <div id="student" className="hero"></div>
+                            <div id="student" className="hero" style={{display: this.state.students}}/>
                         </div>
                         <div className="p-header-button">
                             <div>CATALOG</div>
-                            <div id="catalog" className="hero"></div>
+                            <div id="catalog" className="hero" style={{display: this.state.catalog}}/>
                         </div>
                         <div className="p-header-button">
                             <div>MY PROFILE</div>
-                            <div id="myprofile" className="hero"></div>
+                            <div id="myprofile" className="hero" style={{display: this.state.myProfile}}/>
                         </div>
                     </div>
                 </header>
