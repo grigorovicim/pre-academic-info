@@ -4,16 +4,24 @@ module.exports = (sequelize, DataTypes) => {
     year_of_study: DataTypes.INTEGER
   }, {});
   Student.associate = function(models) {
+    models.Student.hasMany(models.ExamResult, {
+      foreignKey: {
+        name: 'student_id',
+        allowNull: false
+      }
+    });
+
     models.Student.belongsTo(models.Group, {
       foreignKey: {
         name: 'group_id',
-        allowNull: false,
+        allowNull: false
       }
     });
+
     models.Student.belongsTo(models.Section, {
-      foreignKey: { 
+      foreignKey: {
         name: 'section_id',
-        allowNull: false,
+        allowNull: false
       }
     });
     models.Professor.belongsTo(models.Profile, {

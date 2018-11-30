@@ -75,7 +75,7 @@ router.get('/grades/:studentId/:courseId', function(req, res){
  * @throws 'Internal Server Error! Sorry, try again!'
  */
 router.post('/', function(req, res){
-  models.Student.Create(req.body).then(student => res.json(student), err => {
+  models.Student.create(req.body).then(student => res.json(student), err => {
     res.status(501);
     res.send('Internal Server Error! Sorry, try again!');
     console.log('An error has occurred: ' + err);

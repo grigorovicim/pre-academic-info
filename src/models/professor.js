@@ -4,11 +4,17 @@ module.exports = (sequelize, DataTypes) => {
     nickname: DataTypes.STRING
   }, {});
   Professor.associate = function(models) {
-    // associations can be defined here
     models.Professor.belongsTo(models.Profile, {
       foreignKey: {
         name: 'profile_id',
         allowNull: false,
+      }
+    });
+
+    models.Professor.hasMany(models.Course, {
+      foreignKey: {
+        name: 'owner_id',
+        allowNull: false
       }
     });
   };

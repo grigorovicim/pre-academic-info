@@ -18,22 +18,6 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      group_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Groups',
-          key: 'id'
-        }
-      },
-      section_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Sections',
-          key: 'id'
-        }
       }
     });
   },
