@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       }
     });
+    models.Professor.belongsTo(models.Profile, {
+      foreignKey: {
+        name: 'profile_id',
+        allowNull: false,
+      }
+    });
   };
   return Student;
 };

@@ -17,7 +17,7 @@ class DashboardStudents extends Component<any, any>{
         const studentItemComponents = this.studentItems.map(student => {
             return(
                 <div key={student.id}>
-                    <DashboardStudentItem name={ student.name }>
+                    <DashboardStudentItem name={ student.id }>
                     </DashboardStudentItem>
                 </div>
             )
@@ -37,3 +37,4 @@ class DashboardStudents extends Component<any, any>{
         );
     }
 }
+export default DashboardStudents;
