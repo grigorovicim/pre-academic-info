@@ -18,13 +18,18 @@ router.get('/', function(_, res){
 Returns the list of all the professors that teach a particular course.
 */
 
-router.get('/professors/:courseId', function(req, res){
+router.get('/course/:courseId', function(req, res){
   const courseId = req.params.courseId;
 
-  models.Professor.findAll({include: [{
-    model: models.Course,
-    where: {course_id : courseId},
-  }]}).then(professors => res.json(professors), err => {
+  models.Professor.findAll({
+    //where: {'$ProfessorCourses.professor_id$' : '$Professors.id$'},
+
+    include: [{
+    model: models.ProfessorCourse,
+    required: true,
+    include : [{model:models.Course, required:true, where: {id: courseId}}]
+    }]
+  }).then(professors => res.json(professors), err => {
     res.status(501);
     res.send('Internal Server Error! Sorry, try again!');
     console.log('An error has occurred: ' + err);

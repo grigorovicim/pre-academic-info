@@ -27,6 +27,20 @@ module.exports = {
               onDelete: 'SET NULL',
             }
           );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'Profiles',
+            'user_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Users',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
         })
         .then(() => {
           return queryInterface.addColumn(
@@ -148,21 +162,21 @@ module.exports = {
             }
           );
         })
-        .then(() => {
-          return queryInterface.addColumn(
-            'Courses',
-            'owner_id',
-            {
-              type: Sequelize.INTEGER,
-              references: {
-                model: 'Professors',
-                key: 'id',
-              },
-              onUpdate: 'CASCADE',
-              onDelete: 'SET NULL',
-            }
-          );
-        })
+        // .then(() => {
+        //   return queryInterface.addColumn(
+        //     'Courses',
+        //     'owner_id',
+        //     {
+        //       type: Sequelize.INTEGER,
+        //       references: {
+        //         model: 'Professors',
+        //         key: 'id',
+        //       },
+        //       onUpdate: 'CASCADE',
+        //       onDelete: 'SET NULL',
+        //     }
+        //   );
+        // })
         .then(() => {
           return queryInterface.addColumn(
             'Courses',
@@ -221,6 +235,230 @@ module.exports = {
               onDelete: 'SET NULL',
             }
           );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'StudentCourses',
+            'student_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Students',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'StudentCourses',
+            'course_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Courses',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'ProfessorCourses',
+            'course_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Courses',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'ProfessorCourses',
+            'professor_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Professors',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'LabPresences',
+            'professor_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Professors',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'LabPresences',
+            'student_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Students',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'LabPresences',
+            'course_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Courses',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'SeminarPresences',
+            'professor_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Professors',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'SeminarPresences',
+            'student_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Students',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'SeminarPresences',
+            'course_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Courses',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'LabActivities',
+            'professor_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Professors',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'LabActivities',
+            'student_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Students',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'LabActivities',
+            'course_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Courses',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'SeminarActivities',
+            'professor_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Professors',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'SeminarActivities',
+            'student_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Students',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'SeminarActivities',
+            'course_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Courses',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
         })
     },
   
@@ -271,12 +509,12 @@ module.exports = {
             'section_id'
           );
         })
-        .then(() => {
-          return queryInterface.removeColumn(
-            'Courses',
-            'owner_id'
-          );
-        })
+        // .then(() => {
+        //   return queryInterface.removeColumn(
+        //     'Courses',
+        //     'owner_id'
+        //   );
+        // })
         .then(() => {
           return queryInterface.removeColumn(
             'Courses',
@@ -299,6 +537,86 @@ module.exports = {
           return queryInterface.removeColumn(
             'Professors',
             'title_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'StudentCourses',
+            'student_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'StudentCourses',
+            'course_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'ProfessorCourses',
+            'professor_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'ProfessorCourses',
+            'course_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'LabPresences',
+            'course_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'LabPresences',
+            'professor_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'LabPresences',
+            'student_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'SeminarPresences',
+            'course_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'SeminarPresences',
+            'professor_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'SeminarPresences',
+            'student_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'LabActivities',
+            'course_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'LabActivities',
+            'professor_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'LabActivities',
+            'student_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'SeminarActivities',
+            'course_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'SeminarActivities',
+            'professor_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'SeminarActivities',
+            'student_id'
           );
         });
     }

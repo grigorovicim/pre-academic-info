@@ -140,4 +140,41 @@ router.delete('/:id', function(req, res){
   });
 });
 
+/*
+Returns the list of students that are enrolled in a given course.
+*/
+router.get('/course/:courseId', function(req, res){
+  const courseId = req.params.courseId;
+
+  models.Student.findAll({
+    include: [{
+    model: models.StudentCourse,
+    required: true,
+    include : [{model:models.Course, required:true, where: {id: courseId}}]
+    }]
+  }).then(students => res.json(students), err => {
+    res.status(501);
+    res.send('Internal Server Error! Sorry, try again!');
+    console.log('An error has occurred: ' + err);
+  });
+});
+
+/*
+Returns the profile corresponding to a given student.
+*/
+router.get('/profile/:studentId', function(req, res){
+  const studentId = req.params.studentId;
+
+  models.Profile.findAll({
+    include: [{
+    model: models.Student,
+    where:{id : studentId},
+    required: true}]
+    }).then(students => res.json(students), err => {
+      res.status(501);
+      res.send('Internal Server Error! Sorry, try again!');
+      console.log('An error has occurred: ' + err);
+  });
+});
+
 module.exports = router;
