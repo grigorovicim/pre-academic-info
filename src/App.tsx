@@ -11,7 +11,7 @@ import './App.css';
 import logo from './logo.png';
 import Popup from './commons/Popup';
 // import Dashboard from './courses/Dashboard'
-import DashboardStudents from './students/DashboardStudents';
+import DashboardStudentsComplex from './students/DashboardStudentsComplex';
 
 class App extends Component<any, any> {
   constructor(props: any) {
@@ -67,8 +67,8 @@ class App extends Component<any, any> {
     //   {id:6, name: "MAP", department: "info", isConfigured: true},
     // ]
     const dummyStudents = [
-      {id:1, year_of_study:2, group_id:1, section_id: 1},
-      {id:3, year_of_study:2, group_id:3, section_id: 4}
+      {id:1, name:'Nicole', email:'ddie2108@cs.ubbcluj.ro', section:'Info Engleza', year_of_study:1},
+      {id:1, name:'Bianca', email:'diie2318@cs.ubbcluj.ro', section:'Info Engleza', year_of_study:2}
     ]
     return (
       <div className="p-app">
@@ -82,7 +82,7 @@ class App extends Component<any, any> {
 
         <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
         {/* <Dashboard courseItems={dummy}></Dashboard> */}
-        <DashboardStudents studentItems={dummyStudents}></DashboardStudents>
+        <DashboardStudentsComplex studentItems={dummyStudents}></DashboardStudentsComplex>
       </div>
     );
   }
