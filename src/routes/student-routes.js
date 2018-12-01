@@ -170,7 +170,7 @@ router.get('/profile/:studentId', function(req, res){
     model: models.Student,
     where:{id : studentId},
     required: true}]
-    }).then(students => res.json(students), err => {
+    }).then(profiles => res.json(profiles), err => {
       res.status(501);
       res.send('Internal Server Error! Sorry, try again!');
       console.log('An error has occurred: ' + err);

@@ -36,4 +36,22 @@ router.get('/course/:courseId', function(req, res){
   });
 });
 
+/*
+Returns the profile corresponding to a given professor.
+*/
+router.get('/profile/:professorId', function(req, res){
+  const professorId = req.params.professorId;
+
+  models.Profile.findAll({
+    include: [{
+    model: models.Professor,
+    where:{id : professorId},
+    required: true}]
+    }).then(profiles => res.json(profiles), err => {
+      res.status(501);
+      res.send('Internal Server Error! Sorry, try again!');
+      console.log('An error has occurred: ' + err);
+  });
+});
+
 module.exports = router;
