@@ -11,11 +11,13 @@ const professorReducer = (state: {professors: {};} = {
   } = action;
 
   //dummy code; all the actions affecting users will need to be treated here
-  if (type == '' && payload == '')
+  if (type === '' && payload === '')
+  {
     return {
 
     };
-  
+  }
+    
     return {
         
     };
