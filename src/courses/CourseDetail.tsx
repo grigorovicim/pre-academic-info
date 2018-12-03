@@ -5,11 +5,15 @@ import './CourseDetail.css';
 import { Row, Col, Grid } from 'react-bootstrap';
 
 class CourseDetail extends Component<any, any> {
-
+    private details: any;
     constructor(props: any) {
-        super(props);        
+        super(props);    
+        this.details = props.detail  
+        console.log(this.details)
     }
 
+    //What tells us the field. Ex: what= "number" means that the handler
+    //was called on the course number input field 
     handleKeyPress = (event: any, what: string) => {
 
         if(event.key === 'Enter'){
@@ -17,6 +21,7 @@ class CourseDetail extends Component<any, any> {
          
             switch(what){
                 case ("number"):
+                    
                     console.log(event.target.value)
                     break;
             }
@@ -28,7 +33,7 @@ class CourseDetail extends Component<any, any> {
         return (
             
     <Grid>
-        <h1 className="text-center" style={{fontWeight: 600}}>Design Patterns</h1>
+        <h1 className="text-center" style={{fontWeight: 600}}>{this.details.name}</h1>
         <h3 className="text-center" style={{color:"gray"}}>Course Configuration</h3>
         <br/>
         <br/>
@@ -36,26 +41,24 @@ class CourseDetail extends Component<any, any> {
     <Row className="show-grid text-center">
         <Col style={{fontSize: '1.5em', color:'gray'}} md={2}>Course</Col>
         <Col style={{fontSize: '1.25em', color:'gray'}} md={4}>
-        Number: <input type='text' size={1} onKeyPress={(event)=>this.handleKeyPress(event, 'number')} />
+        Number: <input type='text' defaultValue={this.details.number} size={1} onKeyPress={(event)=>this.handleKeyPress(event, 'number')} />
         </Col>
         <Col style={{fontSize: '1.25em', color:'gray'}} md={4}>
-        Hours: <input type='text' size={1}/>
+        Hours: <input type='text' defaultValue = {this.details.hours} size={1}/>
         </Col>
     </Row>
     <hr/>
     <Row className="show-grid">
         <Col className="text-center" style={{fontSize: '1.5em', color:'gray'}} md={2}>Description</Col>
         <Col style={{fontSize: '1em', color:'gray'}} md={8}>
-        I should have mentioned that the size attribute isn't a precise method of sizing: according to the HTML specification, it should refer to the number of characters of the current font the input will be able to display at once.
-        However, unless the font specified is a fixed-width/monospace font, this is not a guarantee that the specified number of characters will actually be visible; in most fonts, different characters will be different widths. This question has some good answers relating to t
+        {this.details.description}
         </Col>
     </Row>
     <hr/>
     <Row className="show-grid">
         <Col className="text-center" style={{fontSize: '1.5em', color:'gray'}} md={2}>Rules</Col>
         <Col style={{fontSize: '1em', color:'gray'}} md={8}>
-        I should have mentioned that the size attribute isn't a precise method of sizing: according to the HTML specification, it should refer to the number of characters of the current font the input will be able to display at once.
-        However, unless the font specified is a fixed-width/monospace font, this is not a guarantee that the specified number of characters will actually be visible; in most fonts, different characters will be different widths. This question has some good answers relating to t
+        {this.details.rules}
         </Col>
     </Row>
     <hr/>
@@ -65,23 +68,24 @@ class CourseDetail extends Component<any, any> {
         <Col style={{fontSize: '1em', color:'gray'}} md = {4}>
             <Row style={{fontSize: '1.25em', color:'gray'}}>
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {4}>Number:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' size={1}/></Col>
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' defaultValue = {this.details.labs.number} size={1}/></Col>
             </Row>
             <Row style={{fontSize: '1.25em', color:'gray'}}>
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Hours:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' size={1}/></Col>
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' defaultValue = {this.details.labs.hours} size={1}/></Col>
             </Row>
             <Row style={{fontSize: '1.25em', color:'gray'}}>
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Practicals:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' size={1}/></Col>
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' defaultValue = {this.details.labs.practicals} size={1}/></Col>
             </Row>
         </Col>
 
         <Col style={{fontSize: '1.25em', color:'gray'}} md={2} >
-        Professors:
+        Professors: 
         </Col>
-       
+            
         <Col style={{fontSize: '1em', color:'gray'}} >
+        {/* Professors list component for labs*/}
         Professor1 <br/>
         Professor2 <br/>
         Professor3 
@@ -95,15 +99,15 @@ class CourseDetail extends Component<any, any> {
         <Col style={{fontSize: '1em', color:'gray'}} md = {4}>
             <Row style={{fontSize: '1.25em', color:'gray'}}>
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {4}>Number:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' size={1}/></Col>
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' defaultValue = {this.details.seminars.number} size={1}/></Col>
             </Row>
             <Row style={{fontSize: '1.25em', color:'gray'}}>
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Hours:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' size={1}/></Col>
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' defaultValue = {this.details.seminars.hours} size={1}/></Col>
             </Row>
             <Row style={{fontSize: '1.25em', color:'gray'}}>
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Partials:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' size={1}/></Col>
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text'defaultValue = {this.details.seminars.partials}  size={1}/></Col>
             </Row>
         </Col>
 
@@ -112,6 +116,7 @@ class CourseDetail extends Component<any, any> {
         </Col>
        
         <Col style={{fontSize: '1em', color:'gray'}} >
+          {/* Professors list component for seminars*/}
         Professor1 <br/>
         Professor2 
         </Col>
@@ -127,7 +132,7 @@ class CourseDetail extends Component<any, any> {
     <Row className="show-grid text-center">
         <Col style={{fontSize: '1.5em', color:'gray'}} md={2}>Students</Col>
         <Col style={{fontSize: '1.25em', color:'gray'}} md={4}>
-        
+        {/* Students list component */}
         </Col>
     </Row>
     <br/><br/>
@@ -139,3 +144,4 @@ class CourseDetail extends Component<any, any> {
 }
 
 export default CourseDetail;
+
