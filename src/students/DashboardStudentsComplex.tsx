@@ -4,17 +4,23 @@ import { Component } from "react";
 import './DashboardStudentsComplex.css';
 import DashboardStudentItemComplex from './DashboardStudentItemComplex';
 
+import * as PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import { fetchStudents } from '../actions/Student.actions';
+
 class DashboardStudentsComplex extends Component<any, any>{
+    static propTypes = {
+        fetchStudents: PropTypes.func.isRequired,
+        students: PropTypes.array.isRequired,
+      };
 
-    private studentItems: any[];
-
-    constructor(props: any){
-        super(props);
-        this.studentItems = props.studentItems;
+    componentWillMount(){
+        this.props.fetchStudents();
+        console.log("Fetching students done!");
     }
 
     render(){
-        const studentItemComponents = this.studentItems.map(student => {
+        const studentItemComponents = this.props.students.map(student => {
             return(
                <tr key={student.id}>
                     {/* poate ar trebui sa trimitem un student intreg aici, si abia in StudentItem sa ii despachetam proprietatile */}
@@ -37,4 +43,13 @@ class DashboardStudentsComplex extends Component<any, any>{
         );
     }
 }
-export default DashboardStudentsComplex;
+
+const mapStateToProps = state => ({
+    students: state.studentReducer.items,
+  });
+
+
+// export default DashboardStudentsComplex;
+
+
+export default connect(mapStateToProps, { fetchStudents })(DashboardStudentsComplex);
