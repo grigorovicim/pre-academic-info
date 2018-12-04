@@ -15,8 +15,7 @@ class DashboardStudentsComplex extends Component<any, any>{
       };
 
     componentWillMount(){
-        this.props.fetchStudents();
-        console.log("Fetching students done!");
+        this.props.fetchStudents(2);
     }
 
     render(){

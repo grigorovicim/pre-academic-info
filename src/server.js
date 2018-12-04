@@ -92,6 +92,12 @@ app.post('/login', (req, res) => {
   }
 });
 
+app.get('student/course', (req, res) =>{
+  const courseId = req.body.courseId;
+  students = StudentRoutes.get('/student/course/' + courseId);
+  res.send(students);
+});
+
 if (!dev) {
   app.disable('x-powered-by');
   app.use(compression());
