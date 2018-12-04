@@ -65,14 +65,14 @@ class App extends Component<any, any> {
       {id:4, name: "Microcontrollers", department: "info", isConfigured: false},
       {id:5, name: "ASC", department: "info", isConfigured: true},
       {id:6, name: "MAP", department: "info", isConfigured: true},
-    ]
+    ];
     return (
       <div className="p-app">
 
-        <Header activeMenuItem="courses"/>
+        <Header login="none" courses="inline" students="none" catalog="none" myProfile="none"/>
 
         <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
-        <Dashboard courseItems={dummy}></Dashboard>
+        <Dashboard courseItems={dummy}/>
       </div>
     );
   }

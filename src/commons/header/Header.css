@@ -52,7 +52,28 @@
     font-size: 20px;
 }
 
-.hero {
+.login {
+     display: none;
+     position:relative;
+     background-color:#FFFFFF;
+     height:50%;
+     width:100%;
+ }
+
+.login:after {
+    content:'';
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    margin-left: -50px;
+    transform: rotate(45deg);
+    width: 0;
+    height: 0;
+    border-top: solid 40px #FFFFFF;
+    border-right: solid 40px #FFFFFF;
+}
+
+.courses {
     display: none;
     position:relative;
     background-color:#FFFFFF;
@@ -60,12 +81,75 @@
     width:100%;
 }
 
-.hero:after {
+.courses:after {
     content:'';
     position: absolute;
     top: 120%;
     left: 50%;
-    margin-left: -50px;
+    margin-left: -66px;
+    transform: rotate(45deg);
+    width: 0;
+    height: 0;
+    border-top: solid 40px #FFFFFF;
+    border-right: solid 40px #FFFFFF;
+}
+
+.students {
+    display: none;
+    position:relative;
+    background-color:#FFFFFF;
+    height:50%;
+    width:100%;
+}
+
+.students:after {
+    content:'';
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    margin-left: -70px;
+    transform: rotate(45deg);
+    width: 0;
+    height: 0;
+    border-top: solid 40px #FFFFFF;
+    border-right: solid 40px #FFFFFF;
+}
+
+.catalog {
+    display: none;
+    position:relative;
+    background-color:#FFFFFF;
+    height:50%;
+    width:100%;
+}
+
+.catalog:after {
+    content:'';
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    margin-left: -66px;
+    transform: rotate(45deg);
+    width: 0;
+    height: 0;
+    border-top: solid 40px #FFFFFF;
+    border-right: solid 40px #FFFFFF;
+}
+
+.myProfile {
+    display: none;
+    position:relative;
+    background-color:#FFFFFF;
+    height:50%;
+    width:100%;
+}
+
+.myProfile:after {
+    content:'';
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    margin-left: -75px;
     transform: rotate(45deg);
     width: 0;
     height: 0;

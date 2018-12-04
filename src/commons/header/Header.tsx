@@ -15,9 +15,6 @@ class Header extends Component<any,any>{
           myProfile: 'none'
 
       };
-      const activeMenuItem = this.props.activeMenuItem;
-      console.log(this.props);
-      this.setState({ [activeMenuItem]: 'inline'})
       this.handleClick = this.handleClick.bind(this);
     }
 
@@ -38,23 +35,23 @@ class Header extends Component<any,any>{
                     <div className="p-menu-buttons-div">
                         <div className="p-header-button" onClick={this.handleClick}>
                             <div>LOGIN</div>
-                            <div id="login" className="hero" style={{display: this.state.login}}/>
+                            <div id="login" className="login" style={{display: this.props.login}}/>
                         </div>
                         <div className="p-header-button">
                             <div>COURSES</div>
-                            <div id="courses" className="hero" style={{display: this.state.courses}}/>
+                            <div id="courses" className="courses" style={{display: this.props.courses}}/>
                         </div>
                         <div className="p-header-button">
                             <div>STUDENTS</div>
-                            <div id="student" className="hero" style={{display: this.state.students}}/>
+                            <div id="student" className="students" style={{display: this.props.students}}/>
                         </div>
                         <div className="p-header-button">
                             <div>CATALOG</div>
-                            <div id="catalog" className="hero" style={{display: this.state.catalog}}/>
+                            <div id="catalog" className="catalog" style={{display: this.props.catalog}}/>
                         </div>
                         <div className="p-header-button">
                             <div>MY PROFILE</div>
-                            <div id="myprofile" className="hero" style={{display: this.state.myProfile}}/>
+                            <div id="myprofile" className="myProfile" style={{display: this.props.myProfile}}/>
                         </div>
                     </div>
                 </header>
