@@ -4,7 +4,7 @@ import axios from 'axios';
 export const fetchStudents = (courseId: any) => dispatch => {
     console.log("fetching students...");
 
-    axios.get('/student/course/1')
+    axios.get('/student/course/'+courseId)
     .then(res =>{
         console.log("doing something");
         
