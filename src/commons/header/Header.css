@@ -156,3 +156,12 @@
     border-top: solid 40px #FFFFFF;
     border-right: solid 40px #FFFFFF;
 }
+
+a{
+    color: #FFFFFF;
+}
+
+a:hover{
+    color: var(--button-header-hover-color);
+    text-decoration: none;
+}

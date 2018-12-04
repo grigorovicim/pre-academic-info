@@ -2,6 +2,7 @@ import {Component} from "react";
 import * as React from "react";
 import './Header.css';
 import logo from './logo.png';
+import {NavLink} from "react-router-dom";
 
 class Header extends Component<any,any>{
 
@@ -15,13 +16,7 @@ class Header extends Component<any,any>{
           myProfile: 'none'
 
       };
-      this.handleClick = this.handleClick.bind(this);
     }
-
-    handleClick(){
-        console.log("It's working!")
-    }
-
 
 
     render() {
@@ -33,24 +28,24 @@ class Header extends Component<any,any>{
                     </div>
 
                     <div className="p-menu-buttons-div">
-                        <div className="p-header-button" onClick={this.handleClick}>
-                            <div>LOGIN</div>
+                        <div className="p-header-button" >
+                            <NavLink to={"/"}>LOGIN</NavLink>
                             <div id="login" className="login" style={{display: this.props.login}}/>
                         </div>
                         <div className="p-header-button">
-                            <div>COURSES</div>
+                            <NavLink to={"/courses"}>COURSES</NavLink>
                             <div id="courses" className="courses" style={{display: this.props.courses}}/>
                         </div>
                         <div className="p-header-button">
-                            <div>STUDENTS</div>
+                            <NavLink to={"/students"}>STUDENTS</NavLink>
                             <div id="student" className="students" style={{display: this.props.students}}/>
                         </div>
                         <div className="p-header-button">
-                            <div>CATALOG</div>
+                            <NavLink to={"/catalog"}>CATALOG</NavLink>
                             <div id="catalog" className="catalog" style={{display: this.props.catalog}}/>
                         </div>
                         <div className="p-header-button">
-                            <div>MY PROFILE</div>
+                            <NavLink to={"/myprofile"}>MY PROFILE</NavLink>
                             <div id="myprofile" className="myProfile" style={{display: this.props.myProfile}}/>
                         </div>
                     </div>
