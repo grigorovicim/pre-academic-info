@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     grade: DataTypes.REAL
   }, {});
   ExamResult.associate = function(models) {
+<<<<<<< HEAD
     models.ExamResult.belongsTo(models.Student, {
       foreignKey: { 
         name: 'student_id',
@@ -16,6 +17,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       }
     });
+=======
+>>>>>>> origin/develop
   };
   return ExamResult;
 };
