@@ -3,6 +3,8 @@ import { Component } from "react";
 
 import StudentsListItem from './StudentsListItem';
 
+import './StudentsList.css';
+
 import * as PropTypes from 'prop-types'; 
 import { connect } from 'react-redux'; 
 import { fetchStudents } from '../actions/Student.actions'; 
@@ -14,8 +16,8 @@ class StudentsList extends Component<any, any>{
       };
 
     componentWillMount(){
-        this.props.fetchStudents(1);
-        
+        /// TODO get the real id of the course from the user input
+        this.props.fetchStudents(1); 
     }
 
     render(){
@@ -29,8 +31,11 @@ class StudentsList extends Component<any, any>{
         return(
             <div>
                 <tbody className="p-students-table">
-                    <tr>
+                    {/* <tr>
                         <th className="p-students-table-header">Student name</th>
+                    </tr> */}
+                    <tr>
+                        <button>Add student +</button>
                     </tr>
                     {studentItems}
                 </tbody>

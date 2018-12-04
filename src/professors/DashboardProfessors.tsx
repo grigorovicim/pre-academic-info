@@ -3,6 +3,8 @@ import { Component } from "react";
 
 import DashboardProfessorItem from './DashboardProfessorItem';
 
+import './ProfessorsList.css';
+
 import * as PropTypes from 'prop-types'; 
 import { connect } from 'react-redux'; 
 import { fetchProfessors } from '../actions/Professor.actions'; 
@@ -14,9 +16,9 @@ class DashboardProfessors extends Component<any, any>{
       };
 
     componentWillMount(){
+        /// TODO get the actual course id from the user input
         this.props.fetchProfessors(1);
         console.log("prof comp mounted");
-        
     }
 
     render(){
@@ -29,12 +31,15 @@ class DashboardProfessors extends Component<any, any>{
         })
         return(
             <div>
-                <tbody className="p-professors-table">
+                <table className="p-professors-basic-table">
                     <tr>
-                        <th className="p-professors-table-header">ProfessorName</th>
+                        <button className="p-add-prof-button">Add professor +</button>
                     </tr>
+                    {/* <tr>
+                        <th className="p-professors-basic-table-header">ProfessorName</th>
+                    </tr> */}
                     {professorItemComponents}
-                </tbody>
+                </table>
         </div> 
         );
     }
