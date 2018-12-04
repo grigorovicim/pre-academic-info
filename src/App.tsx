@@ -12,6 +12,7 @@ import logo from './logo.png';
 import Popup from './commons/Popup';
 // import Dashboard from './courses/Dashboard'
 import DashboardStudentsComplex from './students/DashboardStudentsComplex';
+import DashboardProfessors from './professors/DashboardProfessors';
 
 class App extends Component<any, any> {
   constructor(props: any) {
@@ -83,6 +84,8 @@ class App extends Component<any, any> {
         <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
         {/* <Dashboard courseItems={dummy}></Dashboard> */}
         <DashboardStudentsComplex studentItems={dummyStudents}></DashboardStudentsComplex>
+        <DashboardProfessors></DashboardProfessors>
+        
       </div>
     );
   }

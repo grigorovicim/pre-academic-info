@@ -98,6 +98,13 @@ app.get('student/course', (req, res) =>{
   res.send(students);
 });
 
+app.get('professor/course', (req, res) =>{
+  const courseId = req.body.courseId;
+  professors = ProfessorRoutes.get('/professor/course/' + courseId);
+  res.send(professors);
+});
+
+
 if (!dev) {
   app.disable('x-powered-by');
   app.use(compression());

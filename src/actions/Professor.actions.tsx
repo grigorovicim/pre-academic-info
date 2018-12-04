@@ -1,9 +1,7 @@
 import { FETCH_PROFESSORS  } from './types';
 import axios from 'axios';
 
-export const fetchStudents = (courseId: any) => dispatch => {
-    console.log("fetching professors...");
-
+export const fetchProfessors = (courseId: any) => dispatch => {
     axios.get('/professor/course/'+courseId)
     .then(res =>{
         dispatch({
