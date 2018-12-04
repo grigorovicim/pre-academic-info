@@ -1,0 +1,9 @@
+[
+	{
+		"model": "Role",
+		"data": {
+			"id": 1,
+			"label": "User"
+		}
+	}
+]

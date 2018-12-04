@@ -1,0 +1,12 @@
+[
+	{
+		"model": "User",
+		"data": {
+			"id": 1,
+			"username": "root",
+			"password": "root",
+			"is_active": "true",
+			"role_id" : 1
+		}
+	}
+]
