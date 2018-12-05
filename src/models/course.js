@@ -7,13 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     year_of_study: DataTypes.INTEGER,
     is_active: DataTypes.BOOLEAN
   }, {});
-<<<<<<< HEAD
-  Course.associate = function(models) {
-    // associations can be defined here
-  };
-  return Course;
-};
-=======
   
   Course.associate = function(models) {
     models.Course.hasMany(models.ExamResult, {
@@ -28,4 +21,3 @@ module.exports = (sequelize, DataTypes) => {
 };
   
   
->>>>>>> origin/develop

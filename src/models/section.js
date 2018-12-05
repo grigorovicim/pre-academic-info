@@ -4,18 +4,12 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {});
   Section.associate = function(models) {
-<<<<<<< HEAD
-    // associations can be defined here
-=======
->>>>>>> origin/develop
     models.Section.belongsTo(models.Abbreviation,{
       foreignKey: {
         name: 'abbreviation_id',
         allowNull: false
       }
     });
-<<<<<<< HEAD
-=======
 
     models.Section.hasMany(models.Course, {
       foreignKey: {
@@ -30,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       }
     });
->>>>>>> origin/develop
   };
   return Section;
 };

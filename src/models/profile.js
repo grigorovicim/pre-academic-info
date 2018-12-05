@@ -10,18 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     cnp: DataTypes.STRING
   }, {});
   Profile.associate = function(models) {
-<<<<<<< HEAD
-    // associations can be defined here
-=======
->>>>>>> origin/develop
     models.Profile.belongsTo(models.User, {
       foreignKey: {
         name: 'user_id',
         allowNull: false,
       }
     });
-<<<<<<< HEAD
-=======
 
     models.Profile.hasOne(models.Professor, {
       foreignKey: {
@@ -36,7 +30,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       }
     });
->>>>>>> origin/develop
   };
   return Profile;
 };
