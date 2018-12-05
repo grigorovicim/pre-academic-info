@@ -14,7 +14,7 @@ import Popup from './commons/Popup';
 import DashboardStudentsComplex from './students/DashboardStudentsComplex';
 import DashboardProfessors from './professors/DashboardProfessors';
 import StudentsList from './students/StudentsList';
-import AddNewStudentToCourse from './students/AddNewStudentToCourse';
+import AddNewStudentToCourse from './students/Add-new-students/AddNewStudentToCourse';
 
 class App extends Component<any, any> {
   constructor(props: any) {
