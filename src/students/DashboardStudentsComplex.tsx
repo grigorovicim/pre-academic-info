@@ -15,7 +15,7 @@ class DashboardStudentsComplex extends Component<any, any>{
       };
 
     componentWillMount(){
-        this.props.fetchStudents(2);
+        this.props.fetchStudents(1);
     }
 
     render(){
@@ -29,7 +29,7 @@ class DashboardStudentsComplex extends Component<any, any>{
         })
         return(
             <div>
-                <table className="p-students-table">
+                <tbody className="p-students-table">
                     <tr>
                         <th className="p-students-table-header">Name</th>
                         <th className="p-students-table-header">Email</th>
@@ -37,8 +37,8 @@ class DashboardStudentsComplex extends Component<any, any>{
                         <th className="p-students-table-header">Year</th>
                     </tr>
                     {studentItemComponents}
-                </table>
-        </div> 
+                </tbody>
+            </div> 
         );
     }
 }

@@ -1,28 +1,17 @@
+import { FETCH_PROFESSORS } from '../actions/types';
 
-const professorReducer = (state: {professors: {};} = {
-  professors: {
-  
-  }
-}, action: any) => {
-
-  const {
-    type,
-    payload,
-  } = action;
-
-  //dummy code; all the actions affecting users will need to be treated here
-  if (type === '' && payload === '')
-  {
-    return {
-
-    };
-  }
-    
-    return {
-        
-    };
-
-
+const initialState = {
+  items: [],
 };
 
-export default professorReducer;
+export default function(state = initialState, action) {
+    switch (action.type) {
+      case FETCH_PROFESSORS:
+        return {
+          items: action.payload
+        };
+      
+      default:
+        return state;
+    }
+  }
