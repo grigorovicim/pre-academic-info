@@ -22,10 +22,12 @@ const compression = require('compression');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const jsSHA = require("jssha");
+
 var StudentRoutes  = require('./src/routes/student-routes');
 var ProfessorRoutes  = require('./src/routes/professor-routes');
 var CourseRoutes  = require('./src/routes/course-routes');
 var UserRoutes = require('./src/routes/user-routes');
+var ConfigRoutes = require('./routes/configuration-routes');
 
 const app = express();
 
@@ -39,6 +41,7 @@ app.use('/student', StudentRoutes);
 app.use('/professor', ProfessorRoutes);
 app.use('/course', CourseRoutes);
 app.use('/user', UserRoutes);
+app.use('/config', ConfigRoutes);
 
 app.get('/check-server', (req, res) => {
   res.send({ express: 'Hello From Express BACKEND!' });

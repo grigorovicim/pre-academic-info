@@ -15,10 +15,12 @@ class DashboardProfessors extends Component<any, any>{
         professors: PropTypes.array.isRequired,
         professorProfile: PropTypes.any
       };
+    
+    /// TODO get the actual course id from the user input
+    private courseId = 1;
 
     componentWillMount(){
-        /// TODO get the actual course id from the user input
-        this.props.fetchProfessors(1);
+        this.props.fetchProfessors(this.courseId);
         console.log("prof comp mounted");
     }
 
@@ -27,7 +29,11 @@ class DashboardProfessors extends Component<any, any>{
             this.props.fetchProfessorProfile(professor.id);
             return(
                <tr key={professor.id}>
+<<<<<<< HEAD
                     <DashboardProfessorItem professor = {this.props.professorProfile}/>
+=======
+                    <DashboardProfessorItem professor = {professor} courseId = {this.courseId}/>
+>>>>>>> Implemented config removal for professor and student
                 </tr>
             )
         })
@@ -49,8 +55,12 @@ class DashboardProfessors extends Component<any, any>{
 
 const mapStateToProps = state => ({
     professors: state.professorReducer.items, 
+<<<<<<< HEAD
     professorProfile: state.professorReducer.professorProfile
   });
+=======
+});
+>>>>>>> Implemented config removal for professor and student
 
 
 export default connect(mapStateToProps, { fetchProfessors, fetchProfessorProfile })(DashboardProfessors);

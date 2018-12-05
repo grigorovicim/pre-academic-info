@@ -16,19 +16,29 @@ class StudentsList extends Component<any, any>{
         studentProfile: PropTypes.any
       };
 
+<<<<<<< HEAD
+=======
+    private courseId = 1;
+>>>>>>> Implemented config removal for professor and student
 
     componentWillMount(){
         /// TODO get the real id of the course from the user input
-        this.props.fetchStudents(1); 
+        this.props.fetchStudents(this.courseId); 
     }
 
     render(){
         const studentItems = this.props.students.map(student => {
            this.props.fetchProfileForStudent(student.id);
             return(
+<<<<<<< HEAD
                <div key={student.id}>
                     <StudentsListItem student = {this.props.studentProfile}/>
                 </div>
+=======
+                <tr key={student.id}>
+                    <StudentsListItem student = {student} courseId = {this.courseId}/>
+                </tr>
+>>>>>>> Implemented config removal for professor and student
             )
         })
         return(
