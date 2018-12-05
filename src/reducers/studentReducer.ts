@@ -1,5 +1,4 @@
-import { FETCH_STUDENTS } from '../actions/types';
-import { FETCH_STUDENT_PROFILE} from '../actions/types';
+import { FETCH_STUDENTS, FETCH_STUDENT_PROFILE } from '../actions/types';
 
 const initialState = {
   items: [],

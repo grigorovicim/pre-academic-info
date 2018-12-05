@@ -101,11 +101,14 @@ app.get('student/course', (req, res) =>{
 app.get('student/profile', (req, res) =>{
   const studentId = req.body.studentId;
   profiles = StudentRoutes.get('/student/profile/' + studentId);
-  console.log("The profile for the student is" + profiles);
   res.send(profiles);
 });
 
-
+app.get('professor/profile', (req, res) =>{
+  const professorId = req.body.professorId;
+  profiles = ProfessorRoutes.get('/professor/profile/' + professorId);
+  res.send(profiles);
+});
 
 app.get('professor/course', (req, res) =>{
   const courseId = req.body.courseId;

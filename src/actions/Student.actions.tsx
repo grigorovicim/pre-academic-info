@@ -27,7 +27,7 @@ export const fetchProfileForStudent = (studentId: any) => dispatch => {
     .then(res =>{
         dispatch({
             type: FETCH_STUDENT_PROFILE,
-            payload: res.data[0]
+            payload: res.data[0]    //because there is ONLY 1 profile corresponding to the student
         })}) 
         .catch(error => {
             console.log(error)

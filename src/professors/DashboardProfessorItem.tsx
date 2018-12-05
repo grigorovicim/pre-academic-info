@@ -4,15 +4,13 @@ import './ProfessorsList.css';
 
 const DashboardProfessorItem = (props: any) => {
 
-    const name = props.professor.nickname;
+    const first_name = props.professor.first_name;
+    const last_name = props.professor.last_name;
 
         return(
             <div>
-                
-                <tr>
-                    <td className="p-professors-basic-item">{name}</td>
-                    <button>x</button>
-                </tr>
+                {first_name} {last_name}
+                <button>x</button>
             </div>
         );
 }
