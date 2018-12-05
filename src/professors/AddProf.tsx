@@ -29,7 +29,7 @@ class AddProf extends Component<any, any>{
             <div>
                 <p>Professor email address:</p>
                 <input ref={this.setProfessorRef} type="text" placeholder="email"/><br/>
-                <button onClick={this.saveProfessor}>Add professor</button><br/>
+                <button onClick={this.saveProfessor}>Save</button><br/>
             </div>
         );
     }

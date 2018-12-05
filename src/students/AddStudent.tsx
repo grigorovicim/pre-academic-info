@@ -26,7 +26,7 @@ class AddStudent extends Component<any, any>{
             <div>
                 <p>Student email address:</p>
                 <input ref={this.setStudentRef} type="text" placeholder="email"/><br/>
-                <button onClick={this.saveStudent}>Add student</button><br/>
+                <button onClick={this.saveStudent}>Save</button><br/>
             </div>
         );
     }
