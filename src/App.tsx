@@ -14,6 +14,7 @@ import Popup from './commons/Popup';
 import DashboardStudentsComplex from './students/DashboardStudentsComplex';
 import DashboardProfessors from './professors/DashboardProfessors';
 import StudentsList from './students/StudentsList';
+import AddNewStudentToCourse from './students/AddNewStudentToCourse';
 
 class App extends Component<any, any> {
   constructor(props: any) {
@@ -84,10 +85,15 @@ class App extends Component<any, any> {
 
         <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
         {/* <Dashboard courseItems={dummy}></Dashboard> */}
+        
         <DashboardStudentsComplex studentItems={dummyStudents}></DashboardStudentsComplex>
         <DashboardProfessors></DashboardProfessors>
         <StudentsList></StudentsList>
         
+        <hr></hr>
+
+        <AddNewStudentToCourse></AddNewStudentToCourse>
+
       </div>
     );
   }
