@@ -8,45 +8,45 @@ import './StudentsList.css';
 import * as PropTypes from 'prop-types'; 
 import { connect } from 'react-redux'; 
 import { fetchStudents } from '../actions/Student.actions'; 
+import { fetchProfileForStudent} from '../actions/Student.actions'; 
 
 class StudentsList extends Component<any, any>{
     static propTypes = {
         fetchStudents: PropTypes.func.isRequired,
         students: PropTypes.array.isRequired,
+        studentProfile: PropTypes.any
       };
+
 
     componentWillMount(){
         /// TODO get the real id of the course from the user input
         this.props.fetchStudents(1); 
+        //this.props.fetchProfileForStudent(1);
     }
 
     render(){
         const studentItems = this.props.students.map(student => {
+           this.props.fetchProfileForStudent(student.id);
+            // console.log(this.props.studentProfile)
             return(
-               <tr key={student.id}>
-                    <StudentsListItem student = {student}/>
-                </tr>
+               <div key={student.id}>
+                    <StudentsListItem student = {this.props.studentProfile}/>
+                </div>
             )
         })
         return(
             <div>
-                <tbody className="p-students-table">
-                    {/* <tr>
-                        <th className="p-students-table-header">Student name</th>
-                    </tr> */}
-                    <tr>
                         <button>Add student +</button>
-                    </tr>
                     {studentItems}
-                </tbody>
-        </div> 
+            </div> 
         );
     }
 }
 
 const mapStateToProps = state => ({
     students: state.studentReducer.items, 
+    studentProfile: state.studentReducer.studentProfile
   });
 
 
-export default connect(mapStateToProps, { fetchStudents })(StudentsList);
+export default connect(mapStateToProps, { fetchStudents, fetchProfileForStudent })(StudentsList);

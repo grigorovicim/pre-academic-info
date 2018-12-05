@@ -1,4 +1,5 @@
 import { FETCH_STUDENTS  } from './types';
+import { FETCH_STUDENT_PROFILE } from './types';
 import axios from 'axios';
 
 export const fetchStudents = (courseId: any) => dispatch => {
@@ -15,45 +16,22 @@ export const fetchStudents = (courseId: any) => dispatch => {
         .catch(error => {
             console.log(error)
         });;
-
-    // return axios.get("http://localhost:5000/student/course/1")
-    //   .then((response) => dispatch({
-    //     type: FETCH_STUDENTS,
-    //     data: response.data
-    //   })).catch((response) => dispatch({
-    //     type: FETCH_STUDENTS,
-    //     error: response.error,
-    //   }))
-
-    // fetch('https://jsonplaceholder.typicode.com/users')
-    // .then(res => res.json())
-    // .then( students =>
-    //     dispatch({
-    //         type: FETCH_STUDENTS,
-    //         payload: students
-    //     }));    
-
     console.log("fetch complete");
     
 };
 
-// export function fetchStudents() {
-//     return function action(dispatch) {
-//       dispatch({ type: FETCH_STUDENTS })
+export const fetchProfileForStudent = (studentId: any) => dispatch => {
+    // console.log("fetching profile for student...");
+    
+    axios.get('/student/profile/'+ studentId)
+    .then(res =>{
+        dispatch({
+            type: FETCH_STUDENT_PROFILE,
+            payload: res.data[0]
+        })}) 
+        .catch(error => {
+            console.log(error)
+        });;
+    // console.log("fetch complete");
+};
 
-//       const request = axios({
-//         method: 'GET',
-//         url: `https://jsonplaceholder.typicode.com/users`,
-//         headers: []
-//       });
-      
-//       return request.then(
-//         response => dispatch(fetchStudentsSuccess(response)),
-//         err => dispatch(fetchStudentsError(err))
-//       );
-//     }
-//   }
-
-
-// export default class StudentActions {
-// }

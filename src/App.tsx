@@ -11,8 +11,8 @@ import './App.css';
 import logo from './logo.png';
 import Popup from './commons/Popup';
 // import Dashboard from './courses/Dashboard'
-import DashboardStudentsComplex from './students/DashboardStudentsComplex';
-import DashboardProfessors from './professors/DashboardProfessors';
+// import DashboardStudentsComplex from './students/DashboardStudentsComplex';
+// import DashboardProfessors from './professors/DashboardProfessors';
 import StudentsList from './students/StudentsList';
 
 class App extends Component<any, any> {
@@ -68,10 +68,10 @@ class App extends Component<any, any> {
     //   {id:5, name: "ASC", department: "info", isConfigured: true},
     //   {id:6, name: "MAP", department: "info", isConfigured: true},
     // ]
-    const dummyStudents = [
-      {id:1, name:'Nicole', email:'ddie2108@cs.ubbcluj.ro', section:'Info Engleza', year_of_study:1},
-      {id:1, name:'Bianca', email:'diie2318@cs.ubbcluj.ro', section:'Info Engleza', year_of_study:2}
-    ]
+    // const dummyStudents = [
+    //   {id:1, name:'Nicole', email:'ddie2108@cs.ubbcluj.ro', section:'Info Engleza', year_of_study:1},
+    //   {id:1, name:'Bianca', email:'diie2318@cs.ubbcluj.ro', section:'Info Engleza', year_of_study:2}
+    // ]
     return (
       <div className="p-app">
         <header className="p-app-header">
@@ -84,8 +84,8 @@ class App extends Component<any, any> {
 
         <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
         {/* <Dashboard courseItems={dummy}></Dashboard> */}
-        <DashboardStudentsComplex studentItems={dummyStudents}></DashboardStudentsComplex>
-        <DashboardProfessors></DashboardProfessors>
+        {/* <DashboardStudentsComplex studentItems={dummyStudents}></DashboardStudentsComplex>
+        <DashboardProfessors></DashboardProfessors> */}
         <StudentsList></StudentsList>
         
       </div>
