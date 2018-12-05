@@ -98,6 +98,14 @@ app.get('student/course', (req, res) =>{
   res.send(students);
 });
 
+app.get('student/profile', (req, res) =>{
+  const studentId = req.body.studentId;
+  profiles = StudentRoutes.get('/student/profile/' + studentId);
+  res.send(profiles);
+});
+
+
+
 if (!dev) {
   app.disable('x-powered-by');
   app.use(compression());
