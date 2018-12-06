@@ -22,6 +22,7 @@ class AddNewStudentToCourse extends Component<any, any> {
     constructor(props) {
         super(props);
         this.state = {
+            studentIdValue:'',
             familyNameValue: '',
             firstNameValue:'',
             emailValue: '',
@@ -45,6 +46,7 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.handleYearChange = this.handleYearChange.bind(this);
         this.handleGroupChange = this.handleGroupChange.bind(this);
         this.handleSectionChange = this.handleSectionChange.bind(this);
+        this.handleStudentIdChange = this.handleStudentIdChange.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -98,6 +100,11 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.setState({sectionValue: event.target.value});
     }
 
+    handleStudentIdChange(event){
+        this.setState({studentIdValue: event.target.value});
+    }
+
+
     handleSubmit(event) {
         alert('A new student has been submitted: ' + this.state.familyNameValue + ' ' + this.state.firstNameValue + '\n'+
             this.state.emailValue + '\n' + this.state.messageValue + '\n' + 
@@ -107,8 +114,8 @@ class AddNewStudentToCourse extends Component<any, any> {
             'section id: ' + this.state.sectionValue
         );
 
-        const student = {
-            "id": "6",
+        const student = {   
+            "id": this.state.studentIdValue,
             "year_of_study": this.state.yearValue, //TODO this is not needed in the db!!!
             "createdAt":"2004-10-19T07:23:54.000Z", // TODO
             "updatedAt":"2005-10-19T07:23:54.000Z", // TODO
@@ -130,6 +137,10 @@ class AddNewStudentToCourse extends Component<any, any> {
         return (
             <div className="container">
             <form onSubmit={this.handleSubmit}>
+                <label>Student ID:
+                    <input type="text" value={this.state.studentIdValue} onChange={this.handleStudentIdChange}/>
+                </label>
+                <br/>
                 <label>First Name:
                     <input type="text" value={this.state.firstNameValue} onChange={this.handleFirstNameChange} />
                 </label>
