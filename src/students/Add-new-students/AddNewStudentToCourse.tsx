@@ -8,7 +8,7 @@
 import 'bootstrap/dist/js/bootstrap.bundle.min'
  
 class AddNewStudentToCourse extends Component<any, any> {
-   
+
     constructor(props) {
         super(props);
         this.state = {
@@ -25,6 +25,7 @@ class AddNewStudentToCourse extends Component<any, any> {
             years: [],
             sections: [] //study lines
         };
+
         this.handleFamilyNameChange = this.handleFamilyNameChange.bind(this);
         this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -32,6 +33,7 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.handleTypeChange = this.handleTypeChange.bind(this);
         this.handleYearChange = this.handleYearChange.bind(this);
         this.handleGroupChange = this.handleGroupChange.bind(this);
+        this.handleSectionChange = this.handleSectionChange.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -70,15 +72,15 @@ class AddNewStudentToCourse extends Component<any, any> {
     }
 
     handleTypeChange(event){
-        this.setState({messageValue: event.target.value});
+        this.setState({typeValue: event.target.value});
     }
     
     handleGroupChange(event){
-        this.setState({messageValue: event.target.value});
+        this.setState({groupValue: event.target.value});
     }
 
     handleYearChange(event){
-        this.setState({messageValue: event.target.value});
+        this.setState({yearValue: event.target.value});
     }
 
     handleSectionChange(event){
@@ -86,7 +88,13 @@ class AddNewStudentToCourse extends Component<any, any> {
     }
 
     handleSubmit(event) {
-        alert('A new student has been submitted: ' + this.state.familyNameValue + ' ' + this.state.firstNameValue);
+        alert('A new student has been submitted: ' + this.state.familyNameValue + ' ' + this.state.firstNameValue + '\n'+
+            this.state.emailValue + '\n' + this.state.messageValue + '\n' + 
+            'type: ' + this.state.typeValue + '\n'+ 
+            'year id: ' + this.state.yearValue + '\n' +
+            'group id: ' + this.state.groupValue + '\n' +
+            'section id: ' + this.state.sectionValue
+        );
         event.preventDefault();
     }
 
@@ -94,13 +102,13 @@ class AddNewStudentToCourse extends Component<any, any> {
         return (
             <div className="container">
             <form onSubmit={this.handleSubmit}>
-                <label>Family Name:
-                    <input type="text" value={this.state.familyNameValue} onChange={this.handleFamilyNameChange} />
-                </label><br/>
-                <br/>
                 <label>First Name:
                     <input type="text" value={this.state.firstNameValue} onChange={this.handleFirstNameChange} />
                 </label>
+                <br/>
+                <label>Family Name:
+                    <input type="text" value={this.state.familyNameValue} onChange={this.handleFamilyNameChange} />
+                </label><br/>
                 <br/>
                 <label>Email: 
                     <input type="text" value={this.state.emailValue}  onChange={this.handleEmailChange} />
@@ -112,7 +120,7 @@ class AddNewStudentToCourse extends Component<any, any> {
                 <br/>
                 {/* TODO get the actual types from the DB */}
                 Type:
-                <select value={this.state.typeValue} onChange={this.handleTypeChange}>
+                <select value={this.state.typeValue} onChange={this.handleTypeChange}> 
                     <option value="Erasmus">Erasmus</option>
                     <option value="Other year">Other year</option>
                     <option value="Optional">Optional</option>
@@ -120,14 +128,18 @@ class AddNewStudentToCourse extends Component<any, any> {
                 <br/>
                 Year:
                 <select value={this.state.yearValue} onChange={this.handleYearChange}>
-                    {this.state.years.map((year) => <option key={year.id} value={year.id}>{year.label}</option>)}
+                    {this.state.years.map((year) => <option defaultValue={year.id} key={year.id} value={year.id}>{year.label}</option>)}
                 </select>
                 {/* <label>Year:
                     <input type="number" min="1" max="5" value={this.state.yearValue} onChange={this.handleEmailChange} />
                 </label> */}
                 <br/>
                 Group:
-                <select value={this.state.groupValue} onChange={this.handleGroupChange}>
+                <select 
+                    value={this.state.groupValue}
+                    onChange={this.handleGroupChange}  
+                    // onChange={(e) => this.setState({groupValue: e.target.value})}
+               >
                     {this.state.groups.map((group) => <option key={group.id} value={group.id}>{group.group_number}</option>)}
                 </select>
                 <br/>
