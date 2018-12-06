@@ -22,13 +22,13 @@ export default class LoginActions {
       .then((response) => {
         if (response.data !== null) {
           LoginActions.setCookie('token', response.data.session);
-          if(response.data.type === 'admin') {
+          if(response.data.type === 'professor') {
             dispatch({
               type: 'SET_USER_DETAILS',
               payload: {
                 user: {
                   userDetails: response.data,
-                  isAdmin: true,
+                  isProfessor: true,
                 }
               },
             });
@@ -38,7 +38,7 @@ export default class LoginActions {
               payload: {
                 user: {
                   userDetails: response.data,
-                  isAdmin: false,
+                  isProfessor: false,
                 }
               },
             });
@@ -61,7 +61,7 @@ export default class LoginActions {
             payload: {
               user: {
                 isLoggedIn: false,
-                isAdmin: false,
+                isProfessor: false,
                 userDetails: null,
               }
             },

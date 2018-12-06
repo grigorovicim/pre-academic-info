@@ -88,4 +88,12 @@ class App extends Component<any, any> {
     );
   }
 }
-export default App;
+const mapStateToProps = (state: any) => {
+  return {
+    user: Object.assign({}, state.app.user),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+)(App);
