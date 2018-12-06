@@ -11,9 +11,9 @@ import CoursesPage from "./components/CoursesPage";
 import HomePage from "./components/HomePage";
 import StudentsPage from "./components/StudentsPage";
 import CatalogPage from "./components/CatalogPage";
-import MyProfilePage from "./components/MyProfilePage";
 import Register from "./authentication/Register";
 import AppActions from './App.actions';
+import MyProfilePage from "./components/myProfilePage/MyProfilePage";
 
 
 class App extends Component<any, any> {
