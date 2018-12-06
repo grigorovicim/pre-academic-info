@@ -1,12 +1,10 @@
 import * as React from "react";
 import { Component } from "react";
 
-import * as PropTypes from 'prop-types'; 
 import { connect } from 'react-redux'; 
 import { removeStudentConfig } from '../actions/Config.actions'; 
 
-class StudentsListItem extends Component<any, any>{
-
+class StudentsListItem extends Component<any, any>
     private first_name;
     private last_name;
     private courseId;
@@ -37,7 +35,8 @@ class StudentsListItem extends Component<any, any>{
 }
 
 const mapStateToProps = state => ({
-    students: state.studentReducer.items
+    students: state.studentReducer.items,
+    studentProfile: state.studentReducer.studentProfile
 });
 
 export default connect(mapStateToProps, { removeStudentConfig })(StudentsListItem);

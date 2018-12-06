@@ -2,7 +2,6 @@ import * as React from "react";
 import { Component } from "react";
 import './ProfessorsList.css';
 
-import * as PropTypes from 'prop-types'; 
 import { connect } from 'react-redux'; 
 import { removeProfessorConfig } from '../actions/Config.actions'; 
 
@@ -36,7 +35,8 @@ class DashboardProfessorItem extends Component<any, any>{
 }
 
 const mapStateToProps = state => ({
-    professors: state.professorReducer.items
+    professors: state.professorReducer.items,
+    professorProfile: state.professorReducer.professorProfile
 });
 
 export default connect(mapStateToProps, { removeProfessorConfig })(DashboardProfessorItem);

@@ -5,7 +5,6 @@ import DashboardProfessorItem from './DashboardProfessorItem';
 
 import './ProfessorsList.css';
 
-import * as PropTypes from 'prop-types'; 
 import { connect } from 'react-redux'; 
 import { fetchProfessors, fetchProfessorProfile } from '../actions/Professor.actions'; 
 
@@ -21,7 +20,6 @@ class DashboardProfessors extends Component<any, any>{
 
     componentWillMount(){
         this.props.fetchProfessors(this.courseId);
-        console.log("prof comp mounted");
     }
 
     render(){
@@ -29,11 +27,7 @@ class DashboardProfessors extends Component<any, any>{
             this.props.fetchProfessorProfile(professor.id);
             return(
                <tr key={professor.id}>
-<<<<<<< HEAD
-                    <DashboardProfessorItem professor = {this.props.professorProfile}/>
-=======
-                    <DashboardProfessorItem professor = {professor} courseId = {this.courseId}/>
->>>>>>> Implemented config removal for professor and student
+                    <DashboardProfessorItem professor = {this.props.professorProfile} courseId = {this.courseId}/>
                 </tr>
             )
         })
@@ -55,12 +49,8 @@ class DashboardProfessors extends Component<any, any>{
 
 const mapStateToProps = state => ({
     professors: state.professorReducer.items, 
-<<<<<<< HEAD
     professorProfile: state.professorReducer.professorProfile
-  });
-=======
 });
->>>>>>> Implemented config removal for professor and student
 
 
 export default connect(mapStateToProps, { fetchProfessors, fetchProfessorProfile })(DashboardProfessors);
