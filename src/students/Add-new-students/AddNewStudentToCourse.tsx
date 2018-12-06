@@ -17,10 +17,13 @@ class AddNewStudentToCourse extends Component<any, any> {
             emailValue: '',
             messageValue: '',
             typeValue: '',
+            sectionValue:'',
             yearValue: '',
             groupValue: '',
             studyLineValue: '', 
-            sections: []
+            groups: [],
+            years: [],
+            sections: [] //study lines
         };
         this.handleFamilyNameChange = this.handleFamilyNameChange.bind(this);
         this.handleFirstNameChange = this.handleFamilyNameChange.bind(this);
@@ -28,26 +31,43 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.handleMessageChange = this.handleFamilyNameChange.bind(this);
         this.handleTypeChange = this.handleFamilyNameChange.bind(this);
 
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        fetch('/section')
+          .then(response => response.json())
+          .then(sections => this.setState({ sections }));
+        console.log("got them sections");
+
         
-
-
-            this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     // componentDidMount() {
-    //     let initialSections = [];
-    //     fetch('/section')
-    //         .then(response => {
-    //             return response.json();
-    //         }).then(data => {
-    //             initialSections = data.results.map((section) => {
-    //             return section
-    //         });
-    //         console.log(initialSections);
-    //         this.setState({
-    //             sections: initialSections,
-    //         });
-    //     });
+        // let initialSections = [];
+        // fetch('/section')
+        //     .then(response => {
+        //         return response.json();
+        //     }).then(data => {
+        //         initialSections = data.results.map((section) => {
+        //         return section
+        //     });
+        //     console.log(initialSections);
+        //     this.setState({
+        //         sections: initialSections,
+        //     });
+        // });
+
+        // fetch("/section")
+        //     .then((response) => {
+        //     return response.json();
+        //     })
+        //     .then(data => {
+        //     const sectionsFromDb = data.map(section =>   section )
+        //     this.setState({ sections: [].concat(sectionsFromDb) });
+        //     }).catch(error => {
+        //     console.log(error);
+        //     });
     // }
 
     handleFamilyNameChange(event) {
@@ -68,6 +88,10 @@ class AddNewStudentToCourse extends Component<any, any> {
 
     handleTypeChange(event){
         this.setState({messageValue: event.target.value});
+    }
+
+    handleSectionChange(event){
+        this.setState({sectionValue: event.target.value});
     }
 
     handleSubmit(event) {
@@ -103,6 +127,7 @@ class AddNewStudentToCourse extends Component<any, any> {
                     <option value="Optional">Optional</option>
                 </select>
                 <br/>
+                {/* TODO get the actual years */}
                 <label>Year:
                     <input type="number" min="1" max="5" value={this.state.yearValue} onChange={this.handleEmailChange} />
                 </label>
@@ -119,11 +144,12 @@ class AddNewStudentToCourse extends Component<any, any> {
                     <option value="7">7</option>
                 </select>
                 <br/>
-                {/* TODO get the actual study lines from the DB */}
-                Study line:
-                <select value={this.state.typeValue} onChange={this.handleTypeChange}>
-                    <option value="CS - English">1</option>
-                    <option value="CS - German">2</option>
+                {/* TODO get the actual sections from the DB */}
+                Section:
+                <select value={this.state.sectionValue} onChange={this.handleSectionChange}>
+                    {this.state.sections.map((section) => <option key={section.id} value={section.id}>{section.name}</option>)}
+                    {/* <option value="CS - English">1</option>
+                    <option value="CS - German">2</option> */}
                 </select>
                 <br/>
                 <input type="submit" value="Send invitation" />
