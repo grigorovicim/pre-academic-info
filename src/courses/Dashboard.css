@@ -8,16 +8,18 @@
 .p-dashboard-header {
     align-items: center;
     height: 67px;	
-    width: 83%;
+    width: 84%;
     margin-bottom: 26px;
-    margin-top: 52px;
     margin-right: 0;
     margin-left: 0;
+    background-color: rgba(216,216,216,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.15);
+
 }
 
 .p-dashboard-header > span{
     position: static;
-    height: 20px;
+    height: 18px;
     font-family: Copperplate;
     text-transform: uppercase;
     font-weight: 700;

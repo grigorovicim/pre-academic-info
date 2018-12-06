@@ -10,12 +10,12 @@
 }
 
 .dashboard-course-item-text {
-  position: static;
+    position: static;
     height: 20px;
     width: 314px;
     font-family: Copperplate;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 20px;
     line-height: 20px;
     color: #262729;
@@ -27,7 +27,7 @@
 }
 
 .course-config-button-wrapper {
-  position: static;
+    position: static;
     background-color: Transparent;
     background-repeat: no-repeat;
     border: none;
@@ -38,6 +38,6 @@
 
 .course-config-button {
   position: static;
-    height: 48px;
-    width: 48px;
+    height: 46px;
+    width: 46px;
 }
