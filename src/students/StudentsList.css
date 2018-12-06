@@ -1,0 +1,8 @@
+.p-students-table {
+    border-collapse: collapse;
+}
+
+.p-students-table, .p-students-table-header {
+    border: 1px solid black;
+
+}
