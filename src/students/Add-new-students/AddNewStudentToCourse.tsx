@@ -30,6 +30,8 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.handleEmailChange = this.handleFamilyNameChange.bind(this);
         this.handleMessageChange = this.handleFamilyNameChange.bind(this);
         this.handleTypeChange = this.handleFamilyNameChange.bind(this);
+        this.handleYearChange = this.handleFamilyNameChange.bind(this);
+        this.handleGroupChange = this.handleFamilyNameChange.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -40,35 +42,17 @@ class AddNewStudentToCourse extends Component<any, any> {
           .then(sections => this.setState({ sections }));
         console.log("got them sections");
 
+        fetch('/group')
+        .then(response => response.json())
+        .then(groups => this.setState({ groups }));
+      console.log("got them groups");
+
+      fetch('/yearofstudy')
+        .then(response => response.json())
+        .then(years => this.setState({ years }));
+      console.log("got them years");
         
     }
-
-    // componentDidMount() {
-        // let initialSections = [];
-        // fetch('/section')
-        //     .then(response => {
-        //         return response.json();
-        //     }).then(data => {
-        //         initialSections = data.results.map((section) => {
-        //         return section
-        //     });
-        //     console.log(initialSections);
-        //     this.setState({
-        //         sections: initialSections,
-        //     });
-        // });
-
-        // fetch("/section")
-        //     .then((response) => {
-        //     return response.json();
-        //     })
-        //     .then(data => {
-        //     const sectionsFromDb = data.map(section =>   section )
-        //     this.setState({ sections: [].concat(sectionsFromDb) });
-        //     }).catch(error => {
-        //     console.log(error);
-        //     });
-    // }
 
     handleFamilyNameChange(event) {
         this.setState({familyNameValue: event.target.value});
@@ -87,6 +71,14 @@ class AddNewStudentToCourse extends Component<any, any> {
     }
 
     handleTypeChange(event){
+        this.setState({messageValue: event.target.value});
+    }
+    
+    handleGroupChange(event){
+        this.setState({messageValue: event.target.value});
+    }
+
+    handleYearChange(event){
         this.setState({messageValue: event.target.value});
     }
 
@@ -127,29 +119,22 @@ class AddNewStudentToCourse extends Component<any, any> {
                     <option value="Optional">Optional</option>
                 </select>
                 <br/>
-                {/* TODO get the actual years */}
-                <label>Year:
+                Year:
+                <select value={this.state.yearValue} onChange={this.handleYearChange}>
+                    {this.state.years.map((year) => <option key={year.id} value={year.id}>{year.label}</option>)}
+                </select>
+                {/* <label>Year:
                     <input type="number" min="1" max="5" value={this.state.yearValue} onChange={this.handleEmailChange} />
-                </label>
+                </label> */}
                 <br/>
-                {/* TODO get the actual groups from the DB */}
                 Group:
-                <select value={this.state.typeValue} onChange={this.handleTypeChange}>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
+                <select value={this.state.groupValue} onChange={this.handleGroupChange}>
+                    {this.state.groups.map((group) => <option key={group.id} value={group.id}>{group.group_number}</option>)}
                 </select>
                 <br/>
-                {/* TODO get the actual sections from the DB */}
                 Section:
                 <select value={this.state.sectionValue} onChange={this.handleSectionChange}>
                     {this.state.sections.map((section) => <option key={section.id} value={section.id}>{section.name}</option>)}
-                    {/* <option value="CS - English">1</option>
-                    <option value="CS - German">2</option> */}
                 </select>
                 <br/>
                 <input type="submit" value="Send invitation" />
