@@ -18,10 +18,10 @@ const compression = require('compression');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const jsSHA = require("jssha");
-var StudentRoutes  = require('./routes/student-routes');
-var ProfessorRoutes  = require('./routes/professor-routes');
-var CourseRoutes  = require('./routes/course-routes');
-var UserRoutes = require('./routes/user-routes');
+var StudentRoutes  = require('./src/routes/student-routes');
+var ProfessorRoutes  = require('./src/routes/professor-routes');
+var CourseRoutes  = require('./src/routes/course-routes');
+var UserRoutes = require('./src/routes/user-routes');
 
 const app = express();
 
