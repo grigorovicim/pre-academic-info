@@ -98,6 +98,11 @@ app.post('/login', (req, res) => {
   }
 });
 
+app.post('/student', (req, res) => {
+  const student = req.body.student;
+  res.send(student);
+});
+
 app.get('student/course', (req, res) =>{
   const courseId = req.body.courseId;
   students = StudentRoutes.get('/student/course/' + courseId);

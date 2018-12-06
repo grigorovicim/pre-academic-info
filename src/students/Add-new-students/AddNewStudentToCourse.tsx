@@ -5,9 +5,19 @@
  import * as React from 'react';
  import { Component } from 'react';
  import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min'
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+
+import * as PropTypes from 'prop-types'; 
+
+import { connect } from 'react-redux'; 
+import { createStudent } from '../../actions/Student.actions'; 
  
 class AddNewStudentToCourse extends Component<any, any> {
+
+    static propTypes = {
+        createStudent: PropTypes.func.isRequired,
+        students: PropTypes.array.isRequired,
+      };
 
     constructor(props) {
         super(props);
@@ -21,6 +31,7 @@ class AddNewStudentToCourse extends Component<any, any> {
             yearValue: '',
             groupValue: '',
             studyLineValue: '', 
+            courseId: '', // the course to which the student will be assigned
             groups: [],
             years: [],
             sections: [] //study lines
@@ -95,6 +106,23 @@ class AddNewStudentToCourse extends Component<any, any> {
             'group id: ' + this.state.groupValue + '\n' +
             'section id: ' + this.state.sectionValue
         );
+
+        const student = {
+            "id": "6",
+            "year_of_study": this.state.yearValue, //TODO this is not needed in the db!!!
+            "createdAt":"2004-10-19T07:23:54.000Z", // TODO
+            "updatedAt":"2005-10-19T07:23:54.000Z", // TODO
+            "group_id": this.state.groupValue,
+            "profile_id":1, //TODO
+            "section_id": this.state.sectionValue, 
+            "semester_id":1, // TODO 
+            "year_of_study_id": this.state.yearValue
+        }
+
+        this.props.createStudent(student);
+
+        console.log(student.id);
+
         event.preventDefault();
     }
 
@@ -118,7 +146,7 @@ class AddNewStudentToCourse extends Component<any, any> {
                     <textarea value={this.state.messageValue}  onChange={this.handleMessageChange} />
                 </label>
                 <br/>
-                {/* TODO get the actual types from the DB */}
+                {/* TODO get the actual types from the DB !! no types table or anything like that in DB!!*/}
                 Type:
                 <select value={this.state.typeValue} onChange={this.handleTypeChange}> 
                     <option value="Erasmus">Erasmus</option>
@@ -155,5 +183,11 @@ class AddNewStudentToCourse extends Component<any, any> {
    }
  }
 
- export default AddNewStudentToCourse;
- 
+//  export default AddNewStudentToCourse;
+
+
+const mapStateToProps = state => ({
+    students: state.studentReducer.items, 
+  });
+
+export default connect(mapStateToProps, { createStudent })( AddNewStudentToCourse );

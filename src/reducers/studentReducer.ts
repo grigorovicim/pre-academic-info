@@ -1,4 +1,4 @@
-import { FETCH_STUDENTS } from '../actions/types';
+import { FETCH_STUDENTS, NEW_STUDENT } from '../actions/types';
 
 const initialState = {
   items: [],
@@ -12,10 +12,14 @@ export default function(state = initialState, action) {
         console.log("case fetch_students");
       
         return {
-          //...state,
           items: action.payload
         };
-      
+        
+      case NEW_STUDENT:
+        return {
+          items: action.payload
+        };
+        
       default:
         return state;
     }

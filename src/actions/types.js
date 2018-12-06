@@ -1,2 +1,3 @@
 export const FETCH_STUDENTS = 'FETCH_STUDENTS';
 export const FETCH_PROFESSORS = 'FETCH_PROFESSORS';
+export const NEW_STUDENT = 'NEW_STUDENT';

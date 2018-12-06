@@ -1,4 +1,4 @@
-import { FETCH_STUDENTS  } from './types';
+import { FETCH_STUDENTS, NEW_STUDENT  } from './types';
 import axios from 'axios';
 
 export const fetchStudents = (courseId: any) => dispatch => {
@@ -15,45 +15,21 @@ export const fetchStudents = (courseId: any) => dispatch => {
         .catch(error => {
             console.log(error)
         });;
-
-    // return axios.get("http://localhost:5000/student/course/1")
-    //   .then((response) => dispatch({
-    //     type: FETCH_STUDENTS,
-    //     data: response.data
-    //   })).catch((response) => dispatch({
-    //     type: FETCH_STUDENTS,
-    //     error: response.error,
-    //   }))
-
-    // fetch('https://jsonplaceholder.typicode.com/users')
-    // .then(res => res.json())
-    // .then( students =>
-    //     dispatch({
-    //         type: FETCH_STUDENTS,
-    //         payload: students
-    //     }));    
-
-    console.log("fetch complete");
-    
 };
 
-// export function fetchStudents() {
-//     return function action(dispatch) {
-//       dispatch({ type: FETCH_STUDENTS })
-
-//       const request = axios({
-//         method: 'GET',
-//         url: `https://jsonplaceholder.typicode.com/users`,
-//         headers: []
-//       });
-      
-//       return request.then(
-//         response => dispatch(fetchStudentsSuccess(response)),
-//         err => dispatch(fetchStudentsError(err))
-//       );
-//     }
-//   }
-
-
-// export default class StudentActions {
-// }
+export const createStudent = postData => dispatch => {
+    fetch('/student', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(postData)
+    })
+      .then(res => res.json())
+      .then(student =>
+        dispatch({
+          type: NEW_STUDENT,
+          payload: student
+        })
+      );
+  };
