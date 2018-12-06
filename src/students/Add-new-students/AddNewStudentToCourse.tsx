@@ -59,6 +59,7 @@ class AddNewStudentToCourse extends Component<any, any> {
 
     render() {   
         return (
+            <div className="container">
             <form onSubmit={this.handleSubmit}>
                 <label>Family Name:
                     <input type="text" value={this.state.familyNameValue} onChange={this.handleFamilyNameChange} />
@@ -76,17 +77,19 @@ class AddNewStudentToCourse extends Component<any, any> {
                     <textarea value={this.state.messageValue}  onChange={this.handleMessageChange} />
                 </label>
                 <br/>
+                {/* TODO get the actual types from the DB */}
                 Type:
                 <select value={this.state.typeValue} onChange={this.handleTypeChange}>
-                    <option value="Erasmus">Grapefruit</option>
-                    <option value="Other year">Lime</option>
-                    <option value="Optional">Coconut</option>
+                    <option value="Erasmus">Erasmus</option>
+                    <option value="Other year">Other year</option>
+                    <option value="Optional">Optional</option>
                 </select>
                 <br/>
                 <label>Year:
                     <input type="number" min="1" max="5" value={this.state.yearValue} onChange={this.handleEmailChange} />
                 </label>
                 <br/>
+                {/* TODO get the actual groups from the DB */}
                 Group:
                 <select value={this.state.typeValue} onChange={this.handleTypeChange}>
                     <option value="1">1</option>
@@ -98,6 +101,7 @@ class AddNewStudentToCourse extends Component<any, any> {
                     <option value="7">7</option>
                 </select>
                 <br/>
+                {/* TODO get the actual study lines from the DB */}
                 Study line:
                 <select value={this.state.typeValue} onChange={this.handleTypeChange}>
                     <option value="CS - English">1</option>
@@ -106,6 +110,7 @@ class AddNewStudentToCourse extends Component<any, any> {
                 <br/>
                 <input type="submit" value="Send invitation" />
             </form>   
+            </div>
 
     //    <div>
     //      First name: <input type="text" name="first-name"/><br/>
