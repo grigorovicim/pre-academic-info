@@ -11,26 +11,44 @@ class AddNewStudentToCourse extends Component<any, any> {
    
     constructor(props) {
         super(props);
-            this.state = {
-                familyNameValue: '',
-                firstNameValue:'',
-                emailValue: '',
-                messageValue: '',
-                typeValue: '',
-                yearValue: '',
-                groupValue: '',
-                studyLineValue: '', 
+        this.state = {
+            familyNameValue: '',
+            firstNameValue:'',
+            emailValue: '',
+            messageValue: '',
+            typeValue: '',
+            yearValue: '',
+            groupValue: '',
+            studyLineValue: '', 
+            sections: []
         };
-            this.handleFamilyNameChange = this.handleFamilyNameChange.bind(this);
-            this.handleFirstNameChange = this.handleFamilyNameChange.bind(this);
-            this.handleEmailChange = this.handleFamilyNameChange.bind(this);
-            this.handleMessageChange = this.handleFamilyNameChange.bind(this);
-            this.handleTypeChange = this.handleFamilyNameChange.bind(this);
+        this.handleFamilyNameChange = this.handleFamilyNameChange.bind(this);
+        this.handleFirstNameChange = this.handleFamilyNameChange.bind(this);
+        this.handleEmailChange = this.handleFamilyNameChange.bind(this);
+        this.handleMessageChange = this.handleFamilyNameChange.bind(this);
+        this.handleTypeChange = this.handleFamilyNameChange.bind(this);
 
+        
 
 
             this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    // componentDidMount() {
+    //     let initialSections = [];
+    //     fetch('/section')
+    //         .then(response => {
+    //             return response.json();
+    //         }).then(data => {
+    //             initialSections = data.results.map((section) => {
+    //             return section
+    //         });
+    //         console.log(initialSections);
+    //         this.setState({
+    //             sections: initialSections,
+    //         });
+    //     });
+    // }
 
     handleFamilyNameChange(event) {
         this.setState({familyNameValue: event.target.value});

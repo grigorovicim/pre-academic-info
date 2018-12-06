@@ -21,6 +21,7 @@ const jsSHA = require("jssha");
 var StudentRoutes  = require('./routes/student-routes');
 var ProfessorRoutes  = require('./routes/professor-routes');
 var CourseRoutes  = require('./routes/course-routes');
+var SectionRoutes = require('./routes/section-routes');
 
 const app = express();
 
@@ -33,6 +34,7 @@ const dev = app.get('env') !== 'production';
 app.use('/student', StudentRoutes);
 app.use('/professor', ProfessorRoutes);
 app.use('/course', CourseRoutes);
+app.use('/section', SectionRoutes);
 
 app.get('/check-server', (req, res) => {
   res.send({ express: 'Hello From Express BACKEND!' });
@@ -104,6 +106,10 @@ app.get('professor/course', (req, res) =>{
   res.send(professors);
 });
 
+app.get('section', (req, res) => {
+  sections = SectionRoutes.get('/section');
+  res.send(sections);
+})
 
 if (!dev) {
   app.disable('x-powered-by');
