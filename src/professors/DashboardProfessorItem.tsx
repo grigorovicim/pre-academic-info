@@ -16,7 +16,7 @@ class DashboardProfessorItem extends Component<any, any>{
         this.firstName = this.props.professor.first_name;
         this.lastName = this.props.professor.last_name;
         this.courseId = this.props.courseId;
-        this.professorId = this.props.professor.id;
+        this.professorId = this.props.professorId;
 
         this.handleRemove = this.handleRemove.bind(this);
     }

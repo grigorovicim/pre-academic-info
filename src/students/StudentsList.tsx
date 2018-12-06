@@ -25,10 +25,10 @@ class StudentsList extends Component<any, any>{
 
     render() {
         const studentItems = this.props.students.map(student => {
-           this.props.fetchProfileForStudent(student.id);
+            this.props.fetchProfileForStudent(student.id);
             return(
                 <div key={student.id}>
-                    <StudentsListItem student = {this.props.studentProfile} courseId = {this.courseId}/>
+                    <StudentsListItem student = {this.props.studentProfile} courseId = {this.courseId} studentId = {student.id}/>
                 </div>
             );
         })

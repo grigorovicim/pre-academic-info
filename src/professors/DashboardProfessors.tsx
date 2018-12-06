@@ -28,7 +28,7 @@ class DashboardProfessors extends Component<any, any>{
             this.props.fetchProfessorProfile(professor.id);
             return(
                <tr key={professor.id}>
-                    <DashboardProfessorItem professor = {this.props.professorProfile} courseId = {this.courseId}/>
+                    <DashboardProfessorItem professor = {this.props.professorProfile} courseId = {this.courseId} professorId = {professor.id}/>
                 </tr>
             )
         })

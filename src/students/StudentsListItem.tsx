@@ -16,7 +16,7 @@ class StudentsListItem extends Component<any, any> {
         this.firstName = this.props.student.first_name;
         this.lastName = this.props.student.last_name;
         this.courseId = this.props.courseId;
-        this.studentId = this.props.student.id;
+        this.studentId = this.props.studentId;
 
         this.handleRemove = this.handleRemove.bind(this);
     }
