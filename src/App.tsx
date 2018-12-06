@@ -74,7 +74,7 @@ class App extends Component<any, any> {
         {/* <Dashboard courseItems={dummy}></Dashboard> */}
         {/* <DashboardStudentsComplex studentItems={dummyStudents}></DashboardStudentsComplex>*/}
         <DashboardProfessors></DashboardProfessors> 
-        {/* <StudentsList></StudentsList> */}
+        {/*<StudentsList></StudentsList>*/}
         <BrowserRouter>
           <div>
               <Route path={"/"} component={HomePage} exact/>

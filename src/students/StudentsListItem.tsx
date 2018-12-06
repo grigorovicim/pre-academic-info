@@ -1,15 +1,43 @@
 import * as React from "react";
+import { Component } from "react";
 
-const StudentsListItem = (props: any) => {
+import { connect } from 'react-redux'; 
+import { removeStudentConfig } from '../actions/Config.actions'; 
 
-    const first_name = props.student.first_name; 
-    const last_name = props.student.last_name;
+class StudentsListItem extends Component<any, any> {
+    private firstName;
+    private lastName;
+    private courseId;
+    private studentId;
 
+    constructor(props: any) {
+        super(props);
+
+        this.firstName = this.props.student.first_name;
+        this.lastName = this.props.student.last_name;
+        this.courseId = this.props.courseId;
+        this.studentId = this.props.studentId;
+
+        this.handleRemove = this.handleRemove.bind(this);
+    }
+
+    handleRemove() {
+        this.props.removeStudentConfig(this.studentId, this.courseId);
+    }
+
+    render(){
         return(
             <div>
-                {first_name} {last_name}
+                {this.firstName} {this.lastName} <button onClick={this.handleRemove}>x</button>
             </div>
         );
+    }
 }
 
-export default StudentsListItem;
+const mapStateToProps = state => ({
+    students: state.studentReducer.items,
+    studentProfile: state.studentReducer.studentProfile
+});
+
+export default connect(mapStateToProps, { removeStudentConfig })(StudentsListItem);
+

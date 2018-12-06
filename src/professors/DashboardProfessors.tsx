@@ -15,11 +15,12 @@ class DashboardProfessors extends Component<any, any>{
         professors: PropTypes.array.isRequired,
         professorProfile: PropTypes.any
       };
+    
+    /// TODO get the actual course id from the user input
+    private courseId = 1;
 
     componentWillMount(){
-        /// TODO get the actual course id from the user input
-        this.props.fetchProfessors(1);
-        console.log("prof comp mounted");
+        this.props.fetchProfessors(this.courseId);
     }
 
     render(){
@@ -27,7 +28,7 @@ class DashboardProfessors extends Component<any, any>{
             this.props.fetchProfessorProfile(professor.id);
             return(
                <tr key={professor.id}>
-                    <DashboardProfessorItem professor = {this.props.professorProfile}/>
+                    <DashboardProfessorItem professor = {this.props.professorProfile} courseId = {this.courseId} professorId = {professor.id}/>
                 </tr>
             )
         })
@@ -50,7 +51,7 @@ class DashboardProfessors extends Component<any, any>{
 const mapStateToProps = state => ({
     professors: state.professorReducer.items, 
     professorProfile: state.professorReducer.professorProfile
-  });
+});
 
 
 export default connect(mapStateToProps, { fetchProfessors, fetchProfessorProfile })(DashboardProfessors);
