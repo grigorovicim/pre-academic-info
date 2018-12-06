@@ -26,12 +26,12 @@ class AddNewStudentToCourse extends Component<any, any> {
             sections: [] //study lines
         };
         this.handleFamilyNameChange = this.handleFamilyNameChange.bind(this);
-        this.handleFirstNameChange = this.handleFamilyNameChange.bind(this);
-        this.handleEmailChange = this.handleFamilyNameChange.bind(this);
-        this.handleMessageChange = this.handleFamilyNameChange.bind(this);
-        this.handleTypeChange = this.handleFamilyNameChange.bind(this);
-        this.handleYearChange = this.handleFamilyNameChange.bind(this);
-        this.handleGroupChange = this.handleFamilyNameChange.bind(this);
+        this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handleMessageChange = this.handleMessageChange.bind(this);
+        this.handleTypeChange = this.handleTypeChange.bind(this);
+        this.handleYearChange = this.handleYearChange.bind(this);
+        this.handleGroupChange = this.handleGroupChange.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -51,7 +51,6 @@ class AddNewStudentToCourse extends Component<any, any> {
         .then(response => response.json())
         .then(years => this.setState({ years }));
       console.log("got them years");
-        
     }
 
     handleFamilyNameChange(event) {
@@ -87,7 +86,7 @@ class AddNewStudentToCourse extends Component<any, any> {
     }
 
     handleSubmit(event) {
-        alert('A new student has been submitted: ' + this.state.familyNameValue);
+        alert('A new student has been submitted: ' + this.state.familyNameValue + ' ' + this.state.firstNameValue);
         event.preventDefault();
     }
 
@@ -140,20 +139,6 @@ class AddNewStudentToCourse extends Component<any, any> {
                 <input type="submit" value="Send invitation" />
             </form>   
             </div>
-
-    //    <div>
-    //      First name: <input type="text" name="first-name"/><br/>
-    //      Family name: <input type="text" name="family-name"/><br/>
-    //      Email: <input type="text" name="email"/><br/>
-    //      Message: <textarea name="message-text" id="message"></textarea><br/>
-    //      Type: <br/>
-    //      Year:
-    //     <br/>
-    //      Details: <input type="text" name="details"/><br/>
-    //      Group: <br/>
-    //      Study line: <br/>
-         
-    //    </div>
      )
    }
  }
