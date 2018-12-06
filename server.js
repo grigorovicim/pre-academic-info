@@ -18,9 +18,10 @@ const compression = require('compression');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const jsSHA = require("jssha");
-var StudentRoutes  = require('./routes/student-routes');
-var ProfessorRoutes  = require('./routes/professor-routes');
-var CourseRoutes  = require('./routes/course-routes');
+var StudentRoutes  = require('./src/routes/student-routes');
+var ProfessorRoutes  = require('./src/routes/professor-routes');
+var CourseRoutes  = require('./src/routes/course-routes');
+var UserRoutes = require('./src/routes/user-routes');
 
 const app = express();
 
@@ -33,6 +34,7 @@ const dev = app.get('env') !== 'production';
 app.use('/student', StudentRoutes);
 app.use('/professor', ProfessorRoutes);
 app.use('/course', CourseRoutes);
+app.use('/user', UserRoutes);
 
 app.get('/check-server', (req, res) => {
   res.send({ express: 'Hello From Express BACKEND!' });

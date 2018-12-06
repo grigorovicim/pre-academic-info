@@ -2,7 +2,7 @@ import { FETCH_PROFESSORS, FETCH_PROFESSOR_PROFILE  } from './types';
 import axios from 'axios';
 
 /// TODO: change to fetchProfessorsByCourseId
-export const fetchProfessors = (courseId: any) => dispatch => {
+export const fetchProfessors = (courseId: any) => (dispatch: any) => {
     axios.get('/professor/course/'+courseId)
     .then(res =>{
         dispatch({
