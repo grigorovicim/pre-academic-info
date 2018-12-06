@@ -24,6 +24,7 @@ var CourseRoutes  = require('./routes/course-routes');
 var SectionRoutes = require('./routes/section-routes');
 var GroupRoutes = require('./routes/group-routes');
 var YearRoutes = require('./routes/year-of-study-routes');
+var StudentCourseRoutes = require('./routes/student-course-routes');
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use('/course', CourseRoutes);
 app.use('/section', SectionRoutes);
 app.use('/group', GroupRoutes);
 app.use('/yearofstudy', YearRoutes);
+app.use('/studentcourse', StudentCourseRoutes);
 
 app.get('/check-server', (req, res) => {
   res.send({ express: 'Hello From Express BACKEND!' });
@@ -130,6 +132,15 @@ app.get('yearofstudy', (req, res) => {
   res.send(years);
 })
 
+app.get('course', (req, res) => {
+  courses = CourseRoutes.get('/course');
+  res.send(courses);
+});
+
+app.get('studentcourse', (req, res) => {
+  studentCourses = StudentCourseRoutes.get('/studentcourse');
+  res.send(studentCourses);
+})
 
 if (!dev) {
   app.disable('x-powered-by');

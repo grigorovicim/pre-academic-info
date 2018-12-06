@@ -16,7 +16,7 @@ class AddNewStudentToCourse extends Component<any, any> {
 
     static propTypes = {
         createStudent: PropTypes.func.isRequired,
-        students: PropTypes.array.isRequired,
+        //students: PropTypes.array.isRequired,
       };
 
     constructor(props) {
@@ -32,9 +32,10 @@ class AddNewStudentToCourse extends Component<any, any> {
             yearValue: '',
             groupValue: '',
             studyLineValue: '', 
-            courseId: '', // the course to which the student will be assigned
+            courseIdValue: '', // the course to which the student will be assigned
             groups: [],
             years: [],
+            courses: [],
             sections: [] //study lines
         };
 
@@ -47,6 +48,7 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.handleGroupChange = this.handleGroupChange.bind(this);
         this.handleSectionChange = this.handleSectionChange.bind(this);
         this.handleStudentIdChange = this.handleStudentIdChange.bind(this);
+        this.handleCourseChange = this.handleCourseChange.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -66,6 +68,10 @@ class AddNewStudentToCourse extends Component<any, any> {
         .then(response => response.json())
         .then(years => this.setState({ years }));
       console.log("got them years");
+
+      fetch('/course')
+        .then(response => response.json())
+        .then(courses => this.setState({ courses }));
     }
 
     handleFamilyNameChange(event) {
@@ -104,6 +110,10 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.setState({studentIdValue: event.target.value});
     }
 
+    handleCourseChange(event){
+        this.setState({courseIdValue: event.target.value});
+    }
+
 
     handleSubmit(event) {
         alert('A new student has been submitted: ' + this.state.familyNameValue + ' ' + this.state.firstNameValue + '\n'+
@@ -117,10 +127,10 @@ class AddNewStudentToCourse extends Component<any, any> {
         const student = {   
             "id": this.state.studentIdValue,
             "year_of_study": this.state.yearValue, //TODO this is not needed in the db!!!
-            "createdAt":"2004-10-19T07:23:54.000Z", // TODO
-            "updatedAt":"2005-10-19T07:23:54.000Z", // TODO
+            "createdAt":new Date(), 
+            "updatedAt":new Date(), 
             "group_id": this.state.groupValue,
-            "profile_id":1, //TODO
+            "profile_id":1, //TODO - create an actual profile
             "section_id": this.state.sectionValue, 
             "semester_id":1, // TODO 
             "year_of_study_id": this.state.yearValue
@@ -187,6 +197,14 @@ class AddNewStudentToCourse extends Component<any, any> {
                     {this.state.sections.map((section) => <option key={section.id} value={section.id}>{section.name}</option>)}
                 </select>
                 <br/>
+                
+                Course:
+                <select 
+                    value={this.state.courseIdValue}
+                    onChange={this.handleCourseChange}
+               >
+                    {this.state.courses.map((course) => <option key={course.id} value={course.id}>{course.name}</option>)}
+                </select>
                 <input type="submit" value="Send invitation" />
             </form>   
             </div>
@@ -195,7 +213,6 @@ class AddNewStudentToCourse extends Component<any, any> {
  }
 
 //  export default AddNewStudentToCourse;
-
 
 const mapStateToProps = state => ({
     students: state.studentReducer.items, 
