@@ -5,6 +5,7 @@ import DashboardProfessorItem from './DashboardProfessorItem';
 
 import './ProfessorsList.css';
 
+import * as PropTypes from 'prop-types'; 
 import { connect } from 'react-redux'; 
 import { fetchProfessors, fetchProfessorProfile } from '../actions/Professor.actions'; 
 

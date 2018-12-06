@@ -14,7 +14,7 @@ class StudentsList extends Component<any, any>{
         fetchStudents: PropTypes.func.isRequired,
         students: PropTypes.array.isRequired,
         studentProfile: PropTypes.any
-      };
+    };
 
     /// TODO get the real id of the course from the user input
     private courseId = 1;
@@ -23,15 +23,15 @@ class StudentsList extends Component<any, any>{
         this.props.fetchStudents(this.courseId); 
     }
 
-    render(){
+    render() {
         const studentItems = this.props.students.map(student => {
            this.props.fetchProfileForStudent(student.id);
             return(
-               <div key={student.id}>
-                    <StudentsListItem student = {this.props.studentProfile} courseId = {this.courseId}>
+                <div key={student.id}>
+                    <StudentsListItem student = {this.props.studentProfile} courseId = {this.courseId}/>
                 </div>
             );
-        });
+        })
         return(
             <div>
                     <button>Add student +</button>
@@ -44,7 +44,7 @@ class StudentsList extends Component<any, any>{
 const mapStateToProps = state => ({
     students: state.studentReducer.items, 
     studentProfile: state.studentReducer.studentProfile
-  });
+});
 
 
 export default connect(mapStateToProps, { fetchStudents, fetchProfileForStudent })(StudentsList);

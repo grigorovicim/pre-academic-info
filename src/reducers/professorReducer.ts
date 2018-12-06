@@ -19,7 +19,7 @@ export default function(state = initialState, action) {
         };
       case REMOVE_PROFFESOR_COURSE_CONFIG:
         return {
-          ..state,
+          ...state,
           items: state.items.filter(item => item.id !== +action.payload.professor_id)
         };
       default:

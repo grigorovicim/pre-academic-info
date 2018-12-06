@@ -27,7 +27,7 @@ var StudentRoutes  = require('./src/routes/student-routes');
 var ProfessorRoutes  = require('./src/routes/professor-routes');
 var CourseRoutes  = require('./src/routes/course-routes');
 var UserRoutes = require('./src/routes/user-routes');
-var ConfigRoutes = require('./routes/configuration-routes');
+var ConfigRoutes = require('./src/routes/configuration-routes');
 
 const app = express();
 

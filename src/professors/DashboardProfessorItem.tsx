@@ -6,14 +6,15 @@ import { connect } from 'react-redux';
 import { removeProfessorConfig } from '../actions/Config.actions'; 
 
 class DashboardProfessorItem extends Component<any, any>{
-    private name;
+    private firstName;
+    private lastName;
     private courseId;
     private professorId;
 
     constructor(props: any) {
         super(props);
-        this.first_name = this.props.professor.first_name;
-        this.last_name = this.props.professor.last_name;
+        this.firstName = this.props.professor.first_name;
+        this.lastName = this.props.professor.last_name;
         this.courseId = this.props.courseId;
         this.professorId = this.props.professor.id;
 
@@ -27,7 +28,7 @@ class DashboardProfessorItem extends Component<any, any>{
     render(){
         return(
             <div>
-                {first_name} {last_name}
+                {this.firstName} {this.lastName}
                 <button onClick={this.handleRemove}>x</button>
             </div>
         );

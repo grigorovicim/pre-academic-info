@@ -4,17 +4,17 @@ import { Component } from "react";
 import { connect } from 'react-redux'; 
 import { removeStudentConfig } from '../actions/Config.actions'; 
 
-class StudentsListItem extends Component<any, any>
-    private first_name;
-    private last_name;
+class StudentsListItem extends Component<any, any> {
+    private firstName;
+    private lastName;
     private courseId;
     private studentId;
 
     constructor(props: any) {
         super(props);
 
-        this.first_name = this.props.student.first_name;
-        this.last_name = this.props.student.last_name;
+        this.firstName = this.props.student.first_name;
+        this.lastName = this.props.student.last_name;
         this.courseId = this.props.courseId;
         this.studentId = this.props.student.id;
 
@@ -28,7 +28,7 @@ class StudentsListItem extends Component<any, any>
     render(){
         return(
             <div>
-                {first_name} {last_name} <button onClick={this.handleRemove}>x</button>
+                {this.firstName} {this.lastName} <button onClick={this.handleRemove}>x</button>
             </div>
         );
     }

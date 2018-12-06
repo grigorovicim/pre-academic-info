@@ -2,7 +2,8 @@ import { FETCH_STUDENTS, FETCH_STUDENT_PROFILE, REMOVE_STUDENT_COURSE_CONFIG } f
 
 const initialState = {
   items: [] as any,
-  studentProfile:{}
+  studentProfile: {}
+}
 
 export default function(state = initialState, action) {
     switch (action.type) {
@@ -12,17 +13,16 @@ export default function(state = initialState, action) {
           items: action.payload
         };
         case FETCH_STUDENT_PROFILE:
-        return{
-          ...state,
-          studentProfile: action.payload
-        }
+          return{
+            ...state,
+            studentProfile: action.payload
+          };
       case REMOVE_STUDENT_COURSE_CONFIG:
         return {
-          ..state,
+          ...state,
           items: state.items.filter(item => item.id !== +action.payload.student_id)
         };
       default:
         return state;
     }
-
-  }
+}
