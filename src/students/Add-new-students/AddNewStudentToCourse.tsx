@@ -2,20 +2,22 @@
  * Component for adding a new student to a specific course. The student is added to the DB
  */
 
- import * as React from 'react';
- import { Component } from 'react';
- import 'bootstrap/dist/css/bootstrap.min.css';
+import * as React from 'react';
+import { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import * as PropTypes from 'prop-types'; 
 
 import { connect } from 'react-redux'; 
 import { createStudent } from '../../actions/Student.actions'; 
+import { createStudentCourse } from '../../actions/StudentCourse.actions'; 
  
 class AddNewStudentToCourse extends Component<any, any> {
 
     static propTypes = {
         createStudent: PropTypes.func.isRequired,
+        createStudentCourse: PropTypes.func.isRequired,
         //students: PropTypes.array.isRequired,
       };
 
@@ -136,7 +138,17 @@ class AddNewStudentToCourse extends Component<any, any> {
             "year_of_study_id": this.state.yearValue
         }
 
+        const studentCourse ={
+            "id":  parseInt(this.state.studentIdValue, 10), // TODO - generate randomly
+            "year": this.state.yearValue,
+            "createdAt":new Date(), 
+            "updatedAt":new Date(), 
+            "course_id": parseInt(this.state.courseIdValue, 10),
+            "student_id": parseInt(this.state.studentIdValue, 10)
+        }
+
         this.props.createStudent(student);
+        this.props.createStudentCourse(studentCourse);
 
         console.log(student.id);
 
@@ -218,4 +230,4 @@ const mapStateToProps = state => ({
     students: state.studentReducer.items, 
   });
 
-export default connect(mapStateToProps, { createStudent })( AddNewStudentToCourse );
+export default connect(mapStateToProps, { createStudent, createStudentCourse })( AddNewStudentToCourse );

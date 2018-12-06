@@ -137,10 +137,15 @@ app.get('course', (req, res) => {
   res.send(courses);
 });
 
-app.get('studentcourse', (req, res) => {
+app.get('/studentcourse', (req, res) => {
   studentCourses = StudentCourseRoutes.get('/studentcourse');
   res.send(studentCourses);
-})
+});
+
+app.post('/studentcourse', (req, res) => {
+  const studentCourse = req.body.studentCourse;
+  res.send(studentCourse);
+});
 
 if (!dev) {
   app.disable('x-powered-by');
