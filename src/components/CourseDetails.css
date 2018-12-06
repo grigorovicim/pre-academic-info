@@ -1,0 +1,58 @@
+.p-course-details-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.p-course-details-component .p-title {
+  width: 229px;
+  color: #515050;
+  font-family: Helvetica;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 36px;
+  text-align: center;
+}
+
+.p-course-details-component .p-subtitle-specializare {
+  height: 24px;
+  width: 174px;
+  color: #939393;
+  font-family: Helvetica;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 100px;
+}
+
+.p-course-details-component .p-column {
+  width: 80%;
+  display: flex;
+}
+
+.p-course-details-component .p-column .p-title {
+  margin-right: 80px;
+  height: 24px;
+  width: 15%;
+  color: #747373;
+  font-family: Helvetica;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.p-course-details-component .p-column .p-content {
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+
+}
+
+.p-course-details-component .p-column .professor .groups {
+  height: 2%;
+}
+.p-course-details-component .p-column .labs .seminars .students {
+  height: 10%;
+}
+.p-course-details-component .p-column .rules .description {
+  height: 8%;
+}
