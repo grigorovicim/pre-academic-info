@@ -11,6 +11,41 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
 
+    models.Student.hasMany(models.SeminarPresence, {
+      foreignKey: {
+        name: 'student_id',
+        allowNull: false
+      }
+    });
+
+    models.Student.hasMany(models.LabPresence, {
+      foreignKey: {
+        name: 'student_id',
+        allowNull: false
+      }
+    });
+
+    models.Student.hasMany(models.SeminarActivity, {
+      foreignKey: {
+        name: 'student_id',
+        allowNull: false
+      }
+    });
+
+    models.Student.hasMany(models.LabActivity, {
+      foreignKey: {
+        name: 'student_id',
+        allowNull: false
+      }
+    });
+
+    models.Student.hasMany(models.StudentCourse, {
+      foreignKey: {
+        name: 'student_id',
+        allowNull: false
+      }
+    });
+
     models.Student.belongsTo(models.Group, {
       foreignKey: {
         name: 'group_id',
@@ -22,6 +57,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: {
         name: 'section_id',
         allowNull: false
+      }
+    });
+    models.Student.belongsTo(models.Profile, {
+      foreignKey: {
+        name: 'profile_id',
+        allowNull: false,
       }
     });
   };

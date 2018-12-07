@@ -1,28 +1,21 @@
-.container {
-    position: static;
-    display: flex;
-}
-
-.container > div {
-    flex: 1; /*grow*/
-}
-
 .dashboard-course-item {
-    position: static;
+    position: static;   
     height: 90px;
-    width: 1201px;
+    width: 100%;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0);
     box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
+    margin: 0px;
 }
 
 .dashboard-course-item-text {
-  position: static;
+    position: static;
     height: 20px;
     width: 314px;
-    font-family: Copperplate Gothic Light, serif;
-    font-weight: 700;
+    font-family: Copperplate;
+    text-transform: uppercase;
+    font-weight: 500;
     font-size: 20px;
     line-height: 20px;
     color: #262729;
@@ -34,7 +27,7 @@
 }
 
 .course-config-button-wrapper {
-  position: static;
+    position: static;
     background-color: Transparent;
     background-repeat: no-repeat;
     border: none;
@@ -45,6 +38,6 @@
 
 .course-config-button {
   position: static;
-    height: 48px;
-    width: 48px;
+    height: 46px;
+    width: 46px;
 }

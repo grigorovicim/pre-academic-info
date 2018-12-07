@@ -1,0 +1,36 @@
+.p-home-page {
+  font-family: Copperplate;
+}
+.p-home-page .p-welcome-message {
+  margin: auto;
+  margin-block-start: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height:600px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.15);
+}
+
+.p-home-page .p-login-welcome {
+  height: 41px;
+  width: 181px;
+  color: #000000;
+  font-family: Copperplate;
+  font-size: 40px;
+  line-height: 42px;
+}  
+
+.p-home-page .p-login-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 70px 0;
+}
+
+.p-home-page .p-welcome-user-email {
+  font-family: Copperplate;
+  font-size: 25px;
+}
+  

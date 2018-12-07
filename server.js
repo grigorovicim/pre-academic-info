@@ -1,8 +1,12 @@
 const users = [
-  {fullName: 'Andrada Maria Gae', scsEmail: 'gaie2345@scs.ubbcluj.ro', type:'user', password:'1234'},
-  {fullName: 'Dragos Grigore', scsEmail: 'gdie2345@scs.ubbcluj.ro', type:'user', password:'1234'},
-  {fullName: 'Miruna Radu', scsEmail: 'rmir2345@scs.ubbcluj.ro', type:'user', password:'1234'},
-  {fullName: 'Diana Dragos', scsEmail: 'ddie2345@scs.ubbcluj.ro', type:'user', password:'1234'},
+  {fullName: 'Monica Grigorovici' , scsEmail: 'gmie2345@scs.ubbcluj.ro', type:'student', password:'1234'},
+  {fullName: 'Andrada Maria Gae', scsEmail: 'gaie2345@scs.ubbcluj.ro', type:'student', password:'1234'},
+  {fullName: 'Dragos Grigore', scsEmail: 'gdie2345@scs.ubbcluj.ro', type:'student', password:'1234'},
+  {fullName: 'Miruna Radu', scsEmail: 'rmir2345@scs.ubbcluj.ro', type:'student', password:'1234'},
+  {fullName: 'Diana Dragos', scsEmail: 'ddie2345@scs.ubbcluj.ro', type:'student', password:'1234'},
+  {fullName: 'Radu Dragos', scsEmail: 'radudragos@cs.ubbcluj.ro', type:'professor', password:'1234'},
+  {fullName: 'Radu Gaceanu', scsEmail: 'radugaceanu@cs.ubbcluj.ro', type:'professor', password:'1234'},
+  {fullName: 'Dan Suciu', scsEmail: 'dansuciu@cs.ubbcluj.ro', type:'professor', password:'1234'},
 ];
 
 users.forEach(user => {
@@ -18,9 +22,12 @@ const compression = require('compression');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const jsSHA = require("jssha");
-var StudentRoutes  = require('./routes/student-routes');
-var ProfessorRoutes  = require('./routes/professor-routes');
-var CourseRoutes  = require('./routes/course-routes');
+
+var StudentRoutes  = require('./src/routes/student-routes');
+var ProfessorRoutes  = require('./src/routes/professor-routes');
+var CourseRoutes  = require('./src/routes/course-routes');
+var UserRoutes = require('./src/routes/user-routes');
+var ConfigRoutes = require('./src/routes/configuration-routes');
 
 const app = express();
 
@@ -33,6 +40,8 @@ const dev = app.get('env') !== 'production';
 app.use('/student', StudentRoutes);
 app.use('/professor', ProfessorRoutes);
 app.use('/course', CourseRoutes);
+app.use('/user', UserRoutes);
+app.use('/config', ConfigRoutes);
 
 app.get('/check-server', (req, res) => {
   res.send({ express: 'Hello From Express BACKEND!' });
@@ -91,6 +100,31 @@ app.post('/login', (req, res) => {
     res.send(user);
   }
 });
+
+app.get('student/course', (req, res) =>{
+  const courseId = req.body.courseId;
+  students = StudentRoutes.get('/student/course/' + courseId);
+  res.send(students);
+});
+
+app.get('student/profile', (req, res) =>{
+  const studentId = req.body.studentId;
+  profiles = StudentRoutes.get('/student/profile/' + studentId);
+  res.send(profiles);
+});
+
+app.get('professor/profile', (req, res) =>{
+  const professorId = req.body.professorId;
+  profiles = ProfessorRoutes.get('/professor/profile/' + professorId);
+  res.send(profiles);
+});
+
+app.get('professor/course', (req, res) =>{
+  const courseId = req.body.courseId;
+  professors = ProfessorRoutes.get('/professor/course/' + courseId);
+  res.send(professors);
+});
+
 
 if (!dev) {
   app.disable('x-powered-by');
