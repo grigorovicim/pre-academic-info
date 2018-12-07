@@ -12,12 +12,14 @@ import * as PropTypes from 'prop-types';
 import { connect } from 'react-redux'; 
 import { createStudent } from '../../actions/Student.actions'; 
 import { createStudentCourse } from '../../actions/StudentCourse.actions'; 
+import { createUser } from '../../actions/User.actions';
  
 class AddNewStudentToCourse extends Component<any, any> {
 
     static propTypes = {
         createStudent: PropTypes.func.isRequired,
         createStudentCourse: PropTypes.func.isRequired,
+        createUser: PropTypes.func.isRequired,
         //students: PropTypes.array.isRequired,
       };
 
@@ -38,7 +40,8 @@ class AddNewStudentToCourse extends Component<any, any> {
             groups: [],
             years: [],
             courses: [],
-            sections: [] //study lines
+            sections: [], //study lines
+            usernameValue: '',
         };
 
         this.handleFamilyNameChange = this.handleFamilyNameChange.bind(this);
@@ -51,6 +54,7 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.handleSectionChange = this.handleSectionChange.bind(this);
         this.handleStudentIdChange = this.handleStudentIdChange.bind(this);
         this.handleCourseChange = this.handleCourseChange.bind(this);
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -116,6 +120,9 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.setState({courseIdValue: event.target.value});
     }
 
+    handleUsernameChange(event){
+        this.setState({usernameValue: event.target.value});
+    }
 
     handleSubmit(event) {
         alert('A new student has been submitted: ' + this.state.familyNameValue + ' ' + this.state.firstNameValue + '\n'+
@@ -139,16 +146,36 @@ class AddNewStudentToCourse extends Component<any, any> {
         }
 
         const studentCourse ={
-            "id":  parseInt(this.state.studentIdValue, 10), // TODO - generate randomly
-            "year": this.state.yearValue,
+           // "id":  parseInt(this.state.studentIdValue, 10), // TODO - generate randomly
+            "id": this.state.studentIdValue,
+           "year": this.state.yearValue,
             "createdAt":new Date(), 
             "updatedAt":new Date(), 
-            "course_id": parseInt(this.state.courseIdValue, 10),
-            "student_id": parseInt(this.state.studentIdValue, 10)
+            // "course_id": parseInt(this.state.courseIdValue, 10),
+            // "student_id": parseInt(this.state.studentIdValue, 10)
+            "course_id": this.state.courseIdValue, 
+            "student_id": this.state.studentIdValue,
         }
 
+        const user = {
+            "id": this.state.studentIdValue,
+            "username":this.state.usernameValue,
+            "password":this.state.usernameValue,
+            "is_active":true,
+            "createdAt":new Date(),
+            "updatedAt":new Date(),
+            "role_id":1 // the role id for students
+        }
+
+        this.props.createUser(user);
         this.props.createStudent(student);
         this.props.createStudentCourse(studentCourse);
+
+        // this.props.createStudent(student)
+        // .then(function(this: AddNewStudentToCourse){
+        //     this.props.createStudentCourse(studentCourse);
+        //     return;            
+        // });
 
         console.log(student.id);
 
@@ -158,6 +185,7 @@ class AddNewStudentToCourse extends Component<any, any> {
     render() {   
         return (
             <div className="container">
+            <h1>Student details</h1>
             <form onSubmit={this.handleSubmit}>
                 <label>Student ID:
                     <input type="text" value={this.state.studentIdValue} onChange={this.handleStudentIdChange}/>
@@ -217,6 +245,14 @@ class AddNewStudentToCourse extends Component<any, any> {
                >
                     {this.state.courses.map((course) => <option key={course.id} value={course.id}>{course.name}</option>)}
                 </select>
+
+                <h1>User details</h1>  
+                <label>Username:
+                    <input type="text" value={this.state.usernameValue} onChange={this.handleUsernameChange} />
+                </label><br/>
+                * the assigned password will be the same as the username
+                <br/>
+
                 <input type="submit" value="Send invitation" />
             </form>   
             </div>
@@ -230,4 +266,4 @@ const mapStateToProps = state => ({
     students: state.studentReducer.items, 
   });
 
-export default connect(mapStateToProps, { createStudent, createStudentCourse })( AddNewStudentToCourse );
+export default connect(mapStateToProps, { createStudent, createStudentCourse, createUser })( AddNewStudentToCourse );

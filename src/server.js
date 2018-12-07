@@ -154,6 +154,11 @@ app.get('/user', (req, res) => {
   res.send(users);
 });
 
+app.post('/user', (req, res) => {
+  const user = req.body.user;
+  res.send(user);
+});
+
 if (!dev) {
   app.disable('x-powered-by');
   app.use(compression());
