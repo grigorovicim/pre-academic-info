@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/jquery": "^3.3.22",
+    "@types/react-redux": "^6.0.10",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.1.3",

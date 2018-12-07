@@ -2,7 +2,7 @@ import { FETCH_STUDENTS  } from './types';
 import { FETCH_STUDENT_PROFILE } from './types';
 import axios from 'axios';
 
-export const fetchStudents = (courseId: any) => dispatch => {
+export const fetchStudents = (courseId: any) => (dispatch:any) => {
     console.log("fetching students...");
 
     axios.get('/student/course/'+courseId)
@@ -20,7 +20,7 @@ export const fetchStudents = (courseId: any) => dispatch => {
     
 };
 
-export const fetchProfileForStudent = (studentId: any) => dispatch => {
+export const fetchProfileForStudent = (studentId: any) => (dispatch:any) => {
     // console.log("fetching profile for student...");
     
     axios.get('/student/profile/'+ studentId)
