@@ -63,15 +63,9 @@ class App extends Component<any, any> {
 
     render() {
 
-        const {
-            isPopupVisible,
-            popupContent
-        } = this.props;
-
         return (
             <div className="p-app">
-                <Popup isVisible={isPopupVisible} onClose={this.closePopup}
-                       popupContent={popupContent}/>
+                <Popup onClose={this.closePopup}/>
                 <BrowserRouter>
                     <div>
                         <Route path={"/"} component={HomePage} exact/>
@@ -90,8 +84,6 @@ class App extends Component<any, any> {
 const mapStateToProps = (state: any) => {
     return {
         user: Object.assign({}, state.app.user),
-        isPopupVisible: state.app.isPopupVisible,
-        popupContent: state.app.popupContent,
     };
 };
 
