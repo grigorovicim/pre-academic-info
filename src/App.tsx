@@ -18,24 +18,25 @@ import './App.css';
 // import logo from './logo.png';
 // import Dashboard from './courses/Dashboard'
 // import DashboardStudentsComplex from './students/DashboardStudentsComplex';
-import DashboardProfessors from './professors/DashboardProfessors';
+// import DashboardProfessors from './professors/DashboardProfessors';
 // import StudentsList from './students/StudentsList';
 import CoursesPage from "./components/CoursesPage";
 import HomePage from "./components/HomePage";
 import StudentsPage from "./components/StudentsPage";
 import CatalogPage from "./components/CatalogPage";
 import MyProfilePage from "./components/MyProfilePage";
+import AppActions from "./App.actions";
+// import CourseDetail from "./courses/CourseDetail";
 
 class App extends Component<any, any> {
     constructor(props: any) {
         super(props);
 
         this.state = {
-            response: '',
-            isPopupVisible: false,
             popupComponentType: null,
+            response: '',
         };
-        this.openLoginPopup = this.openLoginPopup.bind(this);
+
         this.closePopup = this.closePopup.bind(this);
     }
 
@@ -46,19 +47,8 @@ class App extends Component<any, any> {
     }
 
     closePopup() {
-        this.setState({
-            isPopupVisible: false,
-        });
+        this.props.dispatch(AppActions.setPopupVisibility(false));
     }
-
-    openLoginPopup(e: any) {
-        e.stopPropagation();
-        this.setState({
-            isPopupVisible: true,
-            popupComponentType: 'p-login-button',
-        });
-    }
-
 
     callApi = async () => {
         const response = await fetch('/check-server');
@@ -72,36 +62,16 @@ class App extends Component<any, any> {
     };
 
     render() {
-        // const detail = {
-        //     name: "Design Patterns",
-        //     number: 14,
-        //     hours: 2,
-        //     professor: "Molnar Arthur",
-        //     section: {name: 'English', nrGroups: 6},//nrGroups not in db
-        //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        //     rules: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        //     labs: {
-        //         number: 7,
-        //         hours: 2,
-        //         practicals: 2,
-        //         professors: [{id: 1, name: "Molnar Arthur"}, {id: 2, name: "Cretu Maria"}]
-        //     },
-        //     seminars: {number: 14, hours: 2, partials: 2, professors: {id: 1, name: "Molnar Arthur"}},
-        //     groups: [932, 933, 934, 935],
-        //     students: [{id: 1, name: "Antonesei Andrada"}, {id: 2, name: "Amariei Iuliana"}, {
-        //         id: 3,
-        //         name: "Blanariu Mihai"
-        //     }]
-        // };
+
+        const {
+            isPopupVisible,
+            popupContent
+        } = this.props;
+
         return (
             <div className="p-app">
-                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup}
-                       componentType={this.state.popupComponentType}/>
-                {/* <Dashboard courseItems={dummy}></Dashboard> */}
-                {/* <DashboardStudentsComplex studentItems={dummyStudents}></DashboardStudentsComplex>*/}
-                <DashboardProfessors/>
-                {/*<StudentsList></StudentsList>*/}
-                {/*<CourseDetail detail={detail}/>*/}
+                <Popup isVisible={isPopupVisible} onClose={this.closePopup}
+                       popupContent={popupContent}/>
                 <BrowserRouter>
                     <div>
                         <Route path={"/"} component={HomePage} exact/>
@@ -111,6 +81,7 @@ class App extends Component<any, any> {
                         <Route path={"/myprofile"} component={MyProfilePage} exact/>
                     </div>
                 </BrowserRouter>
+                {/*<DashboardProfessors/>*/}
             </div>
         );
     }
@@ -119,6 +90,8 @@ class App extends Component<any, any> {
 const mapStateToProps = (state: any) => {
     return {
         user: Object.assign({}, state.app.user),
+        isPopupVisible: state.app.isPopupVisible,
+        popupContent: state.app.popupContent,
     };
 };
 

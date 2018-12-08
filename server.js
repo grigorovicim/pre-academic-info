@@ -23,15 +23,16 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const jsSHA = require("jssha");
 
-var StudentRoutes  = require('./src/routes/student-routes');
-var ProfessorRoutes  = require('./src/routes/professor-routes');
-var CourseRoutes  = require('./src/routes/course-routes');
-var UserRoutes = require('./src/routes/user-routes');
-var ConfigRoutes = require('./src/routes/configuration-routes');
+const StudentRoutes  = require('./src/routes/student-routes');
+const ProfessorRoutes  = require('./src/routes/professor-routes');
+const CourseRoutes  = require('./src/routes/course-routes');
+const UserRoutes = require('./src/routes/user-routes');
+const ConfigRoutes = require('./src/routes/configuration-routes');
+const FormOfEvaluationRoutes = require('./src/routes/form-of-eval-routes');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const path = require('path');
 const port = process.env.PORT || 5000;
@@ -42,6 +43,7 @@ app.use('/professor', ProfessorRoutes);
 app.use('/course', CourseRoutes);
 app.use('/user', UserRoutes);
 app.use('/config', ConfigRoutes);
+app.use('/formOfEvaluation', FormOfEvaluationRoutes);
 
 app.get('/check-server', (req, res) => {
   res.send({ express: 'Hello From Express BACKEND!' });
@@ -83,7 +85,7 @@ app.post('/session-id', (req, res) => {
 
 app.post('/login', (req, res) => {
   const email = req.body.email;
-  const password = req.body.password; 
+  const password = req.body.password;
   if (users.find(user => user.scsEmail === email && user.password === password) === undefined) {
     console.log("Error login: Cannot find user");
   } else {
@@ -123,6 +125,12 @@ app.get('professor/course', (req, res) =>{
   const courseId = req.body.courseId;
   professors = ProfessorRoutes.get('/professor/course/' + courseId);
   res.send(professors);
+});
+
+app.post('formOfEvaluation', (req, res) =>{
+  const item = req.body.item;
+  let something = FormOfEvaluationRoutes.post('/formOfEvaluation/');
+  res.send(something);
 });
 
 

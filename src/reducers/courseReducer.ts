@@ -20,26 +20,32 @@ export default (state = initialState, action: any) => {
             return {
                 ...state,
                 items: action.payload.items
-            }
+            };
+
+        case FETCH_CATALOG:
+            return {
+                ...state,
+                items: action.payload.items
+            };
 
         case FILTER_CATALOG_STUDY:
             return {
                 ...state,
                 study: action.payload.study
-            }
+            };
 
         case FILTER_CATALOG_YEAR: {
             return {
                 ...state,
                 year: action.payload.year
-            }
+            };
         }
 
         case FILTER_CATALOG_SEMESTER: {
             return {
                 ...state,
                 semester: action.payload.semester
-            }
+            };
         }
 
         default:

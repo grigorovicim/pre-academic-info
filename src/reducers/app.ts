@@ -62,7 +62,7 @@ const reducer = (state: {
   case 'SET_POPUP_CONTENT': {
     return {
       ...state,
-      popupContent: payload.popupContentElement,
+      popupContent: payload.popupContent,
     };
   }
   default:

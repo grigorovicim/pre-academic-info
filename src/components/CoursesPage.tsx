@@ -1,7 +1,11 @@
 import {Component} from "react";
 import Header from "../commons/header/Header";
 import Dashboard from "../courses/Dashboard";
+// import AppActions from "../App.actions"
 import * as React from "react";
+// import CourseDetail from "../courses/CourseDetail";
+import {connect} from "react-redux";
+//import CourseActions from "../actions/Course.actions";
 
 class CoursesPage extends Component<any,any>
 {
@@ -25,12 +29,19 @@ class CoursesPage extends Component<any,any>
         ];
         return (
             <div className="p-app">
-
                 <Header login="none" courses="inline" students="none" catalog="none" myProfile="none"/>
-
                 <Dashboard courseItems={dummy}/>
             </div>
         );
     }
 }
-export default CoursesPage;
+
+const mapStateToProps = (state: any) => {
+    return {
+
+    };
+};
+
+export default connect(
+    mapStateToProps,
+)(CoursesPage);

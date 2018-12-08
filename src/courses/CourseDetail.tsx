@@ -4,7 +4,10 @@ import {Component} from "react";
 import './CourseDetail.css';
 
 import {Grid, Row, Col, ButtonToolbar, Button} from 'react-bootstrap';
-import CourseActions from "./Courses.actions";
+import {default as FormOfEvaluationActions} from "../actions/FormOfEvaluation.actions";
+import {connect} from "react-redux";
+// import axios from "axios";
+// import {CREATE_FORM_OF_EVALUATION} from "../actions/types";
 
 class CourseDetail extends Component<any, any> {
     private details: any;
@@ -71,7 +74,16 @@ class CourseDetail extends Component<any, any> {
             this.seminarsPartials = element;
         };
 
-        this.insertCourseDetails = this.insertCourseDetails.bind(this);
+        // axios.post('/formOfEvaluation', {item: item, sessionId: sessionId})
+        //     .then((response) => {
+        //
+        //     })
+        //     .catch((error) => {
+        //         throw error;
+        //     })
+        //     .then(() => {
+        //
+        //     });
     }
 
     insertCourseDetails() {
@@ -100,7 +112,7 @@ class CourseDetail extends Component<any, any> {
             selectedGroups: selectedGroups,
         };
 
-        this.props.dispatch(CourseActions.createCourseDetails(newCourseDetails, this.props.userDetails.session));
+        this.props.dispatch(FormOfEvaluationActions.createFormOfEvaluationActions(newCourseDetails, this.props.userDetails.session));
     }
 
     //What tells us the field. Ex: what= "number" means that the handler
@@ -287,7 +299,6 @@ class CourseDetail extends Component<any, any> {
                 <Row className="show-grid text-center">
                     <Col style={{fontSize: '1.5em'}} md={2}>Students</Col>
                     <Col style={{fontSize: '1.25em'}} md={4}>
-
                         Students list component
                     </Col>
                 </Row>
@@ -297,6 +308,13 @@ class CourseDetail extends Component<any, any> {
     }
 }
 
+const mapStateToProps = (state: any) => {
+    return {
+        items: state.formOfEvaluationReducer.items,
+        formOfEvaluation: state.courseReducer.formOfEvaluation,
+    };
+};
 
-export default CourseDetail;
-
+export default connect(
+    mapStateToProps,
+)(CourseDetail);
