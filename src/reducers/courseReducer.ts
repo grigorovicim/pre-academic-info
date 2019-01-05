@@ -1,28 +1,18 @@
 
-const courseReducer = (state: {professors: {};} = {
-    professors: {
-    
-    }
-}, action: any) => {
+import { FETCH_COURSES } from '../actions/types';
 
-    const {
-      type,
-      payload,
-    } = action;
-  
-    //dummy code; all the actions affecting users will need to be treated here
-    if (type === '' && payload === '')
-    {
+const initialState = {
+  items: [],
+};
+
+export default function(state = initialState, action) {
+    switch (action.type) {
+      case FETCH_COURSES:
         return {
-
+          items: action.payload
         };
-    }
       
-      return {
-          
-      };
-  
-  
-  };
-  
-  export default courseReducer;
+      default:
+        return state;
+    }
+  }

@@ -167,15 +167,10 @@ class AddNewStudentToCourse extends Component<any, any> {
             "role_id":1 // the role id for students
         }
 
-        this.props.createUser(user);
-        this.props.createStudent(student);
-        this.props.createStudentCourse(studentCourse);
-
-        // this.props.createStudent(student)
-        // .then(function(this: AddNewStudentToCourse){
-        //     this.props.createStudentCourse(studentCourse);
-        //     return;            
-        // });
+        //TODO: synchronize the calls from below so they're called in order
+         this.props.createUser(user);
+         this.props.createStudent(student);
+         this.props.createStudentCourse(studentCourse);
 
         console.log(student.id);
 
