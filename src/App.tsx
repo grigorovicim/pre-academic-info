@@ -1,95 +1,92 @@
 // @ts-ignore
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 // @ts-ignore
 import React, {Component} from 'react';
 // @ts-ignore
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 // @ts-ignore
 import {Route, Router, BrowserRouter} from "react-router-dom";
 import './App.css';
 import Popup from './commons/Popup';
-import DashboardProfessors from './professors/DashboardProfessors';
 import CoursesPage from "./components/CoursesPage";
 import HomePage from "./components/HomePage";
 import StudentsPage from "./components/StudentsPage";
 import CatalogPage from "./components/CatalogPage";
 import MyProfilePage from "./components/MyProfilePage";
-
-
 import UploadFile from "./upload_file/UploadFile";
 
+
 class App extends Component<any, any> {
-  constructor(props: any) {
-    super(props);
+    constructor(props: any) {
+        super(props);
 
-    this.state = {
-      response: '',
-      isPopupVisible: false,
-      popupComponentType: null,
-    };
-    this.openLoginPopup = this.openLoginPopup.bind(this);
-    this.closePopup = this.closePopup.bind(this);
-  }
-
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
-  }
-
-  closePopup() {
-    this.setState({
-      isPopupVisible: false,
-    });
-  }
-  openLoginPopup(e: any) {
-    e.stopPropagation();
-    this.setState({
-      isPopupVisible: true,
-      popupComponentType: 'p-login-whichButton',
-    });
-  }
- 
-
-  callApi = async () => {
-    const response = await fetch('/check-server');
-    const body = await response.json();
-
-    if (response.status !== 200) { 
-      throw Error(body.message); 
+        this.state = {
+            response: '',
+            isPopupVisible: false,
+            popupComponentType: null,
+        };
+        this.openLoginPopup = this.openLoginPopup.bind(this);
+        this.closePopup = this.closePopup.bind(this);
     }
 
-    return body;
-  };
+    componentDidMount() {
+        this.callApi()
+            .then(res => this.setState({response: res.express}))
+            .catch(err => console.log(err));
+    }
 
-  public render() {
-    return (
-      <div className="p-app">
-        <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
-        {/* <Dashboard courseItems={dummy}></Dashboard> */}
-        {/* <DashboardStudentsComplex studentItems={dummyStudents}></DashboardStudentsComplex>*/}
-        <DashboardProfessors></DashboardProfessors> 
-        {/*<StudentsList></StudentsList>*/}
-        <BrowserRouter>
-          <div>
-              <Route path={"/"} component={HomePage} exact/>
-              <Route path={"/courses"} component={CoursesPage}/>
-              <Route path={"/students"} component={StudentsPage} exact/>
-              <Route path={"/catalog"} component={CatalogPage} exact/>
-              <Route path={"/myprofile"} component={MyProfilePage} exact/>
-          </div>
-        </BrowserRouter>
-        <UploadFile/>
-      </div>
-    );
-  }
+    closePopup() {
+        this.setState({
+            isPopupVisible: false,
+        });
+    }
+
+    openLoginPopup(e: any) {
+        e.stopPropagation();
+        this.setState({
+            isPopupVisible: true,
+            popupComponentType: 'p-login-whichButton',
+        });
+    }
+
+
+    callApi = async () => {
+        const response = await fetch('/check-server');
+        const body = await response.json();
+
+        if (response.status !== 200) {
+            throw Error(body.message);
+        }
+
+        return body;
+    };
+
+    public render() {
+        return (
+            <div className="p-app">
+                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup}
+                       componentType={this.state.popupComponentType}/>
+                <BrowserRouter>
+                    <div>
+                        <Route path={"/"} component={HomePage} exact/>
+                        <Route path={"/courses"} component={CoursesPage}/>
+                        <Route path={"/students"} component={StudentsPage} exact/>
+                        <Route path={"/catalog"} component={CatalogPage} exact/>
+                        <Route path={"/myprofile"} component={MyProfilePage} exact/>
+                    </div>
+                </BrowserRouter>
+                <UploadFile/>
+            </div>
+        );
+    }
 }
+
 const mapStateToProps = (state: any) => {
-  return {
-    user: Object.assign({}, state.app.user),
-  };
+    return {
+        user: Object.assign({}, state.app.user),
+    };
 };
 
 export default connect(
-  mapStateToProps,
+    mapStateToProps,
 )(App);
