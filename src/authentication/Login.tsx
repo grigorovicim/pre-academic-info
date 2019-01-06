@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import './Login.css';
 import LoginActions from './Login.actions';
 import loginLogo from './pre-academic-login-logo.png';
+import {NavLink} from "react-router-dom";
 class Login extends Component<any, any> {
 
   private usernameInput: any;
@@ -38,21 +39,27 @@ class Login extends Component<any, any> {
   handleSubmit = () => {
     const username = this.usernameInput.value;
     const password = this.passwordInput.value;
+    console.log("Logged in user with username="+username + ", password = " + password);
     this.props.dispatch(LoginActions.authenticate(username, password));
-  }
+  };
 
   render() {
     return (
       <div className="p-login">
         <div className="p-login-logo">
           <div className="p-login-welcome">Welcome</div>
-          <img className="p-login-logo-image" src={loginLogo}></img>
+          <img className="p-login-logo-image" src={loginLogo}/>
         </div>
         <input ref={this.setUsernameInputRef} type="text" placeholder="email"/>
         <hr className="p-line-login"/>
         <input ref={this.setPasswordInputRef} type="password" placeholder="password"/>
         <hr className="p-line-login"/>
         <button onClick={this.handleSubmit}>LOGIN</button>
+        <div className="p-link-register-div">
+          <br/>
+          <label>Don't have an account yet?</label>
+          <NavLink to={"/register"} className="p-link-register"> Register</NavLink>
+        </div>
       </div>
     );
   }

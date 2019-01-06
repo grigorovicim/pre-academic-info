@@ -26,7 +26,7 @@ class CoursesPage extends Component<any,any>
         return (
             <div className="p-app">
 
-                <Header login="none" courses="inline" students="none" catalog="none" myProfile="none"/>
+                <Header home="none" courses="inline" students="none" catalog="none" myProfile="none"/>
 
                 <Dashboard courseItems={dummy}/>
             </div>

@@ -7,19 +7,20 @@ import React, {Component} from 'react';
 // @ts-ignore
 import { connect } from 'react-redux';
 // @ts-ignore
-import {Route, Router, BrowserRouter} from "react-router-dom";
+import {Route, Router, BrowserRouter, withRouter} from "react-router-dom";
 import './App.css';
 // import logo from './logo.png';
 import Popup from './commons/Popup';
 // import Dashboard from './courses/Dashboard'
 // import DashboardStudentsComplex from './students/DashboardStudentsComplex';
-import DashboardProfessors from './professors/DashboardProfessors';
+// import DashboardProfessors from './professors/DashboardProfessors';
 // import StudentsList from './students/StudentsList';
 import CoursesPage from "./components/CoursesPage";
 import HomePage from "./components/HomePage";
 import StudentsPage from "./components/StudentsPage";
 import CatalogPage from "./components/CatalogPage";
 import MyProfilePage from "./components/MyProfilePage";
+import Register from "./authentication/Register";
 
 
 
@@ -70,11 +71,7 @@ class App extends Component<any, any> {
   public render() {
     return (
       <div className="p-app">
-        <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
-        {/* <Dashboard courseItems={dummy}></Dashboard> */}
-        {/* <DashboardStudentsComplex studentItems={dummyStudents}></DashboardStudentsComplex>*/}
-        <DashboardProfessors></DashboardProfessors> 
-        {/*<StudentsList></StudentsList>*/}
+        /*<Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>*/
         <BrowserRouter>
           <div>
               <Route path={"/"} component={HomePage} exact/>
@@ -82,6 +79,7 @@ class App extends Component<any, any> {
               <Route path={"/students"} component={StudentsPage} exact/>
               <Route path={"/catalog"} component={CatalogPage} exact/>
               <Route path={"/myprofile"} component={MyProfilePage} exact/>
+              <Route path={"/register"} component={Register} exact/>
           </div>
         </BrowserRouter>
       </div>
@@ -97,3 +95,4 @@ const mapStateToProps = (state: any) => {
 export default connect(
   mapStateToProps,
 )(App);
+
