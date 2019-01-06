@@ -29,6 +29,7 @@ const CourseRoutes = require('./src/routes/course-routes');
 const UserRoutes = require('./src/routes/user-routes');
 const ConfigRoutes = require('./src/routes/configuration-routes');
 const SpreadsheetRoutes = require('./src/routes/spreadsheet-routes');
+const ProfileRoutes = require('./src/routes/spreadsheet-routes');
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use('/user', UserRoutes);
 app.use('/config', ConfigRoutes);
 app.use('/student', StudentRoutes);
 app.use('/spreadsheet', SpreadsheetRoutes);
+app.use('/profile', ProfileRoutes);
 
 
 app.get('/check-server', (req, res) => {
