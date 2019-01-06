@@ -87,7 +87,7 @@ class CoursesPage extends Component<any,any>
 
         return (
             <div className="p-app">
-                <Header login="none" courses="none" students="none" catalog="inline" myProfile="none"/>
+                <Header home="none" courses="none" students="none" catalog="inline" myProfile="none"/>
 
                 <div className="p-filter-container">
                     <div className="p-filter-item">

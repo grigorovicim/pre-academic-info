@@ -23,8 +23,8 @@ const reducer = (state: {
         ...state.user,
         userDetails: payload.user.userDetails,
         isAdmin: payload.user.isAdmin,
-        isLoggedIn: true,
-        isChecked: true,
+        isLoggedIn: payload.user.isLoggedIn,
+        isChecked: payload.user.isChecked,
       }),
     };
   }
@@ -65,6 +65,7 @@ const reducer = (state: {
       popupContent: payload.popupContentElement,
     };
   }
+
   default:
     return state;
   }
