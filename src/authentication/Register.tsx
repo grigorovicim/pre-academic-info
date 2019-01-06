@@ -5,9 +5,10 @@ import registerLogo from './pre-academic-login-logo.png';
 import Header from "../commons/header/Header";
 import LoginActions from "./Login.actions";
 import { connect } from 'react-redux';
-import RegisterFeedback from "./RegisterFeedback";
+import Popup from "../commons/Popup";
 
-class Register extends Component<any>{
+
+class Register extends Component<any, any>{
 
     private firstNameInput: any;
     private lastNameInput: any;
@@ -16,9 +17,13 @@ class Register extends Component<any>{
     private setEmailInputRef: any;
     private setLastNameInputRef: any;
 
-    constructor(props: any){
+    constructor(props: any) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+            isPopupVisible: false,
+            popupComponentType: null,
+        };
+
         this.firstNameInput = null;
         this.lastNameInput = null;
         this.email = null;
@@ -31,6 +36,23 @@ class Register extends Component<any>{
         this.setEmailInputRef = (element: any) => {
             this.email = element;
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.openFeedbackPopup = this.openFeedbackPopup.bind(this);
+        this.closePopup = this.closePopup.bind(this);
+    }
+
+    closePopup() {
+        this.setState({
+            isPopupVisible: false,
+        });
+    }
+    openFeedbackPopup(e: any) {
+        e.stopPropagation();
+        this.setState({
+            isPopupVisible: true,
+            popupComponentType: 'p-register-feedbackButton',
+        });
+        this.handleSubmit();
     }
 
     public handleSubmit(){
@@ -42,37 +64,26 @@ class Register extends Component<any>{
     }
 
     render(){
-        if(this.props.user.userDetails == null){
-            return (
-                <div>
-                    <Header home="inline" courses="none" students="none" catalog="none" myProfile="none"
-                            style={{}}/>
-                    <div className="p-register">
-                        <div className="p-register-logo">
-                            <div className="p-register-welcome">Welcome</div>
-                            <img className="p-register-logo-image" src={registerLogo}/>
-                        </div>
-                        <input ref={this.setFirstNameInputRef} type="text" placeholder="first name"/>
-                        <hr className="p-line-register"/>
-                        <input ref={this.setLastNameInputRef} type="text" placeholder="last name"/>
-                        <hr className="p-line-register"/>
-                        <input ref={this.setEmailInputRef} type="email" placeholder="email"/>
-                        <hr className="p-line-register"/>
-                        <button onClick={this.handleSubmit}>Register</button>
+        return (
+            <div>
+                <Header home="inline" courses="none" students="none" catalog="none" myProfile="none"
+                        style={{}}/>
+                <div className="p-register">
+                    <div className="p-register-logo">
+                        <div className="p-register-welcome">Welcome</div>
+                        <img className="p-register-logo-image" src={registerLogo}/>
                     </div>
+                    <input ref={this.setFirstNameInputRef} type="text" placeholder="first name"/>
+                    <hr className="p-line-register"/>
+                    <input ref={this.setLastNameInputRef} type="text" placeholder="last name"/>
+                    <hr className="p-line-register"/>
+                    <input ref={this.setEmailInputRef} type="email" placeholder="email"/>
+                    <hr className="p-line-register"/>
+                    <button onClick={this.openFeedbackPopup}>Register</button>
                 </div>
-            );
-        }
-            else{
-                return(
-                    <div>
-                        <Header home="inline" courses="none" students="none" catalog="none" myProfile="none" style={{}}/>
-                        <div className="p-register">
-                            <RegisterFeedback/>
-                        </div>
-                    </div>
-                )
-            }
+                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
+            </div>
+        );
     }
 }
 

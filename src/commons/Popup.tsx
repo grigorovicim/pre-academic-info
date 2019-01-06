@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 
 import './Popup.css';
 import Login from 'src/authentication/Login';
+import RegisterFeedback from "../authentication/RegisterFeedback";
 // import Login from 'src/authentication/Login';
 
 class Popup extends Component<any, any> {
@@ -37,8 +38,11 @@ class Popup extends Component<any, any> {
       return null;
     } else if (componentType === "p-login-whichButton") {
       component = <Login/>
-    } else {
-      component = <span></span>;
+    } else if (componentType === "p-register-feedbackButton"){
+      component = <RegisterFeedback/>
+    }
+    else{
+      component = <span/>;
     }
     
     return (

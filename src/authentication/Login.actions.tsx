@@ -76,17 +76,7 @@ export default class LoginActions {
 
   static register = (firstName: any, lastName: any, email: any) => (dispatch: any) => {
       axios.put('/register', {firstName: firstName, lastName: lastName, email: email})
-          .then((response) => {
-              dispatch({
-                  type: 'SET_USER_DETAILS',
-                  payload: {
-                      user: {
-                          userDetails: response.data,
-                          isLoggedIn: false,
-                          isChecked: false,
-                      }
-                  }
-              })
+          .then(() =>{
           })
           .catch((error) => {
           throw error;
