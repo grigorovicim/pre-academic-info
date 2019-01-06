@@ -1,28 +1,38 @@
-
-const courseReducer = (state: {professors: {};} = {
-    professors: {
-    
-    }
+const reducer = (state = {
+  items: null,
+  currentCourseId: null,
 }, action: any) => {
 
-    const {
-      type,
-      payload,
-    } = action;
-  
-    //dummy code; all the actions affecting users will need to be treated here
-    if (type === '' && payload === '')
-    {
-        return {
+  const {
+    type,
+    payload,
+  } = action;
 
-        };
-    }
-      
-      return {
-          
-      };
+  switch (type) {
+  case 'LOAD_COURSES': {
+    return {
+      ...state,
+      items: Array.from(payload.dashboardItems),
+    };
+  }
+  case 'SET_CURRENT_COURSE_ID': {
+    return {
+      ...state,
+      currentCourseId: payload.currentCourseId,
+    };
+  }
+
+  case 'LOAD_COURSE': {
+    return {
+      ...state,
+      items: Array.from(payload.dashboardItems),
+      isPopupVisible: payload.isCampaignPopupVisible,
+    };
+  }
   
-  
-  };
-  
-  export default courseReducer;
+  default:
+    return state;
+  }
+};
+
+export default reducer;

@@ -12,7 +12,7 @@
 .dashboard-course-item-text {
     position: static;
     height: 20px;
-    width: 314px;
+    width: 20%;
     font-family: Copperplate;
     text-transform: uppercase;
     font-weight: 500;
@@ -40,4 +40,13 @@
   position: static;
     height: 46px;
     width: 46px;
+}
+
+.col-md-1 {
+  width: 20%;
+  display: flex;
+}
+
+.col-md-3 {
+  width: 10%;
 }

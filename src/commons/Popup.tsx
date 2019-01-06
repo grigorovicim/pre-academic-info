@@ -2,8 +2,7 @@
 import React, {Component} from 'react';
 
 import './Popup.css';
-import Login from 'src/authentication/Login';
-// import Login from 'src/authentication/Login';
+import { connect } from 'react-redux';
 
 class Popup extends Component<any, any> {
 
@@ -16,12 +15,11 @@ class Popup extends Component<any, any> {
     this.props.onClose();
   }
 
-
   render() {
 
     const {
       isVisible,
-      componentType,
+      popupContent,
     } = this.props;
 
     let display;
@@ -33,10 +31,8 @@ class Popup extends Component<any, any> {
     }
 
     let component;
-    if (componentType === "home") {
-      return null;
-    } else if (componentType === "p-login-whichButton") {
-      component = <Login/>
+    if (this.props.popupContent !== undefined) {
+      component = popupContent
     } else {
       component = <span></span>;
     }
@@ -52,4 +48,13 @@ class Popup extends Component<any, any> {
   }
 }
 
-export default Popup;
+const mapStateToProps = (state: any) => {
+  return {
+    isPopupVisible: state.app.isPopupVisible,
+    popupContent: state.app.popupContent
+  };
+};
+
+export default connect(
+  mapStateToProps,
+)(Popup);

@@ -72,6 +72,12 @@ function getUserDetails(sessionID) {
   }
 }
 
+app.post('/details-of-course', (req, res) => {
+  const courseId = req.body.courseId;
+  const list = [];
+  res.send(list)
+})
+
 app.post('/session-id', (req, res) => {
   const sessionID = req.body.sessionID;
   const user = getUserDetails(sessionID);
