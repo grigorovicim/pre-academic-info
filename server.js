@@ -60,77 +60,77 @@ app.post('/spreadsheet', upload.single("file"), function (req, res) {
     XLSX = require('xlsx');
     let workbook = XLSX.readFile(file.path);
 
-    let first_sheet_name = workbook.SheetNames[0];
-    let address_of_cell = 'B1';
+    let firstSheetName = workbook.SheetNames[0];
+    let addressOfCell = 'B1';
 
     /* Get worksheet */
-    let worksheet = workbook.Sheets[first_sheet_name];
+    let worksheet = workbook.Sheets[firstSheetName];
 
     /* Find desired cell */
-    let desired_cell = worksheet[address_of_cell];
+    let desiredCell = worksheet[addressOfCell];
 
     /* Get the value */
-    let desired_value = (desired_cell ? desired_cell.v : undefined);
+    let desiredValue = (desiredCell ? desiredCell.v : undefined);
 
-    console.log(desired_value);
+    console.log(desiredValue);
 
     let row = 5;
     let column = 1;
-    let cell_address = {c: column, r: row};
-    while (worksheet[XLSX.utils.encode_cell(cell_address)] !== undefined) {
-        let current_cell = worksheet[XLSX.utils.encode_cell(cell_address)];
-        let formOfStudy = (current_cell ? current_cell.v : undefined);
+    let cellAddress = {c: column, r: row};
+    while (worksheet[XLSX.utils.encode_cell(cellAddress)] !== undefined) {
+        let currentCell = worksheet[XLSX.utils.encode_cell(cellAddress)];
+        let formOfStudy = (currentCell ? currentCell.v : undefined);
         column++;
 
-        cell_address = {c: column, r: row};
-        current_cell = worksheet[XLSX.utils.encode_cell(cell_address)];
-        let generationYear = (current_cell ? current_cell.v : undefined);
+        cellAddress = {c: column, r: row};
+        currentCell = worksheet[XLSX.utils.encode_cell(cellAddress)];
+        let generationYear = (currentCell ? currentCell.v : undefined);
         column++;
 
-        cell_address = {c: column, r: row};
-        current_cell = worksheet[XLSX.utils.encode_cell(cell_address)];
-        let section = (current_cell ? current_cell.v : undefined);
+        cellAddress = {c: column, r: row};
+        currentCell = worksheet[XLSX.utils.encode_cell(cellAddress)];
+        let section = (currentCell ? currentCell.v : undefined);
         column++;
 
-        cell_address = {c: column, r: row};
-        current_cell = worksheet[XLSX.utils.encode_cell(cell_address)];
-        let discipline = (current_cell ? current_cell.v : undefined);
+        cellAddress = {c: column, r: row};
+        currentCell = worksheet[XLSX.utils.encode_cell(cellAddress)];
+        let discipline = (currentCell ? currentCell.v : undefined);
         column++;
 
-        cell_address = {c: column, r: row};
-        current_cell = worksheet[XLSX.utils.encode_cell(cell_address)];
-        let semester = (current_cell ? current_cell.v : undefined);
+        cellAddress = {c: column, r: row};
+        currentCell = worksheet[XLSX.utils.encode_cell(cellAddress)];
+        let semester = (currentCell ? currentCell.v : undefined);
         column++;
 
-        cell_address = {c: column, r: row};
-        current_cell = worksheet[XLSX.utils.encode_cell(cell_address)];
-        let nrMatricol = (current_cell ? current_cell.v : undefined);
+        cellAddress = {c: column, r: row};
+        currentCell = worksheet[XLSX.utils.encode_cell(cellAddress)];
+        let nrMatricol = (currentCell ? currentCell.v : undefined);
         column++;
 
-        cell_address = {c: column, r: row};
-        current_cell = worksheet[XLSX.utils.encode_cell(cell_address)];
-        let lastname = (current_cell ? current_cell.v : undefined);
+        cellAddress = {c: column, r: row};
+        currentCell = worksheet[XLSX.utils.encode_cell(cellAddress)];
+        let lastname = (currentCell ? currentCell.v : undefined);
         column++;
 
-        cell_address = {c: column, r: row};
-        current_cell = worksheet[XLSX.utils.encode_cell(cell_address)];
-        let firstname = (current_cell ? current_cell.v : undefined);
+        cellAddress = {c: column, r: row};
+        currentCell = worksheet[XLSX.utils.encode_cell(cellAddress)];
+        let firstname = (currentCell ? currentCell.v : undefined);
         column++;
 
-        cell_address = {c: column, r: row};
-        current_cell = worksheet[XLSX.utils.encode_cell(cell_address)];
-        let email = (current_cell ? current_cell.v : undefined);
+        cellAddress = {c: column, r: row};
+        currentCell = worksheet[XLSX.utils.encode_cell(cellAddress)];
+        let email = (currentCell ? currentCell.v : undefined);
         column++;
 
-        cell_address = {c: column, r: row};
-        current_cell = worksheet[XLSX.utils.encode_cell(cell_address)];
-        let group = (current_cell ? current_cell.v : undefined);
+        cellAddress = {c: column, r: row};
+        currentCell = worksheet[XLSX.utils.encode_cell(cellAddress)];
+        let group = (currentCell ? currentCell.v : undefined);
 
         // console.log(email);
 
         column = 1;
         row++;
-        cell_address = {c: column, r: row};
+        cellAddress = {c: column, r: row};
     }
 
     res.send([req.file.originalname]);
