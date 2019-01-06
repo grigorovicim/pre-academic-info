@@ -82,6 +82,13 @@ app.post('/session-id', (req, res) => {
   res.send(user);
 });
 
+
+//just for test, please remove
+app.put('/register', (req, res) =>{
+    res.send({isActive:false})
+    }
+);
+
 app.post('/logout', (req, res) => {
   //to do implement logout
   res.send("Success")

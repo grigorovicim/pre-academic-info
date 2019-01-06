@@ -79,7 +79,7 @@ class App extends Component<any, any> {
               <Route path={"/students"} component={StudentsPage} exact/>
               <Route path={"/catalog"} component={CatalogPage} exact/>
               <Route path={"/myprofile"} component={MyProfilePage} exact/>
-              <Route path={"/register"} component={Register} exact/>
+              <Route path={"/register"} component={Register}/>
           </div>
         </BrowserRouter>
       </div>

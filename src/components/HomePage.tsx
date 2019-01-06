@@ -20,14 +20,14 @@ class HomePage extends Component<any,any>{
 
     public render (){
       if(this.props.user.isLoggedIn === false ) {
-
-        return (
-            <div>
-                <Header home="inline" courses="none" students="none" catalog="none" myProfile="none" style={{}}/>
-                <Login/>
-            </div>
-        )
-      } else {
+              return (
+                  <div>
+                      <Header home="inline" courses="none" students="none" catalog="none" myProfile="none" style={{}}/>
+                      <Login/>
+                  </div>
+              )
+          }
+      else {
         return(
           <div className="p-home-page">
           <Header login="inline" courses="none" students="none" catalog="none" myProfile="none" style={{}}/>

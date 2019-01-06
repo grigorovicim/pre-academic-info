@@ -3,6 +3,9 @@ import * as React from 'react';
 import './Register.css'
 import registerLogo from './pre-academic-login-logo.png';
 import Header from "../commons/header/Header";
+import LoginActions from "./Login.actions";
+import { connect } from 'react-redux';
+import RegisterFeedback from "./RegisterFeedback";
 
 class Register extends Component<any>{
 
@@ -31,31 +34,54 @@ class Register extends Component<any>{
     }
 
     public handleSubmit(){
+        const firstName = this.firstNameInput.value;
+        const lastName = this.lastNameInput.value;
+        const email = this.email.value;
         console.log("Registered user with first name="+ this.firstNameInput.value + ", last name=" + this.lastNameInput.value, ", email=" + this.email.value);
-        localStorage.setItem('isLoggedIn', "true");
-        //this.props.dispatch(LoginActions.authenticate(username, password));
+        this.props.dispatch(LoginActions.register(firstName, lastName, email));
     }
 
     render(){
-        return(
-            <div>
-                <Header home="inline" courses="none" students="none" catalog="none" myProfile="none" style={{}}/>
-                <div className="p-register">
-                    <div className="p-register-logo">
-                        <div className="p-register-welcome">Welcome</div>
-                        <img className="p-register-logo-image" src={registerLogo}/>
+        if(this.props.user.userDetails == null){
+            return (
+                <div>
+                    <Header home="inline" courses="none" students="none" catalog="none" myProfile="none"
+                            style={{}}/>
+                    <div className="p-register">
+                        <div className="p-register-logo">
+                            <div className="p-register-welcome">Welcome</div>
+                            <img className="p-register-logo-image" src={registerLogo}/>
+                        </div>
+                        <input ref={this.setFirstNameInputRef} type="text" placeholder="first name"/>
+                        <hr className="p-line-register"/>
+                        <input ref={this.setLastNameInputRef} type="text" placeholder="last name"/>
+                        <hr className="p-line-register"/>
+                        <input ref={this.setEmailInputRef} type="email" placeholder="email"/>
+                        <hr className="p-line-register"/>
+                        <button onClick={this.handleSubmit}>Register</button>
                     </div>
-                    <input ref={this.setFirstNameInputRef} type="text" placeholder="first name"/>
-                    <hr className="p-line-register"/>
-                    <input ref={this.setLastNameInputRef} type="text" placeholder="last name"/>
-                    <hr className="p-line-register"/>
-                    <input ref={this.setEmailInputRef} type="email" placeholder="email"/>
-                    <hr className="p-line-register"/>
-                    <button onClick={this.handleSubmit}>Register</button>
                 </div>
-            </div>
-        );
+            );
+        }
+            else{
+                return(
+                    <div>
+                        <Header home="inline" courses="none" students="none" catalog="none" myProfile="none" style={{}}/>
+                        <div className="p-register">
+                            <RegisterFeedback/>
+                        </div>
+                    </div>
+                )
+            }
     }
 }
 
-export default Register;
+const mapStateToProps = (state: any) => {
+    return {
+        user: Object.assign({}, state.app.user),
+    };
+};
+
+export default connect(
+    mapStateToProps,
+)(Register);
