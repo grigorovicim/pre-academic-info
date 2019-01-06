@@ -3,7 +3,6 @@ import {FilePond} from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
 import {Component} from "react";
 import { connect } from 'react-redux';
-// import UploadFileActions from "./UploadFile.actions";
 
 class UploadFile extends Component<any, any> {
     constructor(props) {
@@ -35,10 +34,6 @@ class UploadFile extends Component<any, any> {
                               this.setState({
                                   files: fileItems.map(fileItem => fileItem.file)
                               });
-                              //
-                              // fileItems.map(fileItem => {
-                              //     this.props.dispatch(UploadFileActions.upload(fileItem))
-                              // });
                           }}
                 />
             </div>
