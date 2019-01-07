@@ -92,41 +92,56 @@ router.post('/', upload.single("file"), function (req, res) {
         //TODO: modify everything from here
 
         //TODO: add student if doesn't exist
+        //TODO: add user with role, then profile, then student
 
-        let profile = {
-            "id": 5,
-            "year_of_study": 1,
-            "createdAt": "2012-12-11T22:00:00.000Z",
-            "updatedAt": "2012-12-11T22:00:00.000Z",
-            "group_id": 1,
-            "section_id": 2
-        };
 
-        models.Profile.create(req.body).then(profile => res.json(profile), err => {
-            res.status(501);
-            res.send('Internal Server Error! Sorry, try again!');
-            console.log('An error has occurred: ' + err);
+        let users;
+        models.User.findAll({
+            where: {username: email}, raw: true
+        }).then(function(result){
+            users = result;
+            console.log(users);
+
+            if(users === []){
+                //TODO: no such user so should be added
+            }
         });
 
-        let student = {
-            "id": 5,
-            "year_of_study": 1,
-            "createdAt": "2012-12-11T22:00:00.000Z",
-            "updatedAt": "2012-12-11T22:00:00.000Z",
-            "group_id": 1,
-            "section_id": 2
-        };
-
-        models.Student.create(req.body).then(student => res.json(student), err => {
-            res.status(501);
-            res.send('Internal Server Error! Sorry, try again!');
-            console.log('An error has occurred: ' + err);
-        });
-
-        //TODO: create discipline if doesn't exists
-        //TODO: create student-course
-
-        //TODO: to here
+        //
+        // let profile = {
+        //     "id": 5,
+        //     "year_of_study": 1,
+        //     "createdAt": "2012-12-11T22:00:00.000Z",
+        //     "updatedAt": "2012-12-11T22:00:00.000Z",
+        //     "group_id": 1,
+        //     "section_id": 2
+        // };
+        //
+        // models.Profile.create(req.body).then(profile => res.json(profile), err => {
+        //     res.status(501);
+        //     res.send('Internal Server Error! Sorry, try again!');
+        //     console.log('An error has occurred: ' + err);
+        // });
+        //
+        // let student = {
+        //     "id": 5,
+        //     "year_of_study": 1,
+        //     "createdAt": "2012-12-11T22:00:00.000Z",
+        //     "updatedAt": "2012-12-11T22:00:00.000Z",
+        //     "group_id": 1,
+        //     "section_id": 2
+        // };
+        //
+        // models.Student.create(req.body).then(student => res.json(student), err => {
+        //     res.status(501);
+        //     res.send('Internal Server Error! Sorry, try again!');
+        //     console.log('An error has occurred: ' + err);
+        // });
+        //
+        // //TODO: create discipline if doesn't exists
+        // //TODO: create student-course
+        //
+        // //TODO: to here
 
         column = 1;
         row++;
