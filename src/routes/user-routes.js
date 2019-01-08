@@ -72,8 +72,8 @@ router.post('/', function(req, res) {
 router.get('/verification/:token', function(req, res) {
   const token = req.params.token;
 
-  models.User.findAll({where : {verification_token: token}})
-    .then(results => res.json(results),err => {
+  models.User.findOne({where : {verification_token: token}})
+    .then(result => res.json(result),err => {
       res.status(501);
       res.send('Internal Server Error! Sorry, try again!');
       console.log('An error has occurred: ' + err);

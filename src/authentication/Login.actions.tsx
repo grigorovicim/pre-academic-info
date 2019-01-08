@@ -75,7 +75,7 @@ export default class LoginActions {
     };
 
   static register = (firstName: any, lastName: any, email: any) => (dispatch: any) => {
-      axios.put('/register', {firstName: firstName, lastName: lastName, email: email})
+      axios.post('/register', {firstName: firstName, lastName: lastName, email: email})
           .then(() =>{
           })
           .catch((error) => {

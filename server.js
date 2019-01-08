@@ -25,15 +25,15 @@ const bodyParser = require('body-parser');
 const jsSHA = require("jssha");
 
 const randomString = require('randomstring');
-const nodemailer = require('nodemailer');
 
 var StudentRoutes  = require('./src/routes/student-routes');
 var ProfessorRoutes  = require('./src/routes/professor-routes');
 var CourseRoutes  = require('./src/routes/course-routes');
 var UserRoutes = require('./src/routes/user-routes');
 var ConfigRoutes = require('./src/routes/configuration-routes');
-const axios = require('axios');
+var RoleRoutes = require('./src/routes/role-routes');
 const app = express();
+const emailUtil = require('./src/util/email');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
@@ -41,11 +41,14 @@ const path = require('path');
 const port = process.env.PORT || 5000;
 const dev = app.get('env') !== 'production';
 
+const client = require('./src/util/client')(port);
+
 app.use('/student', StudentRoutes);
 app.use('/professor', ProfessorRoutes);
 app.use('/course', CourseRoutes);
 app.use('/user', UserRoutes);
 app.use('/config', ConfigRoutes);
+app.use('/role', RoleRoutes);
 
 app.get('/check-server', (req, res) => {
   res.send({ express: 'Hello From Express BACKEND!' });
@@ -100,7 +103,7 @@ app.post('/login', (req, res) => {
     'password': password
   }
 
-  axios.post('http://localhost:3000/user/do/auth', userData).then(function(response) {
+  client.post('/user/do/auth', userData).then(function(response) {
     const user = response.data;
 
     if(user) {
@@ -110,6 +113,7 @@ app.post('/login', (req, res) => {
       usersLoggedIn.push(user);
       res.send(user);
     }else {
+      console.log('Invalid login for user: ' + email);
       res.status(202);
       res.send('Invalid username or password provided.');
     }
@@ -120,86 +124,57 @@ app.post('/login', (req, res) => {
   });
 });
 
-function sendEmail(user, host) {
-  const emailData = 
-    'Hello!\n You are receiveing this message because you have registered on preAcademicInfo.\n' +
-    'Please use the following link in order to verify your account: ' + host + user.verification_token + '\n' +
-    'After activating you account you can use the following password to login: ' + user.password + '\n' +
-    '\n\nKind regards,\nThe preAcademicInfo team';
-
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  nodemailer.createTestAccount((err, account) => {
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-            user: account.user, // generated ethereal user
-            pass: account.pass // generated ethereal password
-        }
-    });
-
-    // setup email data with unicode symbols
-    let mailOptions = {
-        from: '"preAcademicInfo" <' + account.user + '>',
-        to: user.username,
-        subject: 'preAcademicInfo email verification',
-        text: emailData, 
-    };
-
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message sent: %s', info.messageId);
-        // Preview only available when sending through an Ethereal account
-        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-    });
-  });
-}
-
 app.post('/register', (req, res) => {
   //const firstName = req.body.name;
   //const lastName = req.body.last_name;
   const email = req.body.email;
   const password = randomString.generate({length : 12});
   
-  // we will save the user with a speciffic user token
-  // that will need to be confirmed
-  const userData = {
-    'username': email,
-    'password': password,
-    'role_id': 1,
-  }
+  client.get('/role/Student').then(function(response) {
+    var role = response.data;
 
-  axios.post('http://localhost:3000/user/', userData).then(function(response) {
-    const host = 'http://' + req.get('host') + '/verify/';
-    response.data.password = password;
-    sendEmail(response.data, host);
-    res.send(response.data);
-  })
-  .catch(function(error) {
-    console.log(error);
+    if(role) {
+      // we will save the user with a speciffic user token
+      // that will need to be confirmed
+      const userData = {
+        'username': email,
+        'password': password,
+        'role_id': role.id,
+      }
+
+      client.post('/user/', userData).then(function(response) {
+        const host = 'http://' + req.get('host') + '/verify/';
+        response.data.password = password;
+        emailUtil.send(response.data, host);
+        res.send(response.data);
+      })
+      .catch(function(error) {
+        console.log(error);
+        res.status(501);
+        res.send('Internal server error.');
+      });
+    }
+    else {
+      console.log('Could not find role: Student');
+      res.status(501);
+      res.send('Internal server error.');
+    }
   });
 });
 
 app.get('/verify/:token', (req, res) => {
   const token = req.params.token;
 
-  axios.get('http://localhost:3000/user/verification/' + token).then(function(response){
-    const users = response.data;
-    if(users.length === 1) {
-      const user = users[0];
-
+  client.get('/user/verification/' + token).then(function(response){
+    const user = response.data;
+    if(user) {
+      
       const userData = {
         'is_active': true,
         'verification_token': '',
       }
 
-      axios.put('http://localhost:3000/user/' + user.id, userData).then(function(response) {
+      client.put('/user/' + user.id, userData).then(function(response) {
         res.send('The account has been verified!');
       }).catch(function(error) {
         res.status(501);
@@ -212,7 +187,8 @@ app.get('/verify/:token', (req, res) => {
     }
   })
   .catch(function(error) {
-    res.send('Could not verify account');
+    res.status(501);
+    res.send('Could not verify account.');
     console.log(error);
   });
 });
