@@ -1,4 +1,4 @@
-import { FETCH_PROFILES } from '../actions/types';
+import { FETCH_PROFILES, NEW_PROFILE } from '../actions/types';
 
 const initialState = {
   items: [],
@@ -7,6 +7,10 @@ const initialState = {
 export default function(state = initialState, action) {
     switch (action.type) {
       case FETCH_PROFILES:
+        return {
+          items: action.payload
+        };
+        case NEW_PROFILE:
         return {
           items: action.payload
         };

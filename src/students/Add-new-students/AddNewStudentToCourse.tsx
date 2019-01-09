@@ -12,6 +12,7 @@ import * as PropTypes from 'prop-types';
 import { connect } from 'react-redux'; 
 import { createStudent } from '../../actions/Student.actions'; 
 import { createStudentCourse } from '../../actions/StudentCourse.actions'; 
+import { createProfile } from '../../actions/Profile.actions'; 
 import { createUser } from '../../actions/User.actions';
  
 class AddNewStudentToCourse extends Component<any, any> {
@@ -20,6 +21,7 @@ class AddNewStudentToCourse extends Component<any, any> {
         createStudent: PropTypes.func.isRequired,
         createStudentCourse: PropTypes.func.isRequired,
         createUser: PropTypes.func.isRequired,
+        createProfile: PropTypes.func.isRequired
         //students: PropTypes.array.isRequired,
       };
 
@@ -42,6 +44,7 @@ class AddNewStudentToCourse extends Component<any, any> {
             courses: [],
             sections: [], //study lines
             usernameValue: '',
+            cnpValue: '',
         };
 
         this.handleFamilyNameChange = this.handleFamilyNameChange.bind(this);
@@ -55,6 +58,8 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.handleStudentIdChange = this.handleStudentIdChange.bind(this);
         this.handleCourseChange = this.handleCourseChange.bind(this);
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handleCnpChange = this.handleCnpChange.bind(this);
+        this.handlePhoneChange = this.handlePhoneChange.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -124,6 +129,14 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.setState({usernameValue: event.target.value});
     }
 
+    handleCnpChange(event){
+        this.setState({cnpValue: event.target.value});
+    }
+
+    handlePhoneChange(event){
+        this.setState({phoneValue: event.target.value});
+    }
+
     handleSubmit(event) {
         alert('A new student has been submitted: ' + this.state.familyNameValue + ' ' + this.state.firstNameValue + '\n'+
             this.state.emailValue + '\n' + this.state.messageValue + '\n' + 
@@ -167,8 +180,24 @@ class AddNewStudentToCourse extends Component<any, any> {
             "role_id":1 // the role id for students
         }
 
+        const profile = {
+            "id": this.state.studentIdValue,
+            "first_name": this.state.firstNameValue ,
+            "last_name": this.state.familyNameValue ,
+            "personal_email": this.state.emailValue,
+            "telephone_number": this.state.phoneValue,
+            "gender": 1,
+            "date_of_birth": new Date(),
+            "cnp": this.state.cnpValue,
+            "createdAt":new Date(),
+            "updatedAt":new Date(),
+            "user_id": this.state.studentIdValue
+        }
+
         //TODO: synchronize the calls from below so they're called in order
          this.props.createUser(user);
+         //TODO: here create profile
+         this.props.createProfile(profile);
          this.props.createStudent(student);
          this.props.createStudentCourse(studentCourse);
 
@@ -194,9 +223,18 @@ class AddNewStudentToCourse extends Component<any, any> {
                     <input type="text" value={this.state.familyNameValue} onChange={this.handleFamilyNameChange} />
                 </label><br/>
                 <br/>
+                <label>CNP:
+                    <input type="text" value={this.state.cnpValue}  onChange={this.handleCnpChange} />
+                </label>
+                <br></br>
                 <label>Email: 
                     <input type="text" value={this.state.emailValue}  onChange={this.handleEmailChange} />
                 </label>
+                <br/>
+                <label>Phone number:
+                    <input type="text" value={this.state.phoneValue}  onChange={this.handlePhoneChange} />
+                </label>
+
                 <br/>
                 <label>Message:
                     <textarea value={this.state.messageValue}  onChange={this.handleMessageChange} />
@@ -241,7 +279,8 @@ class AddNewStudentToCourse extends Component<any, any> {
                     {this.state.courses.map((course) => <option key={course.id} value={course.id}>{course.name}</option>)}
                 </select>
 
-                <h1>User details</h1>  
+                {/* <h1>User details</h1>   */}
+                <br></br>
                 <label>Username:
                     <input type="text" value={this.state.usernameValue} onChange={this.handleUsernameChange} />
                 </label><br/>
@@ -261,4 +300,4 @@ const mapStateToProps = state => ({
     students: state.studentReducer.items, 
   });
 
-export default connect(mapStateToProps, { createStudent, createStudentCourse, createUser })( AddNewStudentToCourse );
+export default connect(mapStateToProps, { createStudent, createStudentCourse, createUser, createProfile })( AddNewStudentToCourse );

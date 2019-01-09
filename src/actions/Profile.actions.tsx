@@ -1,4 +1,4 @@
-import { FETCH_PROFILES  } from './types';
+import { FETCH_PROFILES, NEW_PROFILE  } from './types';
 import axios from 'axios';
 
 export const fetchProfiles = () => dispatch => {
@@ -12,3 +12,20 @@ export const fetchProfiles = () => dispatch => {
             console.log(error)
         });
 };
+
+export const createProfile = postData => dispatch => {
+    fetch('/profile', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(postData)
+    })
+      .then(res => res.json())
+      .then(profile =>
+        dispatch({
+          type: NEW_PROFILE,
+          payload: profile
+        })
+      );
+  };
