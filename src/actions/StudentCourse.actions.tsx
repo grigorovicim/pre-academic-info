@@ -29,5 +29,9 @@ export const createStudentCourse = postData => dispatch => {
           type: NEW_STUDENT_COURSE,
           payload: studentCourse
         })
-      );
+      )
+      .catch(error => {
+        console.log(error)
+      })
+      ;
   };

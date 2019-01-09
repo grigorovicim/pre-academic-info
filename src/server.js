@@ -26,6 +26,7 @@ var GroupRoutes = require('./routes/group-routes');
 var YearRoutes = require('./routes/year-of-study-routes');
 var StudentCourseRoutes = require('./routes/student-course-routes');
 var UserRoutes = require('./routes/user-routes');
+var ProfileRoutes = require('./routes/profile-routes');
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.use('/group', GroupRoutes);
 app.use('/yearofstudy', YearRoutes);
 app.use('/studentcourse', StudentCourseRoutes);
 app.use('/user', UserRoutes);
+app.use('/profile', ProfileRoutes);
 
 app.get('/check-server', (req, res) => {
   res.send({ express: 'Hello From Express BACKEND!' });
@@ -122,6 +124,11 @@ app.get('professor/course', (req, res) =>{
 app.get('section', (req, res) => {
   sections = SectionRoutes.get('/section');
   res.send(sections);
+})
+
+app.get('profile', (req, res) => {
+  profiles = ProfileRoutes.get('/profile');
+  res.send(profiles);
 })
 
 app.get('group', (req, res) => {

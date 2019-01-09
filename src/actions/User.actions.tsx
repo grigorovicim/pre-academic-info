@@ -27,5 +27,10 @@ export const createUser = postData => dispatch => {
           type: NEW_USER,
           payload: user
         })
+      )
+      .catch( error => {
+        console.log(error)
+      }
+        
       );
   };

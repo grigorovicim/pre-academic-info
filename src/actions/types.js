@@ -6,3 +6,4 @@ export const NEW_STUDENT_COURSE = 'NEW_STUDENT_COURSE';
 export const FETCH_USERS = 'FETCH_USERS';
 export const NEW_USER = 'NEW_USER';
 export const FETCH_COURSES = 'FETCH_COURSES';
+export const  FETCH_PROFILES = 'FETCH_PROFILES';
