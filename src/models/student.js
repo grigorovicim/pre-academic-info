@@ -66,6 +66,18 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
             }
         });
+        models.Student.belongsTo(models.YearOfStudy, {
+            foreignKey: {
+                name: 'year_of_study_id',
+                allowNull: false,
+            }
+        });
+        models.Student.belongsTo(models.Semester, {
+            foreignKey: {
+                name: 'semester_id',
+                allowNull: false,
+            }
+        });
     };
     return Student;
 };

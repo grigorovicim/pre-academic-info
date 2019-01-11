@@ -8,7 +8,6 @@ class StudentsPage extends Component<any,any>{
         return (
             <div>
                 <Header login="none" courses="none" students="inline" catalog="none" myProfile="none"/>
-                <h1>"Students Page"</h1>
             </div>
         )
     }
