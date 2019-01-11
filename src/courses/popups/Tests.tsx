@@ -12,19 +12,18 @@ class Tests extends Component<any,any> {
     constructor(props: any) {
         super(props);  
 
-
-        console.log("constructor called");
         if (props.percentages === undefined){
             let value = 100/props.tests;
             value = parseFloat(value.toFixed(2));
-            this.percentages = Array.apply(null, new Array(props.tests)).map(Number.prototype.valueOf,value);
+            const nr: number = parseInt(this.props.tests, 10);
+            this.percentages = Array.apply(null, new Array(nr)).map(Number.prototype.valueOf,value);
 
         }
         else {
             this.percentages = props.percentages;
             
         }
-      //  this.state = {percentages: this.percentages}
+
         this.createTable(); 
         
     }
@@ -36,15 +35,12 @@ class Tests extends Component<any,any> {
             
             let value = 100/this.props.tests;
             value = parseFloat(value.toFixed(2));
-            console.log(this.props.tests)
             const nr: number = parseInt(this.props.tests, 10);
             this.percentages = Array.apply(null, new Array(nr)).map(Number.prototype.valueOf,value);
-            console.log(this.percentages);
         }
         else {
             this.percentages = this.props.percentages;
         }
-       // this.setState ({percentages: this.percentages})
         this.createTable();
         this.forceUpdate();
  
@@ -92,6 +88,7 @@ class Tests extends Component<any,any> {
     return(
       
   <ReactTable
+  resizable = {true}
   data={this.data}
   columns={this.columns}
   showPagination={ false }
