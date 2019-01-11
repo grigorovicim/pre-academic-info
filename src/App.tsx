@@ -69,14 +69,13 @@ class App extends Component<any, any> {
     ]*/
     const detail = {
       name: "Design Patterns",
-      number: 14,
-      hours: 2,
       professor: "Molnar Arthur",
       section: {name: 'English', nrGroups: 6},//nrGroups not in db
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       rules: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      labs: {number: 7, hours: 2, practicals: 2, professors: [{id: 1, name: "Molnar Arthur"}, {id: 2, name: "Cretu Maria"}]},
-      seminars: {number: 14, hours: 2, partials: 2, professors: {id: 1, name: "Molnar Arthur"}},
+      courses: {number: 14, hours: 2, tests: 10},
+      labs: {number: 7, hours: 2, tests: 12, professors: [{id: 1, name: "Molnar Arthur"}, {id: 2, name: "Cretu Maria"}]},
+      seminars: {number: 14, hours: 2, tests: 2, professors: {id: 1, name: "Molnar Arthur"}},
       groups: [932, 933, 934, 935],
       students: [{id: 1, name: "Antonesei Andrada"},{id:2, name: "Amariei Iuliana"},{id:3, name: "Blanariu Mihai"}]
     }

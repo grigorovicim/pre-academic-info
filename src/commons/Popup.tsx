@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 
 import './Popup.css';
 import Login from 'src/authentication/Login';
+import Tests from  'src/courses/popups/Tests'
 // import Login from 'src/authentication/Login';
 
 class Popup extends Component<any, any> {
@@ -37,7 +38,14 @@ class Popup extends Component<any, any> {
       return null;
     } else if (componentType === "p-login-button") {
       component = <Login/>
-    } else {
+    } else if (componentType === "p-lab-tests"){
+      component = <Tests tests={this.props.tests} percentages={this.props.percentages} type={"lab"}/>
+    } else if (componentType === "p-seminar-tests"){
+      component = <Tests tests={this.props.tests} percentages={this.props.percentages} type={"seminar"}/>
+    }else if (componentType === "p-course-tests"){
+      component = <Tests tests={this.props.tests} percentages={this.props.percentages} type={"course"}/>
+    }
+    else {
       component = <span></span>;
     }
     
