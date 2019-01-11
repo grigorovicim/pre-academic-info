@@ -11,15 +11,20 @@ class Tests extends Component<any,any> {
 
     constructor(props: any) {
         super(props);  
+
+
         console.log("constructor called");
         if (props.percentages === undefined){
             let value = 100/props.tests;
             value = parseFloat(value.toFixed(2));
             this.percentages = Array.apply(null, new Array(props.tests)).map(Number.prototype.valueOf,value);
+
         }
         else {
             this.percentages = props.percentages;
+            
         }
+      //  this.state = {percentages: this.percentages}
         this.createTable(); 
         
     }
@@ -39,6 +44,7 @@ class Tests extends Component<any,any> {
         else {
             this.percentages = this.props.percentages;
         }
+       // this.setState ({percentages: this.percentages})
         this.createTable();
         this.forceUpdate();
  
@@ -46,28 +52,42 @@ class Tests extends Component<any,any> {
 
     createTable = () => {
     this.data = []
-    this.columns = []
-   
+   // this.columns = []
+    this.columns= [{
+        Header: "Test number",
+        accessor: "test_number",
+          },{
+        Header: "Test percentage",
+        accessor: "test_percentage",
+    }]
     
     const onChangeFct = (e: any, i: number) => {
         if (e.key === 'Enter') {
-            this.percentages[i] = e.target.value;
+            this.percentages[i] = parseInt(e.target.value,10);
+            console.log(this.percentages)
         }
     };
-
     for (let i = 0; i < this.props.tests; i++){
-    this.columns.push({
-          Header: "Test "+(i+1)+" (%)",
-          accessor: "test",
-          Cell: (props: any) => (<input type="number" value={this.percentages[i]} onKeyPress={(e)=>onChangeFct(e, i)} />)
+        this.data.push({
+          test_number : i+1,
+          test_percentage: <input type="number" defaultValue={this.percentages[i]} onKeyPress={(e)=>onChangeFct(e, i)} />
         });
     }
-
-    this.data.push({
-        test: this.percentages,
-    })
   }
 
+  getTrProps = (state: any, rowInfo: any, instance: any) => {
+      return {
+        style: {
+            display: 'flex',
+            flexDirection: 'test_number',
+            justifyContent: 'center',
+            fontWeight: 600,
+            color: 'gray'
+        }
+      
+    }
+
+  }
   render() {
     return(
       
@@ -75,7 +95,9 @@ class Tests extends Component<any,any> {
   data={this.data}
   columns={this.columns}
   showPagination={ false }
-/>
+  getTdProps={this.getTrProps}
+  />
+
     )
   }
  
