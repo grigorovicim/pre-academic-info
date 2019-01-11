@@ -39,11 +39,11 @@ class Popup extends Component<any, any> {
     } else if (componentType === "p-login-button") {
       component = <Login/>
     } else if (componentType === "p-lab-tests"){
-      component = <Tests tests={this.props.tests} percentages={this.props.percentages} type={"lab"}/>
+      component = <Tests sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"lab"}/>
     } else if (componentType === "p-seminar-tests"){
-      component = <Tests tests={this.props.tests} percentages={this.props.percentages} type={"seminar"}/>
+      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"seminar"}/>
     }else if (componentType === "p-course-tests"){
-      component = <Tests tests={this.props.tests} percentages={this.props.percentages} type={"course"}/>
+      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"course"}/>
     }
     else {
       component = <span></span>;

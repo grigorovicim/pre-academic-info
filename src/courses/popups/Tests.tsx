@@ -11,13 +11,13 @@ class Tests extends Component<any,any> {
 
     constructor(props: any) {
         super(props);  
-
+        this.state = {isError : false}
         if (props.percentages === undefined){
             let value = 100/props.tests;
             value = parseFloat(value.toFixed(2));
             const nr: number = parseInt(this.props.tests, 10);
             this.percentages = Array.apply(null, new Array(nr)).map(Number.prototype.valueOf,value);
-
+                    this.props.sendToParent(this.percentages);
         }
         else {
             this.percentages = props.percentages;
@@ -45,7 +45,18 @@ class Tests extends Component<any,any> {
         this.forceUpdate();
  
     }
+    percentagesCheck(){
 
+        let s = 0;
+        for (const p of this.percentages){
+            s = s + p;
+        }
+        if (s > 100){
+            return false;
+        } else {
+            return true;
+        }
+    }
     createTable = () => {
     this.data = []
    // this.columns = []
@@ -58,9 +69,16 @@ class Tests extends Component<any,any> {
     }]
     
     const onChangeFct = (e: any, i: number) => {
-        if (e.key === 'Enter') {
+        if (e.key === "Enter"){
             this.percentages[i] = parseInt(e.target.value,10);
-            console.log(this.percentages)
+            if (this.percentagesCheck()) {
+                this.setState({isError: false})
+                this.props.sendToParent(this.percentages);
+            }
+            else
+            {
+                this.setState({isError: true})
+            }
         }
     };
     for (let i = 0; i < this.props.tests; i++){
@@ -86,15 +104,17 @@ class Tests extends Component<any,any> {
   }
   render() {
     return(
-      
-  <ReactTable
-  resizable = {true}
-  data={this.data}
-  columns={this.columns}
-  showPagination={ false }
-  getTdProps={this.getTrProps}
-  />
-
+    <div>
+     {this.state.isError === true &&
+    <div className="alert alert-danger">The percentages exceed 100.</div>}
+    <ReactTable
+    resizable = {true}
+    data={this.data}
+    columns={this.columns}
+    showPagination={ false }
+    getTdProps={this.getTrProps}
+    />
+   </div>
     )
   }
  

@@ -8,9 +8,18 @@ import Popup from "../commons/Popup";
 class CourseDetail extends Component<any, any> {
     
     private details: any;
-    
+    private groups: any;
+
     constructor(props: any) {
-		super(props); 
+        super(props); 
+
+        this.groups = this.props.detail.groups;
+        this.submit = this.submit.bind(this);
+
+        this.getFromChildSeminar = this.getFromChildSeminar.bind(this);
+        this.getFromChildLab = this.getFromChildLab.bind(this);
+        this.getFromChildCourse = this.getFromChildCourse.bind(this);
+
         this.openLabTestsPopup = this.openLabTestsPopup.bind(this);
         this.openSeminarTestsPopup = this.openSeminarTestsPopup.bind(this);
         this.openCourseTestsPopup = this.openCourseTestsPopup.bind(this);
@@ -26,10 +35,15 @@ class CourseDetail extends Component<any, any> {
         this.closeLabPopup = this.closeLabPopup.bind(this);
         this.closeSeminarPopup = this.closeSeminarPopup.bind(this);
         this.closeCoursePopup = this.closeCoursePopup.bind(this);
-        //alert(this.props.detail.courses.number)
+
        
         this.state = {
-            
+            groups: this.props.detail.groups,
+
+            coursePercentages: this.props.detail.courses.percentages,
+            seminarPercentages: this.props.detail.seminars.percentages,
+            labPercentages: this.props.detail.labs.percentages,
+
             courseNumber: this.props.detail.courses.number,
             seminarNumber: this.props.detail.seminars.number,
             labNumber: this.props.detail.labs.number,
@@ -55,7 +69,15 @@ class CourseDetail extends Component<any, any> {
         this.renderGroups= this.renderGroups.bind(this);
     }
 
-
+    getFromChildSeminar(data: any){
+        this.setState({seminarPercentages: data})
+    }
+    getFromChildLab(data: any){
+        this.setState({labPercentages: data})
+    }
+    getFromChildCourse(data: any){
+        this.setState({coursePercentages: data})
+    }
     onCourseNumberChange(e : any) {
         this.setState({courseNumber : e.target.value})
     }
@@ -132,16 +154,23 @@ class CourseDetail extends Component<any, any> {
             }
         }
     }
-    assignGroupToCourse = (event:any) =>
+    assignGroupToCourse = (element: any) =>
     {
-        //here you may handle the problem of adding a group to the course
+        console.log(element)
+        const nr = parseInt(element,10);
+        if (this.groups.indexOf(nr) > -1){
+            this.groups.splice(this.groups.indexOf(nr), 1);
+        }else{
+        this.groups.push(nr);
+        }
+        this.setState({groups : this.groups})
     }  
 
     renderGroups() {
         //assume a course is assigned to a year of study (as in the db)
         let year = -1;
-        if (this.details.groups !== undefined && this.details.groups !== []){
-        year = Math.trunc(this.details.groups[0] / 10) % 10;
+        if (this.groups !== undefined && this.groups !== []){
+        year = Math.trunc(this.groups[0] / 10) % 10;
         }
         if (year === -1){
             return (<p>The year is not valid</p>);
@@ -178,13 +207,13 @@ class CourseDetail extends Component<any, any> {
 
    
         groups.forEach(element => {
-            if (this.details.groups.indexOf(parseInt(element,10))> -1){
+            if (this.groups.indexOf(parseInt(element,10))> -1){
                 buttons.push(
-                    <Button onClick={this.assignGroupToCourse} bsStyle="primary">&nbsp;{element}&nbsp;</Button>
+                    <Button onClick={()=>this.assignGroupToCourse(element)} bsStyle="primary">&nbsp;{element}&nbsp;</Button>
                      )
             }else {
                 buttons.push(
-                <Button onClick={this.assignGroupToCourse} bsStyle="default">&nbsp;{element}&nbsp;</Button>
+                <Button onClick={()=>this.assignGroupToCourse(element)} bsStyle="default">&nbsp;{element}&nbsp;</Button>
                 )
             };
                       
@@ -196,7 +225,10 @@ class CourseDetail extends Component<any, any> {
 
         );
     }
-
+    submit(){
+        console.log(this.state)
+        return this.state;
+    }
     render() {
         return (
             
@@ -351,9 +383,11 @@ class CourseDetail extends Component<any, any> {
         </Col>
     </Row>
     <br/><br/>
-	<Popup isVisible={this.state.isCoursePopupVisible} onClose={this.closeCoursePopup} componentType={this.state.popupCourseComponentType} tests={this.state.courseTests} percentages={this.state.coursePercentages} refresh={this.onCourseTestsChange}/>
-    <Popup isVisible={this.state.isSeminarPopupVisible} onClose={this.closeSeminarPopup} componentType={this.state.popupSeminarComponentType} tests={this.state.seminarTests} percentages={this.state.seminarPercentages} refresh={this.onSeminarTestsChange}/>
-    <Popup isVisible={this.state.isLabPopupVisible} onClose={this.closeLabPopup} componentType={this.state.popupLabComponentType} tests={this.state.labTests} percentages={this.state.labPercentages} refresh={this.onLabTestsChange}/>
+    <Button className="btn btn-success" onClick={this.submit}>Submit</Button>
+	<Popup isVisible={this.state.isCoursePopupVisible} sendToParent = {this.getFromChildCourse} onClose={this.closeCoursePopup} componentType={this.state.popupCourseComponentType} tests={this.state.courseTests} percentages={this.state.coursePercentages} refresh={this.onCourseTestsChange}/>
+    <Popup isVisible={this.state.isSeminarPopupVisible} sendToParent ={this.getFromChildSeminar} onClose={this.closeSeminarPopup} componentType={this.state.popupSeminarComponentType} tests={this.state.seminarTests} percentages={this.state.seminarPercentages} refresh={this.onSeminarTestsChange}/>
+    <Popup isVisible={this.state.isLabPopupVisible} sendToParent = {this.getFromChildLab} onClose={this.closeLabPopup} componentType={this.state.popupLabComponentType} tests={this.state.labTests} percentages={this.state.labPercentages} refresh={this.onLabTestsChange}/>
+    
     </Grid>
     
         );
