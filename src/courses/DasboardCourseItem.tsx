@@ -6,8 +6,9 @@ import plusBtn from '../plus-btn.png';
 
 import optionsBtn from '../options-btn.png';
 import AppActions from "../App.actions";
-import CourseDetail from "./CourseDetail";
+import ActivityDetail from "./ActivityDetail";
 import {connect} from "react-redux";
+
 
 
 class DashboardCourseItem extends Component<any, any> {
@@ -36,21 +37,10 @@ class DashboardCourseItem extends Component<any, any> {
     }
 
     addConfiguration() {
-        const detail = {
+        const details = {
             name: "Design Patterns",
-            number: 14,
-            hours: 2,
             professor: "Molnar Arthur",
-            section: {name: 'English', nrGroups: 6},//nrGroups not in db
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            rules: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            labs: {
-                number: 7,
-                hours: 2,
-                practicals: 2,
-                professors: [{id: 1, name: "Molnar Arthur"}, {id: 2, name: "Cretu Maria"}]
-            },
-            seminars: {number: 14, hours: 2, partials: 2, professors: {id: 1, name: "Molnar Arthur"}},
+            section: {name: 'English', nrGroups: 6},
             groups: [932, 933, 934, 935],
             students: [{id: 1, name: "Antonesei Andrada"}, {id: 2, name: "Amariei Iuliana"}, {
                 id: 3,
@@ -59,7 +49,7 @@ class DashboardCourseItem extends Component<any, any> {
         };
 
         this.props.dispatch(AppActions.setPopupContentElement(
-            <CourseDetail detail={detail}/>
+            <ActivityDetail details={details}/>
         ));
         this.props.dispatch(AppActions.setPopupVisibility(true));    }
 

@@ -7,3 +7,10 @@
     font-size: 1.25em;
     color:gray;
 }
+
+.btn-toolbar {
+  margin-left:auto;
+  margin-right:auto;
+  display:block;
+}
+
