@@ -6,6 +6,7 @@ import plusBtn from '../plus-btn.png';
 import optionsBtn from '../options-btn.png';
 import CourseActions from 'src/actions/Course.actions';
 import { connect } from 'react-redux';
+import AppActions from '../App.actions';
 
 
 class DashboardCourseItem extends Component<any, any> {
@@ -41,6 +42,7 @@ class DashboardCourseItem extends Component<any, any> {
 
     handleCourseDetailsClick(e: any) {
       e.stopPropagation();
+      this.props.dispatch(AppActions.setIsAlert(true));
       axios.post('/details-of-course', {courseId: this.props.content.id})
       .then((response) => {
         const courseDetails = response.data;

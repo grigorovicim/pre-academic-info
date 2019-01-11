@@ -52,6 +52,14 @@ export default class AppActions {
       }
     });
   }
+  static setIsAlert = (isAlert: any) => (dispatch: any, /*getState: any*/) =>{
+    dispatch ({
+      type: 'SET_IS_ALERT',
+      payload: {
+        isAlert,
+      }
+    });
+  }
 
   static updatePopupContentElement = (popupContent: any, isAlert: any) => (dispatch: any) => {
     dispatch({

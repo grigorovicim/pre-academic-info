@@ -2,6 +2,7 @@
 const reducer = (state = {
   isPopupVisible: false,
   popupContent: null,
+  isAlert: false,
   user: {
     userDetails: null,
     isLoggedIn: false,
@@ -57,6 +58,12 @@ const reducer = (state = {
     return {
       ...state,
       isPopupVisible: payload.isPopupVisible,
+    };
+  }
+  case 'SET_IS_ALERT': {
+    return {
+      ...state,
+      isAlert: payload.isAlert,
     };
   }
 
