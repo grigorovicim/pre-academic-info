@@ -58,6 +58,9 @@
     align-items: center;
     margin-top: 15px;
 }
+input {
+  outline-width: 0;
+}
 
 .p-icon {
     height: 47px;
