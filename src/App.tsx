@@ -9,20 +9,20 @@ import { connect } from 'react-redux';
 // @ts-ignore
 import {Route, BrowserRouter} from "react-router-dom";
 import './App.css';
-/*
+
 import CoursesPage from "./components/CoursesPage";
 import HomePage from "./components/HomePage";
 import StudentsPage from "./components/StudentsPage";
 import CatalogPage from "./components/CatalogPage";
 import MyProfilePage from "./components/MyProfilePage";
 import Register from "./authentication/Register";
-*/
+
 import AppActions from './App.actions';
 
-import logo from './logo.png';
+//import logo from './logo.png';
 //import Popup from './commons/Popup';
 //import Dashboard from './courses/Dashboard'
-import CourseDetail from './courses/CourseDetail';
+//import CourseDetail from './courses/CourseDetail';
 
 class App extends Component<any, any> {
   constructor(props: any) {
@@ -79,6 +79,7 @@ class App extends Component<any, any> {
       {id:5, name: "ASC", department: "info", isConfigured: true},
       {id:6, name: "MAP", department: "info", isConfigured: true},
     ]*/
+    /*
     const detail = {
       name: "Design Patterns",
       professor: "Molnar Arthur",
@@ -91,22 +92,23 @@ class App extends Component<any, any> {
       groups: [932, 933, 934, 935],
       students: [{id: 1, name: "Antonesei Andrada"},{id:2, name: "Amariei Iuliana"},{id:3, name: "Blanariu Mihai"}]
     }
-    
+    */
+    /*
     return (
       <div className="p-app">
         <header className="p-app-header">
           <img src={logo} className="p-app-logo"/>
           <div className="p-login-button" onClick={this.openLoginPopup}>Login</div>
         </header>
-        {/* <p className="p-app-intro">
+         <p className="p-app-intro">
         {this.state.response}
-        </p> */}
+        </p> 
 
-        {/* <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/> */}
-        {/* <Dashboard courseItems={dummy}></Dashboard> */}
+         <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/> 
+         <Dashboard courseItems={dummy}></Dashboard> 
         <CourseDetail detail = {detail}></CourseDetail>
         </div>)
-   /*
+   */
     return (
       <div className="p-app">
         <BrowserRouter>
@@ -121,7 +123,7 @@ class App extends Component<any, any> {
         </BrowserRouter>
       </div>
     );
-    */
+    
   }
 }
 const mapStateToProps = (state: any) => {
