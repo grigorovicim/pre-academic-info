@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 
 import './Popup.css';
+import { connect } from 'react-redux';
 import Login from 'src/authentication/Login';
 import RegisterFeedback from "../authentication/RegisterFeedback";
 import AddProf from "../professors/AddProf";
@@ -18,23 +19,33 @@ class Popup extends Component<any, any> {
     this.props.onClose();
   }
 
-
   render() {
 
     const {
       isVisible,
-      componentType,
+      popupContent,
     } = this.props;
 
     let display;
+    let setWidth = "640px";
+    let setHeight = "650px";
     
     if (isVisible) {
       display = 'flex';
     } else {
       display = 'none';
+    } 
+
+    if(this.props.isAlert) {
+      setWidth = "640px";
+      setHeight = "220px";
     }
 
     let component;
+    if (this.props.popupContent !== undefined) {
+      component = popupContent
+    } else {
+      component = <span></span>;
     if (componentType === "home") {
       return null;
     } else if (componentType === "p-login-whichButton") {
@@ -51,7 +62,7 @@ class Popup extends Component<any, any> {
 
     return (
       <div className="p-popup" style={{display}} onClick={this.handleClick}>
-        <div className="p-popup-core" onClick={e => {e.stopPropagation()}}>
+        <div className="p-popup-core" style={{width: setWidth, height: setHeight}} onClick={e => {e.stopPropagation()}}>
           <div className="p-close-button" onClick={this.handleClick}> X </div>
           {component}
         </div>
@@ -60,4 +71,14 @@ class Popup extends Component<any, any> {
   }
 }
 
-export default Popup;
+const mapStateToProps = (state: any) => {
+  return {
+    isPopupVisible: state.app.isPopupVisible,
+    popupContent: state.app.popupContent,
+    isAlert: state.app.isAlert,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+)(Popup);

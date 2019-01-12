@@ -1,14 +1,16 @@
 
-const reducer = (state: {
-  user: {};
-} = {
+const reducer = (state = {
+  isPopupVisible: false,
+  popupContent: null,
+  isAlert: false,
   user: {
     userDetails: null,
     isLoggedIn: false,
     isAdmin: false,
     isChecked: false,
-  }
-}, action: any) => {
+  },     
+},
+ action: any) => {
 
   const {
     type,
@@ -58,11 +60,17 @@ const reducer = (state: {
       isPopupVisible: payload.isPopupVisible,
     };
   }
+  case 'SET_IS_ALERT': {
+    return {
+      ...state,
+      isAlert: payload.isAlert,
+    };
+  }
 
   case 'SET_POPUP_CONTENT': {
     return {
       ...state,
-      popupContent: payload.popupContentElement,
+      popupContent: payload.popupContent,
     };
   }
 

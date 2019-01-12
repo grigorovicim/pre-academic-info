@@ -9,6 +9,6 @@ import courseReducer from './courseReducer'
 export default combineReducers({
   app,
   studentReducer, 
-  professorReducer,
-  courseReducer,
+  professorReducer, 
+  courseReducer
 });

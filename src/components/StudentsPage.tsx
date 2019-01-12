@@ -1,6 +1,7 @@
 import {Component} from "react";
 import * as React from "react";
 import Header from "../commons/header/Header";
+import CourseDetails from "./CourseDetails";
 import DashboardStudentsComplex from "../students/DashboardStudentsComplex";
 import DashboardProfessors from "../professors/DashboardProfessors";
 import StudentsList from "../students/StudentsList";
@@ -18,7 +19,9 @@ class StudentsPage extends Component<any,any>{
         ];
         return (
             <div>
+
                 <Header home="none" courses="none" students="inline" catalog="none" myProfile="none"/>
+                <CourseDetails/>
                 <h1>Students Page</h1>
                 <div className="p-app">
                     <DashboardStudentsComplex studentItems={dummyStudents}/>

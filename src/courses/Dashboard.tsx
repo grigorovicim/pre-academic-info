@@ -3,6 +3,10 @@ import { Component } from "react";
 
 import './Dashboard.css';
 import DashboardCourseItem from './DasboardCourseItem';
+import AppActions from 'src/App.actions';
+import CourseDetails from 'src/components/CourseDetails';
+import { connect } from 'react-redux';
+import Popup from 'src/commons/Popup';
 
 class Dashboard extends Component<any, any> {
 
@@ -11,13 +15,39 @@ class Dashboard extends Component<any, any> {
     constructor(props: any) {
         super(props);
         this.courseItems = props.courseItems;
+        this.openCourseDetailsPopup = this.openCourseDetailsPopup.bind(this);
+        this.closeCampaignPopup = this.closeCampaignPopup.bind(this);
     }
 
+    openCourseDetailsPopup(courseId: any, courseDetails: any) {
+      if (!isNaN(courseId)) {
+        this.props.dispatch(AppActions.setPopupVisibility(true));
+        this.props.dispatch(AppActions.setPopupContentElement(
+          <CourseDetails 
+            courseDetails={courseDetails}
+            key={Date.now()}
+          />
+          )
+        );
+      }
+    }
+    closeCampaignPopup() {
+      this.props.dispatch(AppActions.setPopupVisibility(false));
+    }
     render() {
+      const {
+        isPopupVisible,
+        popupContent,
+      } = this.props;
         const courseItemComponents = this.courseItems.map(course => {
             return (
                 <div key={course.id} className="p-dashboard-item">
-                    <DashboardCourseItem name={course.name} isConfigured={course.isConfigured}></DashboardCourseItem>
+                    <DashboardCourseItem 
+                    content={course}
+                    name={course.name} 
+                    isConfigured={course.isConfigured}
+                    onDetails={this.openCourseDetailsPopup}>
+                    </DashboardCourseItem>
                 </div>)
         })
         return (
@@ -31,9 +61,21 @@ class Dashboard extends Component<any, any> {
                 <div className='p-dashboard-body'>
                     {courseItemComponents}
                 </div>
+                <Popup isVisible={isPopupVisible} onClose={this.closeCampaignPopup}>
+                {popupContent}
+                </Popup>
             </div>
         );
     }
 }
 
-export default Dashboard;
+const mapStateToProps = (state: any) => {
+  return {
+    isPopupVisible: state.app.isPopupVisible,
+    popupContent: state.app.popupContent
+  };
+};
+
+export default connect(
+  mapStateToProps,
+)(Dashboard);
