@@ -4,7 +4,8 @@ import React, {Component} from 'react';
 import './Popup.css';
 import Login from 'src/authentication/Login';
 import RegisterFeedback from "../authentication/RegisterFeedback";
-// import Login from 'src/authentication/Login';
+import AddProf from "../professors/AddProf";
+import AddStudent from "../students/AddStudent";
 
 class Popup extends Component<any, any> {
 
@@ -40,11 +41,14 @@ class Popup extends Component<any, any> {
       component = <Login/>
     } else if (componentType === "p-register-feedbackButton"){
       component = <RegisterFeedback/>
-    }
-    else{
+    } else if (componentType === "p-add-professor-button"){
+      component = <AddProf courseId={this.props.courseId} callback={this.handleClick}/>
+    }  else if (componentType === "p-add-student-button"){
+        component = <AddStudent courseId={this.props.courseId} callback={this.handleClick}/>
+    } else{
       component = <span/>;
     }
-    
+
     return (
       <div className="p-popup" style={{display}} onClick={this.handleClick}>
         <div className="p-popup-core" onClick={e => {e.stopPropagation()}}>
