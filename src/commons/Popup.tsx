@@ -23,7 +23,7 @@ class Popup extends Component<any, any> {
 
     const {
       isVisible,
-      popupContent,
+      // popupContent,
     } = this.props;
 
     let display;
@@ -41,20 +41,16 @@ class Popup extends Component<any, any> {
       setHeight = "220px";
     }
 
-    let component;
-    if (this.props.popupContent !== undefined) {
-      component = popupContent
-    } else {
-      component = <span></span>;
-    if (componentType === "home") {
+    let component = <span></span>;
+    if (this.props.componentType === "home") {
       return null;
-    } else if (componentType === "p-login-whichButton") {
+    } else if (this.props.componentType === "p-login-whichButton") {
       component = <Login/>
-    } else if (componentType === "p-register-feedbackButton"){
+    } else if (this.props.componentType === "p-register-feedbackButton"){
       component = <RegisterFeedback/>
-    } else if (componentType === "p-add-professor-button"){
+    } else if (this.props.componentType === "p-add-professor-button"){
       component = <AddProf courseId={this.props.courseId} callback={this.handleClick}/>
-    }  else if (componentType === "p-add-student-button"){
+    }  else if (this.props.componentType === "p-add-student-button"){
         component = <AddStudent courseId={this.props.courseId} callback={this.handleClick}/>
     } else{
       component = <span/>;
