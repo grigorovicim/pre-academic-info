@@ -175,7 +175,7 @@ class CourseDetail extends Component<any, any> {
         if (year === -1){
             return (<p>The year is not valid</p>);
         }
-        const groups = []
+        const groups : string[] = []
         switch(this.details.section.name){
             case 'Romanian':
             for (let i = 1; i < this.details.section.nrGroups; i++){

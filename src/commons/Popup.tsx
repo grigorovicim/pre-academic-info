@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import './Popup.css';
 import Login from 'src/authentication/Login';
 import Tests from  'src/courses/popups/Tests'
+import RegisterFeedback from "../authentication/RegisterFeedback";
 // import Login from 'src/authentication/Login';
 
 class Popup extends Component<any, any> {
@@ -36,7 +37,7 @@ class Popup extends Component<any, any> {
     let component;
     if (componentType === "home") {
       return null;
-    } else if (componentType === "p-login-button") {
+    } else if (componentType === "p-login-whichButton") {
       component = <Login/>
     } else if (componentType === "p-lab-tests"){
       component = <Tests sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"lab"}/>
@@ -44,9 +45,11 @@ class Popup extends Component<any, any> {
       component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"seminar"}/>
     }else if (componentType === "p-course-tests"){
       component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"course"}/>
+    }else if (componentType === "p-register-feedbackButton"){
+      component = <RegisterFeedback/>
     }
-    else {
-      component = <span></span>;
+    else{
+      component = <span/>;
     }
     
     return (

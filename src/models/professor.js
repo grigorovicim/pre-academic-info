@@ -11,12 +11,47 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
 
-    models.Professor.hasMany(models.Course, {
+    models.Professor.hasMany(models.SeminarPresence, {
       foreignKey: {
-        name: 'owner_id',
+        name: 'professor_id',
         allowNull: false
       }
     });
+
+    models.Professor.hasMany(models.LabPresence, {
+      foreignKey: {
+        name: 'professor_id',
+        allowNull: false
+      }
+    });
+
+    models.Professor.hasMany(models.SeminarActivity, {
+      foreignKey: {
+        name: 'professor_id',
+        allowNull: false
+      }
+    });
+
+    models.Professor.hasMany(models.LabActivity, {
+      foreignKey: {
+        name: 'professor_id',
+        allowNull: false
+      }
+    });
+
+    models.Professor.hasMany(models.ProfessorCourse, {
+      foreignKey: {
+        name: 'professor_id',
+        allowNull: false
+      }
+    });
+
+  //   models.Professor.hasMany(models.Course, {
+  //     foreignKey: {
+  //       name: 'owner_id',
+  //       allowNull: false
+  //     }
+  //   });
   };
   return Professor;
 };

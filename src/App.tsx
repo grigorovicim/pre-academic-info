@@ -6,7 +6,17 @@ import axios from 'axios';
 import React, {Component} from 'react';
 // @ts-ignore
 import { connect } from 'react-redux';
+// @ts-ignore
+import {Route, BrowserRouter} from "react-router-dom";
 import './App.css';
+/*
+import CoursesPage from "./components/CoursesPage";
+import HomePage from "./components/HomePage";
+import StudentsPage from "./components/StudentsPage";
+import CatalogPage from "./components/CatalogPage";
+import MyProfilePage from "./components/MyProfilePage";
+import Register from "./authentication/Register";
+*/
 
 import logo from './logo.png';
 //import Popup from './commons/Popup';
@@ -41,7 +51,7 @@ class App extends Component<any, any> {
     e.stopPropagation();
     this.setState({
       isPopupVisible: true,
-      popupComponentType: 'p-login-button',
+      popupComponentType: 'p-login-whichButton',
     });
   }
  
@@ -79,6 +89,7 @@ class App extends Component<any, any> {
       groups: [932, 933, 934, 935],
       students: [{id: 1, name: "Antonesei Andrada"},{id:2, name: "Amariei Iuliana"},{id:3, name: "Blanariu Mihai"}]
     }
+    
     return (
       <div className="p-app">
         <header className="p-app-header">
@@ -92,8 +103,32 @@ class App extends Component<any, any> {
         {/* <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/> */}
         {/* <Dashboard courseItems={dummy}></Dashboard> */}
         <CourseDetail detail = {detail}></CourseDetail>
+        </div>)
+   /*
+    return (
+      <div className="p-app">
+        <BrowserRouter>
+          <div>
+              <Route path={"/"} component={HomePage} exact/>
+              <Route path={"/courses"} component={CoursesPage}/>
+              <Route path={"/students"} component={StudentsPage} exact/>
+              <Route path={"/catalog"} component={CatalogPage} exact/>
+              <Route path={"/myprofile"} component={MyProfilePage} exact/>
+              <Route path={"/register"} component={Register}/>
+          </div>
+        </BrowserRouter>
       </div>
     );
+    */
   }
 }
-export default App;
+const mapStateToProps = (state: any) => {
+  return {
+    user: Object.assign({}, state.app.user),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+)(App);
+
