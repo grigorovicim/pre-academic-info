@@ -28,7 +28,6 @@ class CoursesPage extends Component<any,any>
 
                 <Header home="none" courses="inline" students="none" catalog="none" myProfile="none"/>
 
-
                 <Dashboard courseItems={dummy}/>
             </div>
         );

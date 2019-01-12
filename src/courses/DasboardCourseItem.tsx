@@ -1,11 +1,9 @@
 import * as React from "react";
 import { Component } from "react";
-import axios from "axios";
+
 import './DashboardCourseItem.css';
 import plusBtn from '../plus-btn.png';
 import optionsBtn from '../options-btn.png';
-import CourseActions from 'src/actions/Course.actions';
-import { connect } from 'react-redux';
 
 
 class DashboardCourseItem extends Component<any, any> {
@@ -18,14 +16,12 @@ class DashboardCourseItem extends Component<any, any> {
         this.name = props.name;
         this.department = "info";
         this.isConfigured = props.isConfigured;
-        this.handleCourseDetailsClick = this.handleCourseDetailsClick.bind(this);
     }
 
     whichButton() {
         if (this.isConfigured) {
-            return (<button className="course-config-button-wrapper" onClick={this.handleCourseDetailsClick}>
-            <img className="course-config-button" src={optionsBtn} />
-            </button>)
+            return (<button className="course-config-button-wrapper" onClick={this.editConfiguration}><img
+                className="course-config-button" src={optionsBtn} /></button>)
         }
         return (<button className="course-config-button-wrapper" onClick={this.addConfiguration}><img className="course-config-button" src={plusBtn} />
         </button>)
@@ -36,18 +32,7 @@ class DashboardCourseItem extends Component<any, any> {
     }
 
     editConfiguration() {
-        
-    }
-
-    handleCourseDetailsClick(e: any) {
-      e.stopPropagation();
-      axios.post('/details-of-course', {courseId: this.props.content.id})
-      .then((response) => {
-        const courseDetails = response.data;
-        const courseId = this.props.content.id;
-        this.props.dispatch(CourseActions.setIdOfCurrentCourse(courseId));
-        this.props.onDetails(courseId, courseDetails);
-      });
+        console.log("edit config");
     }
 
     render() {
@@ -64,12 +49,4 @@ class DashboardCourseItem extends Component<any, any> {
     }
 }
 
-
-const mapStateToProps = (state: any) => {
-  return {
-  };
-};
-
-export default connect(
-  mapStateToProps,
-)(DashboardCourseItem);
+export default DashboardCourseItem;

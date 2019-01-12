@@ -79,7 +79,7 @@ module.exports = {
             {
               type: Sequelize.INTEGER,
               references: {
-                model: 'YearOfStudies',
+                model: 'Students',
                 key: 'id',
               },
               onUpdate: 'CASCADE',

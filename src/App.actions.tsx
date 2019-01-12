@@ -52,25 +52,7 @@ export default class AppActions {
         content,
       }
     });
-  }
-  static setIsAlert = (isAlert: any) => (dispatch: any, /*getState: any*/) =>{
-    dispatch ({
-      type: 'SET_IS_ALERT',
-      payload: {
-        isAlert,
-      }
-    });
-  }
-
-  static updatePopupContentElement = (popupContent: any, isAlert: any) => (dispatch: any) => {
-    dispatch({
-      type: 'SET_POPUP_CONTENT',
-      payload: {
-        popupContent,
-        isAlert
-      },
-    }); 
-  }
+  };
 
   static setPopupVisibility = (isPopupVisible: any) => (dispatch: any, /*getState: any*/) => {
     dispatch ({
