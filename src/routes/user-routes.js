@@ -41,7 +41,6 @@ router.get('/:id', function(req, res){
 
 router.put('/:id', function(req, res){
   const userId = req.params.id;
-  console.log(userId);
   models.User.update(req.body, {where : {id: userId}}).then(rowsUpdated => {
     if(rowsUpdated[0] === 1) {
       res.status(200);
@@ -60,6 +59,48 @@ router.put('/:id', function(req, res){
   });
 });
 
-  
+router.post('/', function(req, res) {
+  //req.body.password = models.User.generateHash(req.body.password);
+
+  models.User.create(req.body).then(user => res.json(user), err => {
+    res.status(501);
+    res.send('Internal Server Error! Sorry, try again!');
+    console.log('An error has occurred: ' + err);
+  });
+});
+
+router.get('/verification/:token', function(req, res) {
+  const token = req.params.token;
+
+  models.User.findOne({where : {verification_token: token}})
+    .then(result => res.json(result),err => {
+      res.status(501);
+      res.send('Internal Server Error! Sorry, try again!');
+      console.log('An error has occurred: ' + err);
+    });
+});
+
+router.post('/do/auth', function(req, res) {
+  console.log(req.body);
+  const username = req.body.username;
+  const password = req.body.password;
+
+  models.User.findOne({where: {username: username}})
+    .then(user => {
+      if(user && user.validPassword(password)) {
+        res.json(user)
+      }
+      else {
+        res.status(501);
+        res.send('Invalid username/password provided.');
+        console.log('Invalid username or password.');
+      }
+    }
+    ,err => {
+      res.status(501);
+      res.send('Internal Server Error! Sorry, try again!');
+      console.log('An error has occurred: ' + err);
+    });
+});
 
 module.exports = router;
