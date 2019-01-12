@@ -45,21 +45,21 @@ export default (state = initialState, action) => {
         case 'LOAD_COURSES': {
           return {
             ...state,
-            items: Array.from(payload.dashboardItems),
+            items: Array.from(action.payload.dashboardItems),
           };
         }
         case 'SET_CURRENT_COURSE_ID': {
           return {
             ...state,
-            currentCourseId: payload.currentCourseId,
+            currentCourseId: action.payload.currentCourseId,
           };
         }
 
         case 'LOAD_COURSE': {
           return {
             ...state,
-            items: Array.from(payload.dashboardItems),
-            isPopupVisible: payload.isCampaignPopupVisible,
+            items: Array.from(action.payload.dashboardItems),
+            isPopupVisible: action.payload.isCampaignPopupVisible,
           };
         }
 
