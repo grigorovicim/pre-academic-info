@@ -7,6 +7,7 @@ const users = [
   {fullName: 'Radu Dragos', scsEmail: 'radudragos@cs.ubbcluj.ro', type:'professor', password:'1234'},
   {fullName: 'Radu Gaceanu', scsEmail: 'radugaceanu@cs.ubbcluj.ro', type:'professor', password:'1234'},
   {fullName: 'Dan Suciu', scsEmail: 'dansuciu@cs.ubbcluj.ro', type:'professor', password:'1234'},
+  {fullName: 'root', scsEmail: 'root@root.com', type:'professor', password:'root'}
 ];
 
 users.forEach(user => {
@@ -22,12 +23,17 @@ const compression = require('compression');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const jsSHA = require("jssha");
+
+const randomString = require('randomstring');
+
 var StudentRoutes  = require('./src/routes/student-routes');
 var ProfessorRoutes  = require('./src/routes/professor-routes');
 var CourseRoutes  = require('./src/routes/course-routes');
 var UserRoutes = require('./src/routes/user-routes');
-
+var ConfigRoutes = require('./src/routes/configuration-routes');
+var RoleRoutes = require('./src/routes/role-routes');
 const app = express();
+const emailUtil = require('./src/util/email');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
@@ -35,10 +41,14 @@ const path = require('path');
 const port = process.env.PORT || 5000;
 const dev = app.get('env') !== 'production';
 
+const client = require('./src/util/client')(port);
+
 app.use('/student', StudentRoutes);
 app.use('/professor', ProfessorRoutes);
 app.use('/course', CourseRoutes);
 app.use('/user', UserRoutes);
+app.use('/config', ConfigRoutes);
+app.use('/role', RoleRoutes);
 
 app.get('/check-server', (req, res) => {
   res.send({ express: 'Hello From Express BACKEND!' });
@@ -84,24 +94,109 @@ app.post('/session-id', (req, res) => {
   res.send(user);
 });
 
+
+app.post('/logout', (req, res) => {
+  //to do implement logout
+  res.send("Success")
+});
+
 app.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password; 
-  if (users.find(user => user.scsEmail === email && user.password === password) === undefined) {
-    console.log("Error login: Cannot find user");
-  } else {
-    console.log("Success.");
-    const user = users.find(function(user, password) {
-      if(user.scsEmail === email && user.password === password !== undefined) {
-        return user;
-      }
-    });
-    const userID = generateID(req.get('host'));
-    console.log('Session ID:' + userID);
-    user.session = userID;
-    usersLoggedIn.push(user);
-    res.send(user);
+
+  userData = {
+    'username': email,
+    'password': password
   }
+
+  client.post('/user/do/auth', userData).then(function(response) {
+    const user = response.data;
+
+    if(user) {
+      const userID = generateID(req.get('host'));
+      console.log('Session ID:' + userID);
+      user.session = userID;
+      usersLoggedIn.push(user);
+      res.send(user);
+    }else {
+      console.log('Invalid login for user: ' + email);
+      res.status(202);
+      res.send('Invalid username or password provided.');
+    }
+  })
+  .catch(function(error) {
+    res.status(501);
+    res.send('Internal server error.');
+  });
+});
+
+app.post('/register', (req, res) => {
+  //const firstName = req.body.name;
+  //const lastName = req.body.last_name;
+  const email = req.body.email;
+  const password = randomString.generate({length : 12});
+  
+  client.get('/role/Student').then(function(response) {
+    var role = response.data;
+
+    if(role) {
+      // we will save the user with a speciffic user token
+      // that will need to be confirmed
+      const userData = {
+        'username': email,
+        'password': password,
+        'role_id': role.id,
+      }
+
+      client.post('/user/', userData).then(function(response) {
+        const host = 'http://' + req.get('host') + '/verify/';
+        response.data.password = password;
+        emailUtil.send(response.data, host);
+        res.send(response.data);
+      })
+      .catch(function(error) {
+        console.log(error);
+        res.status(501);
+        res.send('Internal server error.');
+      });
+    }
+    else {
+      console.log('Could not find role: Student');
+      res.status(501);
+      res.send('Internal server error.');
+    }
+  });
+});
+
+app.get('/verify/:token', (req, res) => {
+  const token = req.params.token;
+
+  client.get('/user/verification/' + token).then(function(response){
+    const user = response.data;
+    if(user) {
+      
+      const userData = {
+        'is_active': true,
+        'verification_token': '',
+      }
+
+      client.put('/user/' + user.id, userData).then(function(response) {
+        res.send('The account has been verified!');
+      }).catch(function(error) {
+        res.status(501);
+        res.send('Could not verify account.');
+      });
+    }
+    else {
+      res.status(501);
+      res.send('Invalid verification key provided.');;
+    }
+  })
+  .catch(function(error) {
+    res.status(501);
+    res.send('Could not verify account.');
+    console.log(error);
+  });
 });
 
 app.get('student/course', (req, res) =>{

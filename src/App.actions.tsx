@@ -43,7 +43,8 @@ export default class AppActions {
         });
       }
     });
-  }
+  };
+
   static setPopupContentElement = (content: any) => (dispatch: any, /*getState: any*/) =>{
     dispatch ({
       type: 'SET_POPUP_CONTENT',
