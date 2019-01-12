@@ -11,7 +11,7 @@ const users = [
 ];
 
 users.forEach(user => {
-  user.session = null;
+    user.session = null;
 });
 
 const usersLoggedIn = [];
@@ -32,10 +32,13 @@ var CourseRoutes  = require('./src/routes/course-routes');
 var UserRoutes = require('./src/routes/user-routes');
 var ConfigRoutes = require('./src/routes/configuration-routes');
 var RoleRoutes = require('./src/routes/role-routes');
+const SpreadsheetRoutes = require('./src/routes/spreadsheet-routes');
+const ProfileRoutes = require('./src/routes/profile-routes');
+
 const app = express();
 const emailUtil = require('./src/util/email');
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 const path = require('path');
 const port = process.env.PORT || 5000;
@@ -48,38 +51,40 @@ app.use('/professor', ProfessorRoutes);
 app.use('/course', CourseRoutes);
 app.use('/user', UserRoutes);
 app.use('/config', ConfigRoutes);
+app.use('/spreadsheet', SpreadsheetRoutes);
+app.use('/profile', ProfileRoutes);
 app.use('/role', RoleRoutes);
 
 app.get('/check-server', (req, res) => {
-  res.send({ express: 'Hello From Express BACKEND!' });
+    res.send({express: 'Hello From Express BACKEND!'});
 });
 
-function generateID (host) {
-  const sec = Math.floor(Date.now() / 1000);
-  const secret = "secret-blabla";
+function generateID(host) {
+    const sec = Math.floor(Date.now() / 1000);
+    const secret = "secret-blabla";
 
-  const text = sec.toString() + secret.toString() + host.toString();
-  const shaObj = new jsSHA("SHA-512", "TEXT");
-  shaObj.update(text);
-  const hash = shaObj.getHash("HEX");
-  return hash;
+    const text = sec.toString() + secret.toString() + host.toString();
+    const shaObj = new jsSHA("SHA-512", "TEXT");
+    shaObj.update(text);
+    const hash = shaObj.getHash("HEX");
+    return hash;
 }
 
 function deleteUserLoggedIn(user) {
-  for(let i=0; i<usersLoggedIn.length; i++) {
-    if(usersLoggedIn[i].session === user.session) {
-      usersLoggedIn.splice(i, 1);
+    for (let i = 0; i < usersLoggedIn.length; i++) {
+        if (usersLoggedIn[i].session === user.session) {
+            usersLoggedIn.splice(i, 1);
+        }
     }
-  }
 }
 
 function getUserDetails(sessionID) {
-  for(let i=0; i<usersLoggedIn.length; i++) {
-    if(usersLoggedIn[i].session === sessionID) {
-      return usersLoggedIn[i];
+    for (let i = 0; i < usersLoggedIn.length; i++) {
+        if (usersLoggedIn[i].session === sessionID) {
+            return usersLoggedIn[i];
+        }
+        return null;
     }
-    return null;
-  }
 }
 
 app.post('/details-of-course', (req, res) => {
@@ -89,9 +94,9 @@ app.post('/details-of-course', (req, res) => {
 })
 
 app.post('/session-id', (req, res) => {
-  const sessionID = req.body.sessionID;
-  const user = getUserDetails(sessionID);
-  res.send(user);
+    const sessionID = req.body.sessionID;
+    const user = getUserDetails(sessionID);
+    res.send(user);
 });
 
 
@@ -199,49 +204,49 @@ app.get('/verify/:token', (req, res) => {
   });
 });
 
-app.get('student/course', (req, res) =>{
-  const courseId = req.body.courseId;
-  students = StudentRoutes.get('/student/course/' + courseId);
-  res.send(students);
+app.get('student/course', (req, res) => {
+    const courseId = req.body.courseId;
+    students = StudentRoutes.get('/student/course/' + courseId);
+    res.send(students);
 });
 
-app.get('student/profile', (req, res) =>{
-  const studentId = req.body.studentId;
-  profiles = StudentRoutes.get('/student/profile/' + studentId);
-  res.send(profiles);
+app.get('student/profile', (req, res) => {
+    const studentId = req.body.studentId;
+    profiles = StudentRoutes.get('/student/profile/' + studentId);
+    res.send(profiles);
 });
 
-app.get('professor/profile', (req, res) =>{
-  const professorId = req.body.professorId;
-  profiles = ProfessorRoutes.get('/professor/profile/' + professorId);
-  res.send(profiles);
+app.get('professor/profile', (req, res) => {
+    const professorId = req.body.professorId;
+    profiles = ProfessorRoutes.get('/professor/profile/' + professorId);
+    res.send(profiles);
 });
 
-app.get('professor/course', (req, res) =>{
-  const courseId = req.body.courseId;
-  professors = ProfessorRoutes.get('/professor/course/' + courseId);
-  res.send(professors);
+app.get('professor/course', (req, res) => {
+    const courseId = req.body.courseId;
+    professors = ProfessorRoutes.get('/professor/course/' + courseId);
+    res.send(professors);
 });
 
 
 if (!dev) {
-  app.disable('x-powered-by');
-  app.use(compression());
-  app.use(morgan('common'));
-  app.use(express.static(path.resolve(__dirname, 'build')));
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-  });
+    app.disable('x-powered-by');
+    app.use(compression());
+    app.use(morgan('common'));
+    app.use(express.static(path.resolve(__dirname, 'build')));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+    });
 }
 
 if (dev) {
-  app.use(morgan('dev'));
+    app.use(morgan('dev'));
 }
 
 const server = createServer(app);
 server.listen(port, err => {
-  if(err) {
-    throw err;
-  }
-  console.log("Server started");
+    if (err) {
+        throw err;
+    }
+    console.log("Server started");
 });
