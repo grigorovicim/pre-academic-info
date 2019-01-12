@@ -60,8 +60,8 @@ class AddProf extends Component<any, any>{
                         Search professor:
                     </div>
                     <div>
-                        <img src={searchLogo} className="p-search-logo"/>
                         <input ref={this.setProfessorRef} type="text" placeholder="Search by name" className="p-search-bar"/>
+                        <img src={searchLogo} className="p-search-logo"/>
                     </div>
                 </div>
 
