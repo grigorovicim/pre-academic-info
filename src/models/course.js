@@ -15,14 +15,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       }
     });
-    // models.Course.hasOne(models.CourseConfiguration, {
-    //   foreignKey: {
-    //     name: 'course_id',
-    //     allowNull: true
-    //   }
-    // }
-    // );
-
   };
   return Course;
   
