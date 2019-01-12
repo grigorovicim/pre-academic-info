@@ -6,11 +6,19 @@ module.exports = {
     host: 'localhost',
     dialect: 'postgres',
     force: false,
+    email: {
+      username: 'noreplyacademicinfo@gmail.com',
+      password: 'preAcademicinfo2k19'
+    }
   },
   test: {
     dialect: "postgres",
     storage: ":memory:",
     force: false,
+    email: {
+      username: '',
+      password: ''
+    }
   },
   production: {
     username: process.env.DB_USERNAME,
@@ -20,5 +28,9 @@ module.exports = {
     dialect: 'postgres',
     use_env_variable: 'DATABASE_URL',
     force: false,
+    email: {
+      username: '',
+      password: ''
+    }
   }
 };

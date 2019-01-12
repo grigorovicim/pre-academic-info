@@ -7,7 +7,7 @@ class MyProfilePage extends Component<any,any>{
     public render (){
         return (
             <div>
-                <Header login="none" courses="none" students="none" catalog="none" myProfile="inline"/>
+                <Header home="none" courses="none" students="none" catalog="none" myProfile="inline"/>
                 <h1>"My profile Page"</h1>
             </div>
         )
