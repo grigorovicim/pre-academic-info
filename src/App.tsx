@@ -17,6 +17,7 @@ import CatalogPage from "./components/CatalogPage";
 import MyProfilePage from "./components/MyProfilePage";
 import Register from "./authentication/Register";
 */
+import AppActions from './App.actions';
 
 import logo from './logo.png';
 //import Popup from './commons/Popup';
@@ -32,6 +33,7 @@ class App extends Component<any, any> {
       isPopupVisible: false,
       popupComponentType: null,
     };
+    this.props.dispatch(AppActions.checkAuthenticationToken());
     this.openLoginPopup = this.openLoginPopup.bind(this);
     this.closePopup = this.closePopup.bind(this);
   }
