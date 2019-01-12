@@ -1,4 +1,3 @@
-
 import { FETCH_CATALOG, FILTER_CATALOG_STUDY, FILTER_CATALOG_YEAR, FILTER_CATALOG_SEMESTER } from '../actions/types';
 
 const initialState = {
@@ -13,6 +12,7 @@ const initialState = {
     study: "LICENTA",
     year: "I",
     semester: "I",
+    currentCourseId: null,
 };
 
 export default (state = initialState, action) => {
@@ -41,6 +41,26 @@ export default (state = initialState, action) => {
                 ...state,
                 semester: action.payload.semester
             }
+        }
+        case 'LOAD_COURSES': {
+          return {
+            ...state,
+            items: Array.from(action.payload.dashboardItems),
+          };
+        }
+        case 'SET_CURRENT_COURSE_ID': {
+          return {
+            ...state,
+            currentCourseId: action.payload.currentCourseId,
+          };
+        }
+
+        case 'LOAD_COURSE': {
+          return {
+            ...state,
+            items: Array.from(action.payload.dashboardItems),
+            isPopupVisible: action.payload.isCampaignPopupVisible,
+          };
         }
 
         default:
