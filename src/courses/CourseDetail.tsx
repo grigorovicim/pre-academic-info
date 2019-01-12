@@ -15,7 +15,7 @@ class CourseDetail extends Component<any, any> {
 
         this.groups = this.props.detail.groups;
         this.submit = this.submit.bind(this);
-
+ 
         this.getFromChildSeminar = this.getFromChildSeminar.bind(this);
         this.getFromChildLab = this.getFromChildLab.bind(this);
         this.getFromChildCourse = this.getFromChildCourse.bind(this);
@@ -23,6 +23,10 @@ class CourseDetail extends Component<any, any> {
         this.openLabTestsPopup = this.openLabTestsPopup.bind(this);
         this.openSeminarTestsPopup = this.openSeminarTestsPopup.bind(this);
         this.openCourseTestsPopup = this.openCourseTestsPopup.bind(this);
+
+        this.onCoursePercentageChange = this.onCoursePercentageChange.bind(this)
+        this.onSeminarPercentageChange = this.onSeminarPercentageChange.bind(this)
+        this.onLabPercentageChange = this.onLabPercentageChange.bind(this)
 
         this.onCourseNumberChange = this.onCourseNumberChange.bind(this);
         this.onSeminarNumberChange = this.onSeminarNumberChange.bind(this);
@@ -47,6 +51,11 @@ class CourseDetail extends Component<any, any> {
             courseNumber: this.props.detail.courses.number,
             seminarNumber: this.props.detail.seminars.number,
             labNumber: this.props.detail.labs.number,
+
+
+            coursePercentage: this.props.detail.courses.percentage,
+            labPercentage: this.props.detail.seminars.percentage,
+            seminarPercentage: this.props.detail.labs.percentage,
 
             courseTests: this.props.detail.courses.tests,
             seminarTests: this.props.detail.seminars.tests,
@@ -87,7 +96,16 @@ class CourseDetail extends Component<any, any> {
     onLabNumberChange(e : any) {
         this.setState({labNumber : e.target.value})
     }
-    
+
+    onCoursePercentageChange(e : any){
+        this.setState({coursePercentage : e.target.value})
+    }
+    onSeminarPercentageChange(e : any){
+        this.setState({seminarPercentage : e.target.value})
+    }
+    onLabPercentageChange(e : any){
+        this.setState({labPercentage : e.target.value})
+    }
     
     onCourseTestsChange(e : any) {
         this.setState({courseTests: e.target.value})
@@ -255,10 +273,10 @@ class CourseDetail extends Component<any, any> {
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {4}>Number:</Col> 
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.courseNumber} onChange={this.onCourseNumberChange} size={1}/></Col>
             </Row>
-            {/*<Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Hours:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.courseHours} onChange={this.onCourseHoursChange} size={1}/></Col>
-            </Row>*/}
+            <Row style={{fontSize: '1.25em', color:'gray'}}>
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Percentage: </Col> 
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.coursePercentage} onChange={this.onCoursePercentageChange} size={1}/></Col>
+            </Row>
             <Row style={{fontSize: '1.25em', color:'gray'}}>
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Tests:</Col> 
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {2} ><input type='text' value = {this.state.courseTests} onChange={this.onCourseTestsChange} size={1}/></Col>
@@ -300,10 +318,10 @@ class CourseDetail extends Component<any, any> {
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {4}>Number:</Col> 
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text'  value = {this.state.labNumber}  onChange={this.onLabNumberChange} size={1}/></Col>
             </Row>
-            {/* <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Hours:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' defaultValue = {this.details.labs.hours} size={1}/></Col>
-            </Row>*/}
+            <Row style={{fontSize: '1.25em', color:'gray'}}>
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Percentage: </Col> 
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.labPercentage} onChange={this.onLabPercentageChange} size={1}/></Col>
+            </Row>
             <Row style={{fontSize: '1.25em', color:'gray'}}>
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Tests:</Col> 
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {2} ><input type='text' value = {this.state.labTests} onChange={this.onLabTestsChange}  size={1}/></Col>
@@ -342,10 +360,10 @@ class CourseDetail extends Component<any, any> {
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {4}>Number:</Col> 
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.seminarNumber}  onChange={this.onSeminarNumberChange} size={1}/></Col>
             </Row>
-            {/*<Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Hours:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' defaultValue = {this.details.seminars.hours}  onChange={this.onSeminarHoursChange} size={1}/></Col>
-            </Row>*/}
+            <Row style={{fontSize: '1.25em', color:'gray'}}>
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Percentage: </Col> 
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.seminarPercentage} onChange={this.onSeminarPercentageChange} size={1}/></Col>
+            </Row>
             <Row style={{fontSize: '1.25em', color:'gray'}}>
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Tests:</Col> 
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {2} ><input type='text'value = {this.state.seminarTests} onChange={this.onSeminarTestsChange} size={1}/></Col>
