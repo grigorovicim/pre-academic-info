@@ -46,7 +46,7 @@ class Popup extends Component<any, any> {
     }  else if (componentType === "p-add-student-button"){
         component = <AddStudent courseId={this.props.courseId} callback={this.handleClick}/>
     } else{
-      component = <span></span>;
+      component = <span/>;
     }
 
     return (

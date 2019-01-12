@@ -63,9 +63,9 @@ class DashboardProfessors extends Component<any, any>{
                     <tr>
                         <button className="p-add-prof-button" onClick={this.openAddProfessorPopup}>Add professor</button>
                     </tr>
-                    {/* <tr>
+                    <tr>
                         <th className="p-professors-basic-table-header">ProfessorName</th>
-                    </tr> */}
+                    </tr>
                     {professorItemComponents}
                 </table>
                 <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={1}/>
@@ -78,6 +78,7 @@ const mapStateToProps = state => ({
     professors: state.professorReducer.items, 
     professorProfile: state.professorReducer.professorProfile
 });
+
 
 
 export default connect(mapStateToProps, { fetchProfessors, fetchProfessorProfile })(DashboardProfessors);
