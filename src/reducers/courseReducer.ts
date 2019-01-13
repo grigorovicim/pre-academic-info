@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import {FETCH_CATALOG, FILTER_CATALOG_STUDY, FILTER_CATALOG_YEAR, FILTER_CATALOG_SEMESTER} from '../actions/types';
-=======
-import { FETCH_CATALOG, FILTER_CATALOG_STUDY, FILTER_CATALOG_YEAR, FILTER_CATALOG_SEMESTER } from '../actions/types';
->>>>>>> develop
 
 const initialState = {
     items: [
