@@ -5,9 +5,16 @@ import DashboardProfessorItem from './DashboardProfessorItem';
 
 import './ProfessorsList.css';
 
+<<<<<<< HEAD
 import * as PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {fetchProfessors, fetchProfessorProfile} from '../actions/Professor.actions';
+=======
+import * as PropTypes from 'prop-types'; 
+import { connect } from 'react-redux';
+import { fetchProfessors, fetchProfessorProfile } from '../actions/Professor.actions';
+import Popup from "../commons/Popup";
+>>>>>>> develop
 
 class DashboardProfessors extends Component<any, any> {
     static propTypes = {
@@ -19,7 +26,35 @@ class DashboardProfessors extends Component<any, any> {
     /// TODO get the actual course id from the user input
     private courseId = 1;
 
+<<<<<<< HEAD
     componentWillMount() {
+=======
+    constructor(props: any) {
+        super(props);
+        this.openAddProfessorPopup = this.openAddProfessorPopup.bind(this);
+        this.closePopup = this.closePopup.bind(this);
+        this.state = {
+            isPopupVisible: false,
+            popupComponentType: null,
+        }
+    }
+
+
+    closePopup() {
+        this.setState({
+            isPopupVisible: false,
+        });
+    }
+    openAddProfessorPopup(e: any) {
+        e.stopPropagation();
+        this.setState({
+            isPopupVisible: true,
+            popupComponentType: 'p-add-professor-button',
+        });
+    }
+
+    componentWillMount(){
+>>>>>>> develop
         this.props.fetchProfessors(this.courseId);
     }
 
@@ -32,6 +67,7 @@ class DashboardProfessors extends Component<any, any> {
                                             professorId={professor.id}/>
                 </tr>
             )
+<<<<<<< HEAD
         })
         return (
             <div>
@@ -45,6 +81,22 @@ class DashboardProfessors extends Component<any, any> {
                 {professorItemComponents}
                 {/* </table> */}
             </div>
+=======
+        });
+        return(
+            <div>
+                <table className="p-professors-basic-table">
+                    <tr>
+                        <button className="p-add-prof-button" onClick={this.openAddProfessorPopup}>Add professor</button>
+                    </tr>
+                    <tr>
+                        <th className="p-professors-basic-table-header">ProfessorName</th>
+                    </tr>
+                    {professorItemComponents}
+                </table>
+                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={1}/>
+        </div>
+>>>>>>> develop
         );
     }
 }
@@ -55,4 +107,9 @@ const mapStateToProps = (state: any) => ({
 });
 
 
+<<<<<<< HEAD
 export default connect(mapStateToProps, {fetchProfessors, fetchProfessorProfile})(DashboardProfessors);
+=======
+
+export default connect(mapStateToProps, { fetchProfessors, fetchProfessorProfile })(DashboardProfessors);
+>>>>>>> develop

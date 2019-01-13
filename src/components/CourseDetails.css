@@ -1,0 +1,153 @@
+.p-course-details-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.p-course-details-component .p-title {
+  width: 229px;
+  color: #515050;
+  font-family: Helvetica;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 36px;
+  text-align: center;
+}
+
+.p-course-details-component .p-subtitle-specializare {
+  height: 24px;
+  width: 174px;
+  color: #939393;
+  font-family: Helvetica;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 100px;
+}
+
+.p-course-details-component .p-column {
+  width: 80%;
+  display: flex;
+  padding: 15px;
+}
+
+.p-course-details-component .p-column .p-title {
+  margin-right: 80px;
+  height: 24px;
+  width: 15%;
+  color: #747373;
+  font-family: Helvetica;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.p-course-details-component .p-column .p-content {
+  width: 540px;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 12px;
+  color: #747373;
+  font-family: Helvetica, sans-serif;
+}
+
+.p-course-details-component .p-column .professor .groups {
+  height: 2%;
+}
+.p-course-details-component .p-column .labs .seminars .students {
+  height: 10%;
+}
+.p-course-details-component .p-column .rules .description {
+  height: 8%;
+}
+
+.p-course-details-component .description .p-content {
+  width: 520px;
+  height: 100px;
+  background-color: #EAEAEA;
+}
+.p-course-details-component .rules .p-content {
+  width: 520px;
+  height: 100px;
+  background-color: #EAEAEA;
+}
+
+.p-course-details-component .groups .p-content .p-list-one-group {
+  background-color: #8DD4F8;
+  height: 20px;
+  width: 50px;
+  margin: 0 3px;
+  display: flex;
+  color: #747373;
+  justify-content: center;
+}
+
+.p-course-details-component .professor .p-content {
+  width: 260px;
+  height: 20px;
+  background-color: #EAEAEA;
+}
+
+.p-course-details-component .labs {
+  display: flex;
+}
+
+.p-course-details-component .p-first-column {
+  width: 45%;
+}
+
+.p-course-details-component .p-second-column {
+  width: 45%;
+}
+
+.p-course-details-component .p-first-column .p-line {
+  display: flex;
+  margin: auto;
+}
+.p-course-details-component .p-first-column .p-line .p-title { 
+  font-size: 16px;
+  font-weight: 200;
+}
+.p-course-details-component .proffesors .p-title { 
+  font-size: 16px;
+  font-weight: 200;
+}
+
+.p-course-details-component .proffesors {
+  display: flex;
+}
+
+.p-course-details-component .proffesors .p-content {
+  display: flex;
+  flex-direction: column; 
+  overflow: auto;
+  max-height: 100px;
+}
+
+.p-course-details-component .proffesors .p-content .p-list-one-proffesor {
+  width: 150px;
+  height: 20px;
+  background-color: #EAEAEA;
+  margin-top: 2px;
+}
+.p-course-details-component .students .p-content {
+  display: flex;
+  flex-direction: column; 
+  overflow: auto;
+  max-height: 100px;
+}
+.p-course-details-component .students .p-content .p-list-one-student {
+  width: 150px;
+  height: 20px;
+  background-color: #EAEAEA;
+  margin-top: 2px;
+}
+
+.p-course-details-component .p-first-column .p-line .p-content { 
+  font-size: 12px;
+  background-color: #EAEAEA;
+  width: 40px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}

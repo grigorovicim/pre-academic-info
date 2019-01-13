@@ -29,7 +29,14 @@ class CoursesPage extends Component<any,any>
         ];
         return (
             <div className="p-app">
+<<<<<<< HEAD
                 <Header login="none" courses="inline" students="none" catalog="none" myProfile="none"/>
+=======
+
+                <Header home="none" courses="inline" students="none" catalog="none" myProfile="none"/>
+
+
+>>>>>>> develop
                 <Dashboard courseItems={dummy}/>
             </div>
         );

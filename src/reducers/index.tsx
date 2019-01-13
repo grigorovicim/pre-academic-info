@@ -8,9 +8,16 @@ import formOfEvaluationReducer from './formOfEvaluationReducer';
 
 
 export default combineReducers({
+<<<<<<< HEAD
     app,
     studentReducer,
     professorReducer,
     courseReducer,
     formOfEvaluationReducer,
+=======
+  app,
+  studentReducer, 
+  professorReducer, 
+  courseReducer
+>>>>>>> develop
 });

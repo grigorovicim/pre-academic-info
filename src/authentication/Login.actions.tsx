@@ -27,8 +27,10 @@ export default class LoginActions {
               type: 'SET_USER_DETAILS',
               payload: {
                 user: {
-                  userDetails: response.data,
-                  isProfessor: true,
+                    userDetails: response.data,
+                    isProfessor: true,
+                    isLoggedIn: true,
+                    isChecked: true,
                 }
               },
             });
@@ -37,8 +39,10 @@ export default class LoginActions {
               type: 'SET_USER_DETAILS',
               payload: {
                 user: {
-                  userDetails: response.data,
-                  isProfessor: false,
+                    userDetails: response.data,
+                    isProfessor: false,
+                    isLoggedIn: true,
+                    isChecked: true,
                 }
               },
             });
@@ -60,12 +64,24 @@ export default class LoginActions {
             type: 'SWITCH_PAGE_TO_LOGIN',
             payload: {
               user: {
-                isLoggedIn: false,
-                isProfessor: false,
-                userDetails: null,
+                  isLoggedIn: false,
+                  isChecked:false,
+                  isProfessor: false,
+                  userDetails: null,
               }
             },
         });
       })
-    }
-  }
+    };
+
+  static register = (firstName: any, lastName: any, email: any) => (dispatch: any) => {
+      axios.post('/register', {firstName: firstName, lastName: lastName, email: email})
+          .then(() =>{
+          })
+          .catch((error) => {
+          throw error;
+          })
+          .then(() => {
+          });
+  };
+}
