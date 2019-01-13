@@ -1,0 +1,91 @@
+[
+    {
+		"model": "Student",
+		"data": {
+			"id": 1,
+            "nr_matricol": "2345",
+            "profile_id": 1,
+            "group_id": 17,
+            "section_id": 2,
+            "year_of_study_id": 3,
+            "semester_id": 1
+		}
+    },
+    {
+		"model": "Student",
+		"data": {
+			"id": 2,
+            "nr_matricol": "2136",
+            "profile_id": 2,
+            "group_id": 17,
+            "section_id": 2,
+            "year_of_study_id": 3,
+            "semester_id": 1
+
+		}
+    },
+    {
+		"model": "Student",
+		"data": {
+			"id": 3,
+            "nr_matricol": "2345",
+            "profile_id": 3,
+            "group_id": 17,
+            "section_id": 2,
+            "year_of_study_id": 3,
+            "semester_id": 1
+
+		}
+    },
+    {
+		"model": "Student",
+		"data": {
+			"id": 4,
+            "nr_matricol": "2345",
+            "profile_id": 4,
+            "group_id": 17,
+            "section_id": 2,
+            "year_of_study_id": 3,
+            "semester_id": 1
+
+		}
+    },
+    {
+		"model": "Student",
+		"data": {
+			"id": 5,
+            "nr_matricol": "2345",
+            "profile_id": 5,
+            "group_id": 17,
+            "section_id": 2,
+            "year_of_study_id": 3,
+            "semester_id": 1
+
+		}
+    },
+    {
+		"model": "Student",
+		"data": {
+			"id": 6,
+            "nr_matricol": "2345",
+            "profile_id": 6,
+            "group_id": 17,
+            "section_id": 2,
+            "year_of_study_id": 3,
+            "semester_id": 1
+
+		}
+    },
+    {
+		"model": "Student",
+		"data": {
+			"id": 7,
+            "nr_matricol": "2345",
+            "profile_id": 7,
+            "group_id": 17,
+            "section_id": 2,
+            "year_of_study_id": 3,
+            "semester_id": 1
+		}
+    }
+]

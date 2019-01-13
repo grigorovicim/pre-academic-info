@@ -1,0 +1,16 @@
+[
+	{
+		"model": "Semester",
+		"data": {
+			"id": 1,
+			"label": "I"
+		}
+	},
+	{
+		"model": "Semester",
+		"data": {
+			"id": 2,
+			"label": "II"
+		}
+	}
+]
