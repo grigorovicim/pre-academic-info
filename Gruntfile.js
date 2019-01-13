@@ -1,4 +1,4 @@
-const sequelize_fixtures = require('sequelize-fixtures');
+const sequelizeFixtures = require('sequelize-fixtures');
 
 module.exports = function(grunt) {
     grunt.initConfig({
