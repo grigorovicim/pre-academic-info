@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const SeminarPresence = sequelize.define('SeminarPresence', {
-    date_of_presence: DataTypes.DATE
+    week: DataTypes.INTEGER
   }, {});
   SeminarPresence.associate = function(models) {
     // associations can be defined here

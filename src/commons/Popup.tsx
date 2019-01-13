@@ -42,7 +42,12 @@ class Popup extends Component<any, any> {
       setHeight = "220px";
     }
 
-    let component = <span></span>;
+    let component;
+    if (this.props.children) {
+      component = this.props.children;
+    } 
+
+    
     if (this.props.componentType === "home") {
       return null;
     } else if (this.props.componentType === "p-login-whichButton") {

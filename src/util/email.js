@@ -11,7 +11,7 @@ function send(user, host) {
     '\n\nKind regards,\nThe preAcademicInfo team';
 
     let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
+        host: 'smtp.mail.yahoo.com',
         port: 465,
         secure: true,
         auth: {

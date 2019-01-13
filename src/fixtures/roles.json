@@ -1,0 +1,16 @@
+[
+	{
+		"model": "Role",
+		"data": {
+			"id": 1,
+			"label": "Student"
+		}
+	},
+	{
+		"model": "Role",
+		"data": {
+			"id": 2,
+			"label": "Professor"
+		}
+	}
+]
