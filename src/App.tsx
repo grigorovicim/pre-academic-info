@@ -15,7 +15,6 @@ import Register from "./authentication/Register";
 import AppActions from './App.actions';
 import MyProfilePage from "./components/myProfilePage/MyProfilePage";
 
-
 class App extends Component<any, any> {
     constructor(props: any) {
         super(props);
