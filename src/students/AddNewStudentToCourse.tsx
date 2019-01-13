@@ -137,6 +137,8 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.setState({phoneValue: event.target.value});
     }
 
+    
+
     handleSubmit(event) {
         alert('A new student has been submitted: ' + this.state.familyNameValue + ' ' + this.state.firstNameValue + '\n'+
             this.state.emailValue + '\n' + this.state.messageValue + '\n' + 
@@ -153,7 +155,7 @@ class AddNewStudentToCourse extends Component<any, any> {
             "createdAt":new Date(), 
             "updatedAt":new Date(), 
             "group_id": this.state.groupValue,
-            "profile_id":1, //TODO - create an actual profile
+            "profile_id":this.state.studentIdValue, //TODO - create an actual profile
             "section_id": this.state.sectionValue, 
             "semester_id":1, // TODO 
             "year_of_study_id": this.state.yearValue
@@ -195,12 +197,28 @@ class AddNewStudentToCourse extends Component<any, any> {
             "user_id": this.state.studentIdValue
         }
 
-        //TODO: synchronize the calls from below so they're called in order
+        const sleep = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+          }
+
+          const sleep1 = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+          }
+          const sleep2 = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+          }
+
          this.props.createUser(user);
-         //TODO: here create profile
-         this.props.createProfile(profile);
-         this.props.createStudent(student);
-         this.props.createStudentCourse(studentCourse);
+         sleep(500).then(() => {
+            this.props.createProfile(profile);
+            sleep1(500).then(() => {
+                this.props.createStudent(student);
+                sleep2(500).then(()=>{
+                    this.props.createStudentCourse(studentCourse);
+                })
+              })
+          })
+        
 
         console.log(student.id);
 
@@ -307,6 +325,7 @@ class AddNewStudentToCourse extends Component<any, any> {
      )
    }
  }
+
 
 //  export default AddNewStudentToCourse;
 
