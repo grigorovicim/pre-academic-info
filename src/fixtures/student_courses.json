@@ -1,0 +1,47 @@
+[
+    {
+        "model": "StudentCourse",
+        "data": {
+            "id": 1,
+            "year": 3,
+            "student_id": 1,
+            "course_id": 3
+        }
+    },
+    {
+        "model": "StudentCourse",
+        "data": {
+            "id": 2,
+            "year": 3,
+            "student_id": 1,
+            "course_id": 4
+        }
+    },
+    {
+        "model": "StudentCourse",
+        "data": {
+            "id": 3,
+            "year": 3,
+            "student_id": 1,
+            "course_id": 5
+        }
+    },
+    {
+        "model": "StudentCourse",
+        "data": {
+            "id": 4,
+            "year": 3,
+            "student_id": 1,
+            "course_id": 6
+        }
+    },
+    {
+        "model": "StudentCourse",
+        "data": {
+            "id": 5,
+            "year": 3,
+            "student_id": 1,
+            "course_id": 7
+        }
+    }
+]
