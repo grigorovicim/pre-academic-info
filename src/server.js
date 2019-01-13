@@ -41,10 +41,10 @@ app.use('/professor', ProfessorRoutes);
 app.use('/course', CourseRoutes);
 app.use('/section', SectionRoutes);
 app.use('/group', GroupRoutes);
-app.use('/yearofstudy', YearRoutes);
 app.use('/studentcourse', StudentCourseRoutes);
 app.use('/user', UserRoutes);
 app.use('/profile', ProfileRoutes);
+app.use('/yearofstudy', YearRoutes);
 
 app.get('/check-server', (req, res) => {
   res.send({ express: 'Hello From Express BACKEND!' });

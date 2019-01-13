@@ -75,10 +75,10 @@ class AddNewStudentToCourse extends Component<any, any> {
         .then(groups => this.setState({ groups }));
       console.log("got them groups");
 
-      fetch('/yearofstudy')
-        .then(response => response.json())
-        .then(years => this.setState({ years }));
-      console.log("got them years");
+    //   fetch('/yearofstudy')
+    //     .then(response => response.json())
+    //     .then(years => this.setState({ years }));
+    //   console.log("got them years");
 
       fetch('/course')
         .then(response => response.json())
@@ -249,9 +249,14 @@ class AddNewStudentToCourse extends Component<any, any> {
                 </select>
                 <br/>
                 Year:
-                <select value={this.state.yearValue} onChange={this.handleYearChange}>
-                    {this.state.years.map((year) => <option defaultValue={year.id} key={year.id} value={year.id}>{year.label}</option>)}
+                <select value={this.state.yearValue} onChange={this.handleTypeChange}> 
+                    <option value="1">1</option>
+                    <option value="2">2 year</option>
+                    <option value="3">3</option>
                 </select>
+                {/* <select value={this.state.yearValue} onChange={this.handleYearChange}>
+                    {this.state.years.map((year) => <option defaultValue={year.id} key={year.id} value={year.id}>{year.label}</option>)}
+                </select> */}
                 {/* <label>Year:
                     <input type="number" min="1" max="5" value={this.state.yearValue} onChange={this.handleEmailChange} />
                 </label> */}

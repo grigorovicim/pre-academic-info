@@ -1,26 +1,36 @@
-import { FETCH_STUDENTS, NEW_STUDENT } from '../actions/types';
+import { FETCH_STUDENTS, FETCH_STUDENT_PROFILE, REMOVE_STUDENT_COURSE_CONFIG,NEW_STUDENT } from '../actions/types';
 
 const initialState = {
-  items: [],
-};
+  items: [] as any,
+  studentProfile: {}
+}
 
 export default function(state = initialState, action) {
-  console.log("in student reducer");
-  
     switch (action.type) {
       case FETCH_STUDENTS:
-        console.log("case fetch_students");
-      
+        return {
+          ...state,
+          items: action.payload
+        };
+        case FETCH_STUDENT_PROFILE:
+          return{
+            ...state,
+            studentProfile: action.payload
+          };
+      case REMOVE_STUDENT_COURSE_CONFIG:
+        return {
+          ...state,
+          items: state.items.filter(item => item.id !== +action.payload.student_id)
+        };
+
+        case NEW_STUDENT:
         return {
           items: action.payload
         };
-        
-      case NEW_STUDENT:
-        return {
-          items: action.payload
-        };
-        
+
       default:
         return state;
     }
-  }
+}
+// items: action.payload
+// };
