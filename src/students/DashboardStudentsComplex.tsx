@@ -26,8 +26,8 @@ class DashboardStudentsComplex extends Component<any, any> {
                     <DashboardStudentItemComplex student={student}/>
                 </tr>
             )
-        })
-        return (
+        });
+        return(
             <div>
                 <tbody className="p-students-table">
                 <tr>

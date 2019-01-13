@@ -1,8 +1,10 @@
 import * as React from "react";
 import { Component } from "react";
 import searchLogo from '../images/search.png';
-import userFemale from '../images/edit-user-female.png';
-import userMale from '../images/edit-user-male.png';
+import StudentItem from "./StudentItem";
+import { fetchStudents } from '../actions/Student.actions';
+import { connect } from 'react-redux';
+//import DashboardStudentItemComplex from "./DashboardStudentItemComplex";
 
 class AddStudent extends Component<any, any>{
     private searchKeyword: any;
@@ -12,13 +14,15 @@ class AddStudent extends Component<any, any>{
         super(props);
         this.state={
         };
-        this.addStudent = this.addStudent.bind(this);
-        this.removeStudent = this.removeStudent.bind(this);
         this.done = this.done.bind(this);
         this.getFilteredStudents = this.getFilteredStudents.bind(this);
         this.setStudentRef= (element:any) => {
             this.searchKeyword = element;
         }
+    }
+
+    componentWillMount(){
+        this.props.fetchStudents(1);
     }
 
     getFilteredStudents(){
@@ -29,15 +33,16 @@ class AddStudent extends Component<any, any>{
         this.props.callback();
     }
 
-    removeStudent(){
-        console.log("Student was removed");
-    }
-
-    addStudent(){
-        console.log("Student was added");
-    }
-
     render(){
+
+        const studentRecords = this.props.students.map( student => {
+            return(
+                <tr key={student.id}>
+                    <StudentItem student={student} courseId={1}/>
+                </tr>
+            )
+            }
+        );
         return(
             <div>
                 <div className="p-header-wrapper">
@@ -74,90 +79,7 @@ class AddStudent extends Component<any, any>{
                                 <th>Year</th>
                                 <th/>
                             </tr>
-                            <tr>
-                                <td>
-                                    <img src={userFemale} className="p-oval"/>
-                                </td>
-                                <td>Ungur Maria</td>
-                                <td>umie2239@cs.ubbcluj.ro</td>
-                                <td>Informatica</td>
-                                <td>Engleza</td>
-                                <td>1</td>
-                                <td>
-                                    <button onClick={this.removeStudent} className="p-remove-button">X</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <img src={userFemale} className="p-oval"/>
-                                </td>
-                                <td>Grigorovici Monica</td>
-                                <td>umie2239@cs.ubbcluj.ro</td>
-                                <td>Informatica</td>
-                                <td>Engleza</td>
-                                <td>1</td>
-                                <td>
-                                    <button onClick={this.addStudent} className="p-add-professor-button">Add</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <img src={userMale} className="p-oval"/>
-                                </td>
-                                <td>Tamas Florin</td>
-                                <td>umie2239@cs.ubbcluj.ro</td>
-                                <td>Informatica</td>
-                                <td>Engleza</td>
-                                <td>1</td>
-                                <td>
-                                    <button onClick={this.addStudent} className="p-add-professor-button">Add</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <img src={userFemale} className="p-oval"/>
-                                </td>
-                                <td>Gae Andrada</td>
-                                <td>umie2239@cs.ubbcluj.ro</td>
-                                <td>Informatica</td>
-                                <td>Engleza</td>
-                                <td>1</td>
-                                <td>
-                                    <button onClick={this.removeStudent} className="p-remove-button">X</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <img src={userFemale} className="p-oval"/>
-                                </td>
-                                <td>Ungur Nicoleta</td>
-                                <td>umie2239@cs.ubbcluj.ro</td>
-                                <td>Informatica</td>
-                                <td>Engleza</td>
-                                <td>1</td>
-                                <td>
-                                    <button onClick={this.addStudent} className="p-add-professor-button">Add</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <img src={userMale} className="p-oval"/>
-                                </td>
-                                <td>Grigore Dragos</td>
-                                <td>umie2239@cs.ubbcluj.ro</td>
-                                <td>Informatica</td>
-                                <td>Engleza</td>
-                                <td>1</td>
-                                <td>
-                                    <button onClick={this.addStudent} className="p-add-professor-button">Add</button>
-                                </td>
-                            </tr>
-
+                            {studentRecords}
                         </table>
                     </div>
                 </div>
@@ -170,4 +92,9 @@ class AddStudent extends Component<any, any>{
     }
 }
 
-export default AddStudent;
+const mapStateToProps = state => ({
+    students: state.studentReducer.items,
+});
+
+
+export default connect(mapStateToProps, { fetchStudents })(AddStudent);
