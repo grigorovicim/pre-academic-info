@@ -14,6 +14,7 @@ import CatalogPage from "./components/CatalogPage";
 import Register from "./authentication/Register";
 import AppActions from './App.actions';
 import MyProfilePage from "./components/myProfilePage/MyProfilePage";
+import AddNewStudentToCourse from './students/AddNewStudentToCourse';
 
 class App extends Component<any, any> {
     constructor(props: any) {
@@ -74,6 +75,7 @@ class App extends Component<any, any> {
                         <Route path={"/register"} component={Register}/>
                     </div>
                 </BrowserRouter>
+                <AddNewStudentToCourse></AddNewStudentToCourse>
             </div>
         );
     }

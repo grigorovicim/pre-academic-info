@@ -18,10 +18,10 @@ import { createUser } from '../actions/User.actions';
 class AddNewStudentToCourse extends Component<any, any> {
 
     static propTypes = {
+        createProfile: PropTypes.func.isRequired,
         createStudent: PropTypes.func.isRequired,
         createStudentCourse: PropTypes.func.isRequired,
         createUser: PropTypes.func.isRequired,
-        createProfile: PropTypes.func.isRequired
         //students: PropTypes.array.isRequired,
       };
 
@@ -143,7 +143,8 @@ class AddNewStudentToCourse extends Component<any, any> {
             'type: ' + this.state.typeValue + '\n'+ 
             'year id: ' + this.state.yearValue + '\n' +
             'group id: ' + this.state.groupValue + '\n' +
-            'section id: ' + this.state.sectionValue
+            'section id: ' + this.state.sectionValue + '\n'+
+            'course id: ' + this.state.courseIdValue
         );
 
         const student = {   
@@ -249,9 +250,9 @@ class AddNewStudentToCourse extends Component<any, any> {
                 </select>
                 <br/>
                 Year:
-                <select value={this.state.yearValue} onChange={this.handleTypeChange}> 
+                <select value={this.state.yearValue} onChange={this.handleYearChange}> 
                     <option value="1">1</option>
-                    <option value="2">2 year</option>
+                    <option value="2">2</option>
                     <option value="3">3</option>
                 </select>
                 {/* <select value={this.state.yearValue} onChange={this.handleYearChange}>
