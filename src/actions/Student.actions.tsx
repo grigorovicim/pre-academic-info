@@ -15,23 +15,23 @@ export const fetchStudents = (courseId: any) => (dispatch:any) => {
         })}) 
         .catch(error => {
             console.log(error)
-        });;
+        });
     console.log("fetch complete");
     
 };
 
 export const fetchProfileForStudent = (studentId: any) => (dispatch:any) => {
     // console.log("fetching profile for student...");
-    
+
     axios.get('/student/profile/'+ studentId)
     .then(res =>{
         dispatch({
             type: FETCH_STUDENT_PROFILE,
             payload: res.data[0]    //because there is ONLY 1 profile corresponding to the student
-        })}) 
+        })})
         .catch(error => {
             console.log(error)
-        });;
+        });
     // console.log("fetch complete");
 };
 

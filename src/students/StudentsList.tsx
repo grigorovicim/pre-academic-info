@@ -25,7 +25,7 @@ class StudentsList extends Component<any, any> {
         this.state = {
             isPopupVisible: false,
             popupComponentType: null,
-        }
+        };
         this.closePopup = this.closePopup.bind(this);
         this.openAddStudentPopup = this.openAddStudentPopup.bind(this);
     }
@@ -48,16 +48,15 @@ class StudentsList extends Component<any, any> {
     }
 
     render(){
-        const studentItems = this.props.students.map((student : any) => {
-            this.props.fetchProfileForStudent(student.id);
-            return (
+
+        const studentItems = this.props.students.map(student => {
+            return(
                 <div key={student.id}>
-                    <StudentsListItem student={this.props.studentProfile} courseId={this.courseId}
-                                      studentId={student.id}/>
+                    <StudentsListItem student = {student.Profile} courseId = {this.courseId} studentId = {student.id}/>
                 </div>
             );
-        })
-        return (
+        });
+        return(
             <div>
                 <tbody className="p-students-table">
                     {/* <tr>

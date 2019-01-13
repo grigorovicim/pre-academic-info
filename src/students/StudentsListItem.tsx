@@ -35,9 +35,9 @@ class StudentsListItem extends Component<any, any> {
     }
 }
 
-const mapStateToProps = (state: any) => ({
-    students: state.studentReducer.items,
-    studentProfile: state.studentReducer.studentProfile
+
+const mapStateToProps = state => ({
+    students: state.studentReducer.items
 });
 
 export default connect(mapStateToProps, {removeStudentConfig})(StudentsListItem);

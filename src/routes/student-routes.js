@@ -328,12 +328,24 @@ Returns the list of students that are enrolled in a given course.
 router.get('/course/:courseId', function(req, res){
   const courseId = req.params.courseId;
 
-  models.Student.findAll({
-    include: [{
-    model: models.StudentCourse,
-    required: true,
-    include : [{model:models.Course, required:true, where: {id: courseId}}]
-    }]
+  models.Student.findAll(
+      {attributes: ['id','year_of_study'],
+        include: [
+            {
+              attributes: [],
+              model: models.StudentCourse,
+              required: true,
+              include : [{
+                  model:models.Course,
+                  attributes: ['id', 'name'],
+                  required:true,
+                  where: {id: courseId}}]
+          },
+            {
+              attributes: ['id', 'first_name', 'last_name', 'personal_email'],
+                model: models.Profile,
+                required: true,
+            }]
   }).then(students => res.json(students), err => {
     res.status(501);
     res.send('Internal Server Error! Sorry, try again!');

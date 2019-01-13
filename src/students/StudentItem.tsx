@@ -18,11 +18,11 @@ class StudentItem extends Component<any, any> {
                     <td>
                         <img src={userMale} className="p-oval"/>
                     </td>
-                    <td>{this.props.student.name}</td>
-                    <td>{this.props.student.email}</td>
+                    <td>{this.props.student.Profile.first_name + " " + this.props.student.Profile.last_name}</td>
+                    <td>{this.props.student.Profile.personal_email}</td>
                     <td>Informatica</td>
                     <td>Engleza</td>
-                    <td>{this.props.student.year}</td>
+                    <td>{this.props.student.year_of_study}</td>
                     <td>
                         <button onClick={this.addStudent} className="p-add-professor-button">Add</button>
                     </td>
@@ -30,5 +30,6 @@ class StudentItem extends Component<any, any> {
     }
 
 }
+
 
 export default StudentItem;

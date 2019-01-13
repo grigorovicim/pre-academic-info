@@ -22,7 +22,7 @@ class AddStudent extends Component<any, any>{
     }
 
     componentWillMount(){
-        this.props.fetchStudents(1);
+        this.props.fetchStudents(this.props.courseId);
     }
 
     getFilteredStudents(){
