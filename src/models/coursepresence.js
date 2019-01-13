@@ -1,29 +1,28 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const LabActivity = sequelize.define('LabActivity', {
-    week: DataTypes.INTEGER,
-    grade: DataTypes.INTEGER
+  const CoursePresence = sequelize.define('CoursePresence', {
+    week: DataTypes.INTEGER
   }, {});
-  LabActivity.associate = function(models) {
+  CoursePresence.associate = function(models) {
     // associations can be defined here
-    models.LabActivity.belongsTo(models.Student, {
+    models.CoursePresence.belongsTo(models.Student, {
       foreignKey: {
         name: 'student_id',
         allowNull: false
       }
     });
-    models.LabActivity.belongsTo(models.Course, {
+    models.CoursePresence.belongsTo(models.Course, {
       foreignKey: {
         name: 'course_id',
         allowNull: false
       }
     });
-    models.LabActivity.belongsTo(models.Professor, {
+    models.CoursePresence.belongsTo(models.Professor, {
       foreignKey: {
         name: 'professor_id',
         allowNull: false
       }
     });
   };
-  return LabActivity;
+  return CoursePresence;
 };

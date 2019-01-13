@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('SeminarActivities', {
+    return queryInterface.createTable('CoursePresences', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,9 +9,6 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       week: {
-        type: Sequelize.INTEGER
-      },
-      grade: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -25,6 +22,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('SeminarActivities');
+    return queryInterface.dropTable('CoursePresences');
   }
 };
