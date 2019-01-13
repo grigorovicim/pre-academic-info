@@ -228,6 +228,12 @@ app.get('professor/course', (req, res) => {
     res.send(professors);
 });
 
+app.post('formOfEvaluation', (req, res) =>{
+  const item = req.body.item;
+  let something = FormOfEvaluationRoutes.post('/formOfEvaluation/');
+  res.send(something);
+});
+
 
 if (!dev) {
     app.disable('x-powered-by');

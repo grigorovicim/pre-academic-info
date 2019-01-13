@@ -1,15 +1,15 @@
 import * as React from "react";
-import { Component } from "react";
+import {Component} from "react";
 import './ProfessorsList.css';
 
-import { connect } from 'react-redux'; 
-import { removeProfessorConfig } from '../actions/Config.actions'; 
+import {connect} from 'react-redux';
+import {removeProfessorConfig} from '../actions/Config.actions';
 
-class DashboardProfessorItem extends Component<any, any>{
-    private firstName;
-    private lastName;
-    private courseId;
-    private professorId;
+class DashboardProfessorItem extends Component<any, any> {
+    private firstName: any;
+    private lastName: any;
+    private courseId: any;
+    private professorId: any;
 
     constructor(props: any) {
         super(props);
@@ -25,8 +25,8 @@ class DashboardProfessorItem extends Component<any, any>{
         this.props.removeProfessorConfig(this.professorId, this.courseId);
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 {this.firstName} {this.lastName}
                 <button onClick={this.handleRemove}>x</button>
@@ -35,9 +35,9 @@ class DashboardProfessorItem extends Component<any, any>{
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
     professors: state.professorReducer.items,
     professorProfile: state.professorReducer.professorProfile
 });
 
-export default connect(mapStateToProps, { removeProfessorConfig })(DashboardProfessorItem);
+export default connect(mapStateToProps, {removeProfessorConfig})(DashboardProfessorItem);
