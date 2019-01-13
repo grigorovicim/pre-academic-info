@@ -2,6 +2,7 @@ import {Component} from "react";
 import * as React from "react";
 import './Header.css';
 import logo from './logo.png';
+import {connect} from 'react-redux';
 import {NavLink} from "react-router-dom";
 
 class Header extends Component<any,any>{
@@ -20,6 +21,24 @@ class Header extends Component<any,any>{
 
 
     render() {
+        if(this.props.user.isLoggedIn === false) {
+            return (
+                <div>
+                    <header className="p-app-header">
+                    <div className="p-img-div">
+                        <img src={logo} className="p-app-logo"/>
+                    </div>
+
+                    <div className="p-menu-buttons-div">
+                        <div className="p-header-button" >
+                            <NavLink to={"/"}>HOME</NavLink>
+                            <div id="login" className="login" style={{display: this.props.home}}/>
+                        </div>
+                    </div>
+                    </header>
+                </div>
+            )
+        }
         return (
             <div>
                 <header className="p-app-header">
@@ -55,4 +74,14 @@ class Header extends Component<any,any>{
     }
 }
 
-export default Header;
+const mapStateToProps = (state: any) => {
+    return {
+      user: Object.assign({}, state.app.user),
+    };
+  };
+  
+export default connect(
+    mapStateToProps,
+)(Header);
+
+//export default Header;
