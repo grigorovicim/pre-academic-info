@@ -1,0 +1,23 @@
+[
+	{
+		"model": "YearOfStudy",
+		"data": {
+			"id": 1,
+			"label": "1"
+		}
+	},
+	{
+		"model": "YearOfStudy",
+		"data": {
+			"id": 2,
+			"label": "2"
+		}
+	},
+	{
+		"model": "YearOfStudy",
+		"data": {
+			"id": 3,
+			"label": "3"
+		}
+	}
+]
