@@ -10,7 +10,6 @@ import {connect} from 'react-redux';
 import './App.css';
 
 // import logo from './logo.png';
-import Popup from './commons/Popup';
 //import Dashboard from './courses/Dashboard'
 // import CourseDetail from "./courses/CourseDetail";
 // @ts-ignore

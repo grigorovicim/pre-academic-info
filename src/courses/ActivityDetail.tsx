@@ -3,7 +3,7 @@ import {Component} from "react";
 
 import './ActivityDetail.css';
 
-import {Grid, Row, Col, Button, ButtonToolbar, Table} from 'react-bootstrap';
+import {Grid, Row, Col, ButtonToolbar, Table} from 'react-bootstrap';
 import {connect} from "react-redux";
 //import axios from "axios";
 //import {CREATE_FORM_OF_EVALUATION} from "../actions/types";
@@ -47,7 +47,7 @@ class ActivityDetail extends Component<any, any> {
         if (year === -1) {
             return (<p>The year is not valid</p>);
         }
-        const groups = [];
+        const groups : string[] = [];
         switch (this.details.section.name) {
             case 'Romanian':
                 for (let i = 1; i < this.details.section.nrGroups; i++) {
@@ -81,25 +81,26 @@ class ActivityDetail extends Component<any, any> {
         groups.forEach(element => {
             if (this.details.groups.indexOf(parseInt(element, 10)) > -1) {
                 buttons.push(
-                    <Button onClick={this.assignGroupToCourse}  bsStyle="primary">&nbsp;{element}&nbsp;</Button>
+                    <button className="p-group-button" onClick={this.assignGroupToCourse}>{element}</button>
                 )
             } else {
                 buttons.push(
-                    <Button onClick={this.assignGroupToCourse} bsStyle="primary">&nbsp;{element}&nbsp;</Button>
+                    <button className="p-group-button" onClick={this.assignGroupToCourse}>{element}</button>
                 )
             }
         });
 
         return (
-            <ButtonToolbar>{buttons}</ButtonToolbar>
+            <ButtonToolbar className="p-group-buttons">{buttons}</ButtonToolbar>
         );
     }
 
     render() {
+      const listStudents = this.details.students;
         return (
-            <Grid>
+            <Grid className="p-add-activity-popup">
                 <hr/>
-                <h1 className="text-center" style={{fontWeight: 600}}>{this.details.name}</h1>
+                <h1 className="p-title-add-activity-popup" style={{fontWeight: 600}}>{this.details.name}</h1>
                 <Row className="show-grid text-center" >
                      <Col className="center-block" style={{fontSize: '1.25em'}} md={12}>
                          {this.renderGroups()}
@@ -110,8 +111,9 @@ class ActivityDetail extends Component<any, any> {
                     <Col md={3}></Col>
                     <Col md={6}>
                       <ButtonToolbar>
-                        <Button onClick={this.assignGroupToCourse}  bsStyle="info">&nbsp;{"Seminars"}&nbsp;</Button>
-                        <Button onClick={this.assignGroupToCourse}  bsStyle="info">&nbsp;{"Labs"}&nbsp;</Button>
+                        <button className="p-seminar-or-lab-button"onClick={this.assignGroupToCourse}>Courses</button>
+                        <button className="p-seminar-or-lab-button" onClick={this.assignGroupToCourse}>Seminars</button>
+                        <button className="p-seminar-or-lab-button"onClick={this.assignGroupToCourse}>Labs</button>
                       </ButtonToolbar>
                     </Col>
                     <Col md={3}></Col>
@@ -121,19 +123,27 @@ class ActivityDetail extends Component<any, any> {
                 <Row className="show-grid text-center" >
                     <Col md={5}></Col>
                     <Row >
-                            <Col style={{fontSize: '0.6em', color: 'blue' }} md={6}> Week:</Col>
-                            <Col style={{fontSize: '0.5em', color: 'blue'}} md={3}><input type='text' defaultValue={"1-14"} size={2}
+                            <Col className="p-week-label-input"> Week:</Col>
+                            <Col ><input className="p-week-input" type='text' defaultValue={"1-14"} size={2}
                                                ref={this.setWeekRef}/></Col>
 
                     </Row>
-                    <Col md={5}></Col>
+                </Row>
+                <br/>
+                <Row className="show-grid text-center" >
+                    <Col md={3}></Col>
+                    <Col md={6}>
+                    <button className="p-done-button-add-activity">Done</button>
+                    </Col>
+                    <Col md={3}></Col>
+                <br></br>
                 </Row>
                 <br></br>
-                <Row className="show-grid text-center" >
+                <Row className="text-center" >
                   <Col md={1}></Col>
                     <Row >
-                        <Col style={{fontSize: '0.6em', color: 'blue'}} md={4}>Search student: </Col>
-                        <Col style={{fontSize: '0.7em'}} md={7}><input type='text' defaultValue={""} size = {34}
+                        <Col className="p-search-students-label-input">Search student: </Col>
+                        <Col><input className="p-search-students-input" type='text' defaultValue={""} size = {34}
                                                ref={this.setWeekRef}/></Col>
                     </Row>
                     <Col md={1}></Col>
@@ -142,43 +152,33 @@ class ActivityDetail extends Component<any, any> {
                 <Table striped bordered condensed hover>
                    <thead>
                     <tr>
+                      <th className="p-header-add-activity">NAME</th>
+                      <th className="p-input-homework-header">Homework</th>
+                      <th className="p-input-presents-header">Present</th>
+                      <th className="p-header-add-activity">Total presents</th>
+                      <th className="p-header-add-activity">Exam</th>
+                      <th className="p-header-add-activity">Final grade</th>
                       <th></th>
-                      <th>NAME</th>
-                      <th>Homework</th>
-                      <th>Present</th>
-                      <th>Total presents</th>
-                      <th>Exam</th>
-                      <th>Final grade</th>
                     </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Amariei Iulian</td>
-                        <td>10</td>
-                        <td>true</td>
-                        <td>8</td>
-                        <td>null</td>
-                        <td>3.5</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Amariei Andreea</td>
-                        <td>10</td>
-                        <td>true</td>
-                        <td>8</td>
-                        <td>null</td>
-                        <td>3.5</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Amariei Andreea Iuliana Maria</td>
-                        <td>10</td>
-                        <td>true</td>
-                        <td>8</td>
-                        <td>null</td>
-                        <td>3.5</td>
-                      </tr>
+                    
+                      {
+                        listStudents.map((student : any) => 
+                          // tslint:disable-next-line:jsx-key
+                          <tr>
+
+                              <td className="p-input-student"><div className="p-photo-student"></div>{student.name}</td>
+                              <td><input className="p-input-homework-student" placeholder={student.homework}></input></td>
+                              <td><input className="p-input-present-student" placeholder={student.present}></input></td>
+                              <td className="p-input-student">{student.totalPresents}</td>
+                              <td className="p-input-student">{student.exam}</td>
+                              <td className="p-input-student">{student.finalGrade}</td>
+                              <td className="p-input-student"><button className="p-save-student-activity">Save</button></td>
+                          </tr> 
+                      )
+                    }
+
                     </tbody>
                   </Table>
             </Grid>

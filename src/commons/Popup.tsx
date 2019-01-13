@@ -22,15 +22,15 @@ class Popup extends Component<any, any> {
   render() {
 
     const {
-      isPopupVisible,
-      popupContent,
+      isVisible,
+      // popupContent,
     } = this.props;
 
     let display;
     let setWidth = "640px";
     let setHeight = "650px";
     
-    if (isPopupVisible) {
+    if (isVisible) {
       display = 'flex';
     } else {
       display = 'none';
@@ -42,10 +42,6 @@ class Popup extends Component<any, any> {
     }
 
     let component;
-    if (popupContent !== undefined) {
-      component = popupContent
-    } else {
-      component = <span></span>;
     if (this.props.children) {
       component = this.props.children;
     } 
@@ -74,7 +70,6 @@ class Popup extends Component<any, any> {
       </div>
     );
   }
-}
 }
 
 const mapStateToProps = (state: any) => {

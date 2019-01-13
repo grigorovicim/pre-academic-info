@@ -1,14 +1,15 @@
 import * as React from "react";
 import { Component } from "react";
-import axios from "axios";
+
 import './DashboardCourseItem.css';
 import plusBtn from '../plus-btn.png';
 
 import optionsBtn from '../options-btn.png';
-import CourseActions from 'src/actions/Course.actions';
-import { connect } from 'react-redux';
-import AppActions from 'src/App.actions';
-import ActivityDetail from './ActivityDetail';
+import AppActions from "../App.actions";
+import ActivityDetail from "./ActivityDetail";
+import {connect} from "react-redux";
+
+
 
 class DashboardCourseItem extends Component<any, any> {
     private name: any;
@@ -20,49 +21,61 @@ class DashboardCourseItem extends Component<any, any> {
         this.name = props.name;
         this.department = "info";
         this.isConfigured = props.isConfigured;
-        this.handleCourseDetailsClick = this.handleCourseDetailsClick.bind(this);
+
+        this.editConfiguration = this.editConfiguration.bind(this);
+        this.addConfiguration = this.addConfiguration.bind(this);
+        this.whichButton = this.whichButton.bind(this)
     }
 
     whichButton() {
         if (this.isConfigured) {
-            return (<button className="course-config-button-wrapper" onClick={this.handleCourseDetailsClick}>
-            <img className="course-config-button" src={optionsBtn} />
-            </button>)
+            return (<button className="course-config-button-wrapper" onClick={this.editConfiguration}><img
+                className="course-config-button" src={optionsBtn} /></button>)
         }
         return (<button className="course-config-button-wrapper" onClick={this.addConfiguration}><img className="course-config-button" src={plusBtn} />
         </button>)
     }
 
     addConfiguration() {
-        const details = {
+        const courseDetails = {
             name: "Design Patterns",
             professor: "Molnar Arthur",
             section: {name: 'English', nrGroups: 6},
             groups: [932, 933, 934, 935],
-            students: [{id: 1, name: "Antonesei Andrada"}, {id: 2, name: "Amariei Iuliana"}, {
-                id: 3,
-                name: "Blanariu Mihai"
-            }]
+            students: [
+              {
+                name: "Ana Maria",
+                homework: 10,
+                present: true,
+                totalPresents: 2,
+                exam: "-" ,
+                finalGrade: "-"
+              },
+              {
+                name: "Andrada Gae",
+                homework: 10,
+                present: true,
+                totalPresents: 2,
+                exam: "-" ,
+                finalGrade: "-"
+              },
+              {
+                name: "Iuliana Florentina",
+                homework: 10,
+                present: true,
+                totalPresents: 2,
+                exam: "-" ,
+                finalGrade: "-"
+              },
+            ]
         };
 
         this.props.dispatch(AppActions.setPopupContentElement(
-            <ActivityDetail details={details}/>
+            <ActivityDetail details={courseDetails}/>
         ));
         this.props.dispatch(AppActions.setPopupVisibility(true));    }
 
     editConfiguration() {
-        
-    }
-
-    handleCourseDetailsClick(e: any) {
-      e.stopPropagation();
-      axios.post('/details-of-course', {courseId: this.props.content.id})
-      .then((response) => {
-        const courseDetails = response.data;
-        const courseId = this.props.content.id;
-        this.props.dispatch(CourseActions.setIdOfCurrentCourse(courseId));
-        this.props.onDetails(courseId, courseDetails);
-      });
     }
 
     render() {
@@ -79,12 +92,13 @@ class DashboardCourseItem extends Component<any, any> {
     }
 }
 
-
 const mapStateToProps = (state: any) => {
-  return {
-  };
+    return {
+
+    };
 };
 
+
 export default connect(
-  mapStateToProps,
+    mapStateToProps,
 )(DashboardCourseItem);
