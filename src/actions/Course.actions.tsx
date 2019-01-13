@@ -1,9 +1,21 @@
-
 // @ts-ignore
 import axios from 'axios';
 
 import { FETCH_CATALOG, FILTER_CATALOG_STUDY, FILTER_CATALOG_SEMESTER, FILTER_CATALOG_YEAR  } from './types';
 
+import { FETCH_COURSES  } from './types';
+
+export const fetchCourses = () => dispatch => {
+    axios.get('/course')
+    .then(res =>{
+        dispatch({
+            type: FETCH_COURSES,
+            payload: res.data
+        })}) 
+        .catch(error => {
+            console.log(error)
+        });;
+};
 
 export default class CourseActions {
   static fetchItems = (session: any) => (dispatch: any, /*getState: any*/) => {
@@ -106,5 +118,3 @@ static saveStudyFilter = (study: string) => (dispatch: any) => {
     }
 
 }
-
-    

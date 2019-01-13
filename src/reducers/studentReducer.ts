@@ -1,4 +1,4 @@
-import { FETCH_STUDENTS, FETCH_STUDENT_PROFILE, REMOVE_STUDENT_COURSE_CONFIG } from '../actions/types';
+import { FETCH_STUDENTS, FETCH_STUDENT_PROFILE, REMOVE_STUDENT_COURSE_CONFIG,NEW_STUDENT } from '../actions/types';
 
 const initialState = {
   items: [] as any,
@@ -22,7 +22,15 @@ export default function(state = initialState, action) {
           ...state,
           items: state.items.filter(item => item.id !== +action.payload.student_id)
         };
+
+        case NEW_STUDENT:
+        return {
+          items: action.payload
+        };
+
       default:
         return state;
     }
 }
+// items: action.payload
+// };

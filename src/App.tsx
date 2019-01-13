@@ -14,8 +14,14 @@ import CatalogPage from "./components/CatalogPage";
 import Register from "./authentication/Register";
 import AppActions from './App.actions';
 import MyProfilePage from "./components/myProfilePage/MyProfilePage";
-
-
+// import AddNewStudentToCourse from './students/Add-new-students/AddNewStudentToCourse';
+// import logo from './logo.png';
+// import Popup from './commons/Popup';
+// import Dashboard from './courses/Dashboard'
+// import DashboardStudentsComplex from './students/DashboardStudentsComplex';
+// import DashboardProfessors from './professors/DashboardProfessors';
+// import StudentsList from './students/StudentsList';
+// import AddNewStudentToCourse from './students/Add-new-students/AddNewStudentToCourse';
 class App extends Component<any, any> {
     constructor(props: any) {
         super(props);
@@ -50,7 +56,6 @@ class App extends Component<any, any> {
         });
     }
 
-
     callApi = async () => {
         const response = await fetch('/check-server');
         const body = await response.json();
@@ -75,9 +80,50 @@ class App extends Component<any, any> {
                         <Route path={"/register"} component={Register}/>
                     </div>
                 </BrowserRouter>
+                {/* <AddNewStudentToCourse></AddNewStudentToCourse> */}
             </div>
         );
     }
+
+//   public render() {
+//     // const dummy = [
+//     //   {id:1, name: "LFTC", department: "info", isConfigured: false},
+//     //   {id:2, name: "PPD", department: "info", isConfigured: false},
+//     //   {id:3, name: "PLF", department: "info", isConfigured: true},
+//     //   {id:4, name: "Microcontrollers", department: "info", isConfigured: false},
+//     //   {id:5, name: "ASC", department: "info", isConfigured: true},
+//     //   {id:6, name: "MAP", department: "info", isConfigured: true},
+//     // ]
+    
+//     // const dummyStudents = [
+//     //   {id:1, name:'Nicole', email:'ddie2108@cs.ubbcluj.ro', section:'Info Engleza', year_of_study:1},
+//     //   {id:1, name:'Bianca', email:'diie2318@cs.ubbcluj.ro', section:'Info Engleza', year_of_study:2}
+//     // ]
+//     return (
+//       <div className="p-app">
+//         <header className="p-app-header">
+//           <img src={logo} className="p-app-logo"/>
+//           <div className="p-login-button" onClick={this.openLoginPopup}>Login</div>
+//         </header>
+//         {/* <p className="p-app-intro">
+//         {this.state.response}
+//         </p> */}
+
+//         <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType}/>
+//         {/* <Dashboard courseItems={dummy}></Dashboard> */}
+        
+//         {/* <DashboardStudentsComplex studentItems={dummyStudents}></DashboardStudentsComplex> */}
+//         {/* <DashboardProfessors></DashboardProfessors> */}
+//         {/* <StudentsList></StudentsList> */}
+        
+//         <hr></hr>
+
+//         <AddNewStudentToCourse></AddNewStudentToCourse>
+
+//       </div>
+//     );
+//   }
+
 }
 
 const mapStateToProps = (state: any) => {

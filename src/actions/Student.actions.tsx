@@ -1,4 +1,4 @@
-import { FETCH_STUDENTS  } from './types';
+import { FETCH_STUDENTS, NEW_STUDENT  } from './types';
 import { FETCH_STUDENT_PROFILE } from './types';
 import axios from 'axios';
 
@@ -16,6 +16,7 @@ export const fetchStudents = (courseId: any) => dispatch => {
         .catch(error => {
             console.log(error)
         });;
+
     console.log("fetch complete");
     
 };
@@ -35,3 +36,19 @@ export const fetchProfileForStudent = (studentId: any) => dispatch => {
     // console.log("fetch complete");
 };
 
+export const createStudent = postData => dispatch => {
+    fetch('/student', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(postData)
+    })
+      .then(res => res.json())
+      .then(student =>
+        dispatch({
+          type: NEW_STUDENT,
+          payload: student
+        })
+      );
+  };

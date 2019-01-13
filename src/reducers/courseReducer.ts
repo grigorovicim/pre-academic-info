@@ -1,5 +1,17 @@
 import { FETCH_CATALOG, FILTER_CATALOG_STUDY, FILTER_CATALOG_YEAR, FILTER_CATALOG_SEMESTER } from '../actions/types';
+import { FETCH_COURSES } from '../actions/types';
 
+// export default function(state = initialState, action) {
+//     switch (action.type) {
+//       case FETCH_COURSES:
+//         return {
+//           items: action.payload
+//         };
+      
+//       default:
+//         return state;
+//     }
+//   }
 const initialState = {
     items: [
         {id:1, name: "LFTC", department: "info", isConfigured: false},
@@ -62,6 +74,11 @@ export default (state = initialState, action) => {
             isPopupVisible: action.payload.isCampaignPopupVisible,
           };
         }
+
+        case FETCH_COURSES:
+        return {
+          items: action.payload
+        };
 
         default:
             return state;

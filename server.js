@@ -29,11 +29,15 @@ const randomString = require('randomstring');
 var StudentRoutes  = require('./src/routes/student-routes');
 var ProfessorRoutes  = require('./src/routes/professor-routes');
 var CourseRoutes  = require('./src/routes/course-routes');
+var GroupRoutes = require('./src/routes/group-routes');
 var UserRoutes = require('./src/routes/user-routes');
 var ConfigRoutes = require('./src/routes/configuration-routes');
 var RoleRoutes = require('./src/routes/role-routes');
+var SectionRoutes = require('./src/routes/section-routes')
 const SpreadsheetRoutes = require('./src/routes/spreadsheet-routes');
 const ProfileRoutes = require('./src/routes/profile-routes');
+
+
 
 const app = express();
 const emailUtil = require('./src/util/email');
@@ -54,6 +58,8 @@ app.use('/config', ConfigRoutes);
 app.use('/spreadsheet', SpreadsheetRoutes);
 app.use('/profile', ProfileRoutes);
 app.use('/role', RoleRoutes);
+app.use('/group', GroupRoutes);
+app.use('/section', SectionRoutes);
 
 app.get('/check-server', (req, res) => {
     res.send({express: 'Hello From Express BACKEND!'});
