@@ -11,6 +11,9 @@ module.exports = {
       percentage: {
         type: Sequelize.INTEGER
       },
+      week: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     seminarGradePercentage: DataTypes.INTEGER,
     numberOfLectureTests: DataTypes.INTEGER,
     numberOfLabTests: DataTypes.INTEGER,
-    numberOfSeminarTests: DataTypes.INTEGER
+    numberOfSeminarTests: DataTypes.INTEGER,
+    examWrittenPercentage: DataTypes.INTEGER,
+    examPracticalPercentage: DataTypes.INTEGER
   }, {});
   CourseConfiguration.associate = function(models) {
     // associations can be defined here

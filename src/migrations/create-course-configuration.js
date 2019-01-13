@@ -50,6 +50,12 @@ module.exports = {
       numberOfSeminarTests: {
         type: Sequelize.INTEGER
       },
+      examWrittenPercentage: {
+        type: Sequelize.INTEGER
+      },
+      examPracticalPercentage: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

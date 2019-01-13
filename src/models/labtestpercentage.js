@@ -1,7 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const LabTestPercentage = sequelize.define('LabTestPercentage', {
-    percentage: DataTypes.INTEGER
+    percentage: DataTypes.INTEGER,
+    week: DataTypes.INTEGER
   }, {});
   LabTestPercentage.associate = function(models) {
     // associations can be defined here
