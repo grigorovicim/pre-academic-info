@@ -93,12 +93,15 @@ router.post('/', upload.single("file"), function (req, res) {
         }
 
         let yearOfStudy = "0";
-        if (semester === "I" || semester === "II")
+        if (semester === "I" || semester === "II") {
             yearOfStudy = "1";
-        else if (semester === "III" || semester === "IV")
+        }
+        else if (semester === "III" || semester === "IV") {
             yearOfStudy = "2";
-        else if (semester === "V" || semester === "VI")
+        }
+        else if (semester === "V" || semester === "VI") {
             yearOfStudy = "3";
+        }
 
         // Need to remember which course had which properties
         let courseMap = new Map();
@@ -161,7 +164,7 @@ router.post('/', upload.single("file"), function (req, res) {
         if (!(group in groups)) {
             dbInfoPromises.push(new Promise(function (resolve, reject) {
                 models.Group.findAll({
-                    where: {group_number: parseInt(group)}, raw: true
+                    where: {group_number: parseInt(group, 10)}, raw: true
                 }).then(result => {
                     try {
                         let groupId = result[0].id;
@@ -212,7 +215,7 @@ router.post('/', upload.single("file"), function (req, res) {
                             if (courses.length === 0) {
                                 let course = {
                                     "name": courseName,
-                                    "year_of_study": parseInt(courseMap.get("yearOfStudy")),
+                                    "year_of_study": parseInt(courseMap.get("yearOfStudy"), 10),
                                     "is_active": true,
                                     "createdAt": Date.now(),
                                     "updatedAt": Date.now(),
@@ -301,12 +304,15 @@ router.post('/', upload.single("file"), function (req, res) {
                         console.log(email);
 
                         let yearOfStudy = "0";
-                        if (semester === "I" || semester === "II")
+                        if (semester === "I" || semester === "II") {
                             yearOfStudy = "1";
-                        else if (semester === "III" || semester === "IV")
+                        }
+                        else if (semester === "III" || semester === "IV") {
                             yearOfStudy = "2";
-                        else if (semester === "V" || semester === "VI")
+                        }
+                        else if (semester === "V" || semester === "VI") {
                             yearOfStudy = "3";
+                        }
 
                         // Add student if it doesn't exist
                         // So first create user, then profile, then student
@@ -391,7 +397,7 @@ router.post('/', upload.single("file"), function (req, res) {
 
                                                     Promise.all(coursePromise).then(() => {
                                                         let studentCourse = {
-                                                            "year": parseInt(yearOfStudy),
+                                                            "year": parseInt(yearOfStudy, 10),
                                                             "createdAt": Date.now(),
                                                             "updatedAt": Date.now(),
                                                             "student_id": newStudent.id,
