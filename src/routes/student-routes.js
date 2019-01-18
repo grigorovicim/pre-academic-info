@@ -35,46 +35,73 @@ router.get('/group/:groupNumber', function(req, res){
 
 
 /**
- * Returns the students with their activities at seminar.
- * @method GET the list of students with their activities at seminar.
+ * Returns the activities at seminar/lab/course.
+ * @method GET the list of students with their activities at seminar/lab/course.
  * @throws 'Internal Server Error! Sorry, try again!'
  */
-// router.get('/catalog/:type/:id', function(req,res){
-//   const typeOfHour = req.params.type;
-//   const courseId = req.params.course.id;
-//   if (typeOfHour = 'seminar'){
-//     models.Student.findAll().then({include: [{
-//       model: (models.SeminarActivity,
-//       where: {course_id : courseId}),
-//     }]}).then(students => res.json(students), err => {
-//       res.status(501);
-//       res.send('Internal Server Error! Sorry, try again!');
-//       console.log('An error has occured: ' + err);
-//     });
-//   }
-//   else if (typeOfHour = 'lab')
-//   {
-//     models.Student.findAll().then({include: [{
-//       model: (models.LabActivity, models.LabPresence),
-//       where: {course_id : courseId},
-//     }]}).then(students => res.json(students), err => {
-//       res.status(501);
-//       res.send('Internal Server Error! Sorry, try again!');
-//       console.log('An error has occured: ' + err);
-//     });
-//   }
-//   else if (typeOfHour = 'course')
-//   {
-//     models.Student.findAll().then({include: [{
-//       model: (models.CourseActivity, models.CoursePresence),
-//       where: {course_id : courseId},
-//     }]}).then(students => res.json(students), err => {
-//       res.status(501);
-//       res.send('Internal Server Error! Sorry, try again!');
-//       console.log('An error has occured: ' + err);
-//     });
-//   }
-// });
+router.get('/catalog/:type/:id', function(req,res){
+  const typeOfHour = req.params.type;
+  const courseId = req.params.id;
+
+  if (typeOfHour == 'seminar') {
+    models.SeminarActivity.findAll({
+      where: {
+        course_id: courseId
+      }
+    }).then((seminarActivities => res.json(seminarActivities), 
+      models.SeminarPresence.findAll({
+        where: {
+          course_id: courseId
+        }
+      }).then(seminarPresences => res.json(seminarPresences), err => {
+        res.status(501);
+        res.send('Internal Server Error!Sorry, try again!');
+        console.log('An error has occurred: ' + err);
+      })), err => {
+        res.status(501);
+        res.send('Internal Server Error!Sorry, try again!');
+        console.log('An error has occurred: ' + err);
+      })
+    } else if (typeOfHour == 'lab') {
+      models.LabActivity.findAll({
+        where: {
+          course_id: courseId
+        }
+      }).then((labActivities => res.json(labActivities), 
+        models.LabPresence.findAll({
+          where: {
+            course_id: courseId
+          }
+        }).then(labPresences => res.json(labPresences), err => {
+          res.status(501);
+          res.send('Internal Server Error!Sorry, try again!');
+          console.log('An error has occurred: ' + err);
+        })), err => {
+          res.status(501);
+          res.send('Internal Server Error!Sorry, try again!');
+          console.log('An error has occurred: ' + err);
+        })
+    } else if (typeOfHour == 'course') {
+      models.CourseActivity.findAll({
+        where: {
+          course_id: courseId
+        }
+      }).then((labActivities => res.json(courseActivities), 
+        models.LabPresence.findAll({
+          where: {
+            course_id: courseId
+          }
+        }).then(labPresences => res.json(labPresences), err => {
+          res.status(501);
+          res.send('Internal Server Error!Sorry, try again!');
+          console.log('An error has occurred: ' + err);
+        })), err => {
+          res.status(501);
+          res.send('Internal Server Error!Sorry, try again!');
+          console.log('An error has occurred: ' + err);
+        })
+    }
+});
 
 
 
