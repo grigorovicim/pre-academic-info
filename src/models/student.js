@@ -5,7 +5,21 @@ module.exports = (sequelize, DataTypes) => {
         nr_matricol: DataTypes.INTEGER
     }, {});
     Student.associate = function (models) {
-        models.Student.hasMany(models.ExamResult, {
+        models.Student.hasMany(models.ExamWrittenResult, {
+            foreignKey: {
+                name: 'student_id',
+                allowNull: false
+            }
+        });
+
+        models.Student.hasMany(models.ExamPracticalResult, {
+            foreignKey: {
+                name: 'student_id',
+                allowNull: false
+            }
+        });
+
+        models.Student.hasMany(models.FinalGrade, {
             foreignKey: {
                 name: 'student_id',
                 allowNull: false
@@ -34,6 +48,20 @@ module.exports = (sequelize, DataTypes) => {
         });
 
         models.Student.hasMany(models.LabActivity, {
+            foreignKey: {
+                name: 'student_id',
+                allowNull: false
+            }
+        });
+
+        models.Student.hasMany(models.CourseActivity, {
+            foreignKey: {
+                name: 'student_id',
+                allowNull: false
+            }
+        });
+
+        models.Student.hasMany(models.CoursePresence, {
             foreignKey: {
                 name: 'student_id',
                 allowNull: false
