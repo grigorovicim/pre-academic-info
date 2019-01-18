@@ -209,11 +209,17 @@ class AddNewStudentToCourse extends Component<any, any> {
           }
 
          this.props.createUser(user);
-         sleep(500).then(() => {
+         sleep(1000).then(() => {
+            console.log("added user");
+            
             this.props.createProfile(profile);
-            sleep1(500).then(() => {
+            sleep1(1000).then(() => {
+                console.log("added profile");
+                
                 this.props.createStudent(student);
-                sleep2(500).then(()=>{
+                sleep2(1000).then(()=>{
+                    console.log("added student");
+                    
                     this.props.createStudentCourse(studentCourse);
                 })
               })

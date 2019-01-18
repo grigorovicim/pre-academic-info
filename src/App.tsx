@@ -21,7 +21,7 @@ import CatalogPage from "./components/CatalogPage";
 import MyProfilePage from "./components/MyProfilePage";
 import AppActions from "./App.actions";
 import Register from "./authentication/Register";
-import AddNewStudentToCourse from './students/AddNewStudentToCourse';
+// import AddNewStudentToCourse from './students/AddNewStudentToCourse';
 import CoursesPage from './components/CoursesPage';
 
 // import CourseDetail from "./courses/CourseDetail";
@@ -85,7 +85,6 @@ class App extends Component<any, any> {
                         <Route path={"/register"} component={Register}/>
                     </div>
                 </BrowserRouter>
-                <AddNewStudentToCourse></AddNewStudentToCourse>
             </div>
         );
     }
