@@ -9,7 +9,21 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   
   Course.associate = function(models) {
-    models.Course.hasMany(models.ExamResult, {
+    models.Course.hasMany(models.ExamWrittenResult, {
+      foreignKey: {
+        name: 'course_id',
+        allowNull: false,
+      }
+    });
+
+    models.Course.hasMany(models.ExamPracticalResult, {
+      foreignKey: {
+        name: 'course_id',
+        allowNull: false,
+      }
+    });
+
+    models.Course.hasMany(models.FinalGrade, {
       foreignKey: {
         name: 'course_id',
         allowNull: false,
@@ -38,6 +52,20 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     models.Course.hasMany(models.LabActivity, {
+      foreignKey: {
+        name: 'course_id',
+        allowNull: false
+      }
+    });
+
+    models.Course.hasMany(models.CourseActivity, {
+      foreignKey: {
+        name: 'course_id',
+        allowNull: false
+      }
+    });
+
+    models.Course.hasMany(models.CoursePresence, {
       foreignKey: {
         name: 'course_id',
         allowNull: false

@@ -32,8 +32,10 @@ var CourseRoutes  = require('./src/routes/course-routes');
 var UserRoutes = require('./src/routes/user-routes');
 var ConfigRoutes = require('./src/routes/configuration-routes');
 var RoleRoutes = require('./src/routes/role-routes');
+var StudentCourseRoutes = require('./src/routes/student-course-routes');
 const SpreadsheetRoutes = require('./src/routes/spreadsheet-routes');
 const ProfileRoutes = require('./src/routes/profile-routes');
+
 
 const app = express();
 const emailUtil = require('./src/util/email');
@@ -54,6 +56,7 @@ app.use('/config', ConfigRoutes);
 app.use('/spreadsheet', SpreadsheetRoutes);
 app.use('/profile', ProfileRoutes);
 app.use('/role', RoleRoutes);
+app.use('/studentcourse', StudentCourseRoutes);
 
 app.get('/check-server', (req, res) => {
     res.send({express: 'Hello From Express BACKEND!'});
@@ -226,6 +229,12 @@ app.get('professor/course', (req, res) => {
     const courseId = req.body.courseId;
     professors = ProfessorRoutes.get('/professor/course/' + courseId);
     res.send(professors);
+});
+
+app.post('formOfEvaluation', (req, res) =>{
+  const item = req.body.item;
+  let something = FormOfEvaluationRoutes.post('/formOfEvaluation/');
+  res.send(something);
 });
 
 

@@ -1,19 +1,30 @@
 // @ts-ignore
 import React, {Component} from 'react';
 // @ts-ignore
+import axios from 'axios';
+
+// @ts-ignore
 import React, {Component} from 'react';
 // @ts-ignore
 import {connect} from 'react-redux';
+import './App.css';
+
+// import logo from './logo.png';
+//import Dashboard from './courses/Dashboard'
+// import CourseDetail from "./courses/CourseDetail";
 // @ts-ignore
 import {Route, BrowserRouter} from "react-router-dom";
 import './App.css';
-import CoursesPage from "./components/CoursesPage";
 import HomePage from "./components/HomePage";
 import StudentsPage from "./components/StudentsPage";
 import CatalogPage from "./components/CatalogPage";
+import MyProfilePage from "./components/MyProfilePage";
+import AppActions from "./App.actions";
 import Register from "./authentication/Register";
-import AppActions from './App.actions';
-import MyProfilePage from "./components/myProfilePage/MyProfilePage";
+// import AddNewStudentToCourse from './students/AddNewStudentToCourse';
+import CoursesPage from './components/CoursesPage';
+
+// import CourseDetail from "./courses/CourseDetail";
 
 class App extends Component<any, any> {
     constructor(props: any) {
@@ -78,14 +89,13 @@ class App extends Component<any, any> {
         );
     }
 }
-
 const mapStateToProps = (state: any) => {
     return {
         user: Object.assign({}, state.app.user),
     };
 };
+ 
 
 export default connect(
     mapStateToProps,
 )(App);
-

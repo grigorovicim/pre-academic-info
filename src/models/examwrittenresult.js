@@ -1,21 +1,21 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const ExamResult = sequelize.define('ExamResult', {
+  const ExamWrittenResult = sequelize.define('ExamWrittenResult', {
     grade: DataTypes.REAL
   }, {});
-  ExamResult.associate = function(models) {
-    models.ExamResult.belongsTo(models.Student, {
+  ExamWrittenResult.associate = function(models) {
+    models.ExamWrittenResult.belongsTo(models.Student, {
       foreignKey: { 
         name: 'student_id',
         allowNull: false,
       }
     });
-    models.ExamResult.belongsTo(models.Course, {
+    models.ExamWrittenResult.belongsTo(models.Course, {
       foreignKey: { 
         name: 'course_id',
         allowNull: false
       }
     });
   };
-  return ExamResult;
+  return ExamWrittenResult;
 };
