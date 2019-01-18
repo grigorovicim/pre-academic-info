@@ -39,6 +39,20 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
 
+    models.Professor.hasMany(models.CourseActivity, {
+      foreignKey: {
+        name: 'professor_id',
+        allowNull: false
+      }
+    });
+
+    models.Professor.hasMany(models.CoursePresence, {
+      foreignKey: {
+        name: 'professor_id',
+        allowNull: false
+      }
+    });
+
     models.Professor.hasMany(models.ProfessorCourse, {
       foreignKey: {
         name: 'professor_id',

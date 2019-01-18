@@ -194,7 +194,7 @@ module.exports = {
         })
         .then(() => {
           return queryInterface.addColumn(
-            'ExamResults',
+            'ExamWrittenResults',
             'student_id',
             {
               type: Sequelize.INTEGER,
@@ -209,7 +209,7 @@ module.exports = {
         })
         .then(() => {
           return queryInterface.addColumn(
-            'ExamResults',
+            'ExamWrittenResults',
             'course_id',
             {
               type: Sequelize.INTEGER,
@@ -221,7 +221,68 @@ module.exports = {
               onDelete: 'SET NULL',
             }
           );
-        }).then(() => {
+        })
+        .then(() => {
+          return queryInterface.addColumn(
+            'ExamPracticalResults',
+            'student_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Students',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        })
+        .then(() => {
+          return queryInterface.addColumn(
+            'ExamPracticalResults',
+            'course_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Courses',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        })
+        .then(() => {
+          return queryInterface.addColumn(
+            'FinalGrades',
+            'student_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Students',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        })
+        .then(() => {
+          return queryInterface.addColumn(
+            'FinalGrades',
+            'course_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Courses',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        })
+        .then(() => {
           return queryInterface.addColumn(
             'Professors',
             'title_id',
@@ -377,6 +438,48 @@ module.exports = {
           );
         }).then(() => {
           return queryInterface.addColumn(
+            'CoursePresences',
+            'professor_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Professors',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'CoursePresences',
+            'student_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Students',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'CoursePresences',
+            'course_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Courses',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
             'LabActivities',
             'professor_id',
             {
@@ -448,6 +551,48 @@ module.exports = {
         }).then(() => {
           return queryInterface.addColumn(
             'SeminarActivities',
+            'course_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Courses',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'CourseActivities',
+            'professor_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Professors',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'CourseActivities',
+            'student_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'Students',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'CourseActivities',
             'course_id',
             {
               type: Sequelize.INTEGER,
@@ -523,13 +668,37 @@ module.exports = {
         })
         .then(() => {
           return queryInterface.removeColumn(
-            'ExamResults',
+            'ExamWrittenResults',
             'student_id'
           );
         })
         .then(() => {
           return queryInterface.removeColumn(
-            'ExamResults',
+            'ExamWrittenResults',
+            'course_id'
+          );
+        })
+        .then(() => {
+          return queryInterface.removeColumn(
+            'ExamPracticalResults',
+            'student_id'
+          );
+        })
+        .then(() => {
+          return queryInterface.removeColumn(
+            'ExamPracticalResults',
+            'course_id'
+          );
+        })
+        .then(() => {
+          return queryInterface.removeColumn(
+            'FinalGrades',
+            'student_id'
+          );
+        })
+        .then(() => {
+          return queryInterface.removeColumn(
+            'FinalGrades',
             'course_id'
           );
         })
@@ -590,6 +759,21 @@ module.exports = {
           );
         }).then(() => {
           return queryInterface.removeColumn(
+            'CoursePresences',
+            'course_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'CoursePresences',
+            'professor_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'CoursePresences',
+            'student_id'
+          );  
+        }).then(() => {
+          return queryInterface.removeColumn(
             'LabActivities',
             'course_id'
           );
@@ -616,6 +800,21 @@ module.exports = {
         }).then(() => {
           return queryInterface.removeColumn(
             'SeminarActivities',
+            'student_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'CourseActivities',
+            'course_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'CourseActivities',
+            'professor_id'
+          );
+        }).then(() => {
+          return queryInterface.removeColumn(
+            'CourseActivities',
             'student_id'
           );
         });

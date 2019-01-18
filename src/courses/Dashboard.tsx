@@ -4,9 +4,10 @@ import { Component } from "react";
 import './Dashboard.css';
 import DashboardCourseItem from './DasboardCourseItem';
 import AppActions from 'src/App.actions';
-import CourseDetails from 'src/components/CourseDetails';
+// import CourseDetails from 'src/components/CourseDetails';
 import { connect } from 'react-redux';
 import Popup from 'src/commons/Popup';
+import ActivityDetail from './ActivityDetail';
 
 class Dashboard extends Component<any, any> {
 
@@ -23,7 +24,7 @@ class Dashboard extends Component<any, any> {
       if (!isNaN(courseId)) {
         this.props.dispatch(AppActions.setPopupVisibility(true));
         this.props.dispatch(AppActions.setPopupContentElement(
-          <CourseDetails 
+          <ActivityDetail 
             courseDetails={courseDetails}
             key={Date.now()}
           />

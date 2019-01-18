@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Component } from "react";
+import {Component} from "react";
 
 import StudentsListItem from './StudentsListItem';
 
@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { fetchStudents, fetchProfileForStudent } from '../actions/Student.actions';
 import Popup from "../commons/Popup";
 
-class StudentsList extends Component<any, any>{
+class StudentsList extends Component<any, any> {
     static propTypes = {
         fetchStudents: PropTypes.func.isRequired,
         students: PropTypes.array.isRequired,
@@ -20,7 +20,7 @@ class StudentsList extends Component<any, any>{
     /// TODO get the real id of the course from the user input
     private courseId = 1;
 
-    constructor(props){
+    constructor(props : any){
         super(props);
         this.state = {
             isPopupVisible: false,
@@ -48,15 +48,16 @@ class StudentsList extends Component<any, any>{
     }
 
     render(){
-        const studentItems = this.props.students.map(student => {
+        const studentItems = this.props.students.map((student : any) => {
             this.props.fetchProfileForStudent(student.id);
-            return(
+            return (
                 <div key={student.id}>
-                    <StudentsListItem student = {this.props.studentProfile} courseId = {this.courseId} studentId = {student.id}/>
+                    <StudentsListItem student={this.props.studentProfile} courseId={this.courseId}
+                                      studentId={student.id}/>
                 </div>
             );
         })
-        return(
+        return (
             <div>
                 <tbody className="p-students-table">
                     {/* <tr>
@@ -73,10 +74,10 @@ class StudentsList extends Component<any, any>{
     }
 }
 
-const mapStateToProps = state => ({
-    students: state.studentReducer.items, 
+const mapStateToProps = (state: any) => ({
+    students: state.studentReducer.items,
     studentProfile: state.studentReducer.studentProfile
 });
 
 
-export default connect(mapStateToProps, { fetchStudents, fetchProfileForStudent })(StudentsList);
+export default connect(mapStateToProps, {fetchStudents, fetchProfileForStudent})(StudentsList);

@@ -2,7 +2,7 @@
 // @ts-ignore
 import axios from 'axios';
 
-import { FETCH_CATALOG, FILTER_CATALOG_STUDY, FILTER_CATALOG_SEMESTER, FILTER_CATALOG_YEAR  } from './types';
+import { FETCH_CATALOG, FILTER_CATALOG_STUDY, FILTER_CATALOG_SEMESTER, FILTER_CATALOG_YEAR} from './types';
 
 
 export default class CourseActions {
@@ -64,7 +64,7 @@ static saveStudyFilter = (study: string) => (dispatch: any) => {
                 study,
             },
         });
-    }
+    };
 
     static saveSemesterFilter = (semester: string) => (dispatch: any) => {
         dispatch({
@@ -73,7 +73,7 @@ static saveStudyFilter = (study: string) => (dispatch: any) => {
                 semester,
             },
         });
-    }
+    };
 
     static saveYearFilter = (year: string) => (dispatch: any) => {
         dispatch({
@@ -82,7 +82,7 @@ static saveStudyFilter = (study: string) => (dispatch: any) => {
                 year,
             },
         });
-    }
+    };
 
     static fetchCatalog = (data: any) => (dispatch: any) => {
         const professorId = data.user.userDetails.id;
@@ -103,7 +103,8 @@ static saveStudyFilter = (study: string) => (dispatch: any) => {
                 },
             });
         });
-    }
+    };
+
 
 }
 

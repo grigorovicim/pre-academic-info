@@ -8,8 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      date_of_presence: {
-        type: Sequelize.DATE
+      week: {
+        type: Sequelize.INTEGER
       },
       grade: {
         type: Sequelize.INTEGER

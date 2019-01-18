@@ -1,14 +1,14 @@
 import * as React from "react";
-import { Component } from "react";
+import {Component} from "react";
 
-import { connect } from 'react-redux'; 
-import { removeStudentConfig } from '../actions/Config.actions'; 
+import {connect} from 'react-redux';
+import {removeStudentConfig} from '../actions/Config.actions';
 
 class StudentsListItem extends Component<any, any> {
-    private firstName;
-    private lastName;
-    private courseId;
-    private studentId;
+    private firstName: any;
+    private lastName: any;
+    private courseId: any;
+    private studentId: any;
 
     constructor(props: any) {
         super(props);
@@ -25,19 +25,20 @@ class StudentsListItem extends Component<any, any> {
         this.props.removeStudentConfig(this.studentId, this.courseId);
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
-                {this.firstName} {this.lastName} <button onClick={this.handleRemove}>x</button>
+                {this.firstName} {this.lastName}
+                <button onClick={this.handleRemove}>x</button>
             </div>
         );
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
     students: state.studentReducer.items,
     studentProfile: state.studentReducer.studentProfile
 });
 
-export default connect(mapStateToProps, { removeStudentConfig })(StudentsListItem);
+export default connect(mapStateToProps, {removeStudentConfig})(StudentsListItem);
 
