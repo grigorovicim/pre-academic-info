@@ -61,10 +61,10 @@ class Tests extends Component<any,any> {
     this.data = []
    // this.columns = []
     this.columns= [{
-        Header: "Test number",
+        Header: "Activity number",
         accessor: "test_number",
           },{
-        Header: "Test percentage",
+        Header: "Activity percentage",
         accessor: "test_percentage",
     }]
     

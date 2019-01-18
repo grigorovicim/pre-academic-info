@@ -28,6 +28,9 @@ class CourseDetail extends Component<any, any> {
         this.onSeminarPercentageChange = this.onSeminarPercentageChange.bind(this)
         this.onLabPercentageChange = this.onLabPercentageChange.bind(this)
 
+        this.onWrittenExamPercentageChange =  this.onWrittenExamPercentageChange.bind(this)
+        this.onPracticalExamPercentageChange =  this.onPracticalExamPercentageChange.bind(this)
+
         this.onCourseNumberChange = this.onCourseNumberChange.bind(this);
         this.onSeminarNumberChange = this.onSeminarNumberChange.bind(this);
         this.onLabNumberChange = this.onLabNumberChange.bind(this);
@@ -52,6 +55,8 @@ class CourseDetail extends Component<any, any> {
             seminarNumber: this.props.detail.seminars.number,
             labNumber: this.props.detail.labs.number,
 
+            writtenExam: this.props.detail.courses.writtenExam,
+            practicalExam: this.props.detail.courses.practicalExam,
 
             coursePercentage: this.props.detail.courses.percentage,
             labPercentage: this.props.detail.seminars.percentage,
@@ -115,6 +120,14 @@ class CourseDetail extends Component<any, any> {
     }
     onLabTestsChange(e : any){
         this.setState({labTests: e.target.value})
+    }
+
+    onPracticalExamPercentageChange(e: any){
+        this.setState({practicalExam: e.target.value})
+    }
+
+    onWrittenExamPercentageChange(e: any){
+        this.setState({writtenExam: e.target.value})
     }
 
 	closeLabPopup() {
@@ -278,7 +291,7 @@ class CourseDetail extends Component<any, any> {
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.coursePercentage} onChange={this.onCoursePercentageChange} size={1}/></Col>
             </Row>
             <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Tests:</Col> 
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Activities:</Col> 
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {2} ><input type='text' value = {this.state.courseTests} onChange={this.onCourseTestsChange} size={1}/></Col>
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><Button onClick={this.openCourseTestsPopup}><i className="fa fa-cog" aria-hidden="true"></i></Button></Col>
  
@@ -323,7 +336,7 @@ class CourseDetail extends Component<any, any> {
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.labPercentage} onChange={this.onLabPercentageChange} size={1}/></Col>
             </Row>
             <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Tests:</Col> 
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Activities:</Col> 
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {2} ><input type='text' value = {this.state.labTests} onChange={this.onLabTestsChange}  size={1}/></Col>
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><Button onClick={this.openLabTestsPopup}><i className="fa fa-cog" aria-hidden="true"></i></Button></Col>
             </Row>
@@ -352,7 +365,7 @@ class CourseDetail extends Component<any, any> {
               this.setState({isSeminar : 1 - this.state.isSeminar});
   
               }}
-        /></Col>
+    /></Col>
         <Col className="text-center" style={{fontSize: '1.5em', color:'gray'}} md={2}>Seminars</Col>
         { this.state.isSeminar === 1 &&
         <Col style={{fontSize: '1em', color:'gray'}} md = {4}>
@@ -365,7 +378,7 @@ class CourseDetail extends Component<any, any> {
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.seminarPercentage} onChange={this.onSeminarPercentageChange} size={1}/></Col>
             </Row>
             <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Tests:</Col> 
+                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Activities:</Col> 
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {2} ><input type='text'value = {this.state.seminarTests} onChange={this.onSeminarTestsChange} size={1}/></Col>
                 <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><Button onClick={this.openSeminarTestsPopup}><i className="fa fa-cog" aria-hidden="true"></i></Button></Col>
             </Row>
@@ -400,6 +413,19 @@ class CourseDetail extends Component<any, any> {
         Students list component
         </Col>
     </Row>
+    <br/><br/>
+    <hr/>
+    <Row className="show-grid text-center">
+    <Col style={{fontSize: '1.5em', color:'gray'}} md={2}>Written Exam</Col>
+    <Col style = {{fontSize: '1.25em', color:'gray'}} md = {2}>Percentage:</Col> 
+    <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.writtenExamPercentage}  onChange={this.onWrittenExamPercentageChange} size={1}/></Col>  
+   </Row>
+    
+   <Row className="show-grid text-center">
+    <Col style={{fontSize: '1.5em', color:'gray'}} md={2}>Practical Exam</Col>
+    <Col style = {{fontSize: '1.25em', color:'gray'}} md = {2}>Percentage:</Col> 
+    <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.practicalExamPercentage}  onChange={this.onPracticalExamPercentageChange} size={1}/></Col>  
+   </Row>
     <br/><br/>
     <Button className="btn btn-success" onClick={this.submit}>Submit</Button>
 	<Popup isVisible={this.state.isCoursePopupVisible} sendToParent = {this.getFromChildCourse} onClose={this.closeCoursePopup} componentType={this.state.popupCourseComponentType} tests={this.state.courseTests} percentages={this.state.coursePercentages} refresh={this.onCourseTestsChange}/>
