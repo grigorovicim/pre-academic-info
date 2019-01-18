@@ -18,10 +18,10 @@ import { createUser } from '../actions/User.actions';
 class AddNewStudentToCourse extends Component<any, any> {
 
     static propTypes = {
+        createProfile: PropTypes.func.isRequired,
         createStudent: PropTypes.func.isRequired,
         createStudentCourse: PropTypes.func.isRequired,
         createUser: PropTypes.func.isRequired,
-        createProfile: PropTypes.func.isRequired
         //students: PropTypes.array.isRequired,
       };
 
@@ -137,13 +137,16 @@ class AddNewStudentToCourse extends Component<any, any> {
         this.setState({phoneValue: event.target.value});
     }
 
+    
+
     handleSubmit(event) {
         alert('A new student has been submitted: ' + this.state.familyNameValue + ' ' + this.state.firstNameValue + '\n'+
             this.state.emailValue + '\n' + this.state.messageValue + '\n' + 
             'type: ' + this.state.typeValue + '\n'+ 
             'year id: ' + this.state.yearValue + '\n' +
             'group id: ' + this.state.groupValue + '\n' +
-            'section id: ' + this.state.sectionValue
+            'section id: ' + this.state.sectionValue + '\n'+
+            'course id: ' + this.state.courseIdValue
         );
 
         const student = {   
@@ -152,7 +155,7 @@ class AddNewStudentToCourse extends Component<any, any> {
             "createdAt":new Date(), 
             "updatedAt":new Date(), 
             "group_id": this.state.groupValue,
-            "profile_id":1, //TODO - create an actual profile
+            "profile_id":this.state.studentIdValue, //TODO - create an actual profile
             "section_id": this.state.sectionValue, 
             "semester_id":1, // TODO 
             "year_of_study_id": this.state.yearValue
@@ -194,12 +197,34 @@ class AddNewStudentToCourse extends Component<any, any> {
             "user_id": this.state.studentIdValue
         }
 
-        //TODO: synchronize the calls from below so they're called in order
+        const sleep = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+          }
+
+          const sleep1 = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+          }
+          const sleep2 = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+          }
+
          this.props.createUser(user);
-         //TODO: here create profile
-         this.props.createProfile(profile);
-         this.props.createStudent(student);
-         this.props.createStudentCourse(studentCourse);
+         sleep(1000).then(() => {
+            console.log("added user");
+            
+            this.props.createProfile(profile);
+            sleep1(1000).then(() => {
+                console.log("added profile");
+                
+                this.props.createStudent(student);
+                sleep2(1000).then(()=>{
+                    console.log("added student");
+                    
+                    this.props.createStudentCourse(studentCourse);
+                })
+              })
+          })
+        
 
         console.log(student.id);
 
@@ -249,9 +274,9 @@ class AddNewStudentToCourse extends Component<any, any> {
                 </select>
                 <br/>
                 Year:
-                <select value={this.state.yearValue} onChange={this.handleTypeChange}> 
+                <select value={this.state.yearValue} onChange={this.handleYearChange}> 
                     <option value="1">1</option>
-                    <option value="2">2 year</option>
+                    <option value="2">2</option>
                     <option value="3">3</option>
                 </select>
                 {/* <select value={this.state.yearValue} onChange={this.handleYearChange}>
@@ -306,6 +331,7 @@ class AddNewStudentToCourse extends Component<any, any> {
      )
    }
  }
+
 
 //  export default AddNewStudentToCourse;
 
