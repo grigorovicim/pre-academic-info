@@ -33,12 +33,12 @@ class Popup extends Component<any, any> {
     let display;
     let setWidth = "640px";
     let setHeight = "650px";
-    
+
     if (isVisible) {
       display = 'flex';
     } else {
       display = 'none';
-    } 
+    }
 
     if(this.props.isAlert) {
       setWidth = "640px";
@@ -48,9 +48,9 @@ class Popup extends Component<any, any> {
     let component;
     if (this.props.children) {
       component = this.props.children;
-    } 
+    }
 
-    
+
     if (this.props.componentType === "home") {
       return null;
     } else if (this.props.componentType === "p-login-whichButton") {
@@ -68,12 +68,11 @@ class Popup extends Component<any, any> {
     } else if ( this.props.componentType === "p-add-new-student-button"){
         component = <AddNewStudentToCourse courseId={this.props.courseId} callback={this.handleClick}/>
     } else if (this.props.componentType === "p-lab-tests"){
-      component = <Tests sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"lab"}/>
-    }
-    else if (this.props.componentType === "p-seminar-tests"){
-      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"seminar"}/>
+      component = <Tests sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} weeks = {this.props.weeks} type={"lab"}/>
+    } else if (this.props.componentType === "p-seminar-tests"){
+      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} weeks = {this.props.weeks} type={"seminar"}/>
     }else if (this.props.componentType === "p-course-tests"){
-      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"course"}/>
+      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} weeks = {this.props.weeks} type={"course"}/>
     } else{
       component = <span/>;
     }
