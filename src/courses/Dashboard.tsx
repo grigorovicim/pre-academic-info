@@ -11,8 +11,11 @@ import ActivityDetail from './ActivityDetail';
 
 class Dashboard extends Component<any, any> {
 
+    //private courseItems: any[];
+
     constructor(props: any) {
         super(props);
+        //this.courseItems = Array.from(props.courseItems);
         this.openCourseDetailsPopup = this.openCourseDetailsPopup.bind(this);
         this.closeCampaignPopup = this.closeCampaignPopup.bind(this);
     }
