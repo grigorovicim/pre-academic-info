@@ -7,6 +7,7 @@ import Login from 'src/authentication/Login';
 import RegisterFeedback from "../authentication/RegisterFeedback";
 import AddProf from "../professors/AddProf";
 import AddStudent from "../students/AddStudent";
+import AddNewStudentToCourse from "../students/AddNewStudentToCourse";
 import Tests from 'src/courses/popups/Tests';
 import CourseDetail from "../courses/CourseDetail";
 import ActivityDetail from "../courses/ActivityDetail";
@@ -60,13 +61,18 @@ class Popup extends Component<any, any> {
       component = <AddProf courseId={this.props.courseId} callback={this.handleClick}/>
     }  else if (this.props.componentType === "p-add-student-button"){
         component = <AddStudent courseId={this.props.courseId} callback={this.handleClick}/>
-    }  else if (this.props.componentType === "p-course-detail-button"){
+    } else if ( this.props.componentType === "p-add-new-student-button"){
+        component = <AddNewStudentToCourse courseId={this.props.courseId} callback={this.handleClick}/>
+         }  else if (this.props.componentType === "p-course-detail-button"){
         component = <CourseDetail />
+    }  else if (this.props.componentType === "p-activity-detail-button"){
+        component = <ActivityDetail details={this.props.courseDetails} />
     }  else if (this.props.componentType === "p-activity-detail-button"){
         component = <ActivityDetail details={this.props.courseDetails} />
     } else if (this.props.componentType === "p-lab-tests"){
       component = <Tests sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"lab"}/>
-    } else if (this.props.componentType === "p-seminar-tests"){
+    }
+    else if (this.props.componentType === "p-seminar-tests"){
       component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"seminar"}/>
     }else if (this.props.componentType === "p-course-tests"){
       component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"course"}/>
