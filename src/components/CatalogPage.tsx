@@ -3,7 +3,7 @@ import Header from "../commons/header/Header";
 import Dashboard from "../courses/Dashboard";
 import CourseActions from "../actions/Course.actions"
 import * as React from "react";
-import { connect } from 'react-redux';
+import { connect } from 'react-redux';  
 
 import './CatalogPage.css';
 
