@@ -18,10 +18,20 @@ export const fetchProfile = (profileId: any) => dispatch => {
     dispatch({
       type: FETCH_PROFILE,
       payload: res.data
-    })
-  }).catch(error => {
+    })}).catch(error => {
     console.log(error);
-  })
+  });
+}
+
+export const updateUser = (userDetails: any) => dispatch => {
+  axios.get('/profile/' + userDetails.profile.id).then(res => {
+    userDetails.profile = res.data;
+    dispatch({
+      type: FETCH_PROFILE,
+      payload: userDetails
+    })}).catch(error => {
+    console.log(error);
+  });
 }
 
 export const createProfile = postData => dispatch => {
