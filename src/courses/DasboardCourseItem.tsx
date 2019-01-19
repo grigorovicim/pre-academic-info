@@ -5,9 +5,8 @@ import './DashboardCourseItem.css';
 import plusBtn from '../plus-btn.png';
 
 import optionsBtn from '../options-btn.png';
-import AppActions from "../App.actions";
-import ActivityDetail from "./ActivityDetail";
 import {connect} from "react-redux";
+import Popup from "../commons/Popup";
 
 
 
