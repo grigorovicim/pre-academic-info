@@ -23,6 +23,7 @@
 }
 
 .div-config-button-wrapper {
+    position: static;
     align-items: center;
 }
 
