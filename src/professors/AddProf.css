@@ -61,6 +61,15 @@
     margin: auto;
 }
 
+.p-delete-professor-button{
+    height: 24px;
+    width: 48px;
+    border: 1px solid #E4E4E4;
+    border-radius: 12px;
+    background-color: rgba(222, 82, 81, 0.71);
+    margin: auto;
+}
+
 
 .p-done-button {
     height: 24px;
