@@ -1,13 +1,13 @@
-import { Component } from "react";
+import {Component} from "react";
 import Header from "../commons/header/Header";
 import Dashboard from "../courses/Dashboard";
 import CourseActions from "../actions/Course.actions"
 import * as React from "react";
-import { connect } from 'react-redux';  
+import { connect } from 'react-redux';
 
 import './CatalogPage.css';
 
-class CoursesPage extends Component<any, any>
+class CoursesPage extends Component<any,any>
 {
 
     constructor(props: any) {
@@ -20,7 +20,6 @@ class CoursesPage extends Component<any, any>
         this.handleYearChange = this.handleYearChange.bind(this);
         this.handleSemesterChange = this.handleSemesterChange.bind(this);
         this.fetchCatalog = this.fetchCatalog.bind(this);
-
     }
 
     handleStudyChange(event: any) {
@@ -116,32 +115,32 @@ class CoursesPage extends Component<any, any>
 
         return (
             <div className="p-app">
-                <Header home="none" courses="none" students="none" catalog="inline" myProfile="none" />
+                <Header home="none" courses="none" students="none" catalog="inline" myProfile="none"/>
 
                 <div className="p-filter-container">
                     <div className="p-filter-item">
                         <div className="p-filter-item-title">STUDY:</div>
                         <div className="p-filter-item-buttons">
-                            <div className="p-filter-item-button" onClick={this.handleStudyChange} style={{ backgroundColor: backgroundColorForStudyFirst }}>LICENTA</div>
-                            <div className="p-filter-item-button" onClick={this.handleStudyChange} style={{ backgroundColor: backgroundColorForStudySecond }}>MASTERAT</div>
-                            <div className="p-filter-item-button" onClick={this.handleStudyChange} style={{ backgroundColor: backgroundColorForStudyThird }}>DOCTORAT</div>
+                            <div className="p-filter-item-button" onClick={this.handleStudyChange} style = {{backgroundColor: backgroundColorForStudyFirst}}>LICENTA</div>
+                            <div className="p-filter-item-button" onClick={this.handleStudyChange} style = {{backgroundColor: backgroundColorForStudySecond}}>MASTERAT</div>
+                            <div className="p-filter-item-button" onClick={this.handleStudyChange} style = {{backgroundColor: backgroundColorForStudyThird}}>DOCTORAT</div>
                         </div>
                     </div>
-
+                    
                     <div className="p-filter-item">
                         <div className="p-filter-item-title">YEAR:</div>
                         <div className="p-filter-item-buttons">
-                            <div className="p-filter-item-button" onClick={this.handleYearChange} style={{ backgroundColor: backgroundColorForYearFirst }}>I</div>
-                            <div className="p-filter-item-button" onClick={this.handleYearChange} style={{ backgroundColor: backgroundColorForYearSecond }}>II</div>
-                            <div className="p-filter-item-button" onClick={this.handleYearChange} style={{ backgroundColor: backgroundColorForYearThird }}>III</div>
+                            <div className="p-filter-item-button" onClick={this.handleYearChange} style = {{backgroundColor: backgroundColorForYearFirst}}>I</div>
+                            <div className="p-filter-item-button" onClick={this.handleYearChange} style = {{backgroundColor: backgroundColorForYearSecond}}>II</div>
+                            <div className="p-filter-item-button" onClick={this.handleYearChange} style = {{backgroundColor: backgroundColorForYearThird}}>III</div>
                         </div>
                     </div>
 
                     <div className="p-filter-item">
                         <div className="p-filter-item-title">SEMESTER:</div>
                         <div className="p-filter-item-buttons">
-                            <div className="p-filter-item-button" onClick={this.handleSemesterChange} style={{ backgroundColor: backgroundColorForSemesterFirst }}>I</div>
-                            <div className="p-filter-item-button" onClick={this.handleSemesterChange} style={{ backgroundColor: backgroundColorForSemesterSecond }}>II</div>
+                            <div className="p-filter-item-button" onClick={this.handleSemesterChange} style = {{backgroundColor: backgroundColorForSemesterFirst}}>I</div>
+                            <div className="p-filter-item-button" onClick={this.handleSemesterChange} style = {{backgroundColor: backgroundColorForSemesterSecond}}>II</div>
                         </div>
                     </div>
                 </div>
