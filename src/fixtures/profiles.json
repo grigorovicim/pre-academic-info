@@ -2,7 +2,6 @@
     {
         "model": "Profile",
         "data": {
-            "id": 1,
             "first_name": "Monica",
             "last_name": "Grigorovici",
             "personal_email": "gmie2345@scs.ubbcluj.ro",
@@ -16,7 +15,6 @@
     {
         "model": "Profile",
         "data": {
-            "id": 2,
             "first_name": "Florin",
             "last_name": "Hangan",
             "personal_email": "hfie2136@scs.ubbcluj.ro",
@@ -30,7 +28,6 @@
     {
         "model": "Profile",
         "data": {
-            "id": 3,
             "first_name": "Andrada",
             "last_name": "Gae",
             "personal_email": "gaie2345@scs.ubbcluj.ro",
@@ -44,7 +41,6 @@
     {
         "model": "Profile",
         "data": {
-            "id": 4,
             "first_name": "Dragos",
             "last_name": "Grigore",
             "personal_email": "gdie2345@scs.ubbcluj.ro",
@@ -58,7 +54,6 @@
     {
         "model": "Profile",
         "data": {
-            "id": 5,
             "first_name": "Miruna",
             "last_name": "Radu",
             "personal_email": "rmir2345@scs.ubbcluj.ro",
@@ -72,7 +67,6 @@
     {
         "model": "Profile",
         "data": {
-            "id": 6,
             "first_name": "Emilia",
             "last_name": "Hangan",
             "personal_email": "heie2135@scs.ubbcluj.ro",
@@ -86,7 +80,6 @@
     {
         "model": "Profile",
         "data": {
-            "id": 7,
             "first_name": "Diana",
             "last_name": "Dragos",
             "personal_email": "ddie2345@scs.ubbcluj.ro",
@@ -100,7 +93,6 @@
     {
         "model": "Profile",
         "data": {
-            "id": 8,
             "first_name": "Radu",
             "last_name": "Dragos",
             "personal_email": "radudragos@cs.ubbcluj.ro",
@@ -114,7 +106,6 @@
     {
         "model": "Profile",
         "data": {
-            "id": 9,
             "first_name": "Radu",
             "last_name": "Gaceanu",
             "personal_email": "radugaceanu@cs.ubbcluj.ro",
@@ -128,7 +119,6 @@
     {
         "model": "Profile",
         "data": {
-            "id": 10,
             "first_name": "Dan",
             "last_name": "Suciu",
             "personal_email": "gmie2345@scs.ubbcluj.ro",

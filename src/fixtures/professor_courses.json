@@ -2,7 +2,6 @@
     {
         "model": "ProfessorCourse",
         "data": {
-            "id": 1,
             "year": 3,
             "isTeachingCourse": true,
             "isTeachingSeminar": false,
