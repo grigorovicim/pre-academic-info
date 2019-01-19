@@ -9,6 +9,7 @@ const reducer = (state = {
     isAdmin: false,
     isChecked: false,
   },
+  errorMessage: null
 },
  action: any) => {
 
@@ -34,6 +35,25 @@ const reducer = (state = {
     return {
       ...state,
       isLoggedIn: payload.isLoggedIn,
+    };
+  }
+
+  case 'SET_ERROR_MESSAGE': {
+    return {
+      ...state,
+      errorMessage: payload.errorMessage
+    }
+  }
+
+  case 'SWITCH_PAGE_TO_LOGIN': {
+    return {
+      ...state,
+      user: Object.assign({}, {
+        userDetails: null,
+        isAdmin: false,
+        isChecked: true,
+        isLoggedIn: false,
+      }),
     };
   }
 

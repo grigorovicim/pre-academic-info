@@ -50,6 +50,7 @@ class Login extends Component<any, any> {
           <div className="p-login-welcome">Welcome</div>
           <img className="p-login-logo-image" src={loginLogo}/>
         </div>
+        <div className="p-error-message">{this.props.errorMessage}</div>
         <input ref={this.setUsernameInputRef} type="text" placeholder="email"/>
         <hr className="p-line-login"/>
         <input ref={this.setPasswordInputRef} type="password" placeholder="password"/>
@@ -67,6 +68,7 @@ class Login extends Component<any, any> {
 const mapStateToProps = (state: any) => {
   return {
     user: Object.assign({}, state.app.user),
+    errorMessage: state.app.errorMessage,
   };
 };
 

@@ -38,6 +38,7 @@ export default class LoginActions {
               },
             });
           } else {
+            
             dispatch({
               type: 'SET_USER_DETAILS',
               payload: {
@@ -53,7 +54,22 @@ export default class LoginActions {
         }
       })
       .catch((error) => {
-        throw error;
+        console.log("ERROROROOROROROR");
+        if(error.request.status === 501) {
+          dispatch({
+            type: 'SET_ERROR_MESSAGE',
+            payload: {
+              errorMessage: "Invalid Credentials. Please try again.",
+            }
+          });
+        } else if(error.request.status === 402) {
+          dispatch({
+            type: 'SET_ERROR_MESSAGE',
+            payload: {
+              errorMessage: "Login unsuccessful. Please try again.",
+            }
+          });
+        }
       })
       .then(() => {
       });
@@ -73,6 +89,12 @@ export default class LoginActions {
                   userDetails: null,
               }
             },
+        });
+        dispatch({
+          type: 'SET_ERROR_MESSAGE',
+          payload: {
+            errorMessage: null,
+          }
         });
       })
     };
