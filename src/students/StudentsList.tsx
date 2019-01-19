@@ -73,8 +73,8 @@ class StudentsList extends Component<any, any> {
                         <th className="p-students-table-header">Student name</th>
                     </tr> */}
                     <tr>
-                        <button onClick={this.openAddStudentPopup}>Add existing student to course</button>
-                        <button onClick={this.openAddNewStudentPopup}>Add new student to course</button>
+                        <button className="p-add-student-to-course-btn" onClick={this.openAddStudentPopup}>Add existing student to course</button>
+                        <button className="p-add-student-to-course-btn" onClick={this.openAddNewStudentPopup}>Add new student to course</button>
                     </tr>
                     {studentItems}
                 </tbody>
