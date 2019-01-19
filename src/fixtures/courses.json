@@ -6,7 +6,7 @@
             "description": "Algebra",
             "credits": 5,   
             "year_of_study": 1,
-            "is_active": "true",
+            "is_active": "false",
             "academic_programme_id": 1,
             "section_id" : 2,
             "semester_id" : 1
@@ -19,7 +19,7 @@
             "description": "Design Patterns",
             "credits": 5,
             "year_of_study": 3,
-            "is_active": "true",
+            "is_active": "false",
             "academic_programme_id": 1,
             "section_id" : 2,
             "semester_id" : 1
@@ -32,7 +32,7 @@
             "description": "Microcontrollers",
             "credits": 5,
             "year_of_study": 3,
-            "is_active": "true",
+            "is_active": "false",
             "academic_programme_id": 1,
             "section_id" : 2,
             "semester_id" : 1
@@ -45,7 +45,7 @@
             "description": "PPD",
             "credits": 5,
             "year_of_study": 3,
-            "is_active": "true",
+            "is_active": "false",
             "academic_programme_id": 1,
             "section_id" : 2,
             "semester_id" : 1
@@ -58,7 +58,7 @@
             "description": "LFTC",
             "credits": 5,
             "year_of_study": 3,
-            "is_active": "true",
+            "is_active": "false",
             "academic_programme_id": 1,
             "section_id" : 2,
             "semester_id" : 1
@@ -71,7 +71,7 @@
             "description": "MA",
             "credits": 5,
             "year_of_study": 3,
-            "is_active": "true",
+            "is_active": "false",
             "academic_programme_id": 1,
             "section_id" : 2,
             "semester_id" : 1
@@ -84,7 +84,7 @@
             "description": "SS",
             "credits": 5,
             "year_of_study": 3,
-            "is_active": "true",
+            "is_active": "false",
             "academic_programme_id": 1,
             "section_id" : 2,
             "semester_id" : 1
@@ -97,7 +97,7 @@
             "description": "PC",
             "credits": 5,
             "year_of_study": 3,
-            "is_active": "true",
+            "is_active": "false",
             "academic_programme_id": 1,
             "section_id" : 2,
             "semester_id" : 1
