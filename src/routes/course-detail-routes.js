@@ -4,7 +4,7 @@ var router  = express.Router();
 const Sequelize = require('sequelize');
 /**
  * Returns a course configuration.
- * @method GET the list course configuration
+ * @method GET the course configuration
  * @throws 'Internal Server Error! Sorry, try again!'
  */
 router.get('/:id', function(_, res){
@@ -119,7 +119,7 @@ router.put('/', function(req, res){
 
   });
 
-  /**
+/**
  * Adds a course configuration
  * @method POST a course configuration
  * @throws 'Unable to add the course configuration' for an SQL error
