@@ -59,11 +59,11 @@ class Popup extends Component<any, any> {
     }  else if (this.props.componentType === "p-add-student-button"){
         component = <AddStudent courseId={this.props.courseId} callback={this.handleClick}/>
     } else if (this.props.componentType === "p-lab-tests"){
-      component = <Tests sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"lab"}/>
+      component = <Tests sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} weeks = {this.props.weeks} type={"lab"}/>
     } else if (this.props.componentType === "p-seminar-tests"){
-      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"seminar"}/>
+      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} weeks = {this.props.weeks} type={"seminar"}/>
     }else if (this.props.componentType === "p-course-tests"){
-      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"course"}/>
+      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} weeks = {this.props.weeks} type={"course"}/>
     } else{
       component = <span/>;
     }
