@@ -33,10 +33,55 @@ router.get('/group/:groupNumber', function(req, res){
   });
 });
 
+
+/**
+ * Returns the students with their activities at seminar.
+ * @method GET the list of students with their activities at seminar.
+ * @throws 'Internal Server Error! Sorry, try again!'
+ */
+// router.get('/catalog/:type/:id', function(req,res){
+//   const typeOfHour = req.params.type;
+//   const courseId = req.params.course.id;
+//   if (typeOfHour = 'seminar'){
+//     models.Student.findAll().then({include: [{
+//       model: (models.SeminarActivity,
+//       where: {course_id : courseId}),
+//     }]}).then(students => res.json(students), err => {
+//       res.status(501);
+//       res.send('Internal Server Error! Sorry, try again!');
+//       console.log('An error has occured: ' + err);
+//     });
+//   }
+//   else if (typeOfHour = 'lab')
+//   {
+//     models.Student.findAll().then({include: [{
+//       model: (models.LabActivity, models.LabPresence),
+//       where: {course_id : courseId},
+//     }]}).then(students => res.json(students), err => {
+//       res.status(501);
+//       res.send('Internal Server Error! Sorry, try again!');
+//       console.log('An error has occured: ' + err);
+//     });
+//   }
+//   else if (typeOfHour = 'course')
+//   {
+//     models.Student.findAll().then({include: [{
+//       model: (models.CourseActivity, models.CoursePresence),
+//       where: {course_id : courseId},
+//     }]}).then(students => res.json(students), err => {
+//       res.status(501);
+//       res.send('Internal Server Error! Sorry, try again!');
+//       console.log('An error has occured: ' + err);
+//     });
+//   }
+// });
+
+
+
 /**
  * Returns the list of students that are part of a given section.
  * @method GET the list of students filtered by section name.
- * @throws 'Internal Server Error!Sorry, try again!'
+ * @throws 'Internal Server Error! Sorry, try again!'
  */
 router.get('/section/:name', function(req, res){
   const sectionName = req.params.name;

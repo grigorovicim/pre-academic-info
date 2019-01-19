@@ -1,0 +1,26 @@
+[
+    {
+		"model": "Professor",
+		"data": {
+            "nickname": "bradu",
+            "profile_id": 8,
+            "title_id": 3
+		}
+    },
+    {
+		"model": "Professor",
+		"data": {
+            "nickname": "",
+            "profile_id": 9,
+            "title_id": 3
+		}
+    },
+    {
+		"model": "Professor",
+		"data": {
+            "nickname": "Tzutzu",
+            "profile_id": 10,
+            "title_id": 3
+		}
+    }
+]

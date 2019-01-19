@@ -15,7 +15,7 @@ export const fetchProfessors = (courseId: any) => dispatch => {
         });
 };
 
-export const fetchProfessorProfile = (professorId: any) => dispatch => {
+export const fetchProfessorProfile = (professorId: any) => (dispatch:any) => {
     axios.get('/professor/profile/'+professorId)
         .then(res =>{
             dispatch({

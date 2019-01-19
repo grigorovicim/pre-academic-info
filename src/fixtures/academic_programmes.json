@@ -1,0 +1,14 @@
+[
+    {
+		"model": "AcademicProgramme",
+		"data": {
+            "label": "Bachelor"
+		}
+    },
+    {
+		"model": "AcademicProgramme",
+		"data": {
+            "label": "Master"
+		}
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+		"model": "Title",
+		"data": {
+            "label": "Profesor Universitar"
+		}
+    },
+    {
+		"model": "Title",
+		"data": {
+            "label": "Conferentiar "
+		}
+    },
+    {
+		"model": "Title",
+		"data": {
+            "label": "Lector"
+		}
+    },
+    {
+		"model": "Title",
+		"data": {
+            "label": "Asistent"
+		}
+    },
+    {
+		"model": "Title",
+		"data": {
+            "label": "Doctorand"
+		}
+    }    
+]

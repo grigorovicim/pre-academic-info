@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Component } from "react";
+import {Component} from "react";
 
 import DashboardProfessorItem from './DashboardProfessorItem';
 
@@ -10,13 +10,13 @@ import { connect } from 'react-redux';
 import { fetchProfessors, fetchProfessorProfile } from '../actions/Professor.actions';
 import Popup from "../commons/Popup";
 
-class DashboardProfessors extends Component<any, any>{
+class DashboardProfessors extends Component<any, any> {
     static propTypes = {
         fetchProfessors: PropTypes.func.isRequired,
         professors: PropTypes.array.isRequired,
         professorProfile: PropTypes.any
-      };
-    
+    };
+
     /// TODO get the actual course id from the user input
     private courseId = 1;
 
@@ -48,12 +48,13 @@ class DashboardProfessors extends Component<any, any>{
         this.props.fetchProfessors(this.courseId);
     }
 
-    render(){
-        const professorItemComponents = this.props.professors.map(professor => {
+    render() {
+        const professorItemComponents = this.props.professors.map((professor: any) => {
             this.props.fetchProfessorProfile(professor.id);
-            return(
-               <tr key={professor.id}>
-                    <DashboardProfessorItem professor = {this.props.professorProfile} courseId = {this.courseId} professorId = {professor.id}/>
+            return (
+                <tr key={professor.id}>
+                    <DashboardProfessorItem professor={this.props.professorProfile} courseId={this.courseId}
+                                            professorId={professor.id}/>
                 </tr>
             )
         });
@@ -74,8 +75,8 @@ class DashboardProfessors extends Component<any, any>{
     }
 }
 
-const mapStateToProps = state => ({
-    professors: state.professorReducer.items, 
+const mapStateToProps = (state: any) => ({
+    professors: state.professorReducer.items,
     professorProfile: state.professorReducer.professorProfile
 });
 

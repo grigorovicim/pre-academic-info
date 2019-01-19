@@ -1,0 +1,30 @@
+[
+	{
+		"model": "Section",
+		"data": {
+            "name": "Informatica Romana",
+            "abbreviation_id": 1
+		}
+    },
+    {
+		"model": "Section",
+		"data": {
+			"name": "Informatica Engleza",
+            "abbreviation_id": 2
+		}
+    },
+    {
+		"model": "Section",
+		"data": {
+			"name": "Informatica Maghiara",
+            "abbreviation_id": 3
+		}
+	},
+	{
+		"model": "Section",
+		"data": {
+			"name": "Informatica Germana",
+            "abbreviation_id": 4
+		}
+	}
+]
