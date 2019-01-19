@@ -13,13 +13,13 @@ import {connect} from "react-redux";
 
 class DashboardCourseItem extends Component<any, any> {
     private name: any;
-    private department: any;
+    private section: any;
     private isConfigured: any;
 
     constructor(props: any) {
         super(props);
         this.name = props.name;
-        this.department = "info";
+        this.section = props.section;
         this.isConfigured = props.isConfigured;
 
         this.editConfiguration = this.editConfiguration.bind(this);
@@ -82,8 +82,7 @@ class DashboardCourseItem extends Component<any, any> {
         return (
             <div className="dashboard-course-item row">
                 <div className="dashboard-course-item-text col-md-5">{this.name}</div>
-                <div className="dashboard-course-item-text col-md-3">{this.department}</div>
-                <div className="dashboard-course-item-text col-md-3">{this.department}</div>
+                <div className="dashboard-course-item-text col-md-3">{this.section}</div>
                 <div className="div-config-button-wrapper col-md-1">
                     {this.whichButton()}
                 </div>
