@@ -1,132 +1,132 @@
 [
-    {
-        "model": "Profile",
-        "data": {
-            "first_name": "Monica",
-            "last_name": "Grigorovici",
-            "personal_email": "gmie2345@scs.ubbcluj.ro",
-            "telephone_number": "0712345678",
-            "gender": 2,
-            "date_of_birth": "01-01-1997",
-            "cnp": "1970101010101",
-            "user_id": 1
-        }
-    },
-    {
-        "model": "Profile",
-        "data": {
-            "first_name": "Florin",
-            "last_name": "Hangan",
-            "personal_email": "hfie2136@scs.ubbcluj.ro",
-            "telephone_number": "0712345678",
-            "gender": 1,
-            "date_of_birth": "01-01-1997",
-            "cnp": "1970101010101",
-            "user_id": 2
-        }
-    },
-    {
-        "model": "Profile",
-        "data": {
-            "first_name": "Andrada",
-            "last_name": "Gae",
-            "personal_email": "gaie2345@scs.ubbcluj.ro",
-            "telephone_number": "0712345678",
-            "gender": 2,
-            "date_of_birth": "01-01-1997",
-            "cnp": "1970101010101",
-            "user_id": 3
-        }
-    },
-    {
-        "model": "Profile",
-        "data": {
-            "first_name": "Dragos",
-            "last_name": "Grigore",
-            "personal_email": "gdie2345@scs.ubbcluj.ro",
-            "telephone_number": "0712345678",
-            "gender": 1,
-            "date_of_birth": "01-01-1997",
-            "cnp": "1970101010101",
-            "user_id": 4
-        }
-    },
-    {
-        "model": "Profile",
-        "data": {
-            "first_name": "Miruna",
-            "last_name": "Radu",
-            "personal_email": "rmir2345@scs.ubbcluj.ro",
-            "telephone_number": "0712345678",
-            "gender": 2,
-            "date_of_birth": "01-01-1997",
-            "cnp": "1970101010101",
-            "user_id": 5
-        }
-    },
-    {
-        "model": "Profile",
-        "data": {
-            "first_name": "Emilia",
-            "last_name": "Hangan",
-            "personal_email": "heie2135@scs.ubbcluj.ro",
-            "telephone_number": "0712345678",
-            "gender": 2,
-            "date_of_birth": "01-01-1997",
-            "cnp": "1970101010101",
-            "user_id": 6
-        }
-    },
-    {
-        "model": "Profile",
-        "data": {
-            "first_name": "Diana",
-            "last_name": "Dragos",
-            "personal_email": "ddie2345@scs.ubbcluj.ro",
-            "telephone_number": "0712345678",
-            "gender": 2,
-            "date_of_birth": "01-01-1997",
-            "cnp": "1970101010101",
-            "user_id": 7
-        }
-    },
-    {
-        "model": "Profile",
-        "data": {
-            "first_name": "Radu",
-            "last_name": "Dragos",
-            "personal_email": "radudragos@cs.ubbcluj.ro",
-            "telephone_number": "0712345678",
-            "gender": 1,
-            "date_of_birth": "01-01-1997",
-            "cnp": "1970101010101",
-            "user_id": 8
-        }
-    },
-    {
-        "model": "Profile",
-        "data": {
-            "first_name": "Radu",
-            "last_name": "Gaceanu",
-            "personal_email": "radugaceanu@cs.ubbcluj.ro",
-            "telephone_number": "0712345678",
-            "gender": 1,
-            "date_of_birth": "01-01-1997",
-            "cnp": "1970101010101",
-            "user_id": 9
-        }
-    },
-    {
-        "model": "Profile",
-        "data": {
-            "first_name": "Dan",
-            "last_name": "Suciu",
-            "personal_email": "gmie2345@scs.ubbcluj.ro",
-            "telephone_number": "0712345678",
-            "gender": 1,
-            "date_of_birth": "01-01-1997",
-            "cnp": "1970101010101",
-            "user_id": 10
-        }
+  {
+    "model": "Profile",
+    "data": {
+      "first_name": "Monica",
+      "last_name": "Grigorovici",
+      "personal_email": "gmie2345@scs.ubbcluj.ro",
+      "telephone_number": "0712345678",
+      "gender": 2,
+      "date_of_birth": "01-01-1997",
+      "cnp": "1970101010101",
+      "user_id": 1
     }
+  },
+  {
+    "model": "Profile",
+    "data": {
+      "first_name": "Florin",
+      "last_name": "Hangan",
+      "personal_email": "hfie2136@scs.ubbcluj.ro",
+      "telephone_number": "0712345678",
+      "gender": 1,
+      "date_of_birth": "01-01-1997",
+      "cnp": "1970101010101",
+      "user_id": 2
+    }
+  },
+  {
+    "model": "Profile",
+    "data": {
+      "first_name": "Andrada",
+      "last_name": "Gae",
+      "personal_email": "gaie2345@scs.ubbcluj.ro",
+      "telephone_number": "0712345678",
+      "gender": 2,
+      "date_of_birth": "01-01-1997",
+      "cnp": "1970101010101",
+      "user_id": 3
+    }
+  },
+  {
+    "model": "Profile",
+    "data": {
+      "first_name": "Dragos",
+      "last_name": "Grigore",
+      "personal_email": "gdie2345@scs.ubbcluj.ro",
+      "telephone_number": "0712345678",
+      "gender": 1,
+      "date_of_birth": "01-01-1997",
+      "cnp": "1970101010101",
+      "user_id": 4
+    }
+  },
+  {
+    "model": "Profile",
+    "data": {
+      "first_name": "Miruna",
+      "last_name": "Radu",
+      "personal_email": "rmir2345@scs.ubbcluj.ro",
+      "telephone_number": "0712345678",
+      "gender": 2,
+      "date_of_birth": "01-01-1997",
+      "cnp": "1970101010101",
+      "user_id": 5
+    }
+  },
+  {
+    "model": "Profile",
+    "data": {
+      "first_name": "Emilia",
+      "last_name": "Hangan",
+      "personal_email": "heie2135@scs.ubbcluj.ro",
+      "telephone_number": "0712345678",
+      "gender": 2,
+      "date_of_birth": "01-01-1997",
+      "cnp": "1970101010101",
+      "user_id": 6
+    }
+  },
+  {
+    "model": "Profile",
+    "data": {
+      "first_name": "Diana",
+      "last_name": "Dragos",
+      "personal_email": "ddie2345@scs.ubbcluj.ro",
+      "telephone_number": "0712345678",
+      "gender": 2,
+      "date_of_birth": "01-01-1997",
+      "cnp": "1970101010101",
+      "user_id": 7
+    }
+  },
+  {
+    "model": "Profile",
+    "data": {
+      "first_name": "Radu",
+      "last_name": "Dragos",
+      "personal_email": "radudragos@cs.ubbcluj.ro",
+      "telephone_number": "0712345678",
+      "gender": 1,
+      "date_of_birth": "01-01-1997",
+      "cnp": "1970101010101",
+      "user_id": 8
+    }
+  },
+  {
+    "model": "Profile",
+    "data": {
+      "first_name": "Radu",
+      "last_name": "Gaceanu",
+      "personal_email": "radugaceanu@cs.ubbcluj.ro",
+      "telephone_number": "0712345678",
+      "gender": 1,
+      "date_of_birth": "01-01-1997",
+      "cnp": "1970101010101",
+      "user_id": 9
+    }
+  },
+  {
+    "model": "Profile",
+    "data": {
+      "first_name": "Dan",
+      "last_name": "Suciu",
+      "personal_email": "gmie2345@scs.ubbcluj.ro",
+      "telephone_number": "0712345678",
+      "gender": 1,
+      "date_of_birth": "01-01-1997",
+      "cnp": "1970101010101",
+      "user_id": 10
+    }
+  }
 ]
