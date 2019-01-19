@@ -117,3 +117,23 @@ input {
     padding-left: 16px;
     padding-top: 7px;
 }
+
+.p-save-button {
+    height: 50px;
+    width: 130px;
+    border: 1px solid #E4E4E4;
+    border-radius: 12px;
+    background-color: rgba(18, 134, 43, 0.384);
+    margin: auto;
+    margin-top: 20px;
+ }
+
+ .p-save-button:hover {
+    height: 50px;
+    width: 130px;
+    border: 1px solid #E4E4E4;
+    border-radius: 12px;
+    background-color: rgba(10, 100, 29, 0.384);
+    margin: auto;
+    margin-top: 20px;
+ }
