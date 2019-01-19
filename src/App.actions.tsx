@@ -1,5 +1,6 @@
 // @ts-ignore
 import axios from 'axios';
+import CourseActions from './actions/Course.actions';
 
 export default class AppActions {
 
@@ -31,6 +32,7 @@ export default class AppActions {
             },
           },
         });
+        dispatch(CourseActions.fetchItems(response.data.username));
       } else {
         dispatch({
           type: 'SET_USER_DETAILS',
@@ -41,6 +43,7 @@ export default class AppActions {
             },
           },
         });
+        dispatch(CourseActions.fetchItems(response.data.username));
       }
     });
   };

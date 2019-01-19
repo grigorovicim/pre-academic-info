@@ -34,6 +34,7 @@ class App extends Component<any, any> {
             isPopupVisible: false,
             popupComponentType: null,
         };
+        
         this.props.dispatch(AppActions.checkAuthenticationToken());
         this.openLoginPopup = this.openLoginPopup.bind(this);
         this.closePopup = this.closePopup.bind(this);
