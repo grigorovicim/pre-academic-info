@@ -38,11 +38,12 @@ class Dashboard extends Component<any, any> {
     }
 
     render() {
-        const {
-            isPopupVisible,
-            popupContent,
-        } = this.props;
-        const courseItemComponents = this.props.courseItems.map(course => {
+      const {
+        isPopupVisible,
+        courseItems,
+        popupContent,
+      } = this.props;
+        const courseItemComponents = courseItems.map(course => {
             return (
                 <div key={course.id} className="p-dashboard-item">
                     <DashboardCourseItem

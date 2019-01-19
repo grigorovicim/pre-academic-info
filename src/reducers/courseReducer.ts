@@ -2,8 +2,9 @@ import {FETCH_CATALOG, FILTER_CATALOG_STUDY, FILTER_CATALOG_YEAR, FILTER_CATALOG
 
 const initialState = {
     items: [] as any,
-    study: "LICENTA",
-    year: "I",
+    filteredItems: [],
+    study: "1",
+    year: "1",
     semester: "1",
     currentCourseId: null,
 };
