@@ -5,6 +5,7 @@ import Dashboard from "../courses/Dashboard";
 import * as React from "react";
 // import CourseDetail from "../courses/CourseDetail";
 import {connect} from "react-redux";
+import UploadFile from "../upload_file/UploadFile";
 //import CourseActions from "../actions/Course.actions";
 
 class CoursesPage extends Component<any,any>
@@ -32,6 +33,7 @@ class CoursesPage extends Component<any,any>
 
                 <Header home="none" courses="inline" students="none" catalog="none" myProfile="none"/>
 
+                <UploadFile/>
 
                 <Dashboard courseItems={dummy}/>
             </div>

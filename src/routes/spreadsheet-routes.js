@@ -11,6 +11,9 @@ var upload = multer({dest: "./files/"});
  */
 
 router.post('/', upload.single("file"), function (req, res) {
+    let profEmail = req.headers.email;
+    console.log("Request: ", profEmail);
+
     let errors = [];
 
     // Test worksheet
@@ -228,7 +231,39 @@ router.post('/', upload.single("file"), function (req, res) {
                                     console.log("Added course: ", newCourse);
                                     newCourses.push(newCourse);
 
-                                    resolve();
+                                    //TODO: create professor-course
+                                    models.Professor.findAll({
+                                        include: [{
+                                            model: models.Profile,
+                                            required: true,
+                                            include: [{
+                                                model: models.User,
+                                                required: true,
+                                                where: {
+                                                    username: profEmail
+                                                }
+                                            }]
+                                        }]
+                                    }).then(function(response){
+                                        console.log(response);
+                                        let profId = response[0].dataValues.id;
+                                        let professorCourse = {
+                                            "year": parseInt(courseMap.get("yearOfStudy"), 10),
+                                            "createdAt": Date.now(),
+                                            "updatedAt": Date.now(),
+                                            "isTeachingSeminar": false,
+                                            "isTeachingLab": false,
+                                            "isTeachingCourse": true,
+                                            "professor_id": profId,
+                                            "course_id": newCourse.id,
+                                        };
+
+                                        models.ProfessorCourse.create(professorCourse).then(result =>{
+                                            console.log("Added professor course: ", result.dataValues);
+                                            resolve();
+                                            }
+                                        );
+                                    });
                                 }, err => {
                                     errors.push(err);
                                     reject(err);
@@ -382,7 +417,6 @@ router.post('/', upload.single("file"), function (req, res) {
                                                             break;
                                                         }
                                                     }
-
                                                     let coursePromise = [];
                                                     coursePromise.push(function (resolve, reject) {
                                                         if (courseId === undefined) {
@@ -404,7 +438,7 @@ router.post('/', upload.single("file"), function (req, res) {
                                                             "course_id": courseId,
                                                         };
 
-                                                        //TODO: create student-course
+                                                        // Create student-course
                                                         models.StudentCourse.create(studentCourse).then(result => {
                                                             let newStudentCourse = result.dataValues;
                                                             console.log("Added studentCourse: ", newStudentCourse);
