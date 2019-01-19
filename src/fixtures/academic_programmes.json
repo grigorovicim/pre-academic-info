@@ -10,5 +10,11 @@
 		"data": {
             "label": "Master"
 		}
+    },
+    {
+		"model": "AcademicProgramme",
+		"data": {
+            "label": "PhD"
+		}
     }
 ]
