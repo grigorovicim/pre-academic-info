@@ -43,7 +43,7 @@ class Dashboard extends Component<any, any> {
             return (
                 <div key={course.id} className="p-dashboard-item">
                     <DashboardCourseItem
-                        content={course}
+                        course={course}
                         name={course.name}
                         section={course.Section.name}
                         isConfigured={course.is_active}

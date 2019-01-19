@@ -2,55 +2,45 @@ var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
 const Sequelize = require('sequelize');
+
+
+
+router.get('/:id', function(req, res){
+    const courseConfigurationId = req.params.id;
+
+    models.CourseConfiguration.findByPk(courseConfigurationId,
+        {
+            attributes: ['id','description','rules','hasLecture','hasLab','hasSeminar','numberOfLectures',
+                'numberOfLabs','numberOfSeminars','lectureGradePercentage','labGradePercentage',
+                'seminarGradePercentage','numberOfLectureTests','numberOfSeminarTests','numberOfLabTests',
+                'examWrittenPercentage','examPracticalPercentage'],
+            include: [
+                {
+                    attributes: ['id','percentage','week'],
+                    model: models.CourseTestPercentage,
+                    required: false,
+                },
+                {
+                    attributes: ['id','percentage','week'],
+                    model: models.LabTestPercentage,
+                    required: false,
+                },
+                {
+                    attributes: ['id','percentage','week'],
+                    model: models.SeminarTestPercentage,
+                    required: false,
+                }]
+        }).then(result => res.json(result), err => {
+        res.status(501);
+        res.send('Internal Server Error! Sorry, try again!');
+        console.log('An error has occurred: ' + err);
+    });
+});
 /**
  * Returns a course configuration.
  * @method GET the list course configuration
  * @throws 'Internal Server Error! Sorry, try again!'
  */
-router.get('/:id', function(_, res){
-    models.CourseConfiguration.findOne(
-        { include: [
-            {
-                model: models.Course,
-                where: Sequelize.where(
-                    Sequelize.col('Course.courseconfiguration_id'),
-                    Sequelize.col('CourseConfiguration.id')
-                ),
-                duplicating: false,
-            },
-            {
-                model: models.CourseTestPercentage,
-                 where: Sequelize.where(
-                 Sequelize.col('CourseConfiguration.id'),
-                 Sequelize.col('CourseTestPercentages.courseconfiguration_id')
-                 ),
-                 duplicating: false,
-            },
-            {
-                model: models.SeminarTestPercentage,
-                where: Sequelize.where(
-                Sequelize.col('CourseConfiguration.id'),
-                Sequelize.col('SeminarTestPercentages.courseconfiguration_id')
-                ),
-                duplicating: false,
-            },
-            {
-                model: models.LabTestPercentage,
-                where: Sequelize.where(
-                Sequelize.col('CourseConfiguration.id'),
-                Sequelize.col('LabTestPercentages.courseconfiguration_id')
-                ),
-                duplicating:false,
-            },
-        ],
-    }).then(cfs => res.json(cfs), err => {
-      res.status(501);
-      res.send('Internal Server Error! Sorry, try again!');
-      console.log('An error has occurred: ' + err);
-    });
-});
-
-module.exports = router;
 
 /**
  * Updates an existing course configuration entity.

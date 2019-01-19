@@ -7,7 +7,7 @@ export const fetchCourseConfig = (configId: any) => (dispatch:any) => {
             dispatch({
                 type: FETCH_COURSE_CONFIG,
                 payload: res.data
-            })
+            });
             console.log(res.data);
         })
         .catch(error => {
