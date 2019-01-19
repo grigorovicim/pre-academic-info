@@ -11,7 +11,7 @@ const initialState = {
     ],
     filteredItems: [],
     study: "LICENTA",
-    year: "1",
+    year: "I",
     semester: "1",
     currentCourseId: null,
 };
@@ -21,7 +21,7 @@ export default (state = initialState, action: any) => {
         case FETCH_CATALOG:
             return {
                 ...state,
-                items: action.payload.items,
+                items: action.payload.items
             };
 
         case FILTER_CATALOG_STUDY:
@@ -65,6 +65,7 @@ export default (state = initialState, action: any) => {
             ...state,
             items: Array.from(action.payload.dashboardItems),
             isPopupVisible: action.payload.isCampaignPopupVisible,
+            filteredItems: action.payload.dashboardItems.filter(item => item.academic_programme_id.toString() === state.study &&  item.year_of_study.toString() ===  state.year && item.semester_id.toString() === state.semester)
           };
         }
 
