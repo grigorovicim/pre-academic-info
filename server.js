@@ -100,6 +100,17 @@ app.post('/details-of-course', (req, res) => {
 app.post('/session-id', (req, res) => {
     const sessionID = req.body.sessionID;
     const user = getUserDetails(sessionID);
+
+    client.get('/profile/' + user.id).then((resp) => {
+      client.get('role/id/' + user.role_id).then((role) => {
+        user.profile = resp.data;
+        user.role = role.data.label;
+        console.log(user);
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
+
     res.send(user);
 });
 
@@ -124,9 +135,19 @@ app.post('/login', (req, res) => {
     if(user) {
       const userID = generateID(req.get('host'));
       console.log('Session ID:' + userID);
-      user.session = userID;
-      usersLoggedIn.push(user);
-      res.send(user);
+
+      client.get('/profile/' + user.id).then((resp) => {
+        client.get('role/id/' + user.role_id).then((role) => {
+          user.profile = resp.data;
+          user.session = userID;
+          user.role = role.data.label;
+          usersLoggedIn.push(user);
+          res.send(user);
+          console.log(user);
+        });
+      }).catch((error) => {
+        console.log(error);
+      });
     }else {
       console.log('Invalid login for user: ' + email);
       res.status(202);
