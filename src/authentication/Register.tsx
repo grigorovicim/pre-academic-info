@@ -6,6 +6,7 @@ import Header from "../commons/header/Header";
 import LoginActions from "./Login.actions";
 import { connect } from 'react-redux';
 import Popup from "../commons/Popup";
+import AppActions from '../App.actions';
 
 
 class Register extends Component<any, any>{
@@ -48,6 +49,7 @@ class Register extends Component<any, any>{
     }
     openFeedbackPopup(e: any) {
         e.stopPropagation();
+        this.props.dispatch(AppActions.setIsAlert(true));
         this.setState({
             isPopupVisible: true,
             popupComponentType: 'p-register-feedbackButton',
