@@ -1,0 +1,102 @@
+[
+	{
+		"model": "User",
+		"data": {
+			"username": "gmie2345@scs.ubbcluj.ro",
+			"password": "1234",
+			"is_active": "true",
+			"role_id" : 1
+		}
+	},
+	{
+		"model": "User",
+		"data": {
+			"username": "hfie2136@scs.ubbcluj.ro",
+			"password": "1234",
+			"is_active": "true",
+			"role_id" : 1
+		}
+	},
+	{
+		"model": "User",
+		"data": {
+			"username": "gaie2345@scs.ubbcluj.ro",
+			"password": "1234",
+			"is_active": "true",
+			"role_id" : 1
+		}
+	},
+	{
+		"model": "User",
+		"data": {
+			"username": "gdie2345@scs.ubbcluj.ro",
+			"password": "1234",
+			"is_active": "true",
+			"role_id" : 1
+		}
+	},
+	{
+		"model": "User",
+		"data": {
+			"username": "rmir2345@scs.ubbcluj.ro",
+			"password": "1234",
+			"is_active": "true",
+			"role_id" : 1
+		}
+	},
+	{
+		"model": "User",
+		"data": {
+			"username": "heie2135@scs.ubbcluj.ro",
+			"password": "1234",
+			"is_active": "true",
+			"role_id" : 1
+		}
+	},
+	{
+		"model": "User",
+		"data": {
+			"username": "ddie2345@scs.ubbcluj.ro",
+			"password": "1234",
+			"is_active": "true",
+			"role_id" : 1
+		}
+	},
+	{
+		"model": "User",
+		"data": {
+			"username": "radudragos@cs.ubbcluj.ro",
+			"password": "1234",
+			"is_active": "true",
+			"role_id" : 2
+		}
+	},
+	{
+		"model": "User",
+		"data": {
+			"username": "radugaceanu@cs.ubbcluj.ro",
+			"password": "1234",
+			"is_active": "true",
+			"role_id" : 2
+		}
+	},
+	{
+		"model": "User",
+		"data": {
+			"username": "dansuciu@cs.ubbcluj.ro",
+			"password": "1234",
+			"is_active": "true",
+			"role_id" : 2
+		}
+	},
+	{
+		"model": "User",
+		"data": {
+			"username": "test@cs.ubbcluj.ro",
+			"password": "1234",
+			"is_active": "true",
+			"role_id" : 2
+		}
+	}
+	
+]

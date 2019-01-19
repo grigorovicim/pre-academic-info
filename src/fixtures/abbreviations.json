@@ -1,0 +1,26 @@
+[
+	{
+		"model": "Abbreviation",
+		"data": {
+			"label": "I"
+		}
+    },
+    {
+		"model": "Abbreviation",
+		"data": {
+			"label": "IE"
+		}
+    },
+    {
+		"model": "Abbreviation",
+		"data": {
+			"label": "IM"
+		}
+	},
+	{
+		"model": "Abbreviation",
+		"data": {
+			"label": "IG"
+		}
+	}
+]

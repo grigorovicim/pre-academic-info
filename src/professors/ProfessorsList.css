@@ -1,0 +1,30 @@
+.p-professors-basic-table {
+    border-collapse: collapse;
+    background-color: #EAEAEA;
+    text-align: center;
+}
+
+.p-professors-basic-table, .p-professors-basic-table-header {
+    border: 1px solid black;
+}
+
+.p-professors-basic-item{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.p-add-prof-button {
+    background-color: rgb(141, 212, 248, 0.5);
+    margin-right: 2px;
+    border: 0.05;
+    color: #2E91C3;
+    font-size: 12px; 
+    width: 130px;
+    border-radius: 0.5ch;
+    float:right;
+  }
+  .p-add-prof-button:hover {
+    background-color: rgb(141, 212, 248, 0.9);
+    color:white;
+  }

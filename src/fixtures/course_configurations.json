@@ -1,0 +1,171 @@
+[
+    {
+		"model": "CourseConfiguration",
+		"data": {
+            "description": "Limbaje formale și tehnici de compilare",
+            "rules": "All labs must be sent in in order to pass",
+            "hasLecture": true,
+            "hasLab": true,
+            "hasSeminar": true,
+            "numberOfLectures": 14,
+            "numberOfLabs": 14,
+            "numberOfSeminars": 14,
+            "lectureGradePercentage": 0,
+            "labGradePercentage": 20,
+            "seminarGradePercentage": 10,
+            "numberOfLectureTests": 0,
+            "numberOfLabTests": 0,
+            "numberOfSeminarTests": 0,
+            "examWrittenPercentage": 70,
+            "examPracticalPercentage": 0
+        }
+    },
+    {
+		"model": "CourseConfiguration",
+		"data": {
+            "description": "Programare paralela si distribuita",
+            "rules": "minimum grade: 4.5 for written exam, 4.5 for the weighted average",
+            "hasLecture": true,
+            "hasLab": true,
+            "hasSeminar": true,
+            "numberOfLectures": 14,
+            "numberOfLabs": 14,
+            "numberOfSeminars": 7,
+            "lectureGradePercentage": 0,
+            "labGradePercentage": 30,
+            "seminarGradePercentage": 0,
+            "numberOfLectureTests": 0,
+            "numberOfLabTests": 0,
+            "numberOfSeminarTests": 0,
+            "examWrittenPercentage": 40,
+            "examPracticalPercentage": 30
+        }
+    },
+    {
+		"model": "CourseConfiguration",
+		"data": {
+            "description": "Algebra",
+            "rules": "Minimum 4.5 grade is required",
+            "hasLecture": true,
+            "hasLab": false,
+            "hasSeminar": true,
+            "numberOfLectures": 14,
+            "numberOfLabs": 0,
+            "numberOfSeminars": 14,
+            "lectureGradePercentage": 0,
+            "labGradePercentage": 0,
+            "seminarGradePercentage": 10,
+            "numberOfLectureTests": 0,
+            "numberOfLabTests": 0,
+            "numberOfSeminarTests": 0,
+            "examWrittenPercentage": 90,
+            "examPracticalPercentage": 0
+        }
+    },
+    {
+		"model": "CourseConfiguration",
+		"data": {
+            "description": "Design Patterns",
+            "rules": "All labs must be sent in in order to pass",
+            "hasLecture": true,
+            "hasLab": true,
+            "hasSeminar": true,
+            "numberOfLectures": 14,
+            "numberOfLabs": 14,
+            "numberOfSeminars": 14,
+            "lectureGradePercentage": 0,
+            "labGradePercentage": 20,
+            "seminarGradePercentage": 10,
+            "numberOfLectureTests": 0,
+            "numberOfLabTests": 0,
+            "numberOfSeminarTests": 0,
+            "examWrittenPercentage": 70,
+            "examPracticalPercentage": 0
+        }
+    },
+    {
+		"model": "CourseConfiguration",
+		"data": {
+            "description": "Microcontrollers",
+            "rules": "Minimum 4.5 grade is required",
+            "hasLecture": true,
+            "hasLab": true,
+            "hasSeminar": false,
+            "numberOfLectures": 14,
+            "numberOfLabs": 7,
+            "numberOfSeminars": 0,
+            "lectureGradePercentage": 0,
+            "labGradePercentage": 20,
+            "seminarGradePercentage": 0,
+            "numberOfLectureTests": 0,
+            "numberOfLabTests": 0,
+            "numberOfSeminarTests": 0,
+            "examWrittenPercentage": 80,
+            "examPracticalPercentage": 0
+        }
+    },
+    {
+		"model": "CourseConfiguration",
+		"data": {
+            "description": "Mobile Apps",
+            "rules": "Minimum 4.5 grade is required",
+            "hasLecture": true,
+            "hasLab": true,
+            "hasSeminar": false,
+            "numberOfLectures": 14,
+            "numberOfLabs": 7,
+            "numberOfSeminars": 0,
+            "lectureGradePercentage": 0,
+            "labGradePercentage": 30,
+            "seminarGradePercentage": 0,
+            "numberOfLectureTests": 0,
+            "numberOfLabTests": 0,
+            "numberOfSeminarTests": 0,
+            "examWrittenPercentage": 70,
+            "examPracticalPercentage": 0
+        }
+    },
+    {
+		"model": "CourseConfiguration",
+		"data": {
+            "description": "Software Security",
+            "rules": "Minimum 4.5 grade is required",
+            "hasLecture": true,
+            "hasLab": true,
+            "hasSeminar": false,
+            "numberOfLectures": 14,
+            "numberOfLabs": 7,
+            "numberOfSeminars": 0,
+            "lectureGradePercentage": 10,
+            "labGradePercentage": 10,
+            "seminarGradePercentage": 0,
+            "numberOfLectureTests": 0,
+            "numberOfLabTests": 0,
+            "numberOfSeminarTests": 0,
+            "examWrittenPercentage": 80,
+            "examPracticalPercentage": 0
+        }
+    },
+    {
+		"model": "CourseConfiguration",
+		"data": {
+            "description": "Collective Project",
+            "rules": "Your grade from the project must be at least 5",
+            "hasLecture": false,
+            "hasLab": true,
+            "hasSeminar": false,
+            "numberOfLectures": 0,
+            "numberOfLabs": 14,
+            "numberOfSeminars": 0,
+            "lectureGradePercentage": 0,
+            "labGradePercentage": 100,
+            "seminarGradePercentage": 0,
+            "numberOfLectureTests": 0,
+            "numberOfLabTests": 0,
+            "numberOfSeminarTests": 0,
+            "examWrittenPercentage": 70,
+            "examPracticalPercentage": 0
+        }
+    }
+    
+]

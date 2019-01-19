@@ -1,0 +1,13 @@
+[
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 8
+        }
+    }
+]
