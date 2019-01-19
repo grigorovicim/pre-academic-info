@@ -209,20 +209,20 @@ app.get('/verify/:token', (req, res) => {
       }
 
       client.put('/user/' + user.id, userData).then(function(response) {
-        res.send('The account has been verified!');
+        res.sendFile('/htmlPages/succesRegister.html', {root: __dirname + '/public/'});
       }).catch(function(error) {
         res.status(501);
-        res.send('Could not verify account.');
+        res.sendFile('/htmlPages/errorRegister.html', {root: __dirname + '/public/'});
       });
     }
     else {
       res.status(501);
-      res.send('Invalid verification key provided.');;
+      res.sendFile('/htmlPages/invalidVerificationregister.html', {root: __dirname + '/public/'});
     }
   })
   .catch(function(error) {
     res.status(501);
-    res.send('Could not verify account.');
+    res.sendFile('/htmlPages/errorRegister.html', {root: __dirname + '/public/'});
     console.log(error);
   });
 });

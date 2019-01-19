@@ -165,3 +165,9 @@ a:hover{
     color: var(--button-header-hover-color);
     text-decoration: none;
 }
+ 
+.p-logout-button{
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #6CB0E0;
+}
