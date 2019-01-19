@@ -113,10 +113,10 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
   
   /**
    * Updates the database with the activities given by the professor for a specific student.
-   * @method POST grades get added for a student.
+   * @method put grades get added for a student.
    * @throws 'Internal Server Error! Sorry, try again!' 
    */
-  router.post('/addactivity', function(req, res){
+  router.put('/addactivity', function(req, res){
     if (req.body.SeminarActivity) {
         models.SeminarPresence.findOrCreate(req.body.SeminarActivity, {
           where: { 
