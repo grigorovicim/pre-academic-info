@@ -10,7 +10,12 @@ const Sequelize = require('sequelize');
  * @throws 'Internal Server Error! Sorry, try again!'
  */
 router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
-    const searchString = '%' + req.params.studentstring + '%';
+    const searchString;
+    if (req.params.studentstring === null)
+    {
+     searchString = '%%';
+    }
+    searchString = '%' + req.params.studentstring + '%';
     const courseIdQuery = req.params.courseid;
     const weekparam = req.params.week;
     const groupidparam = req.params.groupid;
@@ -113,7 +118,7 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
   
   /**
    * Updates the database with the activities given by the professor for a specific student.
-   * @method put grades get added for a student.
+   * @method PUT grades get added for a student.
    * @throws 'Internal Server Error! Sorry, try again!' 
    */
   router.put('/addactivity', function(req, res){
