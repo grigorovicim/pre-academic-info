@@ -86,5 +86,26 @@ router.delete('/:id', function(req, res){
   });
 });
 
+router.get('/:userId', function(req, res) {
+  const userId = req.params.userId;
+
+  models.Profile.findOne({where : {user_id: userId}})
+  .then(result => res.json(result),err => {
+    res.status(501);
+    res.send('Internal Server Error! Sorry, try again!');
+    console.log('An error has occurred: ' + err);
+  });
+});
+
+router.put('/avatar/:userId', function(req, res){
+  const userId = req.params.userId;
+  models.Profile.update(req.body, {where: {user_id: userId}})
+  .then(result => res.json(result), err => {
+    res.status(501);
+    res.send('Internal Server Error! Sorry, try again!');
+    console.log('An error has occurred: ' + err);
+  });
+});
+
 
 module.exports = router;

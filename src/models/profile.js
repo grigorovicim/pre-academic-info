@@ -7,7 +7,11 @@ module.exports = (sequelize, DataTypes) => {
     telephone_number: DataTypes.STRING,
     gender: DataTypes.INTEGER,
     date_of_birth: DataTypes.DATE,
-    cnp: DataTypes.STRING
+    cnp: DataTypes.STRING,
+    avatar: {
+      type: DataTypes.BLOB,
+      allowNull: true,
+    }
   }, {});
   Profile.associate = function(models) {
     models.Profile.belongsTo(models.User, {

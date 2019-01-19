@@ -8,7 +8,8 @@ const reducer = (state = {
     isLoggedIn: false,
     isAdmin: false,
     isChecked: false,
-  },     
+  },
+  profile: null
 },
  action: any) => {
 
@@ -72,6 +73,13 @@ const reducer = (state = {
       ...state,
       popupContent: payload.popupContent,
     };
+  }
+
+  case 'FETCH_PROFILE': {
+    return {
+        ...state,
+        profile: payload,
+    }
   }
 
   default:
