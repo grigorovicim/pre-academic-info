@@ -20,10 +20,11 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
     const courseIdQuery = req.params.courseid;
     const weekparam = req.params.week;
     const groupidparam = req.params.groupid;
+    console.log(req.params)
     console.log(searchString);
     console.log(courseIdQuery);
     const Op = Sequelize.Op;
-  
+    
     if (groupidparam === 0) {
       models.Student.findAll({include : [{
         model: models.Profile,
