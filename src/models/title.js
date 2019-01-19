@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     models.Title.hasMany(models.Professor, {
       foreignKey: {
         name: 'title_id',
-        allowNull: false
+        allowNull: true
       }
     });
   };

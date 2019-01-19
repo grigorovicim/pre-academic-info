@@ -18,14 +18,14 @@ class StudentsList extends Component<any, any> {
     };
 
     /// TODO get the real id of the course from the user input
-    private courseId = 1;
+    private courseId = 3;
 
     constructor(props : any){
         super(props);
         this.state = {
             isPopupVisible: false,
             popupComponentType: null,
-        }
+        };
         this.closePopup = this.closePopup.bind(this);
         this.openAddStudentPopup = this.openAddStudentPopup.bind(this);
     }
@@ -48,16 +48,15 @@ class StudentsList extends Component<any, any> {
     }
 
     render(){
-        const studentItems = this.props.students.map((student : any) => {
-            this.props.fetchProfileForStudent(student.id);
-            return (
+
+        const studentItems = this.props.students.map(student => {
+            return(
                 <div key={student.id}>
-                    <StudentsListItem student={this.props.studentProfile} courseId={this.courseId}
-                                      studentId={student.id}/>
+                    <StudentsListItem student = {student.Profile} courseId = {this.courseId} studentId = {student.id}/>
                 </div>
             );
-        })
-        return (
+        });
+        return(
             <div>
                 <tbody className="p-students-table">
                     {/* <tr>
@@ -68,7 +67,7 @@ class StudentsList extends Component<any, any> {
                     </tr>
                     {studentItems}
                 </tbody>
-                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={1}/>
+                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={this.courseId}/>
             </div>
         );
     }

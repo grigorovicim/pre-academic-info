@@ -2,12 +2,17 @@
 // @ts-ignore
 import axios from 'axios';
 
-import { FETCH_CATALOG, FILTER_CATALOG_STUDY, FILTER_CATALOG_SEMESTER, FILTER_CATALOG_YEAR} from './types';
+import {
+    FETCH_CATALOG,
+    FILTER_CATALOG_STUDY,
+    FILTER_CATALOG_SEMESTER,
+    FILTER_CATALOG_YEAR
+} from './types';
 
 
 export default class CourseActions {
-  static fetchItems = (session: any) => (dispatch: any, /*getState: any*/) => {
-    axios.post('/get-dashboard-courses', {sessionId: session})
+  static fetchItems = (email: any) => (dispatch: any, /*getState: any*/) => {
+    axios.post('/course/get-dashboard-courses', {profEmail: email})
       .then((response) => {
         dispatch({
           type: 'LOAD_COURSES',
@@ -107,5 +112,14 @@ static saveStudyFilter = (study: string) => (dispatch: any) => {
 
 
 }
+
+export const getCourseDetails = (courseId: any) => (dispatch:any) => {
+    axios.get('/course/:id' + courseId)
+        .then(res =>res.data)
+        .catch(error => {
+                console.log(error)
+            }
+        );
+};
 
     

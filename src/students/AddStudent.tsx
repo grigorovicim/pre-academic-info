@@ -1,48 +1,80 @@
 import * as React from "react";
 import { Component } from "react";
 import searchLogo from '../images/search.png';
-import userFemale from '../images/edit-user-female.png';
-import userMale from '../images/edit-user-male.png';
+import StudentItem from "./StudentItem";
+import { fetchStudentsEnrolled, fetchStudentsNotEnrolled,} from '../actions/Student.actions';
+import { connect } from 'react-redux';
+import {createStudentCourse} from "../actions/StudentCourse.actions";
+import {removeStudentConfig} from "../actions/Config.actions";
+import {getCourseDetails} from "../actions/Course.actions";
 
 class AddStudent extends Component<any, any>{
     private searchKeyword: any;
-    private setStudentRef: any;
 
     constructor(props){
         super(props);
         this.state={
         };
-        this.addStudent = this.addStudent.bind(this);
-        this.removeStudent = this.removeStudent.bind(this);
         this.done = this.done.bind(this);
         this.getFilteredStudents = this.getFilteredStudents.bind(this);
-        this.setStudentRef= (element:any) => {
-            this.searchKeyword = element;
-        }
+        this.addStudent = this.addStudent.bind(this);
+        this.deleteStudent = this.deleteStudent.bind(this);
+        this.handleOnChange = this.handleOnChange.bind(this);
+    }
+
+    componentWillMount() {
+        this.props.fetchStudentsEnrolled(this.props.courseId);
+        this.props.fetchStudentsNotEnrolled(this.props.courseId);
+    }
+
+
+    addStudent(student){
+        this.props.createStudentCourse({
+            student_id:student.id,
+            course_id:this.props.courseId
+        });
+        this.props.fetchStudentsEnrolled(this.props.courseId);
+        this.props.fetchStudentsNotEnrolled(this.props.courseId);
+    }
+
+    deleteStudent(student){
+        this.props.removeStudentConfig(student.id,this.props.courseId);
+        this.props.fetchStudentsEnrolled(this.props.courseId);
+        this.props.fetchStudentsNotEnrolled(this.props.courseId);
+    }
+
+    handleOnChange(event){
+        this.searchKeyword = event.target.value;
     }
 
     getFilteredStudents(){
-        console.log("Filter students by" + this.searchKeyword)
+        console.log("Filter students by" + this.searchKeyword);
     }
 
     done(){
         this.props.callback();
     }
 
-    removeStudent(){
-        console.log("Student was removed");
-    }
-
-    addStudent(){
-        console.log("Student was added");
-    }
-
     render(){
+
+        const enrolled = this.props.studentsEnrolled.map( student => {
+            return(
+                    <StudentItem key={student.id} student={student} courseId={3} enrolled={true} callback={this.deleteStudent}/>
+            )
+            }
+        );
+        const notEnrolled = this.props.studentsNotEnrolled.map( student => {
+                return(
+                    <StudentItem key={student.id} student={student} courseId={3} enrolled={false} callback={this.addStudent}/>
+                )
+            }
+        );
+
         return(
             <div>
                 <div className="p-header-wrapper">
                     <div className="p-course-title">
-                        Design patterns
+                        Design Patterns
                     </div>
                     <div className="p-course-configuration">
                         Course configuration
@@ -57,8 +89,8 @@ class AddStudent extends Component<any, any>{
                         Search student:
                     </div>
                     <div>
-                        <input ref={this.setStudentRef} type="text" placeholder="Search by name" className="p-search-bar"/>
-                        <img src={searchLogo} className="p-search-logo"/>
+                        <input type="text" placeholder="Search by name" className="p-search-bar" onChange={this.handleOnChange}/>
+                        <img src={searchLogo} onClick={this.getFilteredStudents} className="p-search-logo"/>
                     </div>
                 </div>
 
@@ -74,90 +106,8 @@ class AddStudent extends Component<any, any>{
                                 <th>Year</th>
                                 <th/>
                             </tr>
-                            <tr>
-                                <td>
-                                    <img src={userFemale} className="p-oval"/>
-                                </td>
-                                <td>Ungur Maria</td>
-                                <td>umie2239@cs.ubbcluj.ro</td>
-                                <td>Informatica</td>
-                                <td>Engleza</td>
-                                <td>1</td>
-                                <td>
-                                    <button onClick={this.removeStudent} className="p-remove-button">X</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <img src={userFemale} className="p-oval"/>
-                                </td>
-                                <td>Grigorovici Monica</td>
-                                <td>umie2239@cs.ubbcluj.ro</td>
-                                <td>Informatica</td>
-                                <td>Engleza</td>
-                                <td>1</td>
-                                <td>
-                                    <button onClick={this.addStudent} className="p-add-professor-button">Add</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <img src={userMale} className="p-oval"/>
-                                </td>
-                                <td>Tamas Florin</td>
-                                <td>umie2239@cs.ubbcluj.ro</td>
-                                <td>Informatica</td>
-                                <td>Engleza</td>
-                                <td>1</td>
-                                <td>
-                                    <button onClick={this.addStudent} className="p-add-professor-button">Add</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <img src={userFemale} className="p-oval"/>
-                                </td>
-                                <td>Gae Andrada</td>
-                                <td>umie2239@cs.ubbcluj.ro</td>
-                                <td>Informatica</td>
-                                <td>Engleza</td>
-                                <td>1</td>
-                                <td>
-                                    <button onClick={this.removeStudent} className="p-remove-button">X</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <img src={userFemale} className="p-oval"/>
-                                </td>
-                                <td>Ungur Nicoleta</td>
-                                <td>umie2239@cs.ubbcluj.ro</td>
-                                <td>Informatica</td>
-                                <td>Engleza</td>
-                                <td>1</td>
-                                <td>
-                                    <button onClick={this.addStudent} className="p-add-professor-button">Add</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <img src={userMale} className="p-oval"/>
-                                </td>
-                                <td>Grigore Dragos</td>
-                                <td>umie2239@cs.ubbcluj.ro</td>
-                                <td>Informatica</td>
-                                <td>Engleza</td>
-                                <td>1</td>
-                                <td>
-                                    <button onClick={this.addStudent} className="p-add-professor-button">Add</button>
-                                </td>
-                            </tr>
-
+                            {enrolled}
+                            {notEnrolled}
                         </table>
                     </div>
                 </div>
@@ -170,4 +120,11 @@ class AddStudent extends Component<any, any>{
     }
 }
 
-export default AddStudent;
+const mapStateToProps = state => ({
+    studentsEnrolled: state.studentcourseReducer.enrolled,
+    studentsNotEnrolled: state.studentcourseReducer.notEnrolled
+});
+
+
+export default connect(mapStateToProps, { fetchStudentsEnrolled, fetchStudentsNotEnrolled, createStudentCourse, removeStudentConfig, getCourseDetails})(AddStudent);
+

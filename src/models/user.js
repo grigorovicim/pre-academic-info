@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: { 
       type: DataTypes.STRING,
-      unique: true
+      unique: true,
     },
     password: { 
       type: DataTypes.STRING,
@@ -21,6 +21,8 @@ module.exports = (sequelize, DataTypes) => {
   },{
     hooks: {
       beforeCreate: function(user) {
+        console.log("User id: " + user.id);
+        console.log("Username:" + user.username);
         const salt = bcrypt.genSaltSync();
         user.password = bcrypt.hashSync(user.password, salt);
 

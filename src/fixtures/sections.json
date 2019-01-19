@@ -2,7 +2,6 @@
 	{
 		"model": "Section",
 		"data": {
-			"id": 1,
             "name": "Informatica Romana",
             "abbreviation_id": 1
 		}
@@ -10,7 +9,6 @@
     {
 		"model": "Section",
 		"data": {
-			"id": 2,
 			"name": "Informatica Engleza",
             "abbreviation_id": 2
 		}
@@ -18,7 +16,6 @@
     {
 		"model": "Section",
 		"data": {
-			"id": 3,
 			"name": "Informatica Maghiara",
             "abbreviation_id": 3
 		}
@@ -26,7 +23,6 @@
 	{
 		"model": "Section",
 		"data": {
-			"id": 4,
 			"name": "Informatica Germana",
             "abbreviation_id": 4
 		}

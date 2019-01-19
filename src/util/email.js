@@ -17,6 +17,9 @@ function send(user, host) {
         auth: {
             user: config.email.username,
             pass: config.email.password
+        },
+        tls: {
+            rejectUnauthorized: false
         }
     });
 

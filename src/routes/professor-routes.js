@@ -54,4 +54,17 @@ router.get('/profile/:professorId', function(req, res){
   });
 });
 
+/**
+ * Receive a professor from the client and store it in the DB.
+ * @method POST the professor entity.
+ * @throws 'Internal Server Error! Sorry, try again!'
+ */
+router.post('/', function(req, res){
+  models.Professor.create(req.body).then(prof => res.json(prof), err => {
+    res.status(501);
+    res.send('Internal Server Error! Sorry, try again!');
+    console.log('An error has occurred: ' + err);
+  });
+});
+
 module.exports = router;

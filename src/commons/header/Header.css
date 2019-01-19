@@ -165,3 +165,18 @@ a:hover{
     color: var(--button-header-hover-color);
     text-decoration: none;
 }
+ 
+.p-logout-button {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: rgb(180, 180, 180);
+}
+
+.p-logout-button:hover {
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: white;
+}

@@ -1,0 +1,182 @@
+[
+    {
+        "model": "LabPresence",
+        "data": {
+            "week":9,
+            "course_id": 6,
+            "student_id": 1,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 9,
+            "course_id": 6,
+            "student_id": 2,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 9,
+            "course_id": 6,
+            "student_id": 3,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 9,
+            "course_id": 6,
+            "student_id": 4,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 9,
+            "course_id": 6,
+            "student_id": 5,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 8,
+            "course_id": 6,
+            "student_id": 1,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 8,
+            "course_id": 6,
+            "student_id": 2,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 8,
+            "course_id": 6,
+            "student_id": 3,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 8,
+            "course_id": 6,
+            "student_id": 4,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 8,
+            "course_id": 6,
+            "student_id": 5,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 7,
+            "course_id": 6,
+            "student_id": 1,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 7,
+            "course_id": 6,
+            "student_id": 2,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 7,
+            "course_id": 6,
+            "student_id": 3,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 7,
+            "course_id": 6,
+            "student_id": 4,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 7,
+            "course_id": 6,
+            "student_id": 5,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 10,
+            "course_id": 6,
+            "student_id": 1,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 10,
+            "course_id": 6,
+            "student_id": 2,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 10,
+            "course_id": 6,
+            "student_id": 3,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 10,
+            "course_id": 6,
+            "student_id": 4,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "LabPresence",
+        "data": {
+            "week": 10,
+            "course_id": 6,
+            "student_id": 5,
+            "professor_id": 1
+        }
+    }
+]
