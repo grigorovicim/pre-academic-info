@@ -22,28 +22,28 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     models.CourseConfiguration.hasMany(models.LabTestPercentage, {
       foreignKey: {
-        name: 'course_configuration_id',
+        name: 'courseconfiguration_id',
         allowNull: false
       }
     });
 
     models.CourseConfiguration.hasMany(models.CourseTestPercentage, {
       foreignKey: {
-        name: 'course_configuration_id',
+        name: 'courseconfiguration_id',
         allowNull: false
       }
     });
 
     models.CourseConfiguration.hasMany(models.SeminarTestPercentage, {
       foreignKey: {
-        name: 'course_configuration_id',
+        name: 'courseconfiguration_id',
         allowNull: false
       }
     });
 
-    models.CourseConfiguration.belongsTo(models.Course, {
+    models.CourseConfiguration.hasOne(models.Course, {
       foreignKey: {
-        name:'course_configuration_id',
+        name:'courseconfiguration_id',
         allowNull: true
       }
     });
