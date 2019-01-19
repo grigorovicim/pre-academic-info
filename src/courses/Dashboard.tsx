@@ -11,11 +11,11 @@ import ActivityDetail from './ActivityDetail';
 
 class Dashboard extends Component<any, any> {
 
-    private courseItems: any[];
+    //private courseItems: any[];
 
     constructor(props: any) {
         super(props);
-        this.courseItems = props.courseItems;
+        //this.courseItems = Array.from(props.courseItems);
         this.openCourseDetailsPopup = this.openCourseDetailsPopup.bind(this);
         this.closeCampaignPopup = this.closeCampaignPopup.bind(this);
     }
@@ -38,9 +38,10 @@ class Dashboard extends Component<any, any> {
     render() {
       const {
         isPopupVisible,
+        courseItems,
         popupContent,
       } = this.props;
-        const courseItemComponents = this.courseItems.map(course => {
+        const courseItemComponents = courseItems.map(course => {
             return (
                 <div key={course.id} className="p-dashboard-item">
                     <DashboardCourseItem 
