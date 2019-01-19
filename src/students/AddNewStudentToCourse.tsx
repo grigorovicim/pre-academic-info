@@ -15,6 +15,8 @@ import { createStudentCourse } from '../actions/StudentCourse.actions';
 import { createProfile } from '../actions/Profile.actions'; 
 import { createUser } from '../actions/User.actions';
  
+import './AddNewStudentToCourse.css';
+
 class AddNewStudentToCourse extends Component<any, any> {
 
     static propTypes = {
@@ -233,48 +235,54 @@ class AddNewStudentToCourse extends Component<any, any> {
 
     render() {   
         return (
-            <div className="container">
+            <div className="add-new-student-container">
+
             <h1>Student details</h1>
             <form onSubmit={this.handleSubmit}>
-                <label>Student ID:
-                    <input type="text" value={this.state.studentIdValue} onChange={this.handleStudentIdChange}/>
-                </label>
-                <br/>
-                <label>First Name:
-                    <input type="text" value={this.state.firstNameValue} onChange={this.handleFirstNameChange} />
-                </label>
-                <br/>
-                <label>Family Name:
-                    <input type="text" value={this.state.familyNameValue} onChange={this.handleFamilyNameChange} />
-                </label><br/>
-                <br/>
-                <label>CNP:
-                    <input type="text" value={this.state.cnpValue}  onChange={this.handleCnpChange} />
-                </label>
-                <br></br>
-                <label>Email: 
-                    <input type="text" value={this.state.emailValue}  onChange={this.handleEmailChange} />
-                </label>
-                <br/>
-                <label>Phone number:
-                    <input type="text" value={this.state.phoneValue}  onChange={this.handlePhoneChange} />
-                </label>
+                
+                <div className="form-group">
+                    <label>Student ID</label>
+                    <input type="text" value={this.state.studentIdValue} className="form-control" placeholder="Student ID" onChange={this.handleStudentIdChange }></input>
+                </div>
 
-                <br/>
-                <label>Message:
-                    <textarea value={this.state.messageValue}  onChange={this.handleMessageChange} />
-                </label>
-                <br/>
-                {/* TODO get the actual types from the DB !! no types table or anything like that in DB!!*/}
+                <div className="form-group">
+                    <label>First Name</label>
+                    <input type="text" value={this.state.firstNameValue} className="form-control" placeholder="First name"  onChange={this.handleFirstNameChange} ></input>
+                </div>
+
+                <div className="form-group">
+                    <label>Last Name</label>
+                    <input type="text" value={this.state.familyNameValue} className="form-control" placeholder="Last name"  onChange={this.handleFamilyNameChange} ></input>
+                </div>
+
+                <div className="form-group">
+                    <label>Social Security Number</label>
+                    <input type="text" value={this.state.cnpValue}  onChange={this.handleCnpChange} className="form-control" placeholder="CNP"   ></input>
+                </div>
+
+                <div className="form-group">
+                    <label>Email</label>
+                    <input type="text" value={this.state.emailValue}  onChange={this.handleEmailChange} className="form-control" placeholder="Email"   ></input>
+                </div>
+
+                <div className="form-group">
+                    <label>Phone number</label>
+                    <input type="text" value={this.state.phoneValue}  onChange={this.handlePhoneChange} className="form-control" placeholder="Phone number"   ></input>
+                </div>
+
+                <div className="form-group">
+                <label >Message</label>
+                <textarea className="form-control" value={this.state.messageValue}  onChange={this.handleMessageChange} ></textarea>
+                </div>
+
                 Type:
-                <select value={this.state.typeValue} onChange={this.handleTypeChange}> 
+                <select className="form-control form-control-sm" value={this.state.typeValue} onChange={this.handleTypeChange}> 
                     <option value="Erasmus">Erasmus</option>
                     <option value="Other year">Other year</option>
                     <option value="Optional">Optional</option>
                 </select>
-                <br/>
                 Year:
-                <select value={this.state.yearValue} onChange={this.handleYearChange}> 
+                <select  className="form-control form-control-sm" value={this.state.yearValue} onChange={this.handleYearChange}> 
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -285,9 +293,8 @@ class AddNewStudentToCourse extends Component<any, any> {
                 {/* <label>Year:
                     <input type="number" min="1" max="5" value={this.state.yearValue} onChange={this.handleEmailChange} />
                 </label> */}
-                <br/>
                 Group:
-                <select 
+                <select  className="form-control form-control-sm"
                     value={this.state.groupValue}
                     onChange={this.handleGroupChange}  
                     // onChange={(e) => this.setState({groupValue: e.target.value})}
@@ -298,35 +305,32 @@ class AddNewStudentToCourse extends Component<any, any> {
                     <option value="3">933</option>
                     <option value="4">934</option>
                 </select>
-                <br/>
                 Section:
-                <select value={this.state.sectionValue} onChange={this.handleSectionChange}>
+                <select  className="form-control form-control-sm" value={this.state.sectionValue} onChange={this.handleSectionChange}>
                     {/* {this.state.sections.map((section) => <option key={section.id} value={section.id}>{section.name}</option>)} */}
                     <option value="1">IE</option>
                     <option value="2">IR</option>
                     <option value="3">IM</option>
                     <option value="4">IG</option>
                 </select>
-                <br/>
                 
                 Course:
-                <select 
+                <select  className="form-control form-control-sm"
                     value={this.state.courseIdValue}
                     onChange={this.handleCourseChange}
                >
                     {this.state.courses.map((course) => <option key={course.id} value={course.id}>{course.name}</option>)}
                 </select>
 
-                {/* <h1>User details</h1>   */}
-                <br></br>
-                <label>Username:
-                    <input type="text" value={this.state.usernameValue} onChange={this.handleUsernameChange} />
-                </label><br/>
-                * the assigned password will be the same as the username
-                <br/>
+                <div className="form-group">
+                <label >Username</label>
+                <input type="text" placeholder="Username" className="form-control"  value={this.state.usernameValue} onChange={this.handleUsernameChange} ></input>
+                </div>
 
-                <input type="submit" value="Send invitation" />
+                <br></br>
+                <input className="submit-round-button" type="submit" value="Send invitation" />
             </form>   
+            
             </div>
      )
    }
