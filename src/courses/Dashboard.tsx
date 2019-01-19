@@ -29,7 +29,6 @@ class Dashboard extends Component<any, any> {
         );
       }
     }
-
     closeCampaignPopup() {
         this.props.dispatch(AppActions.setPopupVisibility(false));
     }
@@ -65,7 +64,7 @@ class Dashboard extends Component<any, any> {
                     {courseItemComponents}
                 </div>
                 <Popup isVisible={isPopupVisible} onClose={this.closeCampaignPopup}>
-                {popupContent}
+                    {popupContent}
                 </Popup>
             </div>
         );
