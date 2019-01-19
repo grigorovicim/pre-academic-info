@@ -117,69 +117,209 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
    * @throws 'Internal Server Error! Sorry, try again!' 
    */
   router.post('/addactivity', function(req, res){
-    if (req.body.SeminarActivity){
-      models.SeminarActivity.create(req.body.SeminarActivity).then(seminarActivity => res.json(seminarActivity), err => {
-        res.status(501);
-        res.send('Internal Server Error! Sorry, try again!');
-        console.log('An error has occurred: ' + err);
-      });
-    }
-    if (req.body.SeminarPresence){
-      models.SeminarPresence.create(req.body.SeminarPresence).then(seminarPresence => res.json(seminarPresence), err => {
-        res.status(501);
-        res.send('Internal Server Error! Sorry, try again!');
-        console.log('An error has occurred: ' + err);
-      });
-    }
-    if (req.body.LabActivity){
-      models.LabActivity.create(req.body.LabActivity).then(labActivity => res.json(labActivity), err => {
-        res.status(501);
-        res.send('Internal Server Error! Sorry, try again!');
-        console.log('An error has occurred: ' + err);
-      });
-    }
-    if (req.body.LabPresence){
-      models.LabPresence.create(req.body.LabPresence).then(labPresence => res.json(labPresence), err => {
-        res.status(501);
-        res.send('Internal Server Error! Sorry, try again!');
-        console.log('An error has occurred: ' + err);
-      });
-    }
+    if (req.body.SeminarActivity) {
+        models.SeminarPresence.findOrCreate(req.body.SeminarActivity, {
+          where: { 
+              student_id: req.body.SeminarActivity.student_id,
+              course_id: req.body.SeminarActivity.course_id,
+              week: req.body.SeminarActivity.week
+          }}
+          ).then(result => {
+              var seminarActivity = result[0],
+              created = result[1];
+  
+              if (!created) {
+                  console.log('SeminarActivity already exists!');
+              }
+  
+              console.log('Created SeminarActivity!');
+              res.json(seminarActivity) = seminarActivity;
+          }, err => {
+          res.status(501);
+          res.send('Internal Server Error! Sorry, try again!');
+          console.log('An error has occurred: ' + err);
+        });
+      }
+    if (req.body.SeminarPresence) {
+        models.SeminarPresence.findOrCreate(req.body.SeminarPresence, {
+          where: { 
+              student_id: req.body.SeminarPresence.student_id,
+              course_id: req.body.SeminarPresence.course_id,
+              week: req.body.SeminarPresence.week
+          }}
+          ).then(result => {
+              var seminarPresence = result[0],
+              created = result[1];
+  
+              if (!created) {
+                  console.log('SeminarPresence already exists!');
+              }
+  
+              console.log('Created SeminarPresence!');
+              res.json(seminarPresence) = seminarPresence;
+          }, err => {
+          res.status(501);
+          res.send('Internal Server Error! Sorry, try again!');
+          console.log('An error has occurred: ' + err);
+        });
+      }
+    if (req.body.LabActivity) {
+        models.LabActivity.findOrCreate(req.body.LabActivity, {
+          where: { 
+              student_id: req.body.LabActivity.student_id,
+              course_id: req.body.LabActivity.course_id,
+              week: req.body.LabActivity.week
+          }}
+          ).then(result => {
+              var labActivity = result[0],
+              created = result[1];
+  
+              if (!created) {
+                  console.log('LabActivity already exists!');
+              }
+  
+              console.log('Created LabActivity!');
+              res.json(labActivity) = labActivity;
+          }, err => {
+          res.status(501);
+          res.send('Internal Server Error! Sorry, try again!');
+          console.log('An error has occurred: ' + err);
+        });
+      }
+    if (req.body.LabPresence) {
+        models.LabPresence.findOrCreate(req.body.LabPresence, {
+          where: { 
+              student_id: req.body.LabPresence.student_id,
+              course_id: req.body.LabPresence.course_id,
+              week: req.body.LabPresence.week
+          }}
+          ).then(result => {
+              var labPresence = result[0],
+              created = result[1];
+  
+              if (!created) {
+                  console.log('LabPresence already exists!');
+              }
+  
+              console.log('Created LabPresence!');
+              res.json(labPresence) = labPresence;
+          }, err => {
+          res.status(501);
+          res.send('Internal Server Error! Sorry, try again!');
+          console.log('An error has occurred: ' + err);
+        });
+      }
     if (req.body.CourseActivity) {
-      models.CourseActivity.create(req.body.CourseActivity).then(courseActivity => res.json(courseActivity), err => {
+      models.CourseActivity.findOrCreate(req.body.CourseActivity, {
+        where: { 
+            student_id: req.body.CourseActivity.student_id,
+            course_id: req.body.CourseActivity.course_id,
+            week: req.body.CourseActivity.week
+        }}
+        ).then(result => {
+            var courseActivity = result[0],
+            created = result[1];
+
+            if (!created) {
+                console.log('CourseActivity already exists!');
+            }
+
+            console.log('Created CourseActivity!');
+            res.json(courseActivity) = courseActivity;
+        }, err => {
         res.status(501);
         res.send('Internal Server Error! Sorry, try again!');
         console.log('An error has occurred: ' + err);
       });
     }
     if (req.body.CoursePresence) {
-      models.CoursePresence.create(req.body.CoursePresence).then(coursePresence => res.json(coursePresence), err => {
-        res.status(501);
-        res.send('Internal Server Error! Sorry, try again!');
-        console.log('An error has occurred: ' + err);
-      });
-    }
-    if (req.body.ExamPracticalResult){
-      models.ExamPracticalResult.create(req.body.ExamPracticalResult).then(examPracticalResult => res.json(examPracticalResult), err => {
-        res.status(501);
-        res.send('Internal Server Error! Sorry, try again!');
-        console.log('An error has occurred: ' + err);
-      });
-    }
-    if (req.body.ExamWrittenResult){
-      models.ExamWrittenResult.create(req.body.ExamWrittenResult).then(examWrittenResult => res.json(examWrittenResult), err => {
-        res.status(501);
-        res.send('Internal Server Error! Sorry, try again!');
-        console.log('An error has occurred: ' + err);
-      });
-    }
-    if (req.body.FinalGrade){
-      models.FinalGrade.create(req.body.FinalGrade).then(finalGrade => res.json(finalGrade), err => {
-        res.status(501);
-        res.send('Internal Server Error! Sorry, try again!');
-        console.log('An error has occurred: ' + err);
-      });
-    }
+        models.CoursePresence.findOrCreate(req.body.CoursePresence, {
+          where: { 
+              student_id: req.body.CoursePresence.student_id,
+              course_id: req.body.CoursePresence.course_id,
+              week: req.body.CoursePresence.week
+          }}
+          ).then(result => {
+              var coursePresence = result[0],
+              created = result[1];
+  
+              if (!created) {
+                  console.log('CoursePresence already exists!');
+              }
+  
+              console.log('Created CoursePresence!');
+              res.json(coursePresence) = coursePresence;
+          }, err => {
+          res.status(501);
+          res.send('Internal Server Error! Sorry, try again!');
+          console.log('An error has occurred: ' + err);
+        });
+      }
+      if (req.body.ExamPracticalResult) {
+        models.ExamPracticalResult.findOrCreate(req.body.ExamPracticalResult, {
+          where: { 
+              student_id: req.body.ExamPracticalResult.student_id,
+              course_id: req.body.ExamPracticalResult.course_id
+          }}
+          ).then(result => {
+              var examPracticalResult = result[0],
+              created = result[1];
+  
+              if (!created) {
+                  console.log('ExamPracticalResult already exists!');
+              }
+  
+              console.log('Created ExamPracticalResult!');
+              res.json(examPracticalResult) = examPracticalResult;
+          }, err => {
+          res.status(501);
+          res.send('Internal Server Error! Sorry, try again!');
+          console.log('An error has occurred: ' + err);
+        });
+      }
+      if (req.body.ExamWrittenResult) {
+        models.ExamWrittenResult.findOrCreate(req.body.ExamWrittenResult, {
+          where: { 
+              student_id: req.body.ExamWrittenResult.student_id,
+              course_id: req.body.ExamWrittenResult.course_id
+          }}
+          ).then(result => {
+              var examWrittenResult = result[0],
+              created = result[1];
+  
+              if (!created) {
+                  console.log('ExamWrittenResult already exists!');
+              }
+  
+              console.log('Created ExamWrittenResult!');
+              res.json(examWrittenResult) = examWrittenResult;
+          }, err => {
+          res.status(501);
+          res.send('Internal Server Error! Sorry, try again!');
+          console.log('An error has occurred: ' + err);
+        });
+      }
+      if (req.body.FinalGrade) {
+        models.FinalGrade.findOrCreate(req.body.FinalGrade, {
+          where: { 
+              student_id: req.body.FinalGrade.student_id,
+              course_id: req.body.FinalGrade.course_id
+          }}
+          ).then(result => {
+              var finalGrade = result[0],
+              created = result[1];
+  
+              if (!created) {
+                  console.log('FinalGrade already exists!');
+              }
+              console.log('Created FinalGrade!');
+              res.json(finalGrade) = finalGrade;
+          }, err => {
+          res.status(501);
+          res.send('Internal Server Error! Sorry, try again!');
+          console.log('An error has occurred: ' + err);
+        });
+      }
   })
 
   module.exports = router;
