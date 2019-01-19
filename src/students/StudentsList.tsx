@@ -18,7 +18,7 @@ class StudentsList extends Component<any, any> {
     };
 
     /// TODO get the real id of the course from the user input
-    private courseId = 1;
+    private courseId = 3;
 
     constructor(props : any){
         super(props);
@@ -67,7 +67,7 @@ class StudentsList extends Component<any, any> {
                     </tr>
                     {studentItems}
                 </tbody>
-                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={1}/>
+                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={this.courseId}/>
             </div>
         );
     }

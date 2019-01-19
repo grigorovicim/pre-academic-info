@@ -12,7 +12,7 @@ export const fetchStudentCourses = () => dispatch => {
         })}) 
         .catch(error => {
             console.log(error)
-        });;
+        });
 };
 
 export const createStudentCourse = postData => dispatch => {

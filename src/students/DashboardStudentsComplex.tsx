@@ -29,7 +29,7 @@ class DashboardStudentsComplex extends Component<any, any> {
         });
         return(
             <div>
-                <tbody className="p-students-table">
+                <tbody>
                 <tr>
                     <th className="p-students-table-header">Name</th>
                     <th className="p-students-table-header">Email</th>

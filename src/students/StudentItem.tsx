@@ -10,11 +10,11 @@ class StudentItem extends Component<any, any> {
     }
 
     addStudent(){
-        //add student with studentId to course with courseId backend
+
     }
 
     render(){
-        return(<div>
+        return(<tr>
                     <td>
                         <img src={userMale} className="p-oval"/>
                     </td>
@@ -26,7 +26,7 @@ class StudentItem extends Component<any, any> {
                     <td>
                         <button onClick={this.addStudent} className="p-add-professor-button">Add</button>
                     </td>
-                </div>)
+                </tr>)
     }
 
 }

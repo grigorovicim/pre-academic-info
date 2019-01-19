@@ -37,9 +37,7 @@ class AddStudent extends Component<any, any>{
 
         const studentRecords = this.props.students.map( student => {
             return(
-                <tr key={student.id}>
-                    <StudentItem student={student} courseId={1}/>
-                </tr>
+                    <StudentItem key={student.id} student={student} courseId={1}/>
             )
             }
         );
