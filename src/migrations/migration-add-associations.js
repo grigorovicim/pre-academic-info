@@ -604,6 +604,62 @@ module.exports = {
               onDelete: 'SET NULL',
             }
           );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'LabTestPercentages',
+            'courseconfiguration_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'CourseConfigurations',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'SeminarTestPercentages',
+            'courseconfiguration_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'CourseConfigurations',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'CourseTestPercentages',
+            'courseconfiguration_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'CourseConfigurations',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
+        }).then(() => {
+          return queryInterface.addColumn(
+            'Courses',
+            'courseconfiguration_id',
+            {
+              type: Sequelize.INTEGER,
+              references: {
+                model: 'CourseConfigurations',
+                key: 'id',
+              },
+              onUpdate: 'CASCADE',
+              onDelete: 'SET NULL',
+            }
+          );
         })
     },
   

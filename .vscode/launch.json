@@ -23,8 +23,8 @@
       "name": "debug server.js",
       "program": "${workspaceFolder}/server.js",
       "env": {
-        "NODE_ENV": "production",
-        "POSTGRES_URL": "url to postgres connection for security",
+        "EMAIL_DEV": "preacademicinfo@yahoo.com",
+        "PASSWORD_DEV": "securePassword123",
       }
     }
   ]

@@ -1,0 +1,42 @@
+[
+    {
+        "model": "ExamWrittenResult",
+        "data": {
+            "grade": 9,
+            "course_id": 6,
+            "student_id": 1
+        }
+    },
+    {
+        "model": "ExamWrittenResult",
+        "data": {
+            "grade": 9,
+            "course_id": 6,
+            "student_id": 2
+        }
+    },
+    {
+        "model": "ExamWrittenResult",
+        "data": {
+            "grade": 9,
+            "course_id": 6,
+            "student_id": 3
+        }
+    },
+    {
+        "model": "ExamWrittenResult",
+        "data": {
+            "grade": 9,
+            "course_id": 6,
+            "student_id": 4
+        }
+    },
+    {
+        "model": "ExamWrittenResult",
+        "data": {
+            "grade": 9,
+            "course_id": 6,
+            "student_id": 5
+        }
+    }
+]

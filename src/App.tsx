@@ -18,9 +18,10 @@ import './App.css';
 import HomePage from "./components/HomePage";
 import StudentsPage from "./components/StudentsPage";
 import CatalogPage from "./components/CatalogPage";
-import MyProfilePage from "./components/MyProfilePage";
+import MyProfilePage from "./components/myProfilePage/MyProfilePage";
 import AppActions from "./App.actions";
 import Register from "./authentication/Register";
+// import AddNewStudentToCourse from './students/AddNewStudentToCourse';
 import CoursesPage from './components/CoursesPage';
 
 // import CourseDetail from "./courses/CourseDetail";

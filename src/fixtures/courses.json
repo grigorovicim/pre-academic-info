@@ -1,114 +1,114 @@
 [
-	{
-		"model": "Course",
-		"data": {
-			"id": 1,
-            "name": "Algebra",
-            "description": "Algebra",
-            "credits": 5,   
-            "year_of_study": 1,
-            "is_active": "true",
-            "academic_programme_id": 1,
-            "section_id" : 2,
-            "semester_id" : 1
-		}
-    },
-    {
-		"model": "Course",
-		"data": {
-			"id": 2,
-            "name": "Design Patterns",
-            "description": "Design Patterns",
-            "credits": 5,
-            "year_of_study": 3,
-            "is_active": "true",
-            "academic_programme_id": 1,
-            "section_id" : 2,
-            "semester_id" : 1
-		}
-    },
-    {
-		"model": "Course",
-		"data": {
-			"id": 3,
-            "name": "Microcontrollers",
-            "description": "Microcontrollers",
-            "credits": 5,
-            "year_of_study": 3,
-            "is_active": "true",
-            "academic_programme_id": 1,
-            "section_id" : 2,
-            "semester_id" : 1
-		}
-    },
-    {
-		"model": "Course",
-		"data": {
-			"id": 4,
-            "name": "Paralell and Distributed Programming",
-            "description": "PPD",
-            "credits": 5,
-            "year_of_study": 3,
-            "is_active": "true",
-            "academic_programme_id": 1,
-            "section_id" : 2,
-            "semester_id" : 1
-		}
-    },
-    {
-		"model": "Course",
-		"data": {
-			"id": 5,
-            "name": "Formal Languages and Compiler Design",
-            "description": "LFTC",
-            "credits": 5,
-            "year_of_study": 3,
-            "is_active": "true",
-            "academic_programme_id": 1,
-            "section_id" : 2,
-            "semester_id" : 1
-		}
-    },
-    {
-		"model": "Course",
-		"data": {
-			"id": 6,
-            "name": "Mobile Apps",
-            "description": "MA",
-            "credits": 5,
-            "year_of_study": 3,
-            "is_active": "true",
-            "academic_programme_id": 1,
-            "section_id" : 2,
-            "semester_id" : 1
-		}
-    },
-    {
-		"model": "Course",
-		"data": {
-			"id": 7,
-            "name": "Software Security",
-            "description": "SS",
-            "credits": 5,
-            "year_of_study": 3,
-            "is_active": "true",
-            "academic_programme_id": 1,
-            "section_id" : 2,
-            "semester_id" : 1
-		}
-    },
-    {
-		"model": "Course",
-		"data": {
-			"id": 8,
-            "name": "Collective Project",
-            "description": "PC",
-            "credits": 5,
-            "year_of_study": 3,
-            "is_active": "true",
-            "academic_programme_id": 1,
-            "section_id" : 2,
-            "semester_id" : 1
-		}
-	}
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Algebra",
+                  "description": "Algebra",
+                  "credits": 5,
+                  "year_of_study": 1,
+                  "is_active": "true",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 1,
+                  "courseconfiguration_id": 3
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Design Patterns",
+                  "description": "Design Patterns",
+                  "credits": 5,
+                  "year_of_study": 3,
+                  "is_active": "true",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 1,
+                  "courseconfiguration_id": 4
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Microcontrollers",
+                  "description": "Microcontrollers",
+                  "credits": 5,
+                  "year_of_study": 3,
+                  "is_active": "true",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 1,
+                  "courseconfiguration_id": 5
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Paralell and Distributed Programming",
+                  "description": "PPD",
+                  "credits": 5,
+                  "year_of_study": 3,
+                  "is_active": "true",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 1,
+                  "courseconfiguration_id": 2
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Formal Languages and Compiler Design",
+                  "description": "LFTC",
+                  "credits": 5,
+                  "year_of_study": 3,
+                  "is_active": "true",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 1,
+                  "courseconfiguration_id": 1
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Mobile Apps",
+                  "description": "MA",
+                  "credits": 5,
+                  "year_of_study": 3,
+                  "is_active": "true",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 1,
+                  "courseconfiguration_id": 6
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Software Security",
+                  "description": "SS",
+                  "credits": 5,
+                  "year_of_study": 3,
+                  "is_active": "true",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 1,
+                  "courseconfiguration_id": 7
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Collective Project",
+                  "description": "PC",
+                  "credits": 5,
+                  "year_of_study": 3,
+                  "is_active": "true",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 1,
+                  "courseconfiguration_id": 8
+            }
+      }
 ]
