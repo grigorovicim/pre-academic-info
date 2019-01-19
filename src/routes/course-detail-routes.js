@@ -7,8 +7,10 @@ const Sequelize = require('sequelize');
  * @method GET the course configuration
  * @throws 'Internal Server Error! Sorry, try again!'
  */
-router.get('/:id', function(_, res){
-    models.CourseConfiguration.findOne(
+router.get('/:id', function(req, res){
+    const idcourseconfig = req.params.id;
+
+    models.CourseConfiguration.findByPk(idcourseconfig,
         { include: [
             {
                 model: models.Course,
