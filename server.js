@@ -165,12 +165,12 @@ app.post('/register', (req, res) => {
           'user_id': response.data.id,
         }
 
-        client.post('/profile', profileData).then(function(profile){
+        client.post('/profile/', profileData).then(function(profile){
           const professorData = {
             'profile_id': profile.data.id,
           }
 
-          client.post('/professor', professorData).then(function(professor) {
+          client.post('/professor/', professorData).then(function(professor) {
             const host = 'http://' + req.get('host') + '/verify/';
             response.data.password = password;
             
