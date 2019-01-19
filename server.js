@@ -35,6 +35,7 @@ var RoleRoutes = require('./src/routes/role-routes');
 var StudentCourseRoutes = require('./src/routes/student-course-routes');
 const SpreadsheetRoutes = require('./src/routes/spreadsheet-routes');
 const ProfileRoutes = require('./src/routes/profile-routes');
+var CourseConfigurationRoutes = require('./src/routes/course-detail-routes');
 
 
 const app = express();
@@ -57,6 +58,7 @@ app.use('/spreadsheet', SpreadsheetRoutes);
 app.use('/profile', ProfileRoutes);
 app.use('/role', RoleRoutes);
 app.use('/studentcourse', StudentCourseRoutes);
+app.use('/courseconfig', CourseConfigurationRoutes);
 
 app.get('/check-server', (req, res) => {
     res.send({express: 'Hello From Express BACKEND!'});
@@ -101,7 +103,6 @@ app.post('/session-id', (req, res) => {
     const user = getUserDetails(sessionID);
     res.send(user);
 });
-
 
 app.post('/logout', (req, res) => {
   //to do implement logout
