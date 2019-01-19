@@ -51,7 +51,9 @@ class Dashboard extends Component<any, any> {
                         name={course.name}
                         section={course.Section.name}
                         isConfigured={course.is_active}
-                        onDetails={this.openCourseDetailsPopup}>
+                        onDetails={this.openCourseDetailsPopup}
+                        dashboardPage={this.props.dashboardPage}
+                    >
                     </DashboardCourseItem>
                 </div>)
         });
