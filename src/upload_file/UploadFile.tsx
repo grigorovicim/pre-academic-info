@@ -2,7 +2,7 @@ import * as React from "react";
 import {FilePond} from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
 import {Component} from "react";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 class UploadFile extends Component<any, any> {
     constructor(props) {
@@ -25,7 +25,16 @@ class UploadFile extends Component<any, any> {
     render() {
         return (
             <div className="App">
-                <FilePond server="/spreadsheet"
+                <FilePond server={
+                    {
+                        url: "/spreadsheet",
+                        process: {
+                            headers: {
+                                'email': this.props.app.user.userDetails.username
+                            },
+                        }
+                    }
+                }
                           name="file"
                           allowMultiple={false}
                           onprocessfile={this.handlePondFile}
@@ -43,7 +52,7 @@ class UploadFile extends Component<any, any> {
 
 const mapStateToProps = (state: any) => {
     return {
-        user: Object.assign({}, state.app.user),
+        app: Object.assign({}, state.app),
     };
 };
 

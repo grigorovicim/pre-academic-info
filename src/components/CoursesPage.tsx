@@ -5,6 +5,8 @@ import Dashboard from "../courses/Dashboard";
 import * as React from "react";
 // import CourseDetail from "../courses/CourseDetail";
 import {connect} from "react-redux";
+import UploadFile from "../upload_file/UploadFile";
+import CourseActions from "../actions/Course.actions";
 //import CourseActions from "../actions/Course.actions";
 
 class CoursesPage extends Component<any,any>
@@ -14,26 +16,21 @@ class CoursesPage extends Component<any,any>
         super(props);
 
         this.state = {
-
         };
+        console.log(this.props.app.user);
+
+        this.props.dispatch(CourseActions.fetchItems(this.props.app.user.userDetails.username))
     }
 
     public render() {
-        const dummy = [
-            {id:1, name: "LFTC", department: "info", isConfigured: false},
-            {id:2, name: "PPD", department: "info", isConfigured: false},
-            {id:3, name: "PLF", department: "info", isConfigured: true},
-            {id:4, name: "Microcontrollers", department: "info", isConfigured: false},
-            {id:5, name: "ASC", department: "info", isConfigured: true},
-            {id:6, name: "MAP", department: "info", isConfigured: true},
-        ];
         return (
             <div className="p-app">
 
                 <Header home="none" courses="inline" students="none" catalog="none" myProfile="none"/>
 
+                <UploadFile/>
 
-                <Dashboard courseItems={dummy}/>
+                <Dashboard courseItems={this.props.items}/>
             </div>
         );
     }
@@ -41,7 +38,8 @@ class CoursesPage extends Component<any,any>
 
 const mapStateToProps = (state: any) => {
     return {
-
+        items: state.courseReducer.items,
+        app: Object.assign({}, state.app),
     };
 };
 

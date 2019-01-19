@@ -1,0 +1,52 @@
+[
+    {
+        "model": "SeminarActivity",
+        "data": {
+            "week": 10,
+            "grade": 9,
+            "course_id": 6,
+            "student_id": 1,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "SeminarActivity",
+        "data": {
+            "week": 10,
+            "grade": 9,
+            "course_id": 6,
+            "student_id": 2,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "SeminarActivity",
+        "data": {
+            "week": 10,
+            "grade": 9,
+            "course_id": 6,
+            "student_id": 3,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "SeminarActivity",
+        "data": {
+            "week": 10,
+            "grade": 9,
+            "course_id": 6,
+            "student_id": 4,
+            "professor_id": 1
+        }
+    },
+    {
+        "model": "SeminarActivity",
+        "data": {
+            "week": 10,
+            "grade": 9,
+            "course_id": 6,
+            "student_id": 5,
+            "professor_id": 1
+        }
+    }
+]
