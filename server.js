@@ -41,7 +41,7 @@ const app = express();
 const emailUtil = require('./src/util/email');
 
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '10mb'}));
 const path = require('path');
 const port = process.env.PORT || 5000;
 const dev = app.get('env') !== 'production';
