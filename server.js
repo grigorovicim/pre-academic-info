@@ -148,7 +148,6 @@ app.post('/register', (req, res) => {
   
   client.get('/role/Professor').then(function(response) {
     var role = response.data;
-
     if(role) {
       // we will save the user with a speciffic user token
       // that will need to be confirmed
