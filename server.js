@@ -103,7 +103,6 @@ app.post('/session-id', (req, res) => {
     res.send(user);
 });
 
-
 app.post('/logout', (req, res) => {
   //to do implement logout
   res.send("Success")
