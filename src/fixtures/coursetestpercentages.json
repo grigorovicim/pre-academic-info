@@ -1,0 +1,18 @@
+[
+    {
+		"model": "CourseTestPercentage",
+		"data": {
+            "percentage": 50,
+            "week": 7,
+            "courseconfiguration_id": 7
+        }
+    },
+    {
+		"model": "CourseTestPercentage",
+		"data": {
+            "percentage": 50,
+            "week": 10,
+            "courseconfiguration_id": 7
+        }
+    }
+]

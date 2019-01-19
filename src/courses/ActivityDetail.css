@@ -1,0 +1,138 @@
+.p-add-activity {
+
+}
+
+.p-title-add-activity-popup {
+  color: #515050;
+  display: flex;
+  justify-content: center;
+
+}
+.p-group-buttons .p-group-button {
+  background-color: rgb(141, 212, 248, 0.5);
+  margin-right: 2px;
+  border: 0.05;
+  color: #2E91C3;
+  font-size: 14px; 
+  border-radius: 0.5ch;
+}
+.p-group-buttons .p-group-button:hover {
+  background-color: rgb(141, 212, 248, 0.9);
+  color: white;
+}
+
+.p-seminar-or-lab-button {
+  background-color: rgb(141, 212, 248, 0.5);
+  margin-right: 2px;
+  border: 0.05;
+  color: #2E91C3;
+  font-size: 12px; 
+  width: 100px;
+  border-radius: 0.5ch;
+}
+.p-seminar-or-lab-button:hover {
+  background-color: rgb(141, 212, 248, 0.9);
+  color:white;
+}
+
+.p-week-label-input {
+  color: #2E91C3;
+  font-size: 14px;
+  margin-right: 4px;
+}
+.p-week-input {
+  color: #8E9396;
+  font-size: 14px;
+  height: 20px;
+  width: 50px;
+}
+
+.p-search-students-label-input {
+  color: #2E91C3;
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+.p-search-students-input {
+  color: #8E9396;
+  font-size: 14px;
+  height: 20px;
+  width: 450px;
+}
+
+.btn-toolbar {
+  margin-left:auto;
+  margin-right:auto;
+  display:block;
+}
+
+.p-done-button-add-activity:hover {
+  background-color: rgb(141, 212, 248, 0.9);
+  color:white;
+}
+.p-done-button-add-activity {
+  display: flex;
+  justify-content: center;
+  background-color:  rgb(141, 212, 248, 0.5);
+  color: #2E91C3;
+  margin:auto;
+  border-radius: 0.5ch;
+  font-size: 14px;
+}
+
+.p-input-homework-header {
+  color: #2E91C3;
+  font-size: 12px;
+}
+
+.p-input-presents-header {
+  color: #2E91C3;
+  font-size: 12px;
+  font-weight: bolder;
+}
+
+.p-header-add-activity {
+  color: #8E9396;
+  font-size: 12px;
+  font-weight: bolder;
+}
+
+.p-input-homework-student {
+  width: 60px;
+  border: none;
+  background-color: rgb(142, 147, 150, 0.1);
+  color: #2E91C3;
+  outline-width: 0;
+}
+.p-input-present-student {
+  width: 60px;
+  border: none;
+  color: #2E91C3;
+  background-color: rgb(142, 147, 150, 0.1);
+  outline-width: 0;
+}
+
+.p-save-student-activity:hover {
+  background-color: rgb(141, 212, 248, 0.9);
+  color:white;
+}
+.p-save-student-activity {
+  background-color: rgb(141, 212, 248, 0.5);
+  margin-right: 2px;
+  color: #2E91C3;
+  border: none;
+  border-radius: 0.5ch;
+  font-size: 10px; 
+}
+
+.p-input-student {
+  font-size: 12px;
+  color: #747373;
+}
+
+.p-photo-student {
+  border: 1px;
+  border-radius: 100%;
+  width: 10px;
+  background-color: #8E9396;
+}

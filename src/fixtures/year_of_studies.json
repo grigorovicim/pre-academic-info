@@ -1,0 +1,20 @@
+[
+	{
+		"model": "YearOfStudy",
+		"data": {
+			"label": "1"
+		}
+	},
+	{
+		"model": "YearOfStudy",
+		"data": {
+			"label": "2"
+		}
+	},
+	{
+		"model": "YearOfStudy",
+		"data": {
+			"label": "3"
+		}
+	}
+]

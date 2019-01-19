@@ -1,0 +1,39 @@
+.p-dashboard{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.p-dashboard-header {
+    align-items: center;
+    height: 67px;	
+    width: 84%;
+    margin-bottom: 26px;
+    margin-right: 0;
+    margin-left: 0;
+    background-color: rgba(216,216,216,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.15);
+
+}
+
+.p-dashboard-header > span{
+    position: static;
+    height: 18px;
+    font-family: Copperplate;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    color: #262729;
+    display: inline-block;
+}
+
+.p-dashboard-body{
+    width: 83%;
+}
+
+.p-dashboard-item{
+  position: static;
+    margin-bottom: 20px;
+}

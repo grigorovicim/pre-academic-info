@@ -1,0 +1,42 @@
+[
+    {
+        "model": "StudentCourse",
+        "data": {
+            "year": 3,
+            "student_id": 1,
+            "course_id": 3
+        }
+    },
+    {
+        "model": "StudentCourse",
+        "data": {
+            "year": 3,
+            "student_id": 1,
+            "course_id": 4
+        }
+    },
+    {
+        "model": "StudentCourse",
+        "data": {
+            "year": 3,
+            "student_id": 1,
+            "course_id": 5
+        }
+    },
+    {
+        "model": "StudentCourse",
+        "data": {
+            "year": 3,
+            "student_id": 1,
+            "course_id": 6
+        }
+    },
+    {
+        "model": "StudentCourse",
+        "data": {
+            "year": 3,
+            "student_id": 1,
+            "course_id": 7
+        }
+    }
+]

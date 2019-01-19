@@ -1,0 +1,14 @@
+[
+	{
+		"model": "Semester",
+		"data": {
+			"label": "I"
+		}
+	},
+	{
+		"model": "Semester",
+		"data": {
+			"label": "II"
+		}
+	}
+]
