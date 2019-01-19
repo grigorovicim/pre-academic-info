@@ -9,6 +9,7 @@ import * as PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchStudents, fetchProfileForStudent } from '../actions/Student.actions';
 import Popup from "../commons/Popup";
+import AppActions from 'src/App.actions';
 
 class StudentsList extends Component<any, any> {
     static propTypes = {
@@ -41,6 +42,7 @@ class StudentsList extends Component<any, any> {
     }
     openAddStudentPopup(e: any) {
         e.stopPropagation();
+        this.props.dispatch(AppActions.setIsAlert(false));
         this.setState({
             isPopupVisible: true,
             popupComponentType: 'p-add-student-button',
