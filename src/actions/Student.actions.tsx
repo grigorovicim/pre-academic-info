@@ -1,5 +1,7 @@
 import { FETCH_STUDENTS, NEW_STUDENT  } from './types';
 import { FETCH_STUDENT_PROFILE } from './types';
+import { FETCH_STUDENTS_ENROLLED} from './types';
+import {FETCH_STUDENTS_NOT_ENROLLED} from './types';
 import axios from 'axios';
 
 export const fetchStudents = (courseId: any) => (dispatch:any) => {
@@ -18,6 +20,33 @@ export const fetchStudents = (courseId: any) => (dispatch:any) => {
         });
     console.log("fetch complete");
     
+};
+
+export const fetchStudentsEnrolled = (courseId: any) => (dispatch:any) => {
+    axios.get('/student/course/'+courseId)
+        .then(res =>{
+
+            dispatch({
+                type: FETCH_STUDENTS_ENROLLED,
+                payload: res.data
+            })})
+        .catch(error => {
+            console.log(error)
+        });
+};
+
+
+export const fetchStudentsNotEnrolled = (courseId: any) => (dispatch:any) => {
+    axios.get('/student/not-enrolled/course/'+courseId)
+        .then(res =>{
+
+            dispatch({
+                type: FETCH_STUDENTS_NOT_ENROLLED,
+                payload: res.data
+            })})
+        .catch(error => {
+            console.log(error)
+        });
 };
 
 export const fetchProfileForStudent = (studentId: any) => (dispatch:any) => {

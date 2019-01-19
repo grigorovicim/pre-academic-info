@@ -1,4 +1,4 @@
-import { FETCH_STUDENT_COURSES,NEW_STUDENT_COURSE } from './types';
+import { FETCH_STUDENT_COURSES} from './types';
 import axios from 'axios';
 
 export const fetchStudentCourses = () => dispatch => {
@@ -15,23 +15,38 @@ export const fetchStudentCourses = () => dispatch => {
         });
 };
 
+// export const createStudentCourse = postData => dispatch => {
+//     fetch('/studentcourse', {
+//       method: 'POST',
+//       headers: {
+//         'content-type': 'application/json'
+//       },
+//       body: JSON.stringify(postData)
+//     })
+//       .then(res => res.json())
+//       .then(studentCourse =>
+//         dispatch({
+//           type: NEW_STUDENT_COURSE,
+//           payload: studentCourse
+//         })
+//       )
+//       .catch(error => {
+//         console.log(error)
+//       })
+//       ;
+//   };
+
 export const createStudentCourse = postData => dispatch => {
     fetch('/studentcourse', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(postData)
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(postData)
     })
-      .then(res => res.json())
-      .then(studentCourse =>
-        dispatch({
-          type: NEW_STUDENT_COURSE,
-          payload: studentCourse
+        .then(res => res.json())
+        .catch(error => {
+            console.log(error)
         })
-      )
-      .catch(error => {
-        console.log(error)
-      })
-      ;
-  };
+    ;
+};

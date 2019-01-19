@@ -2,6 +2,8 @@ var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
 const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 
 /**
  * Returns a list with all the students.
@@ -351,6 +353,30 @@ router.get('/course/:courseId', function(req, res){
     res.send('Internal Server Error! Sorry, try again!');
     console.log('An error has occurred: ' + err);
   });
+});
+
+router.get('/not-enrolled/course/:courseId', function(req, res){
+    const courseId = parseInt(req.params.courseId, 10);
+
+    models.Student.findAll(
+        {attributes: ['id','year_of_study'],
+            include: [
+                {
+                    attributes: ['id', 'first_name', 'last_name', 'personal_email'],
+                    model: models.Profile,
+                    required: true,
+                }],
+            where: {id :
+                    {
+                      [Op.notIn] :
+                          [Sequelize.literal('(SELECT student_id FROM "StudentCourses" WHERE "StudentCourses"."course_id" = '+ courseId + ')')]
+
+                    }}
+        }).then(students => res.json(students), err => {
+        res.status(501);
+        res.send('Internal Server Error! Sorry, try again!');
+        console.log('An error has occurred: ' + err);
+    });
 });
 
 /*
