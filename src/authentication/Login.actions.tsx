@@ -20,6 +20,9 @@ export default class LoginActions {
   static authenticate = (email: any, password: any) => (dispatch: any, /*getState: any*/) => {
     axios.post('/login', {email: email, password: password})
       .then((response) => {
+        if(response.status === 501) {
+          
+        }
         if (response.data !== null) {
           LoginActions.setCookie('token', response.data.session);
           if(response.data.type === 'professor') {

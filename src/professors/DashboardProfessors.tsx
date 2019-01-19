@@ -9,6 +9,7 @@ import * as PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfessors, fetchProfessorProfile } from '../actions/Professor.actions';
 import Popup from "../commons/Popup";
+import AppActions from 'src/App.actions';
 
 class DashboardProfessors extends Component<any, any> {
     static propTypes = {
@@ -38,6 +39,7 @@ class DashboardProfessors extends Component<any, any> {
     }
     openAddProfessorPopup(e: any) {
         e.stopPropagation();
+        this.props.dispatch(AppActions.setIsAlert(false));
         this.setState({
             isPopupVisible: true,
             popupComponentType: 'p-add-professor-button',

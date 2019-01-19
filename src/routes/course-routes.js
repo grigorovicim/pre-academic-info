@@ -26,7 +26,7 @@ router.post('/get-dashboard-courses/', function (req, res) {
     console.log("Getting courses for: ", profEmail);
 
     models.Course.findAll({
-        attributes: ['id', 'name', 'academic_programme_id', 'semester_id', 'year_of_study'],
+        attributes: ['id', 'name', 'academic_programme_id', 'semester_id', 'year_of_study', 'is_active'],
         include: [{
             model: models.ProfessorCourse,
             required: true,

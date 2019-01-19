@@ -10,7 +10,7 @@ const Sequelize = require('sequelize');
  * @throws 'Internal Server Error! Sorry, try again!'
  */
 router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
-    const searchString = null;
+    let searchString = null;
     if (req.params.studentstring === null)
     {
      searchString = '%%';
@@ -36,36 +36,36 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
       },{
         model: models.SeminarActivity,
         where: { week : weekparam },
+        required: false,
       },{
         model: models.SeminarPresence,
         where: { week : weekparam },
+        required: false,
       },{
         model: models.LabActivity,
         where: { week : weekparam },
+        required: false,
       },{
         model: models.LabPresence,
         where: { week : weekparam },
+        required: false,
       },{
         model: models.CourseActivity,
         where: { week : weekparam },
+        required: false,
       },{
         model: models.CoursePresence,
         where: { week : weekparam },
+        required: false,
       },{
         model: models.ExamWrittenResult,
+        required: false,
       },{
         model: models.ExamPracticalResult,
+        required: false,
       },{
         model: models.FinalGrade,
-      },{
-        model: models.LabPresence,
-        attributes: { include: [[sequelize.fn('COUNT', sequelize.col('LabPresences')), 'labPresnces']] }
-      },{
-        model: models.SeminarPresence,
-        attributes: { include: [[sequelize.fn('COUNT', sequelize.col('SeminarPresences')), 'seminarPresences']] }
-      },{
-        model: models.CoursePresence,
-        attributes: { include: [[sequelize.fn('COUNT', sequelize.col('CoursePresences')), 'coursePresences']] }
+        required: false,
       }
       ]}).then(students => res.json(students), err => {
         res.status(501);
@@ -86,28 +86,34 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
       },{
         model: models.SeminarActivity,
         where: { week : weekparam },
+        required: false,
       },{
         model: models.SeminarPresence,
         where: { week : weekparam },
+        required: false,
       },{
         model: models.LabActivity,
         where: { week : weekparam },
+        required: false,
       },{
         model: models.LabPresence,
         where: { week : weekparam },
+        required: false,
       },{
         model: models.CourseActivity,
         where: { week : weekparam },
+        required: false,
       },{
         model: models.CoursePresence,
         where: { week : weekparam },
+        required: false,
       },{
         model: models.ExamWrittenResult,
+        required: false,
       },{
         model: models.ExamPracticalResult,
-      },{
-        model: models.FinalGrade,
-      }
+        required: false,
+      },
       ]}).then(students => res.json(students), err => {
         res.status(501);
         res.send('Internal Server Error! Sorry, try again!');
