@@ -1,43 +1,19 @@
 import * as React from "react";
-import { Component } from "react";
+import {Component} from "react";
 
 import './DashboardCourseItem.css';
 import plusBtn from '../plus-btn.png';
 
 import optionsBtn from '../options-btn.png';
-import AppActions from "../App.actions";
-import ActivityDetail from "./ActivityDetail";
 import {connect} from "react-redux";
-
-
+import Popup from "../commons/Popup";
 
 class DashboardCourseItem extends Component<any, any> {
     private name: any;
     private section: any;
     private isConfigured: any;
 
-    constructor(props: any) {
-        super(props);
-        this.name = props.name;
-        this.section = props.section;
-        this.isConfigured = props.isConfigured;
-
-        this.editConfiguration = this.editConfiguration.bind(this);
-        this.addConfiguration = this.addConfiguration.bind(this);
-        this.whichButton = this.whichButton.bind(this)
-    }
-
-    whichButton() {
-        if (this.isConfigured) {
-            return (<button className="course-config-button-wrapper" onClick={this.editConfiguration}><img
-                className="course-config-button" src={optionsBtn} /></button>)
-        }
-        return (<button className="course-config-button-wrapper" onClick={this.addConfiguration}><img className="course-config-button" src={plusBtn} />
-        </button>)
-    }
-
-    addConfiguration() {
-        const courseDetails = {
+    private courseDetails = {
             name: "Design Patterns",
             professor: "Molnar Arthur",
             section: {name: 'English', nrGroups: 6},
@@ -70,12 +46,52 @@ class DashboardCourseItem extends Component<any, any> {
             ]
         };
 
-        this.props.dispatch(AppActions.setPopupContentElement(
-            <ActivityDetail details={courseDetails}/>
-        ));
-        this.props.dispatch(AppActions.setPopupVisibility(true));    }
+    constructor(props: any) {
+        super(props);
+        this.name = props.name;
+        this.section = "info";
+        this.isConfigured = props.isConfigured;
+        this.state = {
+            isPopupVisible: false,
+            popupComponentType: null,
+        }
 
-    editConfiguration() {
+        this.addActivityDetailsPopup = this.addActivityDetailsPopup.bind(this);
+        this.openActivityDetailsPopup = this.openActivityDetailsPopup.bind(this);
+        this.closePopup = this.closePopup.bind(this);
+        this.whichButton = this.whichButton.bind(this)
+    }
+
+    whichButton() {
+        if (this.isConfigured) {
+            return (<button className="course-config-button-wrapper" onClick={this.addActivityDetailsPopup}><img
+                className="course-config-button" src={optionsBtn}/></button>)
+        }
+        return (<button className="course-config-button-wrapper" onClick={this.openActivityDetailsPopup}><img
+            className="course-config-button" src={plusBtn}/>
+        </button>)
+    }
+
+    addActivityDetailsPopup(e: any) {
+        e.stopPropagation();
+        this.setState({
+            isPopupVisible: true,
+            popupComponentType: 'p-activity-detail-button',
+        });
+    }
+
+    openActivityDetailsPopup(e: any) {
+        e.stopPropagation();
+        this.setState({
+            isPopupVisible: true,
+            popupComponentType: 'p-activity-detail-button',
+        });
+    }
+
+    closePopup() {
+        this.setState({
+            isPopupVisible: false,
+        });
     }
 
     render() {
@@ -86,15 +102,14 @@ class DashboardCourseItem extends Component<any, any> {
                 <div className="div-config-button-wrapper col-md-1">
                     {this.whichButton()}
                 </div>
+                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={1} courseDetails={this.courseDetails}/>
             </div>
         );
     }
 }
 
 const mapStateToProps = (state: any) => {
-    return {
-
-    };
+    return {};
 };
 
 
