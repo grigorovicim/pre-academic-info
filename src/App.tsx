@@ -32,6 +32,7 @@ class App extends Component<any, any> {
             isPopupVisible: false,
             popupComponentType: null,
         };
+        
         this.props.dispatch(AppActions.checkAuthenticationToken());
         this.openLoginPopup = this.openLoginPopup.bind(this);
         this.closePopup = this.closePopup.bind(this);
@@ -51,6 +52,7 @@ class App extends Component<any, any> {
 
     openLoginPopup(e: any) {
         e.stopPropagation();
+        this.props.dispatch(AppActions.setIsAlert(false));
         this.setState({
             isPopupVisible: true,
             popupComponentType: 'p-login-whichButton',

@@ -52,7 +52,7 @@ class DashboardCourseItem extends Component<any, any> {
     constructor(props: any) {
         super(props);
         this.name = props.name;
-        this.section = "info";
+        this.section = props.section;
         this.isConfigured = props.isConfigured;
         this.state = {
             isPopupVisible: false,

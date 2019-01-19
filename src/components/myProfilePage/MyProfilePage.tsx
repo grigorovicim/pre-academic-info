@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import './MyProfilePage.css';
 import MailIcon from './mail-icon.png';
 import ProfileIcon from './profile-icon.png';
-import {fetchProfile} from '../../actions/Profile.actions';
+import {updateUser} from '../../actions/Profile.actions';
 import axios from 'axios';
 
 class MyProfilePage extends Component<any, any> {
@@ -26,21 +26,19 @@ class MyProfilePage extends Component<any, any> {
         this.save = this.save.bind(this);
     }
 
-    componentDidMount() {
-        this.props.fetchProfile(this.props.user.userDetails.id);
-        axios.get('role/id/' + this.props.user.userDetails.role_id).then((resp) => {
-            this.setState({
-                role: resp.data.label,
-            });
-        });
-    }
-
     public render() {
+        if(this.props.user.userDetails == null) {
+            
+            return (
+                <div>
+                    <Header login="none" courses="none" students="none" catalog="none" myProfile="inline"/></div>)
+        }
+
         const emailClass = this.state.isEmailValid ? "p-container-box" : "p-container-box p-box-invalid-mail";
         let avatar = this.props.imageBase64;
         
-        if(this.props.profile.avatar) {
-            const url = new Buffer( this.props.profile.avatar, 'binary' );
+        if(this.props.user.userDetails.profile.avatar) {
+            const url = new Buffer( this.props.user.userDetails.profile.avatar, 'binary' );
             avatar = url;
         }
 
@@ -63,10 +61,10 @@ class MyProfilePage extends Component<any, any> {
                         </div>
                     </div>
                     <div className="p-container-input">
-                        <div className="p-container-info">{this.state.role}</div>
+                        <div className="p-container-info">{this.props.user.userDetails.role}</div>
                         <div className="p-container-box">
                             <img className="p-icon" src={ProfileIcon}/>
-                            <input className="input" value={this.props.profile.first_name + ' ' + this.props.profile.last_name} onChange={this.onNameChange}
+                            <input className="input" value={this.props.user.userDetails.profile.first_name + ' ' + this.props.user.userDetails.profile.last_name} onChange={this.onNameChange}
                                    placeholder="Jessica Tuan"/>
                         </div>
                         <div className={emailClass}>
@@ -91,9 +89,10 @@ class MyProfilePage extends Component<any, any> {
         reader.onload = () => {
             if(reader.result != null) {
                 const buffer = reader.result.toString();
-                axios.put('/profile/avatar/' + this.props.profile.id, {'avatar': buffer}, {})
+                axios.put('/profile/avatar/' + this.props.user.userDetails.profile.id, {'avatar': buffer}, {})
                 .then(() => {
-                    this.props.fetchProfile(this.props.user.userDetails.id);
+                    //this.props.user.userDetails.profile.avatar = buffer;
+                    this.props.updateUser(this.props.user.userDetails);
                 });
             }
         }
@@ -131,5 +130,5 @@ const mapStateToProps = (state: any) => {
   };
   
 export default connect(
-    mapStateToProps,{fetchProfile}
+    mapStateToProps,{updateUser}
 )(MyProfilePage);
