@@ -19,6 +19,25 @@ export default class AppActions {
     })
   };
 
+   static fetchCourseConfig = (configId: any, callback: any) => (dispatch:any) => {
+       axios.get('/courseConfig/' + configId)
+           .then(res => {
+             if(res.data!=null) {
+               const mydata = res.data;
+                 dispatch({
+                     type: 'FETCH_COURSE_CONFIG',
+                     payload: mydata
+                 });
+               callback(mydata);
+             }
+
+               console.log(res.data);
+           })
+           .catch(error => {
+               console.log(error)
+           });
+   }
+
   static checkUser = (sessionID: string) => (dispatch: any) => {
     axios.post('/session-id', {sessionID: sessionID})
     .then((response:any) => {

@@ -57,6 +57,10 @@ class Header extends Component<any,any>{
                             <NavLink to={"/"}>HOME</NavLink>
                             <div id="login" className="login" style={{display: this.props.home}}/>
                         </div>
+                        <div className="p-header-button" >
+                            <NavLink to={"/componenta"}>XXXXXX</NavLink>
+                            <div id="login" className="login" style={{display: this.props.home}}/>
+                        </div>
                         <div className="p-header-button">
                             <NavLink to={"/courses"}>COURSES</NavLink>
                             <div id="courses" className="courses" style={{display: this.props.courses}}/>

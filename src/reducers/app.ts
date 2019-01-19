@@ -1,4 +1,5 @@
 
+
 const reducer = (state = {
   isPopupVisible: false,
   popupContent: null,
@@ -31,6 +32,13 @@ const reducer = (state = {
       }),
     };
   }
+  case 'FETCH_COURSE_CONFIG':
+      console.log(action.payload);
+      return {
+          ...state,
+          courseConfig: action.payload
+      };
+
   case 'SET_USER_TYPE_EMPLOYEE': {
     return {
       ...state,
