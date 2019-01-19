@@ -10,7 +10,8 @@ import AddStudent from "../students/AddStudent";
 import AddNewStudentToCourse from "../students/AddNewStudentToCourse";
 import Tests from 'src/courses/popups/Tests';
 import ActivityDetail from "../courses/ActivityDetail";
-import CourseDetails from "../components/CourseDetails";
+import CourseDetail from "../courses/CourseDetail";
+
 
 class Popup extends Component<any, any> {
 
@@ -62,7 +63,7 @@ class Popup extends Component<any, any> {
     }  else if (this.props.componentType === "p-add-student-button"){
         component = <AddStudent courseId={this.props.courseId} callback={this.handleClick}/>
     }  else if (this.props.componentType === "p-courses-detail-button"){
-        component = <CourseDetails />
+        component = <CourseDetail course={this.props.course}/>
     }  else if (this.props.componentType === "p-activity-detail-button"){
         component = <ActivityDetail details={this.props.courseDetails} />
     } else if ( this.props.componentType === "p-add-new-student-button"){

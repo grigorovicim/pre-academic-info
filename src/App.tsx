@@ -17,6 +17,7 @@ import MyProfilePage from "./components/myProfilePage/MyProfilePage";
 import Register from "./authentication/Register";
 // import AddNewStudentToCourse from './students/AddNewStudentToCourse';
 import CoursesPage from './components/CoursesPage';
+import ComponentaCata from './components/ComponentaCata';
 
 
 import AppActions from './App.actions';
@@ -93,6 +94,7 @@ class App extends Component<any, any> {
                         <Route path={"/catalog"} component={CatalogPage} exact/>
                         <Route path={"/myprofile"} component={MyProfilePage} exact/>
                         <Route path={"/register"} component={Register}/>
+                        <Route path={"/componenta"} component={ComponentaCata}/>
                     </div>
                 </BrowserRouter>
             </div>
