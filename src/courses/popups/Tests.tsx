@@ -90,8 +90,8 @@ class Tests extends Component<any,any> {
     for (let i = 0; i < this.props.tests; i++){
         this.data.push({
           test_number : i+1,
-          test_week: <input width= "" type="number" defaultValue={this.weeks[i]}></input>,
-          test_percentage: <input type="number" defaultValue={this.percentages[i]} onKeyPress={(e)=>onChangeFct(e, i)} />
+          test_week: <input type="number" style={{width: "7em"}} defaultValue={this.weeks[i]}></input>,
+          test_percentage: <input type="number" style={{width: "7em"}} defaultValue={this.percentages[i]} onKeyPress={(e)=>onChangeFct(e, i)} />
         });
     }
   }
