@@ -1,50 +1,54 @@
 import * as React from "react";
-import {Component} from "react";
+import { Component } from "react";
 
 import './DashboardCourseItem.css';
 import plusBtn from '../plus-btn.png';
 
 import optionsBtn from '../options-btn.png';
+import AppActions from "../App.actions";
+import ActivityDetail from "./ActivityDetail";
 import {connect} from "react-redux";
-import Popup from "../commons/Popup";
+
+
 
 class DashboardCourseItem extends Component<any, any> {
     private name: any;
     private section: any;
     private isConfigured: any;
 
+
     private courseDetails = {
-            name: "Design Patterns",
-            professor: "Molnar Arthur",
-            section: {name: 'English', nrGroups: 6},
-            groups: [932, 933, 934, 935],
-            students: [
-              {
-                name: "Ana Maria",
-                homework: 10,
-                present: true,
-                totalPresents: 2,
-                exam: "-" ,
-                finalGrade: "-"
-              },
-              {
-                name: "Andrada Gae",
-                homework: 10,
-                present: true,
-                totalPresents: 2,
-                exam: "-" ,
-                finalGrade: "-"
-              },
-              {
-                name: "Iuliana Florentina",
-                homework: 10,
-                present: true,
-                totalPresents: 2,
-                exam: "-" ,
-                finalGrade: "-"
-              },
-            ]
-        };
+        name: "Design Patterns",
+        professor: "Molnar Arthur",
+        section: {name: 'English', nrGroups: 6},
+        groups: [932, 933, 934, 935],
+        students: [
+          {
+            name: "Ana Maria",
+            homework: 10,
+            present: true,
+            totalPresents: 2,
+            exam: "-" ,
+            finalGrade: "-"
+          },
+          {
+            name: "Andrada Gae",
+            homework: 10,
+            present: true,
+            totalPresents: 2,
+            exam: "-" ,
+            finalGrade: "-"
+          },
+          {
+            name: "Iuliana Florentina",
+            homework: 10,
+            present: true,
+            totalPresents: 2,
+            exam: "-" ,
+            finalGrade: "-"
+          },
+        ]
+    };
 
     constructor(props: any) {
         super(props);
