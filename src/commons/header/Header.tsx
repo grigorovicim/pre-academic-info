@@ -83,5 +83,3 @@ const mapStateToProps = (state: any) => {
 export default connect(
     mapStateToProps,
 )(Header);
-
-//export default Header;

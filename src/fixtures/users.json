@@ -88,6 +88,15 @@
 			"is_active": "true",
 			"role_id" : 2
 		}
+	},
+	{
+		"model": "User",
+		"data": {
+			"username": "test@cs.ubbcluj.ro",
+			"password": "1234",
+			"is_active": "true",
+			"role_id" : 2
+		}
 	}
 	
 ]

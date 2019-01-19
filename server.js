@@ -110,7 +110,7 @@ app.post('/logout', (req, res) => {
 
 app.post('/login', (req, res) => {
   const email = req.body.email;
-  const password = req.body.password; 
+  const password = req.body.password;
 
   userData = {
     'username': email,
@@ -139,12 +139,13 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-  //const firstName = req.body.name;
-  //const lastName = req.body.last_name;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   const email = req.body.email;
+
   const password = randomString.generate({length : 12});
   
-  client.get('/role/Student').then(function(response) {
+  client.get('/role/Professor').then(function(response) {
     var role = response.data;
 
     if(role) {
@@ -157,10 +158,28 @@ app.post('/register', (req, res) => {
       }
 
       client.post('/user/', userData).then(function(response) {
-        const host = 'http://' + req.get('host') + '/verify/';
-        response.data.password = password;
-        emailUtil.send(response.data, host);
-        res.send(response.data);
+          // we also need to create the user profile
+        const profileData = {
+          'first_name' : firstName,
+          'last_name' : lastName,
+          'user_id': response.data.id,
+        }
+
+        client.post('/profile/', profileData).then(function(profile){
+          const professorData = {
+            'profile_id': profile.data.id,
+          }
+
+          client.post('/professor/', professorData).then(function(professor) {
+            const host = 'http://' + req.get('host') + '/verify/';
+            response.data.password = password;
+            
+            // professor was created, now we can send the email
+            emailUtil.send(response.data, host);
+
+            res.send(professor.data);
+          });
+        });
       })
       .catch(function(error) {
         console.log(error);
@@ -169,7 +188,7 @@ app.post('/register', (req, res) => {
       });
     }
     else {
-      console.log('Could not find role: Student');
+      console.log('Could not find role: Professor');
       res.status(501);
       res.send('Internal server error.');
     }
