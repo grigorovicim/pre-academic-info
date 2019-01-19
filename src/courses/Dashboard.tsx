@@ -11,26 +11,23 @@ import ActivityDetail from './ActivityDetail';
 
 class Dashboard extends Component<any, any> {
 
-    //private courseItems: any[];
-
     constructor(props: any) {
         super(props);
-        //this.courseItems = Array.from(props.courseItems);
         this.openCourseDetailsPopup = this.openCourseDetailsPopup.bind(this);
         this.closeCampaignPopup = this.closeCampaignPopup.bind(this);
     }
 
     openCourseDetailsPopup(courseId: any, courseDetails: any) {
-        if (!isNaN(courseId)) {
-            this.props.dispatch(AppActions.setPopupVisibility(true));
-            this.props.dispatch(AppActions.setPopupContentElement(
-                <ActivityDetail
-                    courseDetails={courseDetails}
-                    key={Date.now()}
-                />
-                )
-            );
-        }
+      if (!isNaN(courseId)) {
+        this.props.dispatch(AppActions.setPopupVisibility(true));
+        this.props.dispatch(AppActions.setPopupContentElement(
+          <ActivityDetail
+            courseDetails={courseDetails}
+            key={Date.now()}
+          />
+          )
+        );
+      }
     }
 
     closeCampaignPopup() {
@@ -68,7 +65,7 @@ class Dashboard extends Component<any, any> {
                     {courseItemComponents}
                 </div>
                 <Popup isVisible={isPopupVisible} onClose={this.closeCampaignPopup}>
-                    {popupContent}
+                {popupContent}
                 </Popup>
             </div>
         );
