@@ -13,39 +13,6 @@ class DashboardCourseItem extends Component<any, any> {
     private section: any;
     private isConfigured: any;
 
-    private courseDetails = {
-            name: "Design Patterns",
-            professor: "Molnar Arthur",
-            section: {name: 'English', nrGroups: 6},
-            groups: [932, 933, 934, 935],
-            students: [
-              {
-                name: "Ana Maria",
-                homework: 10,
-                present: true,
-                totalPresents: 2,
-                exam: "-" ,
-                finalGrade: "-"
-              },
-              {
-                name: "Andrada Gae",
-                homework: 10,
-                present: true,
-                totalPresents: 2,
-                exam: "-" ,
-                finalGrade: "-"
-              },
-              {
-                name: "Iuliana Florentina",
-                homework: 10,
-                present: true,
-                totalPresents: 2,
-                exam: "-" ,
-                finalGrade: "-"
-              },
-            ]
-        };
-
     constructor(props: any) {
         super(props);
         this.name = props.name;
@@ -104,7 +71,7 @@ class DashboardCourseItem extends Component<any, any> {
                 <div className="div-config-button-wrapper col-md-1">
                     {this.whichButton()}
                 </div>
-                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={1} courseDetails={this.courseDetails}/>
+                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseDetails={this.props.content}/>
             </div>
         );
     }
