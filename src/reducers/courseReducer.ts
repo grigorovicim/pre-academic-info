@@ -1,9 +1,16 @@
 import {FETCH_CATALOG, FILTER_CATALOG_STUDY, FILTER_CATALOG_YEAR, FILTER_CATALOG_SEMESTER} from '../actions/types';
 
 const initialState = {
-    items: [] as any,
+    items: [
+        {id: 1, name: "LFTC", department: "info", isConfigured: false, academic_programme_id: 1,  year_of_study: 1, semester_id: 1 },
+        {id: 2, name: "PPD", department: "info", isConfigured: false, academic_programme_id: 2, year_of_study: 1, semester_id: 1},
+        {id: 3, name: "PLF", department: "info", isConfigured: true, academic_programme_id: 2, year_of_study: 2, semester_id: 2},
+        {id: 4, name: "Microcontrollers", department: "info", isConfigured: false, academic_programme_id: 2, year_of_study: 2, semester_id: 1},
+        {id: 5, name: "ASC", department: "info", isConfigured: true, academic_programme_id: 1, year_of_study: 3, semester_id: 1},
+        {id: 6, name: "MAPP", department: "info", isConfigured: true, academic_programme_id: 1, year_of_study: 3, semester_id: 2},
+    ],
     filteredItems: [],
-    study: "1",
+    study: "LICENTA",
     year: "1",
     semester: "1",
     currentCourseId: null,
@@ -58,6 +65,7 @@ export default (state = initialState, action: any) => {
             ...state,
             items: Array.from(action.payload.dashboardItems),
             isPopupVisible: action.payload.isCampaignPopupVisible,
+            filteredItems: action.payload.dashboardItems.filter(item => item.academic_programme_id.toString() === state.study &&  item.year_of_study.toString() ===  state.year && item.semester_id.toString() === state.semester)
           };
         }
 
