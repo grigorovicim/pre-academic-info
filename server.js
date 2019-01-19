@@ -32,6 +32,7 @@ var CourseRoutes  = require('./src/routes/course-routes');
 var UserRoutes = require('./src/routes/user-routes');
 var ConfigRoutes = require('./src/routes/configuration-routes');
 var RoleRoutes = require('./src/routes/role-routes');
+var CatalogRoutes = require('./src/routes/catalog-routes');
 var StudentCourseRoutes = require('./src/routes/student-course-routes');
 const SpreadsheetRoutes = require('./src/routes/spreadsheet-routes');
 const ProfileRoutes = require('./src/routes/profile-routes');
@@ -56,8 +57,8 @@ app.use('/config', ConfigRoutes);
 app.use('/spreadsheet', SpreadsheetRoutes);
 app.use('/profile', ProfileRoutes);
 app.use('/role', RoleRoutes);
+app.use('/catalog', CatalogRoutes);
 app.use('/studentcourse', StudentCourseRoutes);
-
 app.get('/check-server', (req, res) => {
     res.send({express: 'Hello From Express BACKEND!'});
 });
@@ -208,20 +209,20 @@ app.get('/verify/:token', (req, res) => {
       }
 
       client.put('/user/' + user.id, userData).then(function(response) {
-        res.send('The account has been verified!');
+        res.sendFile('/htmlPages/succesRegister.html', {root: __dirname + '/public/'});
       }).catch(function(error) {
         res.status(501);
-        res.send('Could not verify account.');
+        res.sendFile('/htmlPages/errorRegister.html', {root: __dirname + '/public/'});
       });
     }
     else {
       res.status(501);
-      res.send('Invalid verification key provided.');;
+      res.sendFile('/htmlPages/invalidVerificationregister.html', {root: __dirname + '/public/'});
     }
   })
   .catch(function(error) {
     res.status(501);
-    res.send('Could not verify account.');
+    res.sendFile('/htmlPages/errorRegister.html', {root: __dirname + '/public/'});
     console.log(error);
   });
 });

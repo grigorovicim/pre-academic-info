@@ -42,7 +42,6 @@
 button:hover {
     opacity: 0.9;
     background-color: var(--register-button-hover);
-    color: white;
 }
 
 button:active {

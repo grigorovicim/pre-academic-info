@@ -30,7 +30,7 @@ class UploadFile extends Component<any, any> {
                         url: "/spreadsheet",
                         process: {
                             headers: {
-                                'email': this.props.user.userDetails.username
+                                'email': this.props.app.user.userDetails.username
                             },
                         }
                     }
@@ -52,7 +52,7 @@ class UploadFile extends Component<any, any> {
 
 const mapStateToProps = (state: any) => {
     return {
-        user: Object.assign({}, state.app.user),
+        app: Object.assign({}, state.app),
     };
 };
 

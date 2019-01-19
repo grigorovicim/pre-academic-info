@@ -24,7 +24,7 @@
       "program": "${workspaceFolder}/server.js",
       "env": {
         "EMAIL_DEV": "preacademicinfo@yahoo.com",
-        "PASSWORD_DEV": "securePassword123",
+        "PASSWORD_DEV": "securePassword123"
       }
     }
   ]

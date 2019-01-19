@@ -4,6 +4,7 @@ import './Header.css';
 import logo from './logo.png';
 import {connect} from 'react-redux';
 import {NavLink} from "react-router-dom";
+import LoginActions from 'src/authentication/Login.actions';
 
 class Header extends Component<any,any>{
 
@@ -17,6 +18,11 @@ class Header extends Component<any,any>{
           myProfile: 'none'
 
       };
+      this.logout = this.logout.bind(this);
+    }
+
+    public logout(){
+      this.props.dispatch(LoginActions.logout(this.props.user));
     }
 
 
@@ -67,6 +73,7 @@ class Header extends Component<any,any>{
                             <NavLink to={"/myprofile"}>MY PROFILE</NavLink>
                             <div id="myprofile" className="myProfile" style={{display: this.props.myProfile}}/>
                         </div>
+                        <div className="p-logout-button" onClick={this.logout}>Log out</div>
                     </div>
                 </header>
             </div>
