@@ -9,7 +9,6 @@ const reducer = (state = {
     isAdmin: false,
     isChecked: false,
   },
-  profile: null
 },
  action: any) => {
 
@@ -80,6 +79,18 @@ const reducer = (state = {
         ...state,
         profile: payload,
     }
+  }
+  case 'SET_PROFIL_PICTURE': {
+    return {
+      ...state,
+      user: Object.assign({}, {
+        ...state.user,
+        userDetails: payload.user.userDetails,
+        isAdmin: payload.user.isAdmin,
+        isLoggedIn: payload.user.isLoggedIn,
+        isChecked: payload.user.isChecked,
+      }),
+    };
   }
 
   default:

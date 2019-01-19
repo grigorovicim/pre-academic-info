@@ -1,0 +1,38 @@
+.add-new-student-container {
+    width: 500px;
+    clear: both;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+  }
+  
+  .container input {
+    width: 100%;
+    clear: both;
+  }
+
+  .submitBtn {
+    background-color: rgb(141, 212, 248, 0.5);
+    margin-right: 2px;
+    border: 0.05;
+    color: #2E91C3;
+    font-size: 12px; 
+    width: 90px;
+    border-radius: 0.5ch;
+    float:right;
+  }
+  .submitBtn:hover {
+    background-color: rgb(141, 212, 248, 0.9);
+    color:white;
+  }
+
+  .submit-round-button {
+    height: 24px;
+    width: 184px;
+    border: 1px solid #E4E4E4;
+    border-radius: 12px;
+    background-color: rgba(142,197,236,0.5);
+    margin: auto;
+    float: right;
+}

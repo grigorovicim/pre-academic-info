@@ -16,7 +16,6 @@ import './App.css';
 import {Route, BrowserRouter} from "react-router-dom";
 import './App.css';
 import HomePage from "./components/HomePage";
-import StudentsPage from "./components/StudentsPage";
 import CatalogPage from "./components/CatalogPage";
 import MyProfilePage from "./components/myProfilePage/MyProfilePage";
 import AppActions from "./App.actions";
@@ -80,7 +79,6 @@ class App extends Component<any, any> {
                     <div>
                         <Route path={"/"} component={HomePage} exact/>
                         <Route path={"/courses"} component={CoursesPage}/>
-                        <Route path={"/students"} component={StudentsPage} exact/>
                         <Route path={"/catalog"} component={CatalogPage} exact/>
                         <Route path={"/myprofile"} component={MyProfilePage} exact/>
                         <Route path={"/register"} component={Register}/>
