@@ -9,6 +9,8 @@ import AddProf from "../professors/AddProf";
 import AddStudent from "../students/AddStudent";
 import AddNewStudentToCourse from "../students/AddNewStudentToCourse";
 import Tests from 'src/courses/popups/Tests';
+import CourseDetail from "../courses/CourseDetail";
+import ActivityDetail from "../courses/ActivityDetail";
 
 class Popup extends Component<any, any> {
 
@@ -31,12 +33,12 @@ class Popup extends Component<any, any> {
     let display;
     let setWidth = "640px";
     let setHeight = "650px";
-    
+
     if (isVisible) {
       display = 'flex';
     } else {
       display = 'none';
-    } 
+    }
 
     if(this.props.isAlert) {
       setWidth = "640px";
@@ -46,9 +48,9 @@ class Popup extends Component<any, any> {
     let component;
     if (this.props.children) {
       component = this.props.children;
-    } 
+    }
 
-    
+
     if (this.props.componentType === "home") {
       return null;
     } else if (this.props.componentType === "p-login-whichButton") {
@@ -61,6 +63,12 @@ class Popup extends Component<any, any> {
         component = <AddStudent courseId={this.props.courseId} callback={this.handleClick}/>
     } else if ( this.props.componentType === "p-add-new-student-button"){
         component = <AddNewStudentToCourse courseId={this.props.courseId} callback={this.handleClick}/>
+         }  else if (this.props.componentType === "p-course-detail-button"){
+        component = <CourseDetail />
+    }  else if (this.props.componentType === "p-activity-detail-button"){
+        component = <ActivityDetail details={this.props.courseDetails} />
+    }  else if (this.props.componentType === "p-activity-detail-button"){
+        component = <ActivityDetail details={this.props.courseDetails} />
     } else if (this.props.componentType === "p-lab-tests"){
       component = <Tests sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"lab"}/>
     }
