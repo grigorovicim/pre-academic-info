@@ -119,7 +119,7 @@ router.put('/', function(req, res){
 
   });
 
-  /**
+/**
  * Adds a course configuration
  * @method POST a course configuration
  * @throws 'Unable to add the course configuration' for an SQL error
@@ -173,7 +173,7 @@ router.post('/', function(req, res){
         res.status(400);
         res.send('Unable to add the course configuration.');
       }
-    }, err => {   
+    }, err => {
       res.status(501);
       res.send('Internal Server Error!Sorry, try again!');
       console.log('An error has occurred: ' + err);
