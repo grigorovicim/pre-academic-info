@@ -1,14 +1,15 @@
 import {FETCH_CATALOG, FILTER_CATALOG_STUDY, FILTER_CATALOG_YEAR, FILTER_CATALOG_SEMESTER} from '../actions/types';
 
 const initialState = {
-    items: [
-        {id: 1, name: "LFTC", department: "info", isConfigured: false, academic_programme_id: 1,  year_of_study: 1, semester_id: 1 },
-        {id: 2, name: "PPD", department: "info", isConfigured: false, academic_programme_id: 2, year_of_study: 1, semester_id: 1},
-        {id: 3, name: "PLF", department: "info", isConfigured: true, academic_programme_id: 2, year_of_study: 2, semester_id: 2},
-        {id: 4, name: "Microcontrollers", department: "info", isConfigured: false, academic_programme_id: 2, year_of_study: 2, semester_id: 1},
-        {id: 5, name: "ASC", department: "info", isConfigured: true, academic_programme_id: 1, year_of_study: 3, semester_id: 1},
-        {id: 6, name: "MAPP", department: "info", isConfigured: true, academic_programme_id: 1, year_of_study: 3, semester_id: 2},
-    ],
+    // items: [
+    //     {id: 1, name: "LFTC", department: "info", isConfigured: false, academic_programme_id: 1,  year_of_study: 1, semester_id: 1 },
+    //     {id: 2, name: "PPD", department: "info", isConfigured: false, academic_programme_id: 2, year_of_study: 1, semester_id: 1},
+    //     {id: 3, name: "PLF", department: "info", isConfigured: true, academic_programme_id: 2, year_of_study: 2, semester_id: 2},
+    //     {id: 4, name: "Microcontrollers", department: "info", isConfigured: false, academic_programme_id: 2, year_of_study: 2, semester_id: 1},
+    //     {id: 5, name: "ASC", department: "info", isConfigured: true, academic_programme_id: 1, year_of_study: 3, semester_id: 1},
+    //     {id: 6, name: "MAPP", department: "info", isConfigured: true, academic_programme_id: 1, year_of_study: 3, semester_id: 2},
+    // ],
+    items: [] as any,
     filteredItems: [],
     study: "LICENTA",
     year: "I",
