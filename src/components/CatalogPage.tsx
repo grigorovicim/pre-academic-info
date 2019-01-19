@@ -146,7 +146,7 @@ class CoursesPage extends Component<any, any>
                     </div>
                 </div>
 
-                <Dashboard courseItems={filteredItems} />
+                <Dashboard courseItems={filteredItems} dashboardPage="catalog" />
             </div>
         );
     }
