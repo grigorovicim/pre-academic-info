@@ -3,8 +3,8 @@ var express = require('express');
 var router  = express.Router();
 const Sequelize = require('sequelize');
 /**
- * Returns a list with all the courses.
- * @method GET the list of courses
+ * Returns a course configuration.
+ * @method GET the list course configuration
  * @throws 'Internal Server Error! Sorry, try again!'
  */
 router.get('/:id', function(_, res){
@@ -49,6 +49,8 @@ router.get('/:id', function(_, res){
       console.log('An error has occurred: ' + err);
     });
 });
+
+module.exports = router;
 
 /**
  * Updates an existing course configuration entity.
@@ -171,7 +173,7 @@ router.post('/', function(req, res){
         res.status(400);
         res.send('Unable to add the course configuration.');
       }
-    }, err => {
+    }, err => {   
       res.status(501);
       res.send('Internal Server Error!Sorry, try again!');
       console.log('An error has occurred: ' + err);
@@ -181,4 +183,4 @@ router.post('/', function(req, res){
 
 
   module.exports = router;
-
+  
