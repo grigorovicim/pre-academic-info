@@ -62,10 +62,6 @@ class Header extends Component<any,any>{
                             <div id="courses" className="courses" style={{display: this.props.courses}}/>
                         </div>
                         <div className="p-header-button">
-                            <NavLink to={"/students"}>STUDENTS</NavLink>
-                            <div id="student" className="students" style={{display: this.props.students}}/>
-                        </div>
-                        <div className="p-header-button">
                             <NavLink to={"/catalog"}>CATALOG</NavLink>
                             <div id="catalog" className="catalog" style={{display: this.props.catalog}}/>
                         </div>
