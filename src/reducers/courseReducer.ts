@@ -65,7 +65,6 @@ export default (state = initialState, action: any) => {
             ...state,
             items: Array.from(action.payload.dashboardItems),
             isPopupVisible: action.payload.isCampaignPopupVisible,
-            filteredItems: action.payload.dashboardItems.filter(item => item.academic_programme_id.toString() === state.study &&  item.year_of_study.toString() ===  state.year && item.semester_id.toString() === state.semester)
           };
         }
 
