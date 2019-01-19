@@ -2,28 +2,24 @@
 	{
 		"model": "Abbreviation",
 		"data": {
-			"id": 1,
 			"label": "I"
 		}
     },
     {
 		"model": "Abbreviation",
 		"data": {
-			"id": 2,
 			"label": "IE"
 		}
     },
     {
 		"model": "Abbreviation",
 		"data": {
-			"id": 3,
 			"label": "IM"
 		}
 	},
 	{
 		"model": "Abbreviation",
 		"data": {
-			"id": 4,
 			"label": "IG"
 		}
 	}

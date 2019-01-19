@@ -2,14 +2,12 @@
     {
 		"model": "AcademicProgramme",
 		"data": {
-			"id": 1,
             "label": "Bachelor"
 		}
     },
     {
 		"model": "AcademicProgramme",
 		"data": {
-			"id": 2,
             "label": "Master"
 		}
     }
