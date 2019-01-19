@@ -32,7 +32,7 @@
 .p-course-details-component .p-column .p-title {
   margin-right: 80px;
   height: 24px;
-  width: 15%;
+  width: 8%;
   color: #747373;
   font-family: Helvetica;
   font-size: 20px;
@@ -42,7 +42,7 @@
 }
 
 .p-course-details-component .p-column .p-content {
-  width: 540px;
+  width: 330px;
   display: flex;
   justify-content: flex-start;
   font-size: 12px;
@@ -58,6 +58,7 @@
 }
 .p-course-details-component .p-column .rules .description {
   height: 8%;
+  overflow: auto;
 }
 
 .p-course-details-component .description .p-content {
@@ -110,6 +111,7 @@
 .p-course-details-component .proffesors .p-title { 
   font-size: 16px;
   font-weight: 200;
+  margin-right: 40px;
 }
 
 .p-course-details-component .proffesors {
@@ -124,7 +126,7 @@
 }
 
 .p-course-details-component .proffesors .p-content .p-list-one-proffesor {
-  width: 150px;
+  width: 140px;
   height: 20px;
   background-color: #EAEAEA;
   margin-top: 2px;
@@ -136,7 +138,6 @@
   max-height: 100px;
 }
 .p-course-details-component .students .p-content .p-list-one-student {
-  width: 150px;
   height: 20px;
   background-color: #EAEAEA;
   margin-top: 2px;

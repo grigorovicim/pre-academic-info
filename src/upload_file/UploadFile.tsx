@@ -23,6 +23,9 @@ class UploadFile extends Component<any, any> {
     }
 
     render() {
+        if(this.props.app.user.userDetails == null) {
+            return (<div className="App"></div>)
+        }
         return (
             <div className="App">
                 <FilePond server={

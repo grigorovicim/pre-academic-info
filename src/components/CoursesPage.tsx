@@ -6,7 +6,7 @@ import * as React from "react";
 // import CourseDetail from "../courses/CourseDetail";
 import {connect} from "react-redux";
 import UploadFile from "../upload_file/UploadFile";
-import CourseActions from "../actions/Course.actions";
+//import CourseActions from "../actions/Course.actions";
 //import CourseActions from "../actions/Course.actions";
 
 class CoursesPage extends Component<any,any>
@@ -19,7 +19,7 @@ class CoursesPage extends Component<any,any>
         };
         console.log(this.props.app.user);
 
-        this.props.dispatch(CourseActions.fetchItems(this.props.app.user.userDetails.username))
+        //this.props.dispatch(CourseActions.fetchItems(this.props.app.user.userDetails.username))
     }
 
     public render() {
