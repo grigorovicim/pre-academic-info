@@ -6,7 +6,7 @@
                   "description": "Algebra",
                   "credits": 5,
                   "year_of_study": 1,
-                  "is_active": "false",
+                  "is_active": "true",
                   "academic_programme_id": 1,
                   "section_id": 2,
                   "semester_id": 1,
@@ -20,10 +20,10 @@
                   "description": "Design Patterns",
                   "credits": 5,
                   "year_of_study": 3,
-                  "is_active": "false",
+                  "is_active": "true",
                   "academic_programme_id": 1,
                   "section_id": 2,
-                  "semester_id": 1,
+                  "semester_id": 2,
                   "courseconfiguration_id": 4
             }
       },
@@ -34,7 +34,7 @@
                   "description": "Microcontrollers",
                   "credits": 5,
                   "year_of_study": 3,
-                  "is_active": "false",
+                  "is_active": "true",
                   "academic_programme_id": 1,
                   "section_id": 2,
                   "semester_id": 1,
@@ -48,7 +48,7 @@
                   "description": "PPD",
                   "credits": 5,
                   "year_of_study": 3,
-                  "is_active": "false",
+                  "is_active": "true",
                   "academic_programme_id": 1,
                   "section_id": 2,
                   "semester_id": 1,
@@ -62,7 +62,7 @@
                   "description": "LFTC",
                   "credits": 5,
                   "year_of_study": 3,
-                  "is_active": "false",
+                  "is_active": "true",
                   "academic_programme_id": 1,
                   "section_id": 2,
                   "semester_id": 1,
@@ -76,7 +76,7 @@
                   "description": "MA",
                   "credits": 5,
                   "year_of_study": 3,
-                  "is_active": "false",
+                  "is_active": "true",
                   "academic_programme_id": 1,
                   "section_id": 2,
                   "semester_id": 1,
@@ -90,7 +90,7 @@
                   "description": "SS",
                   "credits": 5,
                   "year_of_study": 3,
-                  "is_active": "false",
+                  "is_active": "true",
                   "academic_programme_id": 1,
                   "section_id": 2,
                   "semester_id": 1,
@@ -104,11 +104,167 @@
                   "description": "PC",
                   "credits": 5,
                   "year_of_study": 3,
-                  "is_active": "false",
+                  "is_active": "true",
                   "academic_programme_id": 1,
                   "section_id": 2,
                   "semester_id": 1,
                   "courseconfiguration_id": 8
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Computer Systems Architecture",
+                  "description": "ASC",
+                  "credits": 5,
+                  "year_of_study": 1,
+                  "is_active": "false",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 1
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Computational Logic",
+                  "description": "CL",
+                  "credits": 5,
+                  "year_of_study": 1,
+                  "is_active": "false",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 1
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Mathematical analysis",
+                  "description": "MA",
+                  "credits": 5,
+                  "year_of_study": 1,
+                  "is_active": "false",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 1
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Artificial Intelligence",
+                  "description": "AI",
+                  "credits": 5,
+                  "year_of_study": 2,
+                  "is_active": "false",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 2
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Databases",
+                  "description": "DB",
+                  "credits": 5,
+                  "year_of_study": 2,
+                  "is_active": "false",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 2
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Systems for Design and Implementation",
+                  "description": "MPP",
+                  "credits": 5,
+                  "year_of_study": 2,
+                  "is_active": "false",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 2
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Extended Databases",
+                  "description": "XDB",
+                  "credits": 5,
+                  "year_of_study": 1,
+                  "is_active": "false",
+                  "academic_programme_id": 2,
+                  "section_id": 2,
+                  "semester_id": 1
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Aerospace Engineering",
+                  "description": "AE",
+                  "credits": 5,
+                  "year_of_study": 1,
+                  "is_active": "false",
+                  "academic_programme_id": 2,
+                  "section_id": 2,
+                  "semester_id": 1
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Computernetzwerke",
+                  "description": "CNnjsncabdchbsa",
+                  "credits": 5,
+                  "year_of_study": 2,
+                  "is_active": "false",
+                  "academic_programme_id": 1,
+                  "section_id": 4,
+                  "semester_id": 1
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Computer Networks",
+                  "description": "CN",
+                  "credits": 5,
+                  "year_of_study": 2,
+                  "is_active": "false",
+                  "academic_programme_id": 1,
+                  "section_id": 2,
+                  "semester_id": 1
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Robotics",
+                  "description": "CN",
+                  "credits": 5,
+                  "year_of_study": 2,
+                  "is_active": "false",
+                  "academic_programme_id": 2,
+                  "section_id": 2,
+                  "semester_id": 2
+            }
+      },
+      {
+            "model": "Course",
+            "data": {
+                  "name": "Human Sciences",
+                  "description": "CN",
+                  "credits": 5,
+                  "year_of_study": 2,
+                  "is_active": "false",
+                  "academic_programme_id": 2,
+                  "section_id": 2,
+                  "semester_id": 2
             }
       }
 ]

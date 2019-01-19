@@ -7,7 +7,216 @@
             "isTeachingSeminar": false,
             "isTeachingLab": false,
             "professor_id": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 2
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 3
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 4
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 5
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 6
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 7
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
             "course_id": 8
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 9
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 10
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 11
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 12
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 13
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 14
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 15
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 16
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 17
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 18
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 19
+        }
+    },
+    {
+        "model": "ProfessorCourse",
+        "data": {
+            "year": 3,
+            "isTeachingCourse": true,
+            "isTeachingSeminar": false,
+            "isTeachingLab": false,
+            "professor_id": 1,
+            "course_id": 20
         }
     }
 ]
