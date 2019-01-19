@@ -56,35 +56,37 @@ class DashboardCourseItem extends Component<any, any> {
             popupComponentType: null,
         }
 
-        this.addActivityDetailsPopup = this.addActivityDetailsPopup.bind(this);
-        this.openActivityDetailsPopup = this.openActivityDetailsPopup.bind(this);
+        this.addDetailsPopup = this.addDetailsPopup.bind(this);
+        this.openDetailsPopup = this.openDetailsPopup.bind(this);
         this.closePopup = this.closePopup.bind(this);
         this.whichButton = this.whichButton.bind(this)
     }
 
     whichButton() {
         if (this.isConfigured) {
-            return (<button className="course-config-button-wrapper" onClick={this.addActivityDetailsPopup}><img
+            return (<button className="course-config-button-wrapper" onClick={this.addDetailsPopup}><img
                 className="course-config-button" src={optionsBtn}/></button>)
         }
-        return (<button className="course-config-button-wrapper" onClick={this.openActivityDetailsPopup}><img
+        return (<button className="course-config-button-wrapper" onClick={this.openDetailsPopup}><img
             className="course-config-button" src={plusBtn}/>
         </button>)
     }
 
-    addActivityDetailsPopup(e: any) {
+    addDetailsPopup(e: any) {
         e.stopPropagation();
+        const popupComponentType = this.props.dashboardPage === 'courses' ? 'p-courses-detail-button' : 'p-activity-detail-button';
         this.setState({
             isPopupVisible: true,
-            popupComponentType: 'p-activity-detail-button',
+            popupComponentType: popupComponentType,
         });
     }
 
-    openActivityDetailsPopup(e: any) {
+    openDetailsPopup(e: any) {
         e.stopPropagation();
+        const popupComponentType = this.props.dashboardPage === 'courses' ? 'p-courses-detail-button' : 'p-activity-detail-button';
         this.setState({
             isPopupVisible: true,
-            popupComponentType: 'p-activity-detail-button',
+            popupComponentType: popupComponentType,
         });
     }
 

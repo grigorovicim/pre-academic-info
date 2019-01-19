@@ -30,7 +30,7 @@ class CoursesPage extends Component<any,any>
 
                 <UploadFile/>
 
-                <Dashboard courseItems={this.props.items}/>
+                <Dashboard courseItems={this.props.items} dashboardPage="courses"/>
             </div>
         );
     }

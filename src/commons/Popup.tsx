@@ -9,8 +9,8 @@ import AddProf from "../professors/AddProf";
 import AddStudent from "../students/AddStudent";
 import AddNewStudentToCourse from "../students/AddNewStudentToCourse";
 import Tests from 'src/courses/popups/Tests';
-import CourseDetail from "../courses/CourseDetail";
 import ActivityDetail from "../courses/ActivityDetail";
+import CourseDetails from "../components/CourseDetails";
 
 class Popup extends Component<any, any> {
 
@@ -61,14 +61,12 @@ class Popup extends Component<any, any> {
       component = <AddProf courseId={this.props.courseId} callback={this.handleClick}/>
     }  else if (this.props.componentType === "p-add-student-button"){
         component = <AddStudent courseId={this.props.courseId} callback={this.handleClick}/>
+    }  else if (this.props.componentType === "p-courses-detail-button"){
+        component = <CourseDetails />
+    }  else if (this.props.componentType === "p-activity-detail-button"){
+        component = <ActivityDetail details={this.props.courseDetails} />
     } else if ( this.props.componentType === "p-add-new-student-button"){
         component = <AddNewStudentToCourse courseId={this.props.courseId} callback={this.handleClick}/>
-         }  else if (this.props.componentType === "p-course-detail-button"){
-        component = <CourseDetail />
-    }  else if (this.props.componentType === "p-activity-detail-button"){
-        component = <ActivityDetail details={this.props.courseDetails} />
-    }  else if (this.props.componentType === "p-activity-detail-button"){
-        component = <ActivityDetail details={this.props.courseDetails} />
     } else if (this.props.componentType === "p-lab-tests"){
       component = <Tests sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"lab"}/>
     }
