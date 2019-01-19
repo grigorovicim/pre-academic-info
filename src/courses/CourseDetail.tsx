@@ -2,19 +2,25 @@ import * as React from "react";
 import {Component} from "react";
 import 'font-awesome/css/font-awesome.min.css'
 import './CourseDetail.css';
-import { Grid, Row, Col, ButtonToolbar, Button } from 'react-bootstrap';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
 import Popup from "../commons/Popup";
+import {connect} from "react-redux";
+import * as PropTypes from 'prop-types'; 
+import { fetchCourseConfig } from '../actions/CourseConfig.actions';
 
 class CourseDetail extends Component<any, any> {
-    
-    private details: any;
-    private groups: any;
-    
+    static propTypes = {
+        courseConfig: PropTypes.any
+    };
 
+    private details: any;
+    //private groups: any;
+    
     constructor(props: any) {
         super(props); 
-
-        this.groups = this.props.detail.groups;
+        const config = this.props.fetchCourseConfig(1);
+        console.log(config);
+       // this.groups = this.props.detail.groups;
         this.submit = this.submit.bind(this);
  
         this.getFromChildSeminar = this.getFromChildSeminar.bind(this);
@@ -47,7 +53,7 @@ class CourseDetail extends Component<any, any> {
 
        
         this.state = {
-            groups: this.props.detail.groups,
+      //      groups: this.props.detail.groups,
             rules: this.props.detail.rules,
 
             coursePercentages: this.props.detail.courses.percentages,
@@ -85,10 +91,10 @@ class CourseDetail extends Component<any, any> {
             isCourse: 1,
             isSeminar: 1,
             isLab: 1,
-            year: Math.floor((this.groups[0] / 10 )% 10),
+    //        year: Math.floor((this.groups[0] / 10 )% 10),
 		}   
         this.details = props.detail  
-        this.renderGroups= this.renderGroups.bind(this);
+      //  this.renderGroups= this.renderGroups.bind(this);
     }
 
     getFromChildSeminar(data: any){
@@ -195,6 +201,7 @@ class CourseDetail extends Component<any, any> {
             }
         }
     }
+    /*
     assignGroupToCourse = (element: any) =>
     {
         console.log(element)
@@ -205,8 +212,9 @@ class CourseDetail extends Component<any, any> {
         this.groups.push(nr);
         }
         this.setState({groups : this.groups})
-    }  
+    } */ 
 
+    /*
     renderGroups() {
         //assume a course is assigned to a year of study (as in the db)
  
@@ -257,6 +265,7 @@ class CourseDetail extends Component<any, any> {
             <ButtonToolbar>{buttons}</ButtonToolbar>
         );
     }
+    */
 
     submit(){
         console.log(this.state)
@@ -400,6 +409,7 @@ class CourseDetail extends Component<any, any> {
         }
     </Row>
     <hr/>
+    {/*
     <Row className="show-grid text-center">
         <Col style={{fontSize: '1.5em', color:'gray'}} md={2}>Groups</Col>
         <Col style={{fontSize: '1.25em', color:'gray'}} md={8}>
@@ -407,6 +417,7 @@ class CourseDetail extends Component<any, any> {
         </Col>
     </Row>
     <hr/>
+    */}
     <Row className="show-grid text-center">
         <Col style={{fontSize: '1.5em', color:'gray'}} md={2}>Students</Col>
         <Col style={{fontSize: '1.25em', color:'gray'}} md={4}>
@@ -432,13 +443,16 @@ class CourseDetail extends Component<any, any> {
 	<Popup isVisible={this.state.isCoursePopupVisible} sendToParent = {this.getFromChildCourse} onClose={this.closeCoursePopup} componentType={this.state.popupCourseComponentType} tests={this.state.courseTests} percentages={this.state.coursePercentages} weeks = {this.state.courseWeeks} refresh={this.onCourseTestsChange}/>
     <Popup isVisible={this.state.isSeminarPopupVisible} sendToParent ={this.getFromChildSeminar} onClose={this.closeSeminarPopup} componentType={this.state.popupSeminarComponentType} tests={this.state.seminarTests} percentages={this.state.seminarPercentages} weeks = {this.state.seminarWeeks} refresh={this.onSeminarTestsChange}/>
     <Popup isVisible={this.state.isLabPopupVisible} sendToParent = {this.getFromChildLab} onClose={this.closeLabPopup} componentType={this.state.popupLabComponentType} tests={this.state.labTests} percentages={this.state.labPercentages} weeks = {this.state.labWeeks} refresh={this.onLabTestsChange}/>
+    <br/><br/>
     </Grid>
     
         );
     }
 }
 
+const mapStateToProps = (state: any) => ({
+    courseDetail: state.courseConfigReducer.courseConfig,
+});
+export default connect(mapStateToProps, {fetchCourseConfig})(CourseDetail);
 
-
-export default CourseDetail;
 
