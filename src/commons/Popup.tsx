@@ -33,12 +33,12 @@ class Popup extends Component<any, any> {
     let display;
     let setWidth = "640px";
     let setHeight = "650px";
-
+    
     if (isVisible) {
       display = 'flex';
     } else {
       display = 'none';
-    }
+    } 
 
     if(this.props.isAlert) {
       setWidth = "640px";
@@ -48,9 +48,9 @@ class Popup extends Component<any, any> {
     let component;
     if (this.props.children) {
       component = this.props.children;
-    }
+    } 
 
-
+    
     if (this.props.componentType === "home") {
       return null;
     } else if (this.props.componentType === "p-login-whichButton") {

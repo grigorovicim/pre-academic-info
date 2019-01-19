@@ -1,29 +1,27 @@
 // @ts-ignore
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 // @ts-ignore
 import axios from 'axios';
-
 // @ts-ignore
 import React, {Component} from 'react';
 // @ts-ignore
-import {connect} from 'react-redux';
-import './App.css';
-
-// import logo from './logo.png';
-//import Dashboard from './courses/Dashboard'
-// import CourseDetail from "./courses/CourseDetail";
+import { connect } from 'react-redux';
 // @ts-ignore
 import {Route, BrowserRouter} from "react-router-dom";
 import './App.css';
+
 import HomePage from "./components/HomePage";
 import CatalogPage from "./components/CatalogPage";
 import MyProfilePage from "./components/myProfilePage/MyProfilePage";
-import AppActions from "./App.actions";
+// import AppActions from "./App.actions";
 import Register from "./authentication/Register";
 // import AddNewStudentToCourse from './students/AddNewStudentToCourse';
 import CoursesPage from './components/CoursesPage';
 
-// import CourseDetail from "./courses/CourseDetail";
+
+import AppActions from './App.actions';
+// import logo from './logo.png';
+// import Popup from './commons/Popup';
 
 class App extends Component<any, any> {
     constructor(props: any) {
@@ -74,18 +72,18 @@ class App extends Component<any, any> {
     };
 
     public render() {
-        const detail = {
-            name: "Design Patterns",
-            professor: "Molnar Arthur",
-            section: {name: 'English', nrGroups: 6},//nrGroups not in db
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            rules: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            courses: {number: 14, hours: 2, tests: 10, percentage: 60, writtenExam: 50, practicalExam: 20},
-            labs: {number: 7, hours: 2, tests: 12, percentage: 30, professors: [{id: 1, name: "Molnar Arthur"}, {id: 2, name: "Cretu Maria"}]},
-            seminars: {number: 14, hours: 2, tests: 2, percentage: 10, professors: {id: 1, name: "Molnar Arthur"}},
-            groups: [932, 933, 934, 935],
-            students: [{id: 1, name: "Antonesei Andrada"},{id:2, name: "Amariei Iuliana"},{id:3, name: "Blanariu Mihai"}]
-          }
+        // const detail = {
+        //     name: "Design Patterns",
+        //     professor: "Molnar Arthur",
+        //     section: {name: 'English', nrGroups: 6},//nrGroups not in db
+        //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        //     rules: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        //     courses: {number: 14, hours: 2, tests: 10, percentage: 60, writtenExam: 50, practicalExam: 20},
+        //     labs: {number: 7, hours: 2, tests: 12, percentage: 30, professors: [{id: 1, name: "Molnar Arthur"}, {id: 2, name: "Cretu Maria"}]},
+        //     seminars: {number: 14, hours: 2, tests: 2, percentage: 10, professors: {id: 1, name: "Molnar Arthur"}},
+        //     groups: [932, 933, 934, 935],
+        //     students: [{id: 1, name: "Antonesei Andrada"},{id:2, name: "Amariei Iuliana"},{id:3, name: "Blanariu Mihai"}]
+        //   }
           return (
             <div className="p-app">
                 <BrowserRouter>

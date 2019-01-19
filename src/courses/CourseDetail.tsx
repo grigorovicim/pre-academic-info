@@ -9,6 +9,7 @@ class CourseDetail extends Component<any, any> {
     
     private details: any;
     private groups: any;
+    
 
     constructor(props: any) {
         super(props); 
@@ -24,6 +25,7 @@ class CourseDetail extends Component<any, any> {
         this.openSeminarTestsPopup = this.openSeminarTestsPopup.bind(this);
         this.openCourseTestsPopup = this.openCourseTestsPopup.bind(this);
 
+        this.onRulesChange = this.onRulesChange.bind(this);
         this.onCoursePercentageChange = this.onCoursePercentageChange.bind(this)
         this.onSeminarPercentageChange = this.onSeminarPercentageChange.bind(this)
         this.onLabPercentageChange = this.onLabPercentageChange.bind(this)
@@ -46,6 +48,7 @@ class CourseDetail extends Component<any, any> {
        
         this.state = {
             groups: this.props.detail.groups,
+            rules: this.props.detail.rules,
 
             coursePercentages: this.props.detail.courses.percentages,
             seminarPercentages: this.props.detail.seminars.percentages,
@@ -66,6 +69,10 @@ class CourseDetail extends Component<any, any> {
             seminarTests: this.props.detail.seminars.tests,
             labTests: this.props.detail.labs.tests,
 
+            courseWeeks: this.props.detail.courses.weeks,
+            seminarWeeks: this.props.detail.seminars.weeks,
+            labWeeks: this.props.detail.labs.weeks,
+
             isSeminarPopupVisible: false,
             isCoursePopupVisible: false,
             isLabPopupVisible: false,
@@ -78,6 +85,7 @@ class CourseDetail extends Component<any, any> {
             isCourse: 1,
             isSeminar: 1,
             isLab: 1,
+            year: Math.floor((this.groups[0] / 10 )% 10),
 		}   
         this.details = props.detail  
         this.renderGroups= this.renderGroups.bind(this);
@@ -101,7 +109,9 @@ class CourseDetail extends Component<any, any> {
     onLabNumberChange(e : any) {
         this.setState({labNumber : e.target.value})
     }
-
+    onRulesChange(e: any){
+        this.setState({rules: e.target.value})
+    }
     onCoursePercentageChange(e : any){
         this.setState({coursePercentage : e.target.value})
     }
@@ -199,36 +209,29 @@ class CourseDetail extends Component<any, any> {
 
     renderGroups() {
         //assume a course is assigned to a year of study (as in the db)
-        let year = -1;
-        if (this.groups !== undefined && this.groups !== []){
-        year = Math.trunc(this.groups[0] / 10) % 10;
-        }
-        if (year === -1){
-            return (<p>The year is not valid</p>);
-        }
+ 
         const groups : string[] = []
         switch(this.details.section.name){
             case 'Romanian':
             for (let i = 1; i < this.details.section.nrGroups; i++){
-                    groups.push('2'+year.toString()+i.toString())
+                    groups.push('2'+this.state.year.toString()+i.toString())
                 }
                 break;
                 
             case 'English':
                 for (let i = 1; i <= this.details.section.nrGroups; i++){
-                    groups.push('9'+year.toString()+i.toString())
-                   
+                    groups.push('9'+this.state.year.toString()+i.toString())
                 }
                     break;
             case 'Hungarian':
                 for (let i = 1; i <= this.details.section.nrGroups; i++){
-                    groups.push('5'+year.toString()+i.toString())
+                    groups.push('5'+this.state.year.toString()+i.toString())
                     
                 }
                     break;
             case 'German':
                 for (let i = 1; i < this.details.section.nrGroups; i++){
-                    groups.push('7'+year.toString()+i.toString())
+                    groups.push('7'+this.state.year.toString()+i.toString())
                 }
                     break;
 
@@ -247,15 +250,14 @@ class CourseDetail extends Component<any, any> {
                 <Button onClick={()=>this.assignGroupToCourse(element)} bsStyle="default">&nbsp;{element}&nbsp;</Button>
                 )
             };
-                      
         });
      
    
         return (
             <ButtonToolbar>{buttons}</ButtonToolbar>
-
         );
     }
+
     submit(){
         console.log(this.state)
         return this.state;
@@ -311,7 +313,7 @@ class CourseDetail extends Component<any, any> {
     <Row className="show-grid">
         <Col className="text-center" style={{fontSize: '1.5em', color:'gray'}} md={2}>Rules</Col>
         <Col style={{fontSize: '1em', color:'gray'}} md={8}>
-        {this.details.rules}
+        <textarea  className="form-control" defaultValue = {this.state.rules} onChange={this.onRulesChange}></textarea>
         </Col>
     </Row>
     <hr/>
@@ -321,7 +323,6 @@ class CourseDetail extends Component<any, any> {
               defaultChecked={this.state.isLab === 1}
               onChange={()=>{
               this.setState({isLab : 1 - this.state.isLab});
-  
               }}
         /></Col>
         <Col className="text-center" style={{fontSize: '1.5em', color:'gray'}} md={2}>Labs</Col>
@@ -428,10 +429,9 @@ class CourseDetail extends Component<any, any> {
    </Row>
     <br/><br/>
     <Button className="btn btn-success" onClick={this.submit}>Submit</Button>
-	<Popup isVisible={this.state.isCoursePopupVisible} sendToParent = {this.getFromChildCourse} onClose={this.closeCoursePopup} componentType={this.state.popupCourseComponentType} tests={this.state.courseTests} percentages={this.state.coursePercentages} refresh={this.onCourseTestsChange}/>
-    <Popup isVisible={this.state.isSeminarPopupVisible} sendToParent ={this.getFromChildSeminar} onClose={this.closeSeminarPopup} componentType={this.state.popupSeminarComponentType} tests={this.state.seminarTests} percentages={this.state.seminarPercentages} refresh={this.onSeminarTestsChange}/>
-    <Popup isVisible={this.state.isLabPopupVisible} sendToParent = {this.getFromChildLab} onClose={this.closeLabPopup} componentType={this.state.popupLabComponentType} tests={this.state.labTests} percentages={this.state.labPercentages} refresh={this.onLabTestsChange}/>
-    
+	<Popup isVisible={this.state.isCoursePopupVisible} sendToParent = {this.getFromChildCourse} onClose={this.closeCoursePopup} componentType={this.state.popupCourseComponentType} tests={this.state.courseTests} percentages={this.state.coursePercentages} weeks = {this.state.courseWeeks} refresh={this.onCourseTestsChange}/>
+    <Popup isVisible={this.state.isSeminarPopupVisible} sendToParent ={this.getFromChildSeminar} onClose={this.closeSeminarPopup} componentType={this.state.popupSeminarComponentType} tests={this.state.seminarTests} percentages={this.state.seminarPercentages} weeks = {this.state.seminarWeeks} refresh={this.onSeminarTestsChange}/>
+    <Popup isVisible={this.state.isLabPopupVisible} sendToParent = {this.getFromChildLab} onClose={this.closeLabPopup} componentType={this.state.popupLabComponentType} tests={this.state.labTests} percentages={this.state.labPercentages} weeks = {this.state.labWeeks} refresh={this.onLabTestsChange}/>
     </Grid>
     
         );
