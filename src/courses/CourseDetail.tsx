@@ -7,6 +7,7 @@ import Popup from "../commons/Popup";
 import {connect} from "react-redux";
 import * as PropTypes from 'prop-types'; 
 import { fetchCourseConfig } from '../actions/CourseConfig.actions';
+import * as ButtonToolbar from "react-bootstrap/lib/ButtonToolbar";
 
 class CourseDetail extends Component<any, any> {
     static propTypes = {
@@ -14,11 +15,12 @@ class CourseDetail extends Component<any, any> {
     };
 
     private details: any;
+    private groups: any;
     
     constructor(props: any) {
         super(props); 
 
-       // this.groups = this.props.detail.groups;
+        this.groups = this.props.detail.groups;
         this.submit = this.submit.bind(this);
  
         this.getFromChildSeminar = this.getFromChildSeminar.bind(this);
@@ -52,9 +54,9 @@ class CourseDetail extends Component<any, any> {
 
        
         this.state = {
-      //      groups: this.props.detail.groups,
+            groups: this.props.detail.groups,
             rules: this.props.rules,
-   //         description: this.details.description,
+            description: this.details.description,
 
             coursePercentages: this.props.detail.courses.percentages,
             seminarPercentages: this.props.detail.seminars.percentages,
@@ -209,6 +211,78 @@ class CourseDetail extends Component<any, any> {
         }
     }
 
+    assignGroupToCourse = (element: any) =>
+    {
+        console.log(element)
+        const nr = parseInt(element,10);
+        if (this.groups.indexOf(nr) > -1){
+            this.groups.splice(this.groups.indexOf(nr), 1);
+        }else{
+            this.groups.push(nr);
+        }
+        this.setState({groups : this.groups})
+    }
+
+    renderGroups() {
+        //assume a course is assigned to a year of study (as in the db)
+        let year = -1;
+        if (this.groups !== undefined && this.groups !== []){
+            year = Math.trunc(this.groups[0] / 10) % 10;
+        }
+        if (year === -1){
+            return (<p>The year is not valid</p>);
+        }
+        const groups : string[] = []
+        switch(this.details.section.name){
+            case 'Romanian':
+                for (let i = 1; i < this.details.section.nrGroups; i++){
+                    groups.push('2'+year.toString()+i.toString())
+                }
+                break;
+
+            case 'English':
+                for (let i = 1; i <= this.details.section.nrGroups; i++){
+                    groups.push('9'+year.toString()+i.toString())
+
+                }
+                break;
+            case 'Hungarian':
+                for (let i = 1; i <= this.details.section.nrGroups; i++){
+                    groups.push('5'+year.toString()+i.toString())
+
+                }
+                break;
+            case 'German':
+                for (let i = 1; i < this.details.section.nrGroups; i++){
+                    groups.push('7'+year.toString()+i.toString())
+                }
+                break;
+
+
+        }
+        const buttons: any = []
+
+
+        groups.forEach(element => {
+            if (this.groups.indexOf(parseInt(element,10))> -1){
+                buttons.push(
+                    <Button onClick={()=>this.assignGroupToCourse(element)} bsStyle="primary">&nbsp;{element}&nbsp;</Button>
+                )
+            }else {
+                buttons.push(
+                    <Button onClick={()=>this.assignGroupToCourse(element)} bsStyle="default">&nbsp;{element}&nbsp;</Button>
+                )
+            };
+
+        });
+
+
+        return (
+            <ButtonToolbar>{buttons}</ButtonToolbar>
+
+        );
+    }
+
     submit(){
         console.log(this.state)
         return this.state;
@@ -218,7 +292,7 @@ class CourseDetail extends Component<any, any> {
         return (
             
 		<Grid>
-        <h1 className="text-center" style={{fontWeight: 600}}>{}</h1>
+        <h1 className="text-center" style={{fontWeight: 600}}>{this.details.name}</h1>
         <h3 className="text-center" style={{color:"gray"}}>Course Configuration</h3>
         <br/>
         <br/>
