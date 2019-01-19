@@ -42,7 +42,7 @@ const app = express();
 const emailUtil = require('./src/util/email');
 
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '10mb'}));
 const path = require('path');
 const port = process.env.PORT || 5000;
 const dev = app.get('env') !== 'production';
@@ -148,7 +148,6 @@ app.post('/register', (req, res) => {
   
   client.get('/role/Professor').then(function(response) {
     var role = response.data;
-
     if(role) {
       // we will save the user with a speciffic user token
       // that will need to be confirmed

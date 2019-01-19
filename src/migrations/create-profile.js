@@ -29,6 +29,10 @@ module.exports = {
       cnp: {
         type: Sequelize.STRING
       },
+      avatar: {
+        type: Sequelize.BLOB,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

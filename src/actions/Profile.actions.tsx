@@ -1,4 +1,4 @@
-import { FETCH_PROFILES, NEW_PROFILE  } from './types';
+import { FETCH_PROFILES, NEW_PROFILE, FETCH_PROFILE  } from './types';
 import axios from 'axios';
 
 export const fetchProfiles = () => dispatch => {
@@ -12,6 +12,17 @@ export const fetchProfiles = () => dispatch => {
             console.log(error)
         });
 };
+
+export const fetchProfile = (profileId: any) => dispatch => {
+  axios.get('/profile/' + profileId).then(res => {
+    dispatch({
+      type: FETCH_PROFILE,
+      payload: res.data
+    })
+  }).catch(error => {
+    console.log(error);
+  })
+}
 
 export const createProfile = postData => dispatch => {
     fetch('/profile', {

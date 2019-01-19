@@ -10,12 +10,13 @@ const Sequelize = require('sequelize');
  * @throws 'Internal Server Error! Sorry, try again!'
  */
 router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
-    const searchString = null;
+    let searchString;
     if (req.params.studentstring === null)
     {
      searchString = '%%';
+    } else {
+      searchString = '%' + req.params.studentstring + '%';
     }
-    searchString = '%' + req.params.studentstring + '%';
     const courseIdQuery = req.params.courseid;
     const weekparam = req.params.week;
     const groupidparam = req.params.groupid;
