@@ -14,12 +14,10 @@ class CourseDetail extends Component<any, any> {
     };
 
     private details: any;
-    //private groups: any;
     
     constructor(props: any) {
         super(props); 
-        const config = this.props.fetchCourseConfig(1);
-        console.log(config);
+
        // this.groups = this.props.detail.groups;
         this.submit = this.submit.bind(this);
  
@@ -32,6 +30,7 @@ class CourseDetail extends Component<any, any> {
         this.openCourseTestsPopup = this.openCourseTestsPopup.bind(this);
 
         this.onRulesChange = this.onRulesChange.bind(this);
+        this.onDescriptionChange = this.onDescriptionChange.bind(this);
         this.onCoursePercentageChange = this.onCoursePercentageChange.bind(this)
         this.onSeminarPercentageChange = this.onSeminarPercentageChange.bind(this)
         this.onLabPercentageChange = this.onLabPercentageChange.bind(this)
@@ -54,7 +53,8 @@ class CourseDetail extends Component<any, any> {
        
         this.state = {
       //      groups: this.props.detail.groups,
-            rules: this.props.detail.rules,
+            rules: this.props.rules,
+   //         description: this.details.description,
 
             coursePercentages: this.props.detail.courses.percentages,
             seminarPercentages: this.props.detail.seminars.percentages,
@@ -97,6 +97,10 @@ class CourseDetail extends Component<any, any> {
       //  this.renderGroups= this.renderGroups.bind(this);
     }
 
+    componentWillMount(){
+        this.props.fetchCourseConfig(1); 
+        console.log(this.props.courseDetail);
+    }
     getFromChildSeminar(data: any){
         this.setState({seminarPercentages: data})
     }
@@ -117,6 +121,9 @@ class CourseDetail extends Component<any, any> {
     }
     onRulesChange(e: any){
         this.setState({rules: e.target.value})
+    }
+    onDescriptionChange(e: any){
+        this.setState({description: e.target.value})
     }
     onCoursePercentageChange(e : any){
         this.setState({coursePercentage : e.target.value})
@@ -201,81 +208,17 @@ class CourseDetail extends Component<any, any> {
             }
         }
     }
-    /*
-    assignGroupToCourse = (element: any) =>
-    {
-        console.log(element)
-        const nr = parseInt(element,10);
-        if (this.groups.indexOf(nr) > -1){
-            this.groups.splice(this.groups.indexOf(nr), 1);
-        }else{
-        this.groups.push(nr);
-        }
-        this.setState({groups : this.groups})
-    } */ 
-
-    /*
-    renderGroups() {
-        //assume a course is assigned to a year of study (as in the db)
- 
-        const groups : string[] = []
-        switch(this.details.section.name){
-            case 'Romanian':
-            for (let i = 1; i < this.details.section.nrGroups; i++){
-                    groups.push('2'+this.state.year.toString()+i.toString())
-                }
-                break;
-                
-            case 'English':
-                for (let i = 1; i <= this.details.section.nrGroups; i++){
-                    groups.push('9'+this.state.year.toString()+i.toString())
-                }
-                    break;
-            case 'Hungarian':
-                for (let i = 1; i <= this.details.section.nrGroups; i++){
-                    groups.push('5'+this.state.year.toString()+i.toString())
-                    
-                }
-                    break;
-            case 'German':
-                for (let i = 1; i < this.details.section.nrGroups; i++){
-                    groups.push('7'+this.state.year.toString()+i.toString())
-                }
-                    break;
-
-
-        }
-        const buttons: any = []
-
-   
-        groups.forEach(element => {
-            if (this.groups.indexOf(parseInt(element,10))> -1){
-                buttons.push(
-                    <Button onClick={()=>this.assignGroupToCourse(element)} bsStyle="primary">&nbsp;{element}&nbsp;</Button>
-                     )
-            }else {
-                buttons.push(
-                <Button onClick={()=>this.assignGroupToCourse(element)} bsStyle="default">&nbsp;{element}&nbsp;</Button>
-                )
-            };
-        });
-     
-   
-        return (
-            <ButtonToolbar>{buttons}</ButtonToolbar>
-        );
-    }
-    */
 
     submit(){
         console.log(this.state)
         return this.state;
     }
     render() {
+    
         return (
             
 		<Grid>
-        <h1 className="text-center" style={{fontWeight: 600}}>{this.details.name}</h1>
+        <h1 className="text-center" style={{fontWeight: 600}}>{}</h1>
         <h3 className="text-center" style={{color:"gray"}}>Course Configuration</h3>
         <br/>
         <br/>
@@ -315,7 +258,7 @@ class CourseDetail extends Component<any, any> {
     <Row className="show-grid">
         <Col className="text-center" style={{fontSize: '1.5em', color:'gray'}} md={2}>Description</Col>
         <Col style={{fontSize: '1em', color:'gray'}} md={8}>
-        {this.details.description}
+        <textarea defaultValue={this.details.description} onChange= {this.onDescriptionChange}></textarea>
         </Col>
     </Row>
     <hr/>
