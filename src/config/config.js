@@ -7,8 +7,8 @@ module.exports = {
     dialect: 'postgres',
     force: false,
     email: {
-        username: "preacademicinfo@yahoo.com",
-        password: "securePassword123"
+        username: "preacademicinfo77@yahoo.com",
+        password: "decenumerge"
 
     }
   },
