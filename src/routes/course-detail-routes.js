@@ -30,7 +30,35 @@ router.get('/:id', function(req, res){
                     model: models.SeminarTestPercentage,
                     required: false,
                 }]
-        }).then(result => res.json(result), err => {
+        }).then(result => {
+            if(result == null) {
+                const data = { "id": null,
+                    "description": "",
+                    "rules": "",
+                    "hasLecture": false,
+                    "hasLab": false,
+                    "hasSeminar": false,
+                    "numberOfLectures": 0,
+                    "numberOfLabs": 0,
+                    "numberOfSeminars": 0,
+                    "lectureGradePercentage": 0,
+                    "labGradePercentage": 0,
+                    "seminarGradePercentage": 0,
+                    "numberOfLectureTests": 0,
+                    "numberOfSeminarTests": 0,
+                    "numberOfLabTests": 0,
+                    "examWrittenPercentage": 0,
+                    "examPracticalPercentage": 0,
+                    "CourseTestPercentages": [],
+                    "LabTestPercentages": [],
+                    "SeminarTestPercentages": []
+                }
+                res.json(data);
+            }
+            else {
+                res.json(result);
+            }
+        }, err => {
         res.status(501);
         res.send('Internal Server Error! Sorry, try again!');
         console.log('An error has occurred: ' + err);
