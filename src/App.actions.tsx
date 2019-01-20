@@ -20,7 +20,7 @@ export default class AppActions {
   };
 
    static fetchCourseConfig = (configId: any, callback: any) => (dispatch:any) => {
-       axios.get('/courseConfig/' + configId)
+       axios.get('/courseconfig/' + configId)
            .then(res => {
              if(res.data!=null) {
                const mydata = res.data;
