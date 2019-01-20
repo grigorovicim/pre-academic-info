@@ -6,6 +6,7 @@ import {Grid, Row, Col, Button} from 'react-bootstrap';
 import Popup from "../commons/Popup";
 import {connect} from "react-redux";
 import * as PropTypes from 'prop-types';
+import axios from "axios";
 
 class CourseDetail extends Component<any, any> {
     static propTypes = {
@@ -72,6 +73,7 @@ class CourseDetail extends Component<any, any> {
     }
 
     componentWillMount() {
+        this.setState({id:this.props.courseDetail.id});
         this.setState({seminarGradePercentage: this.props.courseDetail.seminarGradePercentage});
         this.setState({labGradePercentage: this.props.courseDetail.labGradePercentage});
         this.setState({lectureGradePercentage: this.props.courseDetail.lectureGradePercentage});
@@ -89,6 +91,9 @@ class CourseDetail extends Component<any, any> {
         this.setState({numberOfSeminars: this.props.courseDetail.numberOfSeminars});
         this.setState({examWrittenPercentage: this.props.courseDetail.examWrittenPercentage});
         this.setState({examPracticalPercentage: this.props.courseDetail.examPracticalPercentage});
+        this.setState({courseTestsPercentages:this.props.courseDetail.courseTestsPercentages});
+        this.setState({labTestsPercentages:this.props.courseDetail.labTestsPercentages});
+        this.setState({seminarTestsPercentages:this.props.courseDetail.seminarTestsPercentages});
 
     }
 
@@ -202,7 +207,33 @@ class CourseDetail extends Component<any, any> {
     }
 
     submit() {
-        console.log(this.state);
+        if(this.state.id != null){
+            //update
+            const body = this.state;
+            axios.put('/courseconfig',
+                {courseConfig:body})
+                .then(res =>{
+                    console.log(res.data);
+                    alert(res.data);
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        }
+        else
+        {
+            //create
+            const body = this.state;
+            axios.post('/courseconfig',body)
+                .then(res =>{
+                    console.log(res.data);
+                    alert(res.data);
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        }
+
         return this.state;
     }
 

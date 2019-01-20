@@ -50,12 +50,13 @@ router.get('/:id', function(req, res){
  */
 router.put('/', function(req, res){
 
-    const labTestsPercentages = req.body.labTestsPercentages;
-    const seminarTestsPercentages = req.body.seminarTestsPercentages;
-    const courseTestsPercentages = req.body.courseTestsPercentages;
+    const labTestsPercentages = req.body.LabTestPercentages;
+    const seminarTestsPercentages = req.body.SeminarTestPercentages;
+    const courseTestsPercentages = req.body.CourseTestPercentages;
 
+    console.log(req.body.courseConfig);
     const newCourseConfig = req.body.courseConfig;
-    const courseConfigurationId = newCourseConfig.courseConfigurationId;
+    const courseConfigurationId = newCourseConfig.id;
     console.log("The course configuration id is " + courseConfigurationId);
 
     //update the course configuration
@@ -65,6 +66,37 @@ router.put('/', function(req, res){
         res.status(200);
         res.send('Course configuration successfully updated!');
         console.log('Successfully updated course configuration with id:' + courseConfigurationId);
+          //delete the labTestPercentages, seminarTestPercentages and courseTestPercentages corresponding to the courseConfiguration
+          models.LabTestPercentage.destroy({where: {courseconfiguration_id: courseConfigurationId}});
+          models.SeminarTestPercentage.destroy({where: {courseconfiguration_id: courseConfigurationId}});
+          models.CourseTestPercentage.destroy({where: {courseconfiguration_id: courseConfigurationId}});
+
+
+          //add the new labTestPercentages, seminarTestsPercentages and courseTestPercentages
+          Object.keys(labTestsPercentages).map(function(key){
+              var test = labTestsPercentages[key];
+              var tWeek = test.week;
+              var tPercentage = test.percentage;
+
+              models.LabTestPercentage.create({percentage: tPercentage, week: tWeek, courseconfiguration_id: courseConfigurationId});
+          });
+
+          Object.keys(seminarTestsPercentages).map(function(key){
+              var test = seminarTestsPercentages[key];
+              var tWeek = test.week;
+              var tPercentage = test.percentage;
+
+              models.SeminarTestPercentage.create({percentage: tPercentage, week: tWeek, courseconfiguration_id: courseConfigurationId});
+          });
+
+          Object.keys(courseTestsPercentages).map(function(key){
+              var test = courseTestsPercentages[key];
+              var tWeek = test.week;
+              var tPercentage = test.percentage;
+
+              models.CourseTestPercentage.create({percentage: tPercentage, week: tWeek, courseconfiguration_id: courseConfigurationId});
+          });
+          return;
       }
       else {
         res.status(400);
@@ -76,36 +108,7 @@ router.put('/', function(req, res){
       console.log('An error has occurred: ' + err);
     });
 
-    //delete the labTestPercentages, seminarTestPercentages and courseTestPercentages corresponding to the courseConfiguration
-    models.LabTestPercentage.destroy({where: {courseconfiguration_id: courseConfigurationId}});
-    models.SeminarTestPercentage.destroy({where: {courseconfiguration_id: courseConfigurationId}});
-    models.CourseTestPercentage.destroy({where: {courseconfiguration_id: courseConfigurationId}});
 
-
-    //add the new labTestPercentages, seminarTestsPercentages and courseTestPercentages
-    Object.keys(labTestsPercentages).map(function(key){
-        var test = labTestsPercentages[key];
-        var tWeek = test.week;
-        var tPercentage = test.percentage;
-
-        models.LabTestPercentage.create({percentage: tPercentage, week: tWeek, courseconfiguration_id: courseConfigurationId});
-    });
-
-    Object.keys(seminarTestsPercentages).map(function(key){
-        var test = seminarTestsPercentages[key];
-        var tWeek = test.week;
-        var tPercentage = test.percentage;
-
-        models.SeminarTestPercentage.create({percentage: tPercentage, week: tWeek, courseconfiguration_id: courseConfigurationId});
-    });
-
-    Object.keys(courseTestsPercentages).map(function(key){
-        var test = courseTestsPercentages[key];
-        var tWeek = test.week;
-        var tPercentage = test.percentage;
-
-        models.CourseTestPercentage.create({percentage: tPercentage, week: tWeek, courseconfiguration_id: courseConfigurationId});
-    });
 
   });
 
