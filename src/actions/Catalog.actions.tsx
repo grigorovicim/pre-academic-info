@@ -2,31 +2,39 @@
 import axios from 'axios';
 import { FETCH_ACTIVITIES, ADD_ACTIVITY } from './types';
 
-export const fetchActivities = () => dispatch => {
-    console.log("fetching activities...");
+export default class CatalogActions {
 
-    axios.get('/catalog')
-    .then(res =>{
-        dispatch({
-            type: FETCH_ACTIVITIES,
-            payload: res.data
-        })}) 
-        .catch(error => {
-            console.log(error)
-        });
-};
-
-
-export const addActivity = (body: any) => dispatch => {
-
-    axios.put('/addactivity', body)
-        .then(res => {
-            dispatch({
-                type: ADD_ACTIVITY,
-                payload: res.data
+    static fetchActivities = (data: any) => (dispatch: any) => {
+        console.log("fetching activities...");
+        if(data.studentstring === ""){
+            data.studentstring = " ";
+        }
+        data.courseid = 6
+        axios.get('/catalog/' + data.courseid + '/' + data.studentstring + '/' + data.week + '/' + data.groupid
+        )
+            .then(res => {
+                dispatch({
+                    type: FETCH_ACTIVITIES,
+                    payload: res.data
+                })
             })
-        })
-        .catch(error => {
-            console.log(error);
-        });
-};
+            .catch(error => {
+                console.log(error)
+            });
+    };
+
+
+    static addActivity = (body: any) => dispatch => {
+
+        axios.put('/addactivity', body)
+            .then(res => {
+                dispatch({
+                    type: ADD_ACTIVITY,
+                    payload: res.data
+                })
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+}

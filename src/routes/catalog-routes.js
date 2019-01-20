@@ -11,7 +11,7 @@ const Sequelize = require('sequelize');
  */
 router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
     let searchString = null;
-    if (req.params.studentstring === null)
+    if (req.params.studentstring === null || req.params.studentstring === " ")
     {
      searchString = '%%';
     } else {
