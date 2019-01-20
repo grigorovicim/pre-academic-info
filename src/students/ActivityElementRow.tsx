@@ -1,7 +1,8 @@
 import * as React from "react";
 import {Component} from "react";
 import '../courses/ActivityDetail.css';
-
+import CatalogActions from 'src/actions/Catalog.actions';
+import { connect } from "react-redux";
 
 class ActivityElementRow extends Component<any, any> {
     constructor(props: any) {
@@ -65,7 +66,35 @@ class ActivityElementRow extends Component<any, any> {
     onSaveButton() {
         console.log(this.state.presenceId);
         console.log(this.state.activityId);
+        const presence = {
+            id: this.state.presenceId,
+            week: this.props.week,
+            student_id: this.props.item.id,
+            course_id: this.props.course_id
+        }
+
+        const activity = {
+            id: this.state.activityId,
+            grade: this.state.activityInput,
+            week: this.props.week,
+            student_id: this.props.item.id,
+            course_id: this.props.course_id
+        }
+
+        const body = {}
+        body[this.props.classType + 'Presence'] = presence
+        body[this.props.classType + 'Activitie'] = activity
+
+        this.props.dispatch(CatalogActions.addActivity(body))
+
     };
 }
+const mapStateToProps = (state: any) => {
+    return {
 
-export default ActivityElementRow;
+    };
+};
+
+export default connect(
+    mapStateToProps,
+)(ActivityElementRow);

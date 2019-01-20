@@ -51,7 +51,7 @@ class ActivityDetail extends Component<any, any> {
         const tableRows: any = [];
         items.forEach(item => {
             tableRows.push(
-                <ActivityElementRow key={item.id} item={item} classType={this.props.classType}/>
+                <ActivityElementRow key={item.id} item={item} classType={this.props.classType} week={this.props.week} course_id={this.details.id}/>
             )
         })
         return tableRows;
