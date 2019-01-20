@@ -4,6 +4,7 @@ import Header from "../commons/header/Header";
 import CourseDetails from "./CourseDetails";
 import StudentsList from "../students/StudentsList";
 import ActivityDetail from 'src/courses/ActivityDetail';
+import DashboardProfessors from 'src/professors/DashboardProfessors';
 // import DashboardStudentsComplex from "../students/DashboardStudentsComplex";
 // import DashboardProfessors from "../professors/DashboardProfessors";
 // import StudentsList from "../students/StudentsList";
@@ -59,6 +60,9 @@ class StudentsPage extends Component<any, any> {
                 <h1>Students Page</h1>
                 <div className="p-app">
                     <StudentsList/>
+                    <div/>
+                    <div/>
+                    <DashboardProfessors/>
                 </div>
             </div>
         );
