@@ -1,35 +1,31 @@
 import {Component} from "react";
 import Header from "../commons/header/Header";
 import Dashboard from "../courses/Dashboard";
-// import AppActions from "../App.actions"
 import * as React from "react";
-// import CourseDetail from "../courses/CourseDetail";
 import {connect} from "react-redux";
 import UploadFile from "../upload_file/UploadFile";
-//import CourseActions from "../actions/Course.actions";
-//import CourseActions from "../actions/Course.actions";
 
-class CoursesPage extends Component<any,any>
-{
+class CoursesPage extends Component<any, any> {
 
     constructor(props: any) {
         super(props);
-
-        this.state = {
-        };
+        this.state = {};
         console.log(this.props.app.user);
+    }
 
-        //this.props.dispatch(CourseActions.fetchItems(this.props.app.user.userDetails.username))
+    displayUpload() {
+        if (this.props.app.user.userDetails.role_id !== 1) {
+            console.log(this.props.app.user.userDetails.role);
+            return (<UploadFile/>)
+        }
+        return (<div/>);
     }
 
     public render() {
         return (
             <div className="p-app">
-
                 <Header home="none" courses="inline" students="none" catalog="none" myProfile="none"/>
-
-                <UploadFile/>
-
+                {this.displayUpload()}
                 <Dashboard courseItems={this.props.items} dashboardPage="courses"/>
             </div>
         );
