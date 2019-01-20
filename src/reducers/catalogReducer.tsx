@@ -13,7 +13,7 @@ export default (state = initialState, action: any) => {
         case FETCH_ACTIVITIES:
             return {
                 ...state,
-                items: action.payload.items,
+                items: Array.from(action.payload.items),
             };
 
         default:
