@@ -114,7 +114,10 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
       },{
         model: models.ExamPracticalResult,
         required: false,
-      },
+      },{
+        model: models.FinalGrade,
+        required: false,
+      }
       ]}).then(students => res.json(students), err => {
         res.status(501);
         res.send('Internal Server Error! Sorry, try again!');
@@ -129,9 +132,11 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
    * @method PUT grades get added for a student.
    * @throws 'Internal Server Error! Sorry, try again!' 
    */
-  router.put('/addactivity', function(req, res){
+  router.post('/addactivity', function(req, res){
+    console.log(req.body.SeminarPresence)
     if (req.body.SeminarActivity) {
-        models.SeminarPresence.findOrCreate(req.body.SeminarActivity, {
+      console.log(req.body.SeminarActivity)
+        models.SeminarActivity.findOrCreate({
           where: { 
               student_id: req.body.SeminarActivity.student_id,
               course_id: req.body.SeminarActivity.course_id,
@@ -154,7 +159,8 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
         });
       }
     if (req.body.SeminarPresence) {
-        models.SeminarPresence.findOrCreate(req.body.SeminarPresence, {
+      console.log(req.body.SeminarPresence)
+        models.SeminarPresence.findOrCreate({
           where: { 
               student_id: req.body.SeminarPresence.student_id,
               course_id: req.body.SeminarPresence.course_id,
@@ -177,7 +183,7 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
         });
       }
     if (req.body.LabActivity) {
-        models.LabActivity.findOrCreate(req.body.LabActivity, {
+        models.LabActivity.findOrCreate( {
           where: { 
               student_id: req.body.LabActivity.student_id,
               course_id: req.body.LabActivity.course_id,
@@ -200,7 +206,7 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
         });
       }
     if (req.body.LabPresence) {
-        models.LabPresence.findOrCreate(req.body.LabPresence, {
+        models.LabPresence.findOrCreate( {
           where: { 
               student_id: req.body.LabPresence.student_id,
               course_id: req.body.LabPresence.course_id,
@@ -223,7 +229,7 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
         });
       }
     if (req.body.CourseActivity) {
-      models.CourseActivity.findOrCreate(req.body.CourseActivity, {
+      models.CourseActivity.findOrCreate({
         where: { 
             student_id: req.body.CourseActivity.student_id,
             course_id: req.body.CourseActivity.course_id,
@@ -246,7 +252,7 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
       });
     }
     if (req.body.CoursePresence) {
-        models.CoursePresence.findOrCreate(req.body.CoursePresence, {
+        models.CoursePresence.findOrCreate( {
           where: { 
               student_id: req.body.CoursePresence.student_id,
               course_id: req.body.CoursePresence.course_id,
@@ -269,7 +275,7 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
         });
       }
       if (req.body.ExamPracticalResult) {
-        models.ExamPracticalResult.findOrCreate(req.body.ExamPracticalResult, {
+        models.ExamPracticalResult.findOrCreate( {
           where: { 
               student_id: req.body.ExamPracticalResult.student_id,
               course_id: req.body.ExamPracticalResult.course_id
@@ -291,7 +297,7 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
         });
       }
       if (req.body.ExamWrittenResult) {
-        models.ExamWrittenResult.findOrCreate(req.body.ExamWrittenResult, {
+        models.ExamWrittenResult.findOrCreate( {
           where: { 
               student_id: req.body.ExamWrittenResult.student_id,
               course_id: req.body.ExamWrittenResult.course_id
@@ -313,7 +319,7 @@ router.get('/:courseid/:studentstring/:week/:groupid', function(req, res){
         });
       }
       if (req.body.FinalGrade) {
-        models.FinalGrade.findOrCreate(req.body.FinalGrade, {
+        models.FinalGrade.findOrCreate( {
           where: { 
               student_id: req.body.FinalGrade.student_id,
               course_id: req.body.FinalGrade.course_id

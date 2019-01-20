@@ -63,7 +63,7 @@ export default class CatalogActions {
 
 
     static addActivity = (body: any) => dispatch => {
-        axios.put('/addactivity', body)
+        axios.post('/catalog/addactivity', body)
             .then(res => {
                 dispatch({
                     type: ADD_ACTIVITY,

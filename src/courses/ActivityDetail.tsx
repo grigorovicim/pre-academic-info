@@ -149,6 +149,10 @@ class ActivityDetail extends Component<any, any> {
                             <th className="p-header-add-activity">NAME</th>
                             <th className="p-input-presents-header">Present</th>
                             <th className="p-header-add-activity">Activity Grade</th>
+                            <th className="p-header-add-activity">Practical Exam</th>
+                            <th className="p-header-add-activity">Written Exam</th>
+                            <th className="p-header-add-activity">Final Grade</th>
+
                             <th></th>
                         </tr>
                     </thead>
