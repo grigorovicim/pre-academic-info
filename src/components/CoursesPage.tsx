@@ -14,6 +14,10 @@ class CoursesPage extends Component<any, any> {
     }
 
     displayUpload() {
+        if(this.props.app.user.userDetails == null) {
+            return (<div/>);
+        }
+        
         if (this.props.app.user.userDetails.role_id !== 1) {
             console.log(this.props.app.user.userDetails.role);
             return (<UploadFile/>)
