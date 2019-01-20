@@ -10,7 +10,8 @@ const reducer = (state = {
     isAdmin: false,
     isChecked: false,
   },
-  errorMessage: null
+  errorMessage: null,
+    isLarge: false
 },
  action: any) => {
 
@@ -119,6 +120,13 @@ const reducer = (state = {
         isChecked: payload.user.isChecked,
       }),
     };
+  }
+
+  case 'SET_IS_LARGE': {
+      return {
+          ...state,
+          isLarge: payload.isLarge,
+      };
   }
 
   default:

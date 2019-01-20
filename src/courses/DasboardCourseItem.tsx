@@ -78,6 +78,7 @@ class DashboardCourseItem extends Component<any, any> {
 
     addDetailsPopup(e: any) {
         e.stopPropagation();
+        this.props.dispatch(AppActions.setIsLarge(true));
         const popupComponentType = this.props.dashboardPage === 'courses' ? 'p-courses-detail-button' : 'p-activity-detail-button';
         this.props.dispatch(AppActions.fetchCourseConfig(this.props.course.id, (courseDetails: any) => {
             this.setState({
@@ -89,6 +90,7 @@ class DashboardCourseItem extends Component<any, any> {
 
     openDetailsPopup(e: any) {
         e.stopPropagation();
+        this.props.dispatch(AppActions.setIsLarge(true));
         const popupComponentType = this.props.dashboardPage === 'courses' ? 'p-courses-detail-button' : 'p-activity-detail-button';
         this.props.dispatch(AppActions.fetchCourseConfig(this.props.course.id, (courseDetails: any) => {
             this.setState({

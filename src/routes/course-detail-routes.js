@@ -127,50 +127,49 @@ router.post('/', function(req, res){
     models.CourseConfiguration.create(req.body.courseConfig).then(result => {
         console.log("The result is" + result);
         if(result != null) {
-        res.status(200);
-        console.log('Successfully added course configuration');
-        //get the id of the newly added courseConfiguration
-        courseConfigurationId = result.id;
+            res.status(200);
+            console.log('Successfully added course configuration');
+            //get the id of the newly added courseConfiguration
+            courseConfigurationId = result.id;
 
             //add the labTestPercentages, seminarTestsPercentages and courseTestPercentages
-        Object.keys(labTestsPercentages).map(function(key){
-            var test = labTestsPercentages[key];
-            var tWeek = test.week;
-            var tPercentage = test.percentage;
+            Object.keys(labTestsPercentages).map(function(key){
+                var test = labTestsPercentages[key];
+                var tWeek = test.week;
+                var tPercentage = test.percentage;
 
-            models.LabTestPercentage.create({percentage: tPercentage, week: tWeek, courseconfiguration_id: courseConfigurationId});
-        });
+                models.LabTestPercentage.create({percentage: tPercentage, week: tWeek, courseconfiguration_id: courseConfigurationId});
+            });
 
-        Object.keys(seminarTestsPercentages).map(function(key){
-            var test = seminarTestsPercentages[key];
-            var tWeek = test.week;
-            var tPercentage = test.percentage;
+            Object.keys(seminarTestsPercentages).map(function(key){
+                var test = seminarTestsPercentages[key];
+                var tWeek = test.week;
+                var tPercentage = test.percentage;
 
-            models.SeminarTestPercentage.create({percentage: tPercentage, week: tWeek, courseconfiguration_id: courseConfigurationId});
-        });
+                models.SeminarTestPercentage.create({percentage: tPercentage, week: tWeek, courseconfiguration_id: courseConfigurationId});
+            });
 
-        Object.keys(courseTestsPercentages).map(function(key){
-            var test = courseTestsPercentages[key];
-            var tWeek = test.week;
-            var tPercentage = test.percentage;
+            Object.keys(courseTestsPercentages).map(function(key){
+                var test = courseTestsPercentages[key];
+                var tWeek = test.week;
+                var tPercentage = test.percentage;
 
-            models.CourseTestPercentage.create({percentage: tPercentage, week: tWeek, courseconfiguration_id: courseConfigurationId});
-        });
-        res.send('Course configuration successfully added!');
+                models.CourseTestPercentage.create({percentage: tPercentage, week: tWeek, courseconfiguration_id: courseConfigurationId});
+            });
+            res.send('Course configuration successfully added!');
 
-      }
-      else {
-        res.status(400);
-        res.send('Unable to add the course configuration.');
-      }
+        }
+        else {
+            res.status(400);
+            res.send('Unable to add the course configuration.');
+        }
     }, err => {
-      res.status(501);
-      res.send('Internal Server Error!Sorry, try again!');
-      console.log('An error has occurred: ' + err);
+        res.status(501);
+        res.send('Internal Server Error!Sorry, try again!');
+        console.log('An error has occurred: ' + err);
     });
 
-  });
-
+});
 
   module.exports = router;
   

@@ -84,7 +84,17 @@ export default class AppActions {
     });
   }
 
-  static updatePopupContentElement = (popupContent: any, isAlert: any) => (dispatch: any) => {
+  static setIsLarge = (isLarge: any) => (dispatch: any) =>{
+      dispatch ({
+          type: 'SET_IS_LARGE',
+          payload: {
+              isLarge,
+          }
+      });
+  }
+
+
+    static updatePopupContentElement = (popupContent: any, isAlert: any) => (dispatch: any) => {
     dispatch({
       type: 'SET_POPUP_CONTENT',
       payload: {

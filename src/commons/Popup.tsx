@@ -46,6 +46,11 @@ class Popup extends Component<any, any> {
       setHeight = "220px";
     }
 
+    if(this.props.isLarge){
+        setWidth = "800px";
+        setHeight = "700px";
+    }
+
     let component;
     if (this.props.children) {
       component = this.props.children;
@@ -94,6 +99,7 @@ const mapStateToProps = (state: any) => {
     isPopupVisible: state.app.isPopupVisible,
     popupContent: state.app.popupContent,
     isAlert: state.app.isAlert,
+      isLarge:state.app.isLarge
   };
 };
 

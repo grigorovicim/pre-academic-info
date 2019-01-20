@@ -36,7 +36,7 @@ var CatalogRoutes = require('./src/routes/catalog-routes');
 var StudentCourseRoutes = require('./src/routes/student-course-routes');
 const SpreadsheetRoutes = require('./src/routes/spreadsheet-routes');
 const ProfileRoutes = require('./src/routes/profile-routes');
-const CourseConfigurationRoutes = require('./src/routes/course-detail-routes')
+const CourseConfigurationRoutes = require('./src/routes/course-detail-routes');
 
 
 const app = express();
