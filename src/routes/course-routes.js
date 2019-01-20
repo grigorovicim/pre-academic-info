@@ -16,6 +16,7 @@ router.get('/', function (_, res) {
         console.log('An error has occurred: ' + err);
     });
 });
+
 /**
  * Returns a list with all the courses.
  * @method GET the list of courses
@@ -25,14 +26,122 @@ router.post('/get-dashboard-courses/', function (req, res) {
     let profEmail = req.body.profEmail;
     console.log("Getting courses for: ", profEmail);
 
+    models.User.findOne({where: {username: profEmail}})
+        .then(result => {
+            let roleId = result.dataValues.id;
+            if(roleId === 1){
+                //Student
+                models.Course.findAll({
+                    attributes: ['id', 'name', 'academic_programme_id', 'semester_id', 'year_of_study', 'is_active'],
+                    include: [{
+                        model: models.StudentCourse,
+                        required: true,
+                        attributes:[],
+                        include: [{
+                            model: models.Student,
+                            required: true,
+                            include: [{
+                                model: models.Profile,
+                                required: true,
+                                include: [{
+                                    model: models.User,
+                                    required: true,
+                                    where: {
+                                        username: profEmail,
+                                    }
+                                }]
+                            }]
+                        }]
+                    }, {
+                        model: models.Section,
+                        required: true,
+                        attributes: ['name']
+                    }, {
+                        model: models.Semester,
+                        required: true,
+                        attributes: ['label']
+                    }, {
+                        model: models.AcademicProgramme,
+                        required: true,
+                        attributes: ['label']
+                    }, {
+                        model: models.YearOfStudy,
+                        required: true,
+                        attributes: ['label']
+                    }]
+                }).then(courses => res.json(courses), err => {
+                    res.status(501);
+                    res.send('Internal Server Error! Sorry, try again!');
+                    console.log('An error has occurred: ' + err);
+                });
+            } else{
+                //Professor
+                models.Course.findAll({
+                    attributes: ['id', 'name', 'academic_programme_id', 'semester_id', 'year_of_study', 'is_active'],
+                    include: [{
+                        model: models.ProfessorCourse,
+                        required: true,
+                        attributes:[],
+                        include: [{
+                            model: models.Professor,
+                            required: true,
+                            include: [{
+                                model: models.Profile,
+                                required: true,
+                                include: [{
+                                    model: models.User,
+                                    required: true,
+                                    where: {
+                                        username: profEmail,
+                                    }
+                                }]
+                            }]
+                        }]
+                    }, {
+                        model: models.Section,
+                        required: true,
+                        attributes: ['name']
+                    }, {
+                        model: models.Semester,
+                        required: true,
+                        attributes: ['label']
+                    }, {
+                        model: models.AcademicProgramme,
+                        required: true,
+                        attributes: ['label']
+                    }, {
+                        model: models.YearOfStudy,
+                        required: true,
+                        attributes: ['label']
+                    }]
+                }).then(courses => res.json(courses), err => {
+                    res.status(501);
+                    res.send('Internal Server Error! Sorry, try again!');
+                    console.log('An error has occurred: ' + err);
+                });
+            }
+        });
+
+
+});
+
+/**
+ * Returns a list with all the courses for a student.
+ * @method GET the list of courses
+ * @throws 'Internal Server Error! Sorry, try again!'
+ */
+router.post('/get-dashboard-courses-student/', function (req, res) {
+    let profEmail = req.body.profEmail;
+    console.log("Getting courses for: ", profEmail);
+
     models.Course.findAll({
         attributes: ['id', 'name', 'academic_programme_id', 'semester_id', 'year_of_study', 'is_active'],
         include: [{
-            model: models.ProfessorCourse,
+            model: models.StudentCourse,
             required: true,
             attributes:[],
             include: [{
-                model: models.Professor,
+                model: models.Student,
                 required: true,
                 include: [{
                     model: models.Profile,
