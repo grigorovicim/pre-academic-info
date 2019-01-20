@@ -7,9 +7,9 @@ export default class CatalogActions {
     static fetchActivities = (data: any) => (dispatch: any) => {
         console.log("fetching activities...");
         if(data.studentstring === ""){
-            data.studentstring = " ";
+            data.studentstring = "null";
         }
-        data.courseid = 6
+        //data.courseid = 6
         axios.get('/catalog/' + data.courseid + '/' + data.studentstring + '/' + data.week + '/' + data.groupid
         )
             .then(res => {
@@ -63,7 +63,6 @@ export default class CatalogActions {
 
 
     static addActivity = (body: any) => dispatch => {
-
         axios.put('/addactivity', body)
             .then(res => {
                 dispatch({
