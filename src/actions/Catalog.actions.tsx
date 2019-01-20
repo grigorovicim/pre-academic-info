@@ -7,7 +7,7 @@ export default class CatalogActions {
     static fetchActivities = (data: any) => (dispatch: any) => {
         console.log("fetching activities...");
         if(data.studentstring === ""){
-            data.studentstring = "null";
+            data.studentstring = " ";
         }
         //data.courseid = 6
         axios.get('/catalog/' + data.courseid + '/' + data.studentstring + '/' + data.week + '/' + data.groupid
