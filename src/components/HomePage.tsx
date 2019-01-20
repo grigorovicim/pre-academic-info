@@ -31,7 +31,7 @@ class HomePage extends Component<any,any>{
               <div className="p-login-welcome">Welcome</div>
               <img className="p-login-logo-image" src={loginLogo}/>
             </div>
-            <div className="p-welcome-user-email">{this.props.user.userDetails.role === 1 ? "student" :  "professor"}</div>
+            <div className="p-welcome-user-email">{this.props.user.userDetails.role}</div>
             <div className="p-welcome-user-email" style={{color: '#6CB0E0'}}>{this.props.user.userDetails.username}</div>
             <div className="p-success-messege">Successfully logged in!</div>
           </div>
