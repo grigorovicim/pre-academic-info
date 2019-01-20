@@ -2,20 +2,26 @@ import * as React from "react";
 import {Component} from "react";
 import 'font-awesome/css/font-awesome.min.css'
 import './CourseDetail.css';
-import { Grid, Row, Col, ButtonToolbar, Button } from 'react-bootstrap';
+import {Grid, Row, Col, Button} from 'react-bootstrap';
 import Popup from "../commons/Popup";
+import {connect} from "react-redux";
+import * as PropTypes from 'prop-types';
+import axios from "axios";
+import StudentsList from "../students/StudentsList";
+import DashboardProfessors from "../professors/DashboardProfessors";
 
 class CourseDetail extends Component<any, any> {
-    
-    private details: any;
-    private groups: any;
+    static propTypes = {
+        courseConfig: PropTypes.any
+    };
+
+    //ca si props avem course
 
     constructor(props: any) {
-        super(props); 
+        super(props);
 
-        this.groups = this.props.detail.groups;
         this.submit = this.submit.bind(this);
- 
+
         this.getFromChildSeminar = this.getFromChildSeminar.bind(this);
         this.getFromChildLab = this.getFromChildLab.bind(this);
         this.getFromChildCourse = this.getFromChildCourse.bind(this);
@@ -24,12 +30,14 @@ class CourseDetail extends Component<any, any> {
         this.openSeminarTestsPopup = this.openSeminarTestsPopup.bind(this);
         this.openCourseTestsPopup = this.openCourseTestsPopup.bind(this);
 
+        this.onRulesChange = this.onRulesChange.bind(this);
+        this.onDescriptionChange = this.onDescriptionChange.bind(this);
         this.onCoursePercentageChange = this.onCoursePercentageChange.bind(this)
         this.onSeminarPercentageChange = this.onSeminarPercentageChange.bind(this)
         this.onLabPercentageChange = this.onLabPercentageChange.bind(this)
 
-        this.onWrittenExamPercentageChange =  this.onWrittenExamPercentageChange.bind(this)
-        this.onPracticalExamPercentageChange =  this.onPracticalExamPercentageChange.bind(this)
+        this.onWrittenExamPercentageChange = this.onWrittenExamPercentageChange.bind(this)
+        this.onPracticalExamPercentageChange = this.onPracticalExamPercentageChange.bind(this)
 
         this.onCourseNumberChange = this.onCourseNumberChange.bind(this);
         this.onSeminarNumberChange = this.onSeminarNumberChange.bind(this);
@@ -43,402 +51,396 @@ class CourseDetail extends Component<any, any> {
         this.closeSeminarPopup = this.closeSeminarPopup.bind(this);
         this.closeCoursePopup = this.closeCoursePopup.bind(this);
 
-       
-        this.state = {
-            groups: this.props.detail.groups,
 
-            coursePercentages: this.props.detail.courses.percentages,
-            seminarPercentages: this.props.detail.seminars.percentages,
-            labPercentages: this.props.detail.labs.percentages,
+            this.state = {
 
-            courseNumber: this.props.detail.courses.number,
-            seminarNumber: this.props.detail.seminars.number,
-            labNumber: this.props.detail.labs.number,
+                // courseWeeks: this.props.detail.courses.weeks,
+                // seminarWeeks: this.props.detail.seminars.weeks,
+                // labWeeks: this.props.detail.labs.weeks,
 
-            writtenExam: this.props.detail.courses.writtenExam,
-            practicalExam: this.props.detail.courses.practicalExam,
+                courseWeeks: 3,
+                seminarWeeks: 4,
+                labWeeks: 5,
 
-            coursePercentage: this.props.detail.courses.percentage,
-            labPercentage: this.props.detail.seminars.percentage,
-            seminarPercentage: this.props.detail.labs.percentage,
+                isSeminarPopupVisible: false,
+                isCoursePopupVisible: false,
+                isLabPopupVisible: false,
 
-            courseTests: this.props.detail.courses.tests,
-            seminarTests: this.props.detail.seminars.tests,
-            labTests: this.props.detail.labs.tests,
+                popupSeminarComponentType: null,
+                popupCourseComponentType: null,
+                popupLabComponentType: null,
 
-            isSeminarPopupVisible: false,
-            isCoursePopupVisible: false,
+                initial: 'state',
+        	}
+    }
+
+    componentWillMount() {
+        this.setState({id:this.props.courseDetail.id});
+        this.setState({seminarGradePercentage: this.props.courseDetail.seminarGradePercentage});
+        this.setState({labGradePercentage: this.props.courseDetail.labGradePercentage});
+        this.setState({lectureGradePercentage: this.props.courseDetail.lectureGradePercentage});
+        this.setState({numberOfLectures: this.props.courseDetail.numberOfLectures});
+        this.setState({description: this.props.courseDetail.description});
+        this.setState({rules: this.props.courseDetail.rules});
+        this.setState({hasLecture: this.props.courseDetail.hasLecture});
+        this.setState({hasLab: this.props.courseDetail.hasLab});
+        this.setState({hasSeminar: this.props.courseDetail.hasSeminar});
+        this.setState({numberOfLectureTests: this.props.courseDetail.numberOfLectureTests});
+        this.setState({numberOfSeminarTests: this.props.courseDetail.numberOfSeminarTests});
+        this.setState({numberOfLabTests: this.props.courseDetail.numberOfLabTests});
+        this.setState({numberOfSeminars: this.props.courseDetail.numberOfSeminars});
+        this.setState({numberOfLabs: this.props.courseDetail.numberOfLabs});
+        this.setState({numberOfSeminars: this.props.courseDetail.numberOfSeminars});
+        this.setState({examWrittenPercentage: this.props.courseDetail.examWrittenPercentage});
+        this.setState({examPracticalPercentage: this.props.courseDetail.examPracticalPercentage});
+        this.setState({courseTestsPercentages:this.props.courseDetail.courseTestsPercentages});
+        this.setState({labTestsPercentages:this.props.courseDetail.labTestsPercentages});
+        this.setState({seminarTestsPercentages:this.props.courseDetail.seminarTestsPercentages});
+
+    }
+
+    getFromChildSeminar(data: any) {
+        this.setState({seminarGradePercentage: data})
+    }
+
+    getFromChildLab(data: any) {
+        this.setState({labGradePercentage: data})
+    }
+
+    getFromChildCourse(data: any) {
+        this.setState({CourseTestPercentages: data})
+    }
+
+    onCourseNumberChange(e: any) {
+        this.setState({numberOfLectures: e.target.value})
+    }
+
+    onSeminarNumberChange(e: any) {
+        this.setState({numberOfSeminars: e.target.value})
+    }
+
+    onLabNumberChange(e: any) {
+        this.setState({numberOfLabs: e.target.value})
+    }
+
+    onRulesChange(e: any) {
+        this.setState({rules: e.target.value})
+    }
+
+    onDescriptionChange(e: any) {
+        this.setState({description: e.target.value})
+    }
+
+    onCoursePercentageChange(e: any) {
+        this.setState({lectureGradePercentage: e.target.value})
+    }
+
+    onSeminarPercentageChange(e: any) {
+        this.setState({seminarGradePercentage: e.target.value})
+    }
+
+    onLabPercentageChange(e: any) {
+        this.setState({labGradePercentage: e.target.value})
+    }
+
+    onCourseTestsChange(e: any) {
+        this.setState({numberOfLectureTests: e.target.value})
+    }
+
+    onSeminarTestsChange(e: any) {
+        this.setState({numberOfSeminarTests: e.target.value})
+    }
+
+    onLabTestsChange(e: any) {
+        this.setState({numberOfLabTests: e.target.value})
+    }
+
+    onPracticalExamPercentageChange(e: any) {
+        this.setState({examPracticalPercentage: e.target.value})
+    }
+
+    onWrittenExamPercentageChange(e: any) {
+        this.setState({examWrittenPercentage: e.target.value})
+    }
+
+    closeLabPopup() {
+        this.setState({
             isLabPopupVisible: false,
-        
-            popupSeminarComponentType: null,
-            popupCourseComponentType: null,
-            popupLabComponentType: null,
-
-            initial: 'state',
-            isCourse: 1,
-            isSeminar: 1,
-            isLab: 1,
-		}   
-        this.details = props.detail  
-        this.renderGroups= this.renderGroups.bind(this);
-    }
-
-    getFromChildSeminar(data: any){
-        this.setState({seminarPercentages: data})
-    }
-    getFromChildLab(data: any){
-        this.setState({labPercentages: data})
-    }
-    getFromChildCourse(data: any){
-        this.setState({coursePercentages: data})
-    }
-    onCourseNumberChange(e : any) {
-        this.setState({courseNumber : e.target.value})
-    }
-    onSeminarNumberChange(e : any) {
-        this.setState({seminarNumber : e.target.value})
-    }
-    onLabNumberChange(e : any) {
-        this.setState({labNumber : e.target.value})
-    }
-
-    onCoursePercentageChange(e : any){
-        this.setState({coursePercentage : e.target.value})
-    }
-    onSeminarPercentageChange(e : any){
-        this.setState({seminarPercentage : e.target.value})
-    }
-    onLabPercentageChange(e : any){
-        this.setState({labPercentage : e.target.value})
-    }
-    
-    onCourseTestsChange(e : any) {
-        this.setState({courseTests: e.target.value})
-    }
-    onSeminarTestsChange(e : any){
-        this.setState({seminarTests: e.target.value})
-    }
-    onLabTestsChange(e : any){
-        this.setState({labTests: e.target.value})
-    }
-
-    onPracticalExamPercentageChange(e: any){
-        this.setState({practicalExam: e.target.value})
-    }
-
-    onWrittenExamPercentageChange(e: any){
-        this.setState({writtenExam: e.target.value})
-    }
-
-	closeLabPopup() {
-		this.setState({
-          isLabPopupVisible: false,
-		});
-      }
-      closeSeminarPopup() {
-		this.setState({
-          isSeminarPopupVisible: false,
-		});
-      }
-      closeCoursePopup() {
-		this.setState({
-          isCoursePopupVisible: false,
-		});
-      }
-      
-	  openLabTestsPopup(e: any) {
-		e.stopPropagation();
-		this.setState({
-		  isLabPopupVisible: true,
-          popupLabComponentType: 'p-lab-tests',
-          labNumber: this.details.labs.tests,
-		});
-	  }
-	  openSeminarTestsPopup(e: any) {
-		e.stopPropagation();
-		this.setState({
-		  isSeminarPopupVisible: true,
-          popupSeminarComponentType: 'p-seminar-tests',
-          seminarNumber: this.details.seminars.tests,
         });
-	  }
-      openCourseTestsPopup(e: any) {
-		e.stopPropagation();
-		this.setState({
-		  isCoursePopupVisible: true,
-          popupCourseComponentType: 'p-course-tests',
-          courseNumber: this.details.courses.tests,
-		});
-	  }
-    //What tells us the field. Ex: what= "number" means that the handler
-    //was called on the course number input field 
-    handleKeyPress = (event: any, what: string) => {
-
-        if(event.key === 'Enter'){
-
-         
-            switch(what){
-                case ("number"):
-                    
-                    console.log(event.target.value)
-                    break;
-            }
-        }
     }
-    assignGroupToCourse = (element: any) =>
-    {
-        console.log(element)
-        const nr = parseInt(element,10);
-        if (this.groups.indexOf(nr) > -1){
-            this.groups.splice(this.groups.indexOf(nr), 1);
-        }else{
-        this.groups.push(nr);
-        }
-        this.setState({groups : this.groups})
-    }  
 
-    renderGroups() {
-        //assume a course is assigned to a year of study (as in the db)
-        let year = -1;
-        if (this.groups !== undefined && this.groups !== []){
-        year = Math.trunc(this.groups[0] / 10) % 10;
-        }
-        if (year === -1){
-            return (<p>The year is not valid</p>);
-        }
-        const groups : string[] = []
-        switch(this.details.section.name){
-            case 'Romanian':
-            for (let i = 1; i < this.details.section.nrGroups; i++){
-                    groups.push('2'+year.toString()+i.toString())
-                }
-                break;
-                
-            case 'English':
-                for (let i = 1; i <= this.details.section.nrGroups; i++){
-                    groups.push('9'+year.toString()+i.toString())
-                   
-                }
-                    break;
-            case 'Hungarian':
-                for (let i = 1; i <= this.details.section.nrGroups; i++){
-                    groups.push('5'+year.toString()+i.toString())
-                    
-                }
-                    break;
-            case 'German':
-                for (let i = 1; i < this.details.section.nrGroups; i++){
-                    groups.push('7'+year.toString()+i.toString())
-                }
-                    break;
-
-
-        }
-        const buttons: any = []
-
-   
-        groups.forEach(element => {
-            if (this.groups.indexOf(parseInt(element,10))> -1){
-                buttons.push(
-                    <Button onClick={()=>this.assignGroupToCourse(element)} bsStyle="primary">&nbsp;{element}&nbsp;</Button>
-                     )
-            }else {
-                buttons.push(
-                <Button onClick={()=>this.assignGroupToCourse(element)} bsStyle="default">&nbsp;{element}&nbsp;</Button>
-                )
-            };
-                      
+    closeSeminarPopup() {
+        this.setState({
+            isSeminarPopupVisible: false,
         });
-     
-   
-        return (
-            <ButtonToolbar>{buttons}</ButtonToolbar>
-
-        );
     }
-    submit(){
-        console.log(this.state)
+
+    closeCoursePopup() {
+        this.setState({
+            isCoursePopupVisible: false,
+        });
+    }
+
+    openLabTestsPopup(e: any) {
+        e.stopPropagation();
+        this.setState({
+            isLabPopupVisible: true,
+            popupLabComponentType: 'p-lab-tests',
+            numberOfLectureTests: this.state.numberOfLectureTests,
+        });
+    }
+
+    openSeminarTestsPopup(e: any) {
+        e.stopPropagation();
+        this.setState({
+            isSeminarPopupVisible: true,
+            popupSeminarComponentType: 'p-seminar-tests',
+            numberOfSeminarTests: this.state.numberOfSeminarTests,
+        });
+    }
+
+    openCourseTestsPopup(e: any) {
+        e.stopPropagation();
+        this.setState({
+            isCoursePopupVisible: true,
+            popupCourseComponentType: 'p-course-tests',
+            numberOfLectureTests: this.state.numberOfLectureTests,
+        });
+    }
+
+    submit() {
+        if(this.state.id != null){
+            //update
+            const body = this.state;
+            axios.put('/courseconfig',
+                {courseConfig:body})
+                .then(res =>{
+                    console.log(res.data);
+                    alert(res.data);
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        }
+        else
+        {
+            //create
+            const body = this.state;
+            axios.post('/courseconfig',body)
+                .then(res =>{
+                    console.log(res.data);
+                    alert(res.data);
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        }
+
         return this.state;
     }
-    render() {
-        return (
-            
-		<Grid>
-        <h1 className="text-center" style={{fontWeight: 600}}>{this.details.name}</h1>
-        <h3 className="text-center" style={{color:"gray"}}>Course Configuration</h3>
-        <br/>
-        <br/>
-        <br/>
-      
-        <Row className="show-grid text-center">
-        <Col><input
-              type="checkbox"
-              defaultChecked={this.state.isCourse === 1}
-              onChange={()=>{
-              this.setState({isCourse : 1 - this.state.isCourse});
-  
-              }}
-        /></Col>
-        <Col style={{fontSize: '1.5em', color:'gray'}} md={2}>Course</Col>
-        { this.state.isCourse === 1 &&
-        <Col style={{fontSize: '1em', color:'gray'}} md = {4}>
-            <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4}>Number:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.courseNumber} onChange={this.onCourseNumberChange} size={1}/></Col>
-            </Row>
-            <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Percentage: </Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.coursePercentage} onChange={this.onCoursePercentageChange} size={1}/></Col>
-            </Row>
-            <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Activities:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {2} ><input type='text' value = {this.state.courseTests} onChange={this.onCourseTestsChange} size={1}/></Col>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><Button onClick={this.openCourseTestsPopup}><i className="fa fa-cog" aria-hidden="true"></i></Button></Col>
- 
-            </Row>
-        </Col>
-        }
-    </Row>
-        
-    <hr/>
-    <Row className="show-grid">
-        <Col className="text-center" style={{fontSize: '1.5em', color:'gray'}} md={2}>Description</Col>
-        <Col style={{fontSize: '1em', color:'gray'}} md={8}>
-        {this.details.description}
-        </Col>
-    </Row>
-    <hr/>
-    <Row className="show-grid">
-        <Col className="text-center" style={{fontSize: '1.5em', color:'gray'}} md={2}>Rules</Col>
-        <Col style={{fontSize: '1em', color:'gray'}} md={8}>
-        {this.details.rules}
-        </Col>
-    </Row>
-    <hr/>
-    <Row className="show-grid">
-    <Col><input
-              type="checkbox"
-              defaultChecked={this.state.isLab === 1}
-              onChange={()=>{
-              this.setState({isLab : 1 - this.state.isLab});
-  
-              }}
-        /></Col>
-        <Col className="text-center" style={{fontSize: '1.5em', color:'gray'}} md={2}>Labs</Col>
-     { this.state.isLab === 1 && 
-        <Col style={{fontSize: '1em', color:'gray'}} md = {4}>
-            <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4}>Number:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text'  value = {this.state.labNumber}  onChange={this.onLabNumberChange} size={1}/></Col>
-            </Row>
-            <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Percentage: </Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.labPercentage} onChange={this.onLabPercentageChange} size={1}/></Col>
-            </Row>
-            <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Activities:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {2} ><input type='text' value = {this.state.labTests} onChange={this.onLabTestsChange}  size={1}/></Col>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><Button onClick={this.openLabTestsPopup}><i className="fa fa-cog" aria-hidden="true"></i></Button></Col>
-            </Row>
-        </Col>
-      }
-        { this.state.isLab === 1 &&
-        <Col style={{fontSize: '1.25em', color:'gray'}} md={2} >
-        Professors: 
-        </Col>
-        }
-        { this.state.isLab === 1 && 
-        <Col style={{fontSize: '1em', color:'gray'}} >
-        {/* Professors list component for labs*/}
-        Professor1 <br/>
-        Professor2 <br/>
-        Professor3 
-        </Col>
-        }
-    </Row>
-    <hr/>
-    <Row className="show-grid">
-    <Col><input
-              type="checkbox"
-              defaultChecked={this.state.isSeminar === 1}
-              onChange={()=>{
-              this.setState({isSeminar : 1 - this.state.isSeminar});
-  
-              }}
-    /></Col>
-        <Col className="text-center" style={{fontSize: '1.5em', color:'gray'}} md={2}>Seminars</Col>
-        { this.state.isSeminar === 1 &&
-        <Col style={{fontSize: '1em', color:'gray'}} md = {4}>
-            <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4}>Number:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.seminarNumber}  onChange={this.onSeminarNumberChange} size={1}/></Col>
-            </Row>
-            <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Percentage: </Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.seminarPercentage} onChange={this.onSeminarPercentageChange} size={1}/></Col>
-            </Row>
-            <Row style={{fontSize: '1.25em', color:'gray'}}>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {4} >Activities:</Col> 
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {2} ><input type='text'value = {this.state.seminarTests} onChange={this.onSeminarTestsChange} size={1}/></Col>
-                <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><Button onClick={this.openSeminarTestsPopup}><i className="fa fa-cog" aria-hidden="true"></i></Button></Col>
-            </Row>
-        </Col>
-        }
-        {
-         this.state.isSeminar === 1 &&
-        <Col style={{fontSize: '1.25em', color:'gray'}} md={2} >
-        Professors:
-        </Col>
-        }
-        { this.state.isSeminar === 1 &&
-        <Col style={{fontSize: '1em', color:'gray'}} >
-          {/* Professors list component for seminars*/}
-        Professor1 <br/>
-        Professor2 
-        </Col>
-        }
-    </Row>
-    <hr/>
-    <Row className="show-grid text-center">
-        <Col style={{fontSize: '1.5em', color:'gray'}} md={2}>Groups</Col>
-        <Col style={{fontSize: '1.25em', color:'gray'}} md={8}>
-               {this.renderGroups()} 
-        </Col>
-    </Row>
-    <hr/>
-    <Row className="show-grid text-center">
-        <Col style={{fontSize: '1.5em', color:'gray'}} md={2}>Students</Col>
-        <Col style={{fontSize: '1.25em', color:'gray'}} md={4}>
 
-        Students list component
-        </Col>
-    </Row>
-    <br/><br/>
-    <hr/>
-    <Row className="show-grid text-center">
-    <Col style={{fontSize: '1.5em', color:'gray'}} md={2}>Written Exam</Col>
-    <Col style = {{fontSize: '1.25em', color:'gray'}} md = {2}>Percentage:</Col> 
-    <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.writtenExamPercentage}  onChange={this.onWrittenExamPercentageChange} size={1}/></Col>  
-   </Row>
-    
-   <Row className="show-grid text-center">
-    <Col style={{fontSize: '1.5em', color:'gray'}} md={2}>Practical Exam</Col>
-    <Col style = {{fontSize: '1.25em', color:'gray'}} md = {2}>Percentage:</Col> 
-    <Col style = {{fontSize: '1em', color:'gray'}} md = {1} ><input type='text' value = {this.state.practicalExamPercentage}  onChange={this.onPracticalExamPercentageChange} size={1}/></Col>  
-   </Row>
-    <br/><br/>
-    <Button className="btn btn-success" onClick={this.submit}>Submit</Button>
-	<Popup isVisible={this.state.isCoursePopupVisible} sendToParent = {this.getFromChildCourse} onClose={this.closeCoursePopup} componentType={this.state.popupCourseComponentType} tests={this.state.courseTests} percentages={this.state.coursePercentages} refresh={this.onCourseTestsChange}/>
-    <Popup isVisible={this.state.isSeminarPopupVisible} sendToParent ={this.getFromChildSeminar} onClose={this.closeSeminarPopup} componentType={this.state.popupSeminarComponentType} tests={this.state.seminarTests} percentages={this.state.seminarPercentages} refresh={this.onSeminarTestsChange}/>
-    <Popup isVisible={this.state.isLabPopupVisible} sendToParent = {this.getFromChildLab} onClose={this.closeLabPopup} componentType={this.state.popupLabComponentType} tests={this.state.labTests} percentages={this.state.labPercentages} refresh={this.onLabTestsChange}/>
-    
-    </Grid>
-    
+    render() {
+
+        return (
+
+            <Grid>
+                <h1 className="text-center" style={{fontWeight: 600}}>{this.props.course.name}</h1>
+                <h3 className="text-center" style={{color: "gray"}}>Course Configuration</h3>
+                <br/>
+                <br/>
+
+                <Row className="show-grid">
+                    <Col className="text-center" style={{fontSize: '1.5em', color: 'gray'}} md={4}>Description</Col>
+                    <Col style={{fontSize: '1em', color: 'gray'}} md={8}>
+                        <textarea className="form-control" defaultValue={this.state.description}
+                                  onChange={this.onDescriptionChange}/>
+                    </Col>
+                </Row>
+
+                <Row className="show-grid">
+                    <Col className="text-center" style={{fontSize: '1.5em', color: 'gray'}} md={4}>Rules</Col>
+                    <Col style={{fontSize: '1em', color: 'gray'}} md={8}>
+                        <textarea className="form-control" defaultValue={this.state.rules}
+                                  onChange={this.onRulesChange}/>
+                    </Col>
+                </Row>
+                <Row className="show-grid text-center">
+                    <Col md={2}>
+                        <input type="checkbox" defaultChecked={this.state.hasLecture} onChange={() => {this.setState({hasLecture:!this.state.hasLecture});}}/>
+                    </Col>
+                    <Col style={{fontSize: '1.5em', color: 'gray'}} md={5} className="text-left">
+                        Course
+                    </Col>
+                    {this.state.hasLecture &&
+                    <Col style={{fontSize: '1em', color: 'gray'}} md={6}>
+                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Number:</Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                                <input type='text' value={this.state.numberOfLectures} onChange={this.onCourseNumberChange}/>
+                            </Col>
+                        </Row>
+                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Percentage: </Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                                <input type='text' value={this.state.lectureGradePercentage} onChange={this.onCoursePercentageChange}/>
+                            </Col>
+                        </Row>
+                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Activities:</Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                                <input type='text' value={this.state.numberOfLectureTests} onChange={this.onCourseTestsChange}/>
+                            </Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={1}>
+                                <Button onClick={this.openCourseTestsPopup}>
+                                    <i className="fa fa-cog" aria-hidden="true"/>
+                                </Button>
+                            </Col>
+
+                        </Row>
+                    </Col>
+                    }
+                </Row>
+                <th/>
+                <Row className="show-grid text-center">
+                    <Col md={2}>
+                        <input type="checkbox" defaultChecked={this.state.hasLab} onChange={() => {this.setState({hasLab: !this.state.hasLab});}}/>
+                    </Col>
+                    <Col className="text-left" style={{fontSize: '1.5em', color: 'gray'}} md={5}>Labs</Col>
+                    {this.state.hasLab &&
+                    <Col style={{fontSize: '1em', color: 'gray'}} md={6}>
+                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Number:</Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                                <input type='text' value={this.state.numberOfLabs} onChange={this.onLabNumberChange}/>
+                            </Col>
+                        </Row>
+                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Percentage: </Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                                <input type='text' value={this.state.labGradePercentage} onChange={this.onLabPercentageChange}/>
+                            </Col>
+                        </Row>
+                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Activities:</Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                                <input type='text' value={this.state.numberOfLabTests} onChange={this.onLabTestsChange}/>
+                            </Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={1}><Button
+                                onClick={this.openLabTestsPopup}>
+                                <i className="fa fa-cog" aria-hidden="true"/>
+                            </Button>
+                            </Col>
+                        </Row>
+                    </Col>
+                    }
+
+                </Row>
+                <hr/>
+                <Row className="show-grid text-center">
+                    <Col md={2}>
+                        <input type="checkbox" defaultChecked={this.state.hasSeminar} onChange={() => {this.setState({hasSeminar: !this.state.hasSeminar});}}/>
+                    </Col>
+                    <Col className="text-left" style={{fontSize: '1.5em', color: 'gray'}} md={10}>Seminars</Col>
+                    {this.state.hasSeminar &&
+                    <Col style={{fontSize: '1em', color: 'gray'}} md={6}>
+                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Number:</Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                                <input type='text' value={this.state.numberOfSeminars} onChange={this.onSeminarNumberChange}/>
+                            </Col>
+                        </Row>
+                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Percentage: </Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                                <input type='text' value={this.state.seminarGradePercentage} onChange={this.onSeminarPercentageChange}/>
+                            </Col>
+                        </Row>
+                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Activities:</Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                                <input type='text' value={this.state.numberOfSeminarTests} onChange={this.onSeminarTestsChange}/>
+                            </Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={1}><Button
+                                onClick={this.openSeminarTestsPopup}>
+                                <i className="fa fa-cog" aria-hidden="true"/>
+                            </Button>
+                            </Col>
+                        </Row>
+                    </Col>
+                    }
+                </Row>
+                <Row className="show-grid text-center">
+                    <Col style={{fontSize: '1.5em', color: 'gray'}} md={4}>Written Exam</Col>
+                    <Col style={{fontSize: '1.25em', color: 'gray'}} md={4}>Percentage:</Col>
+                    <Col style={{fontSize: '1em', color: 'gray'}} md={1}>
+                        <input type='text' value={this.state.examWrittenPercentage} onChange={this.onWrittenExamPercentageChange}/>
+                    </Col>
+                </Row>
+                <br/>
+                <Row className="show-grid text-center">
+                    <Col style={{fontSize: '1.5em', color: 'gray'}} md={4}>Practical Exam</Col>
+                    <Col style={{fontSize: '1.25em', color: 'gray'}} md={4}>Percentage:</Col>
+                    <Col style={{fontSize: '1em', color: 'gray'}} md={1}>
+                        <input type='text' value={this.state.examPracticalPercentage} onChange={this.onPracticalExamPercentageChange}/>
+                    </Col>
+                </Row>
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <Row className="show-grid text-center students-column">
+                    <Col style={{fontSize: '1.5em', color: 'gray'}} className="text-center">
+                        Students
+                    </Col>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Col style={{fontSize: '1.25em', color: 'gray', display: "static"}}  className="text-center student-title">
+                        <StudentsList courseId={this.state.id}/>
+                    </Col>
+                </Row>
+                <br/>
+                <br/>
+                <br/>
+                <Row className="show-grid text-center professor-column">
+                    <Col style={{fontSize: '1.5em', color: 'gray', width:'100px'}} className="text-center professor-title">
+                        Professor
+                    </Col>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Col style={{fontSize: '1.25em', color: 'gray', display: "static"}}  className="text-center">
+                        <DashboardProfessors courseId={this.state.id}/>
+                    </Col>
+                </Row>
+
+                <br/>
+                <br/>
+                <br/>
+                <Button className="btn btn-success" onClick={this.submit}>Submit</Button>
+                <Popup isVisible={this.state.isCoursePopupVisible} sendToParent={this.getFromChildCourse}
+                       onClose={this.closeCoursePopup} componentType={this.state.popupCourseComponentType}
+                       tests={this.state.courseTests} percentages={this.state.coursePercentages}
+                       weeks={this.state.courseWeeks} refresh={this.onCourseTestsChange}/>
+                <Popup isVisible={this.state.isSeminarPopupVisible} sendToParent={this.getFromChildSeminar}
+                       onClose={this.closeSeminarPopup} componentType={this.state.popupSeminarComponentType}
+                       tests={this.state.seminarTests} percentages={this.state.seminarPercentages}
+                       weeks={this.state.seminarWeeks} refresh={this.onSeminarTestsChange}/>
+                <Popup isVisible={this.state.isLabPopupVisible} sendToParent={this.getFromChildLab}
+                       onClose={this.closeLabPopup} componentType={this.state.popupLabComponentType}
+                       tests={this.state.labTests} percentages={this.state.labPercentages} weeks={this.state.labWeeks}
+                       refresh={this.onLabTestsChange}/>
+                <br/><br/>
+            </Grid>
+
         );
     }
 }
 
+const mapStateToProps = (state: any) => ({
+    courseDetail: Object.assign({}, state.app.courseConfig)
+});
+export default connect(mapStateToProps)(CourseDetail);
 
-
-export default CourseDetail;
 

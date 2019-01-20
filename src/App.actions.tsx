@@ -19,6 +19,25 @@ export default class AppActions {
     })
   };
 
+   static fetchCourseConfig = (configId: any, callback: any) => (dispatch:any) => {
+       axios.get('/courseConfig/' + configId)
+           .then(res => {
+             if(res.data!=null) {
+               const mydata = res.data;
+                 dispatch({
+                     type: 'FETCH_COURSE_CONFIG',
+                     payload: mydata
+                 });
+               callback(mydata);
+             }
+
+               console.log(res.data);
+           })
+           .catch(error => {
+               console.log(error)
+           });
+   }
+
   static checkUser = (sessionID: string) => (dispatch: any) => {
     axios.post('/session-id', {sessionID: sessionID})
     .then((response:any) => {
@@ -55,7 +74,8 @@ export default class AppActions {
         popupContent,
       }
     });
-  }
+  };
+
   static setIsAlert = (isAlert: any) => (dispatch: any, /*getState: any*/) =>{
     dispatch ({
       type: 'SET_IS_ALERT',
@@ -63,9 +83,19 @@ export default class AppActions {
         isAlert,
       }
     });
+  };
+
+  static setIsLarge = (isLarge: any) => (dispatch: any) =>{
+      dispatch ({
+          type: 'SET_IS_LARGE',
+          payload: {
+              isLarge,
+          }
+      });
   }
 
-  static updatePopupContentElement = (popupContent: any, isAlert: any) => (dispatch: any) => {
+
+    static updatePopupContentElement = (popupContent: any, isAlert: any) => (dispatch: any) => {
     dispatch({
       type: 'SET_POPUP_CONTENT',
       payload: {

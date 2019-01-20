@@ -1,13 +1,11 @@
 import * as React from "react";
 import {Component} from "react";
 
-import StudentsListItem from './StudentsListItem';
 
 import './StudentsList.css';
 
 import * as PropTypes from 'prop-types'; 
 import { connect } from 'react-redux';
-import { fetchStudents, fetchProfileForStudent } from '../actions/Student.actions';
 import Popup from "../commons/Popup";
 import AppActions from 'src/App.actions';
 
@@ -18,8 +16,6 @@ class StudentsList extends Component<any, any> {
         studentProfile: PropTypes.any
     };
 
-    /// TODO get the real id of the course from the user input
-    private courseId = 3;
 
     constructor(props : any){
         super(props);
@@ -34,7 +30,6 @@ class StudentsList extends Component<any, any> {
     }
 
     componentWillMount(){
-        this.props.fetchStudents(this.courseId); 
     }
 
     closePopup() {
@@ -45,6 +40,7 @@ class StudentsList extends Component<any, any> {
     openAddStudentPopup(e: any) {
         e.stopPropagation();
         this.props.dispatch(AppActions.setIsAlert(false));
+        this.props.dispatch(AppActions.setIsLarge(false));
         this.setState({
             isPopupVisible: true,
             popupComponentType: 'p-add-student-button',
@@ -60,13 +56,6 @@ class StudentsList extends Component<any, any> {
 
     render(){
 
-        const studentItems = this.props.students.map(student => {
-            return(
-                <div key={student.id}>
-                    <StudentsListItem student = {student.Profile} courseId = {this.courseId} studentId = {student.id}/>
-                </div>
-            );
-        });
         return(
             <div>
                 <tbody className="p-students-table">
@@ -77,18 +66,15 @@ class StudentsList extends Component<any, any> {
                         <button className="p-add-student-to-course-btn" onClick={this.openAddStudentPopup}>Add existing student to course</button>
                         <button className="p-add-student-to-course-btn" onClick={this.openAddNewStudentPopup}>Add new student to course</button>
                     </tr>
-                    {studentItems}
                 </tbody>
-                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={this.courseId}/>
+                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={this.props.courseId}/>
             </div>
         );
     }
 }
 
 const mapStateToProps = (state: any) => ({
-    students: state.studentReducer.items,
-    studentProfile: state.studentReducer.studentProfile
 });
 
 
-export default connect(mapStateToProps, {fetchStudents, fetchProfileForStudent})(StudentsList);
+export default connect(mapStateToProps, )(StudentsList);

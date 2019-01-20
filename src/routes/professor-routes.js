@@ -1,7 +1,8 @@
 var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
-
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 /*
 Return the list of all the professors.
 */
@@ -64,6 +65,58 @@ router.post('/', function(req, res){
     res.status(501);
     res.send('Internal Server Error! Sorry, try again!');
     console.log('An error has occurred: ' + err);
+  });
+});
+
+router.get('/enrolled/course/:courseId', function(req, res){
+  const courseId = req.params.courseId;
+
+  models.Professor.findAll(
+      {attributes: ['id'],
+        include: [
+            {
+              attributes: [],
+              model: models.ProfessorCourse,
+              required: true,
+              include : [{
+                  model:models.Course,
+                  attributes: ['id', 'name'],
+                  required:true,
+                  where: {id: courseId}}]
+          },
+            {
+              attributes: ['id', 'first_name', 'last_name', 'personal_email'],
+                model: models.Profile,
+                required: true,
+            }]
+  }).then(professors => res.json(professors), err => {
+    res.status(501);
+    res.send('Internal Server Error! Sorry, try again!');
+    console.log('An error has occurred: ' + err);
+  });
+});
+
+router.get('/not-enrolled/course/:courseId', function(req, res){
+  const courseId = parseInt(req.params.courseId, 10);
+
+  models.Professor.findAll(
+      {attributes: ['id'],
+          include: [
+              {
+                  attributes: ['id', 'first_name', 'last_name', 'personal_email'],
+                  model: models.Profile,
+                  required: true,
+              }],
+          where: {id :
+                  {
+                    [Op.notIn] :
+                        [Sequelize.literal('(SELECT professor_id FROM "ProfessorCourses" WHERE "ProfessorCourses"."course_id" = '+ courseId + ')')]
+
+                  }}
+      }).then(professors => res.json(professors), err => {
+      res.status(501);
+      res.send('Internal Server Error! Sorry, try again!');
+      console.log('An error has occurred: ' + err);
   });
 });
 
