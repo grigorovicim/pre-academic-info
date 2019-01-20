@@ -4,6 +4,7 @@ import './ActivityDetail.css';
 import { Grid, Row, Col, ButtonToolbar, Table } from 'react-bootstrap';
 import { connect } from "react-redux";
 import CatalogActions from "../actions/Catalog.actions";
+import ActivityElementRow from "../students/ActivityElementRow";
 
 
 class ActivityDetail extends Component<any, any> {
@@ -50,12 +51,7 @@ class ActivityDetail extends Component<any, any> {
         const tableRows: any = [];
         items.forEach(item => {
             tableRows.push(
-                <tr>
-                    <td className="p-input-student">{item.Profile.first_name + " " + item.Profile.last_name}</td>
-                    <td className="p-input-student">{item.Profile.first_name + " " + item.Profile.last_name}</td>
-                    <td className="p-input-student">{item.Profile.first_name + " " + item.Profile.last_name}</td>
-                    <td className="p-input-student"><button className="p-save-student-activity">Save</button></td>
-                </tr>
+                <ActivityElementRow key={item.id} item={item} classType={this.props.classType}/>
             )
         })
         return tableRows;
