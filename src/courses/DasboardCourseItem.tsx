@@ -63,6 +63,12 @@ class DashboardCourseItem extends Component<any, any> {
     }
 
     whichButton() {
+      if(this.props.user.userDetails.role_id === 1) {
+        console.log(this.props.user.userDetails.role);
+        return (<button className="course-config-button-wrapper" onClick={this.addDetailsPopup}><img
+                className="course-config-button" src={optionsBtn}/></button>)
+        
+      } else {
         if (this.isConfigured) {
           if(this.props.dashboardPage === 'catalog') {
             return (<button className="course-config-button-wrapper" onClick={this.openDetailsPopup}><img
@@ -77,6 +83,7 @@ class DashboardCourseItem extends Component<any, any> {
               className="course-config-button" src={plusBtn}/>
           </button>)
         
+      }
     }
 
     addDetailsPopup(e: any) {
@@ -118,7 +125,9 @@ class DashboardCourseItem extends Component<any, any> {
 }
 
 const mapStateToProps = (state: any) => {
-    return {};
+    return {
+      user: Object.assign({}, state.app.user),
+    };
 };
 
 
