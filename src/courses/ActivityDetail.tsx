@@ -8,10 +8,7 @@ import CatalogActions from "../actions/Catalog.actions";
 
 class ActivityDetail extends Component<any, any> {
     private details: any;
-
-    //private course: any;
     private groups = [15, 16, 17, 18, 19, 20];
-
 
     constructor(props: any) {
         super(props);
@@ -19,8 +16,11 @@ class ActivityDetail extends Component<any, any> {
 
         this.renderGroups = this.renderGroups.bind(this);
         this.renderItems = this.renderItems.bind(this);
-        this.filterByGroup = this.filterByGroup.bind(this);
+        this.handleGroupChange = this.handleGroupChange.bind(this);
         this.filterByClass = this.filterByClass.bind(this);
+        this.handleWeekChange = this.handleWeekChange.bind(this);
+        this.handleStudentStringChange = this.handleStudentStringChange.bind(this);
+
         this.fetchData();
     }
 
@@ -34,17 +34,11 @@ class ActivityDetail extends Component<any, any> {
         this.props.dispatch(CatalogActions.fetchActivities(data))
     }
 
-    filterByGroup = (event: any) => {
-    };
-
-    filterByClass = (event: any) => {
-    };
-
-    renderGroups() {
+    renderGroups(currentGroup) {
         const buttons: any = [];
         this.groups.forEach(group => {
             buttons.push(
-                <button className="p-group-button" onClick={this.filterByGroup}>{group + 916}</button>
+                <button className="p-group-button" onClick={this.handleGroupChange}  style={currentGroup === group.toString() ? { backgroundColor: "black" } : {}}>{group + 916}</button>
             )
         })
         return (
@@ -67,16 +61,43 @@ class ActivityDetail extends Component<any, any> {
         return tableRows;
     }
 
+    handleGroupChange = (event: any) => {
+        this.props.dispatch(CatalogActions.saveGroup(event.target.textContent))
+        setTimeout(() => {
+            this.fetchData();
+        }, 400)
+    };
+
+    filterByClass = (event: any) => {
+        this.props.dispatch(CatalogActions.saveClassType(event.target.textContent))
+        setTimeout(() => {
+            
+        }, 300)
+    };
+
+    handleWeekChange(event) {
+        this.props.dispatch(CatalogActions.saveWeek(event.target.value))
+        setTimeout(() => {
+            this.fetchData();
+        }, 400)
+    }
+
+    handleStudentStringChange(event) {
+        this.props.dispatch(CatalogActions.saveStudentSubString(event.target.value))
+        setTimeout(() => {
+            this.fetchData();
+        }, 400)
+    }
+
     render() {
         let { items } = this.props
         const {
             //items,
-            // group,
+             group,
             // classType,
             week,
             studentSubstring
         } = this.props;
-        console.log(this.props)
         if (items === undefined) {
             items = []
         }
@@ -86,7 +107,7 @@ class ActivityDetail extends Component<any, any> {
                 <h1 className="p-title-add-activity-popup" style={{ fontWeight: 600 }}>{this.details.name}</h1>
                 <Row className="show-grid text-center" >
                     <Col className="center-block" style={{ fontSize: '1.25em' }} md={12}>
-                        {this.renderGroups()}
+                        {this.renderGroups(group)}
                     </Col>
                 </Row>
                 <br></br>
@@ -94,9 +115,9 @@ class ActivityDetail extends Component<any, any> {
                     <Col md={3}></Col>
                     <Col md={6}>
                         <ButtonToolbar>
-                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass}>Courses</button>
-                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass}>Seminars</button>
-                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass}>Labs</button>
+                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass}>Course</button>
+                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass}>Seminar</button>
+                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass}>Lab</button>
                         </ButtonToolbar>
                     </Col>
                     <br></br>
@@ -106,7 +127,7 @@ class ActivityDetail extends Component<any, any> {
                     <Col md={5}></Col>
                     <Row >
                         <Col className="p-week-label-input"> Week:</Col>
-                        <Col ><input className="p-week-input" type='text' size={2} value={week} /></Col>
+                        <Col ><input className="p-week-input" type='text' size={2} value={week} onChange={this.handleWeekChange} /></Col>
                     </Row>
                 </Row>
                 <br />
@@ -122,7 +143,7 @@ class ActivityDetail extends Component<any, any> {
                     <Col md={1}></Col>
                     <Row >
                         <Col className="p-search-students-label-input">Search student: </Col>
-                        <Col><input className="p-search-students-input" type='text' size={34} value={studentSubstring} /></Col>
+                        <Col><input className="p-search-students-input" type='text' size={34} value={studentSubstring} onChange={this.handleStudentStringChange}/></Col>
                     </Row>
                     <Col md={1}></Col>
                 </Row>

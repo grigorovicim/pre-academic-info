@@ -25,6 +25,42 @@ export default class CatalogActions {
             });
     };
 
+    static saveGroup = (group: string) => (dispatch: any) => {
+        dispatch({
+            type: 'SAVE_GROUP',
+            payload: {
+                group : parseInt(group, 10) - 916,
+            },
+        });
+    };
+
+    static saveClassType = (classType: string) => (dispatch: any) => {
+        dispatch({
+            type: 'SAVE_CLASS',
+            payload: {
+                classType,
+            },
+        });
+    };
+
+    static saveWeek = (week: string) => (dispatch: any) => {
+        dispatch({
+            type: 'SAVE_WEEK',
+            payload: {
+                week,
+            },
+        });
+    };
+
+    static saveStudentSubString = (str: string) => (dispatch: any) => {
+        dispatch({
+            type: 'SAVE_STUDENT_SUBSTRING',
+            payload: {
+                str,
+            },
+        });
+    };
+
 
     static addActivity = (body: any) => dispatch => {
 
