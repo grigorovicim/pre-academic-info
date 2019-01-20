@@ -100,16 +100,17 @@ app.post('/details-of-course', (req, res) => {
 app.post('/session-id', (req, res) => {
     const sessionID = req.body.sessionID;
     const user = getUserDetails(sessionID);
-
-    client.get('/profile/' + user.id).then((resp) => {
-      client.get('role/id/' + user.role_id).then((role) => {
-        user.profile = resp.data;
-        user.role = role.data.label;
-        console.log(user);
+    if(user !== null) {
+      client.get('/profile/' + user.id).then((resp) => {
+        client.get('role/id/' + user.role_id).then((role) => {
+          user.profile = resp.data;
+          user.role = role.data.label;
+          console.log(user);
+        });
+      }).catch((error) => {
+        console.log(error);
       });
-    }).catch((error) => {
-      console.log(error);
-    });
+    }
 
     res.send(user);
 });
