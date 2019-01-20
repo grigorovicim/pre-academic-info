@@ -64,12 +64,19 @@ class DashboardCourseItem extends Component<any, any> {
 
     whichButton() {
         if (this.isConfigured) {
+          if(this.props.dashboardPage === 'catalog') {
+            return (<button className="course-config-button-wrapper" onClick={this.openDetailsPopup}><img
+                className="course-config-button" src={plusBtn}/>
+            </button>)
+          } else {
             return (<button className="course-config-button-wrapper" onClick={this.addDetailsPopup}><img
                 className="course-config-button" src={optionsBtn}/></button>)
+          }
         }
-        return (<button className="course-config-button-wrapper" onClick={this.openDetailsPopup}><img
-            className="course-config-button" src={plusBtn}/>
-        </button>)
+          return (<button className="course-config-button-wrapper" onClick={this.openDetailsPopup}><img
+              className="course-config-button" src={plusBtn}/>
+          </button>)
+        
     }
 
     addDetailsPopup(e: any) {
