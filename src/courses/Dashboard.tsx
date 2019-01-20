@@ -11,28 +11,24 @@ import ActivityDetail from './ActivityDetail';
 
 class Dashboard extends Component<any, any> {
 
-    //private courseItems: any[];
-
     constructor(props: any) {
         super(props);
-        //this.courseItems = Array.from(props.courseItems);
         this.openCourseDetailsPopup = this.openCourseDetailsPopup.bind(this);
         this.closeCampaignPopup = this.closeCampaignPopup.bind(this);
     }
 
     openCourseDetailsPopup(courseId: any, courseDetails: any) {
-        if (!isNaN(courseId)) {
-            this.props.dispatch(AppActions.setPopupVisibility(true));
-            this.props.dispatch(AppActions.setPopupContentElement(
-                <ActivityDetail
-                    courseDetails={courseDetails}
-                    key={Date.now()}
-                />
-                )
-            );
-        }
+      if (!isNaN(courseId)) {
+        this.props.dispatch(AppActions.setPopupVisibility(true));
+        this.props.dispatch(AppActions.setPopupContentElement(
+          <ActivityDetail
+            courseDetails={courseDetails}
+            key={Date.now()}
+          />
+          )
+        );
+      }
     }
-
     closeCampaignPopup() {
         this.props.dispatch(AppActions.setPopupVisibility(false));
     }
@@ -47,7 +43,7 @@ class Dashboard extends Component<any, any> {
             return (
                 <div key={course.id} className="p-dashboard-item">
                     <DashboardCourseItem
-                        content={course}
+                        course={course}
                         name={course.name}
                         section={course.Section.name}
                         isConfigured={course.is_active}

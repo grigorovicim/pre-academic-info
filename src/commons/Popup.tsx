@@ -10,7 +10,8 @@ import AddStudent from "../students/AddStudent";
 import AddNewStudentToCourse from "../students/AddNewStudentToCourse";
 import Tests from 'src/courses/popups/Tests';
 import ActivityDetail from "../courses/ActivityDetail";
-import CourseDetails from "../components/CourseDetails";
+import CourseDetail from "../courses/CourseDetail";
+
 
 class Popup extends Component<any, any> {
 
@@ -45,6 +46,11 @@ class Popup extends Component<any, any> {
       setHeight = "220px";
     }
 
+    if(this.props.isLarge){
+        setWidth = "800px";
+        setHeight = "700px";
+    }
+
     let component;
     if (this.props.children) {
       component = this.props.children;
@@ -62,18 +68,17 @@ class Popup extends Component<any, any> {
     }  else if (this.props.componentType === "p-add-student-button"){
         component = <AddStudent courseId={this.props.courseId} callback={this.handleClick}/>
     }  else if (this.props.componentType === "p-courses-detail-button"){
-        component = <CourseDetails />
+        component = <CourseDetail course={this.props.course}/>
     }  else if (this.props.componentType === "p-activity-detail-button"){
         component = <ActivityDetail details={this.props.courseDetails} />
     } else if ( this.props.componentType === "p-add-new-student-button"){
         component = <AddNewStudentToCourse courseId={this.props.courseId} callback={this.handleClick}/>
     } else if (this.props.componentType === "p-lab-tests"){
-      component = <Tests sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"lab"}/>
-    }
-    else if (this.props.componentType === "p-seminar-tests"){
-      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"seminar"}/>
+      component = <Tests sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} weeks = {this.props.weeks} type={"lab"}/>
+    } else if (this.props.componentType === "p-seminar-tests"){
+      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} weeks = {this.props.weeks} type={"seminar"}/>
     }else if (this.props.componentType === "p-course-tests"){
-      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} type={"course"}/>
+      component = <Tests  sendToParent = {this.props.sendToParent} tests={this.props.tests} percentages={this.props.percentages} weeks = {this.props.weeks} type={"course"}/>
     } else{
       component = <span/>;
     }
@@ -94,6 +99,7 @@ const mapStateToProps = (state: any) => {
     isPopupVisible: state.app.isPopupVisible,
     popupContent: state.app.popupContent,
     isAlert: state.app.isAlert,
+      isLarge:state.app.isLarge
   };
 };
 

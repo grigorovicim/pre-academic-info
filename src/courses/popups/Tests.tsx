@@ -8,10 +8,12 @@ class Tests extends Component<any,any> {
     columns: any = [] 
     data: any = []
     percentages: any = []
+    weeks: any = []
 
     constructor(props: any) {
         super(props);  
         this.state = {isError : false}
+        this.weeks = this.props.weeks;
         if (props.percentages === undefined){
             let value = 100/props.tests;
             value = parseFloat(value.toFixed(2));
@@ -64,9 +66,13 @@ class Tests extends Component<any,any> {
         Header: "Activity number",
         accessor: "test_number",
           },{
+        Header: "Week",
+        accessor: "test_week",
+        },{
         Header: "Activity percentage",
         accessor: "test_percentage",
-    }]
+        }
+    ]
     
     const onChangeFct = (e: any, i: number) => {
         if (e.key === "Enter"){
@@ -84,7 +90,8 @@ class Tests extends Component<any,any> {
     for (let i = 0; i < this.props.tests; i++){
         this.data.push({
           test_number : i+1,
-          test_percentage: <input type="number" defaultValue={this.percentages[i]} onKeyPress={(e)=>onChangeFct(e, i)} />
+          test_week: <input type="number" style={{width: "7em"}} defaultValue={this.weeks[i]}></input>,
+          test_percentage: <input type="number" style={{width: "7em"}} defaultValue={this.percentages[i]} onKeyPress={(e)=>onChangeFct(e, i)} />
         });
     }
   }

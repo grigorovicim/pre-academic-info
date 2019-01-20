@@ -34,8 +34,10 @@ var ConfigRoutes = require('./src/routes/configuration-routes');
 var RoleRoutes = require('./src/routes/role-routes');
 var CatalogRoutes = require('./src/routes/catalog-routes');
 var StudentCourseRoutes = require('./src/routes/student-course-routes');
+var ProfessorCourseRoutes = require('./src/routes/professor-course-routes');
 const SpreadsheetRoutes = require('./src/routes/spreadsheet-routes');
 const ProfileRoutes = require('./src/routes/profile-routes');
+const CourseConfigurationRoutes = require('./src/routes/course-detail-routes');
 
 
 const app = express();
@@ -59,6 +61,9 @@ app.use('/profile', ProfileRoutes);
 app.use('/role', RoleRoutes);
 app.use('/catalog', CatalogRoutes);
 app.use('/studentcourse', StudentCourseRoutes);
+app.use('/professorcourse', ProfessorCourseRoutes);
+app.use('/courseconfig', CourseConfigurationRoutes);
+
 app.get('/check-server', (req, res) => {
     res.send({express: 'Hello From Express BACKEND!'});
 });
@@ -195,7 +200,7 @@ app.post('/register', (req, res) => {
           client.post('/professor/', professorData).then(function(professor) {
             const host = 'http://' + req.get('host') + '/verify/';
             response.data.password = password;
-            
+
             // professor was created, now we can send the email
             emailUtil.send(response.data, host);
 

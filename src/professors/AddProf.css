@@ -92,6 +92,11 @@
     display: flex;
 }
 
+.p-search-bar-container{
+    align-items: flex-start;
+    display: flex;
+}
+
 .p-button-container{
     display: flex;
     align-items: center;
@@ -135,6 +140,9 @@
 
 .p-professors-table{
     background-color: #EAEAEA;
+    text-align: left !important;
+    font-family: Helvetic !important;
+    font-size: 16px !important;
     margin: auto;
     width: 611px;
 
