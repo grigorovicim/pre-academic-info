@@ -15,6 +15,54 @@ export const fetchProfessors = (courseId: any) => dispatch => {
         });
 };
 
+export const fetchProfessorsEnrolled = (courseId: any, name: any) => (dispatch:any) => {
+    axios.get('/professor/enrolled/course/'+courseId)
+        .then(res =>{
+            if(name == null) {
+                dispatch({
+                    type: 'FETCH_PROFESSORS_ENROLLED',
+                    payload: res.data
+                });
+            }
+            else {
+                dispatch({
+                    type: 'FETCH_PROFESSORS_ENROLLED',
+                    payload: res.data.filter(professor => { 
+                        const professorname = professor.Profile.first_name + ' ' + professor.Profile.last_name;
+                        return professorname.search(name) !== -1;
+                    }),
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        });
+};
+
+export const fetchProfessorsNotEnrolled = (courseId: any, name: any) => (dispatch:any) => {
+    axios.get('/professor/not-enrolled/course/'+courseId)
+        .then(res =>{
+            if(name == null) {
+                dispatch({
+                    type: 'FETCH_PROFESSORS_NOT_ENROLLED',
+                    payload: res.data
+                });
+            }
+            else {
+                dispatch({
+                    type: 'FETCH_PROFESSORS_NOT_ENROLLED',
+                    payload: res.data.filter(professor => { 
+                        const professorname = professor.Profile.first_name + ' ' + professor.Profile.last_name;
+                        return professorname.search(name) !== -1;
+                    }),
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        });
+};
+
 export const fetchProfessorProfile = (professorId: any) => (dispatch:any) => {
     axios.get('/professor/profile/'+professorId)
         .then(res =>{

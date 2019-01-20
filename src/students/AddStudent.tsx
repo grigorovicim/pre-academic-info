@@ -20,11 +20,12 @@ class AddStudent extends Component<any, any>{
         this.addStudent = this.addStudent.bind(this);
         this.deleteStudent = this.deleteStudent.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
+        this.searchKeyword = null;
     }
 
     componentWillMount() {
-        this.props.fetchStudentsEnrolled(this.props.courseId);
-        this.props.fetchStudentsNotEnrolled(this.props.courseId);
+        this.props.fetchStudentsEnrolled(this.props.courseId, this.searchKeyword);
+        this.props.fetchStudentsNotEnrolled(this.props.courseId, this.searchKeyword);
     }
 
 
@@ -33,22 +34,28 @@ class AddStudent extends Component<any, any>{
             student_id:student.id,
             course_id:this.props.courseId
         });
-        this.props.fetchStudentsEnrolled(this.props.courseId);
-        this.props.fetchStudentsNotEnrolled(this.props.courseId);
+        this.props.fetchStudentsEnrolled(this.props.courseId, this.searchKeyword);
+        this.props.fetchStudentsNotEnrolled(this.props.courseId, this.searchKeyword);
     }
 
     deleteStudent(student){
         this.props.removeStudentConfig(student.id,this.props.courseId);
-        this.props.fetchStudentsEnrolled(this.props.courseId);
-        this.props.fetchStudentsNotEnrolled(this.props.courseId);
+        this.props.fetchStudentsEnrolled(this.props.courseId, this.searchKeyword);
+        this.props.fetchStudentsNotEnrolled(this.props.courseId, this.searchKeyword);
     }
 
     handleOnChange(event){
         this.searchKeyword = event.target.value;
+
+        if(this.searchKeyword === '') {
+            this.searchKeyword = null;
+        }
     }
 
     getFilteredStudents(){
         console.log("Filter students by" + this.searchKeyword);
+        this.props.fetchStudentsEnrolled(this.props.courseId, this.searchKeyword);
+        this.props.fetchStudentsNotEnrolled(this.props.courseId, this.searchKeyword);
     }
 
     done(){

@@ -22,45 +22,65 @@ export const fetchStudents = (courseId: any) => (dispatch:any) => {
     
 };
 
-export const fetchStudentsEnrolled = (courseId: any) => (dispatch:any) => {
+export const fetchStudentsEnrolled = (courseId: any, name:any) => (dispatch:any) => {
     axios.get('/student/course/'+courseId)
         .then(res =>{
-
-            dispatch({
-                type: FETCH_STUDENTS_ENROLLED,
-                payload: res.data
-            })})
+            if(name == null) {
+                dispatch({
+                    type: FETCH_STUDENTS_ENROLLED,
+                    payload: res.data
+                });
+            }
+            else {
+                dispatch({
+                    type: FETCH_STUDENTS_ENROLLED,
+                    payload: res.data.filter(student => {
+                        const studentName = student.Profile.first_name + ' ' + student.Profile.last_name;
+                        return studentName.search(name) !== -1;
+                    }),
+                });
+            }
+        })
         .catch(error => {
             console.log(error)
         });
 };
 
 
-export const fetchStudentsNotEnrolled = (courseId: any) => (dispatch:any) => {
+export const fetchStudentsNotEnrolled = (courseId: any, name: any) => (dispatch:any) => {
     axios.get('/student/not-enrolled/course/'+courseId)
         .then(res =>{
-
-            dispatch({
-                type: FETCH_STUDENTS_NOT_ENROLLED,
-                payload: res.data
-            })})
+            if(name == null) {
+                dispatch({
+                    type: FETCH_STUDENTS_NOT_ENROLLED,
+                    payload: res.data
+                });
+            }
+            else {
+                dispatch({
+                    type: FETCH_STUDENTS_NOT_ENROLLED,
+                    payload: res.data.filter(student => {
+                        const studentName = student.Profile.first_name + ' ' + student.Profile.last_name;
+                        return studentName.search(name) !== -1;
+                    }),
+                });
+            }
+        })
         .catch(error => {
             console.log(error)
         });
 };
 
 export const fetchProfileForStudent = (studentId: any) => (dispatch:any) => {
-    // console.log("fetching profile for student...");
-
     axios.get('/student/profile/'+ studentId)
     .then(res =>{
         dispatch({
             type: FETCH_STUDENT_PROFILE,
             payload: res.data[0]    //because there is ONLY 1 profile corresponding to the student
-        })})
+        })}) 
         .catch(error => {
             console.log(error)
-        });
+        });;
     // console.log("fetch complete");
 };
 
