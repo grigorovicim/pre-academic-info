@@ -1,10 +1,9 @@
-import {FETCH_ACTIVITIES} from '../actions/types';
+import { FETCH_ACTIVITIES } from '../actions/types';
 
 const initialState = {
     items: [] as any,
-    filteredItems: [],
-    group: "1",
-    class: "Courses",
+    group: "17",
+    classType: "Courses",
     week: "1",
     studentSubstring: "",
 };
@@ -15,7 +14,6 @@ export default (state = initialState, action: any) => {
             return {
                 ...state,
                 items: action.payload.items,
-                filteredItems: action.payload.items
             };
 
         default:

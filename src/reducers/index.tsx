@@ -6,6 +6,7 @@ import professorReducer from './professorReducer';
 import courseReducer from './courseReducer';
 import formOfEvaluationReducer from './formOfEvaluationReducer';
 import studentcourseReducer from "./studentcourseReducer";
+import catalogReducer from './catalogReducer';
 
 
 export default combineReducers({
@@ -15,4 +16,5 @@ export default combineReducers({
     courseReducer,
     studentcourseReducer,
     formOfEvaluationReducer,
+    catalogReducer,
 });
