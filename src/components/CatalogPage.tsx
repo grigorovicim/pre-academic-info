@@ -22,6 +22,13 @@ class CoursesPage extends Component<any,any>
         this.fetchCatalog = this.fetchCatalog.bind(this);
     }
 
+    componentDidMount() {
+      if(this.props.user.userDetails == null ) {
+        return;
+      }
+      this.props.dispatch(CourseActions.fetchItems(this.props.user.userDetails.username));
+    }
+
     handleStudyChange(event: any) {
         let study = 0;
         switch (event.currentTarget.innerHTML) {
@@ -158,6 +165,7 @@ const mapStateToProps = (state: any) => {
         study: state.courseReducer.study,
         year: state.courseReducer.year,
         semester: state.courseReducer.semester,
+        user: state.app.user
     };
 };
 

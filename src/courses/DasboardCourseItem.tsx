@@ -67,26 +67,29 @@ class DashboardCourseItem extends Component<any, any> {
     }
 
     whichButton() {
-      if(this.props.user.userDetails.role_id === 1) {
-        console.log(this.props.user.userDetails.role);
-        return (<button className="course-config-button-wrapper" onClick={this.addDetailsPopup}><img
-                className="course-config-button" src={optionsBtn}/></button>)
-        
-      } else {
-        if (this.isConfigured) {
-          if(this.props.dashboardPage === 'catalog') {
+      if(this.props.user.userDetails !== null) {
+        if(this.props.user.userDetails.role_id === 1) {
+          console.log(this.props.user.userDetails.role);
+          return (<button className="course-config-button-wrapper" onClick={this.addDetailsPopup}><img
+                  className="course-config-button" src={optionsBtn}/></button>)
+          
+        } else {
+          if (this.isConfigured) {
+            if(this.props.dashboardPage === 'catalog') {
+              return (<button className="course-config-button-wrapper" onClick={this.openDetailsPopup}><img
+                  className="course-config-button" src={plusBtn}/>
+              </button>)
+            } else {
+              return (<button className="course-config-button-wrapper" onClick={this.addDetailsPopup}><img
+                  className="course-config-button" src={optionsBtn}/></button>)
+            }
+          }
             return (<button className="course-config-button-wrapper" onClick={this.openDetailsPopup}><img
                 className="course-config-button" src={plusBtn}/>
             </button>)
-          } else {
-            return (<button className="course-config-button-wrapper" onClick={this.addDetailsPopup}><img
-                className="course-config-button" src={optionsBtn}/></button>)
-          }
         }
-          return (<button className="course-config-button-wrapper" onClick={this.openDetailsPopup}><img
-              className="course-config-button" src={plusBtn}/>
-          </button>)
-        
+      } else {
+        return null;
       }
     }
 

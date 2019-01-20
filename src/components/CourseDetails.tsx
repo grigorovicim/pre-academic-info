@@ -3,12 +3,21 @@ import React, {Component} from 'react';
 // @ts-ignore
 import { connect } from 'react-redux';
 import "./CourseDetails.css";
+import CourseActions from 'src/actions/Course.actions';
 class CourseDetails extends Component<any, any> {
 
   constructor(props: any) {
     super(props);
     this.state = {}
   }
+
+  componentDidMount() {
+    if(this.props.user.userDetails == null ) {
+      return;
+    }
+    this.props.dispatch(CourseActions.fetchItems(this.props.user.userDetails.username));
+  }
+
   render() {
     const seminarProfs = [
       {id: 1, name: "Arthur Molnar"},
