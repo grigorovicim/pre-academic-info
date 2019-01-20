@@ -38,7 +38,7 @@ class ActivityDetail extends Component<any, any> {
         const buttons: any = [];
         this.groups.forEach(group => {
             buttons.push(
-                <button className="p-group-button" onClick={this.handleGroupChange}  style={currentGroup === group.toString() ? { backgroundColor: "black" } : {}}>{group + 916}</button>
+                <button className="p-group-button" onClick={this.handleGroupChange} style={currentGroup.toString() === group.toString() ? { backgroundColor: "#2e91c3", color: "#c6e9fb" } : {}}>{group + 916}</button>
             )
         })
         return (
@@ -65,13 +65,13 @@ class ActivityDetail extends Component<any, any> {
         this.props.dispatch(CatalogActions.saveGroup(event.target.textContent))
         setTimeout(() => {
             this.fetchData();
-        }, 400)
+        }, 300)
     };
 
     filterByClass = (event: any) => {
         this.props.dispatch(CatalogActions.saveClassType(event.target.textContent))
         setTimeout(() => {
-            
+
         }, 300)
     };
 
@@ -79,22 +79,21 @@ class ActivityDetail extends Component<any, any> {
         this.props.dispatch(CatalogActions.saveWeek(event.target.value))
         setTimeout(() => {
             this.fetchData();
-        }, 400)
+        }, 300)
     }
 
     handleStudentStringChange(event) {
         this.props.dispatch(CatalogActions.saveStudentSubString(event.target.value))
         setTimeout(() => {
             this.fetchData();
-        }, 400)
+        }, 300)
     }
 
     render() {
         let { items } = this.props
         const {
-            //items,
-             group,
-            // classType,
+            group,
+            classType,
             week,
             studentSubstring
         } = this.props;
@@ -115,9 +114,9 @@ class ActivityDetail extends Component<any, any> {
                     <Col md={3}></Col>
                     <Col md={6}>
                         <ButtonToolbar>
-                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass}>Course</button>
-                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass}>Seminar</button>
-                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass}>Lab</button>
+                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass} style={classType.toString() === "Course" ? { backgroundColor: "#2e91c3", color: "#c6e9fb" } : {}}>Course</button>
+                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass} style={classType.toString() === "Seminar" ? { backgroundColor: "#2e91c3", color: "#c6e9fb" } : {}}>Seminar</button>
+                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass} style={classType.toString() === "Lab" ? { backgroundColor: "#2e91c3", color: "#c6e9fb" } : {}}>Lab</button>
                         </ButtonToolbar>
                     </Col>
                     <br></br>
@@ -143,7 +142,7 @@ class ActivityDetail extends Component<any, any> {
                     <Col md={1}></Col>
                     <Row >
                         <Col className="p-search-students-label-input">Search student: </Col>
-                        <Col><input className="p-search-students-input" type='text' size={34} value={studentSubstring} onChange={this.handleStudentStringChange}/></Col>
+                        <Col><input className="p-search-students-input" type='text' size={34} value={studentSubstring} onChange={this.handleStudentStringChange} /></Col>
                     </Row>
                     <Col md={1}></Col>
                 </Row>
