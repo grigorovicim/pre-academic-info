@@ -7,6 +7,8 @@ import Popup from "../commons/Popup";
 import {connect} from "react-redux";
 import * as PropTypes from 'prop-types';
 import axios from "axios";
+import StudentsList from "../students/StudentsList";
+import DashboardProfessors from "../professors/DashboardProfessors";
 
 class CourseDetail extends Component<any, any> {
     static propTypes = {
@@ -266,26 +268,26 @@ class CourseDetail extends Component<any, any> {
                     <Col md={2}>
                         <input type="checkbox" defaultChecked={this.state.hasLecture} onChange={() => {this.setState({hasLecture:!this.state.hasLecture});}}/>
                     </Col>
-                    <Col style={{fontSize: '1.5em', color: 'gray'}} md={10} className="text-left">
+                    <Col style={{fontSize: '1.5em', color: 'gray'}} md={5} className="text-left">
                         Course
                     </Col>
                     {this.state.hasLecture &&
-                    <Col style={{fontSize: '1em', color: 'gray'}} md={10}>
+                    <Col style={{fontSize: '1em', color: 'gray'}} md={6}>
                         <Row style={{fontSize: '1.25em', color: 'gray'}}>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={4} className="text-left">Number:</Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={2}>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Number:</Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
                                 <input type='text' value={this.state.numberOfLectures} onChange={this.onCourseNumberChange}/>
                             </Col>
                         </Row>
                         <Row style={{fontSize: '1.25em', color: 'gray'}}>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={4} className="text-left">Percentage: </Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={2}>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Percentage: </Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
                                 <input type='text' value={this.state.lectureGradePercentage} onChange={this.onCoursePercentageChange}/>
                             </Col>
                         </Row>
                         <Row style={{fontSize: '1.25em', color: 'gray'}}>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={4} className="text-left">Activities:</Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={2}>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Activities:</Col>
+                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
                                 <input type='text' value={this.state.numberOfLectureTests} onChange={this.onCourseTestsChange}/>
                             </Col>
                             <Col style={{fontSize: '1em', color: 'gray'}} md={1}>
@@ -331,21 +333,7 @@ class CourseDetail extends Component<any, any> {
                         </Row>
                     </Col>
                     }
-                    {this.state.hasLab  &&
-                    <Col style={{fontSize: '1.25em', color: 'gray'}} md={6} className="text-left">
-                        Professors:
-                        <Row>
-                            {this.state.hasLab  &&
-                            <div>
-                                {/* Professors list component for labs*/}
-                                Professor1 <br/>
-                                Professor2 <br/>
-                                Professor3
-                            </div>
-                            }
-                        </Row>
-                    </Col>
-                    }
+
                 </Row>
                 <hr/>
                 <Row className="show-grid text-center">
@@ -380,34 +368,7 @@ class CourseDetail extends Component<any, any> {
                         </Row>
                     </Col>
                     }
-                    {
-                        this.state.hasSeminar &&
-                        <Col style={{fontSize: '1.25em', color: 'gray'}} md={6}>
-                            Professors:
-                            <Row>
-                                {this.state.hasSeminar  &&
-                                <div>
-                                    {/* Professors list component for labs*/}
-                                    Professor1 <br/>
-                                    Professor2 <br/>
-                                    Professor3
-                                </div>
-                                }
-                            </Row>
-                        </Col>
-                    }
                 </Row>
-                <hr/>
-                <Row className="show-grid text-center">
-                    <Col style={{fontSize: '1.5em', color: 'gray'}} md={12}>
-                        Students
-                    </Col>
-                    <Col style={{fontSize: '1.25em', color: 'gray'}} md={12}>
-                        Students list component
-                    </Col>
-                </Row>
-                <br/><br/>
-                <hr/>
                 <Row className="show-grid text-center">
                     <Col style={{fontSize: '1.5em', color: 'gray'}} md={4}>Written Exam</Col>
                     <Col style={{fontSize: '1.25em', color: 'gray'}} md={4}>Percentage:</Col>
@@ -415,7 +376,7 @@ class CourseDetail extends Component<any, any> {
                         <input type='text' value={this.state.examWrittenPercentage} onChange={this.onWrittenExamPercentageChange}/>
                     </Col>
                 </Row>
-
+                <br/>
                 <Row className="show-grid text-center">
                     <Col style={{fontSize: '1.5em', color: 'gray'}} md={4}>Practical Exam</Col>
                     <Col style={{fontSize: '1.25em', color: 'gray'}} md={4}>Percentage:</Col>
@@ -423,7 +384,40 @@ class CourseDetail extends Component<any, any> {
                         <input type='text' value={this.state.examPracticalPercentage} onChange={this.onPracticalExamPercentageChange}/>
                     </Col>
                 </Row>
-                <br/><br/>
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <Row className="show-grid text-center students-column">
+                    <Col style={{fontSize: '1.5em', color: 'gray'}} className="text-center">
+                        Students
+                    </Col>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Col style={{fontSize: '1.25em', color: 'gray', display: "static"}}  className="text-center student-title">
+                        <StudentsList courseId={this.state.id}/>
+                    </Col>
+                </Row>
+                <br/>
+                <br/>
+                <br/>
+                <Row className="show-grid text-center professor-column">
+                    <Col style={{fontSize: '1.5em', color: 'gray', width:'100px'}} className="text-center professor-title">
+                        Professor
+                    </Col>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Col style={{fontSize: '1.25em', color: 'gray', display: "static"}}  className="text-center">
+                        <DashboardProfessors courseId={this.state.id}/>
+                    </Col>
+                </Row>
+
+                <br/>
+                <br/>
+                <br/>
                 <Button className="btn btn-success" onClick={this.submit}>Submit</Button>
                 <Popup isVisible={this.state.isCoursePopupVisible} sendToParent={this.getFromChildCourse}
                        onClose={this.closeCoursePopup} componentType={this.state.popupCourseComponentType}

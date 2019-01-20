@@ -98,7 +98,7 @@ class AddProf extends Component<any, any>{
                     <div className="p-search-professor">
                         Search professor:
                     </div>
-                    <div>
+                    <div className="p-search-bar-container">
                         <input type="text" placeholder="Search by name" className="p-search-bar" onChange={this.handleOnChange}/>
                         <img src={searchLogo} onClick={this.getFilteredProfessors} className="p-search-logo"/>
                     </div>

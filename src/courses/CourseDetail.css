@@ -1,0 +1,19 @@
+.professor-title  {
+    display: flex;
+    margin: auto;
+}
+
+.student-title {
+    display: flex;
+    margin: auto;
+}
+
+.professor-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.students-column {
+    display: flex;
+    flex-direction: column;
+}

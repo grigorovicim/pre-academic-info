@@ -74,7 +74,8 @@ export default class AppActions {
         popupContent,
       }
     });
-  }
+  };
+
   static setIsAlert = (isAlert: any) => (dispatch: any, /*getState: any*/) =>{
     dispatch ({
       type: 'SET_IS_ALERT',
@@ -82,7 +83,7 @@ export default class AppActions {
         isAlert,
       }
     });
-  }
+  };
 
   static setIsLarge = (isLarge: any) => (dispatch: any) =>{
       dispatch ({

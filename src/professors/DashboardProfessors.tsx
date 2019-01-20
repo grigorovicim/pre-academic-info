@@ -1,13 +1,10 @@
 import * as React from "react";
 import {Component} from "react";
 
-import DashboardProfessorItem from './DashboardProfessorItem';
-
 import './ProfessorsList.css';
 
 import * as PropTypes from 'prop-types'; 
 import { connect } from 'react-redux';
-import { fetchProfessors, fetchProfessorProfile } from '../actions/Professor.actions';
 import Popup from "../commons/Popup";
 import AppActions from 'src/App.actions';
 
@@ -18,8 +15,6 @@ class DashboardProfessors extends Component<any, any> {
         professorProfile: PropTypes.any
     };
 
-    /// TODO get the actual course id from the user input
-    private courseId = 1;
 
     constructor(props: any) {
         super(props);
@@ -39,7 +34,9 @@ class DashboardProfessors extends Component<any, any> {
     }
     openAddProfessorPopup(e: any) {
         e.stopPropagation();
+
         this.props.dispatch(AppActions.setIsAlert(false));
+        this.props.dispatch(AppActions.setIsLarge(false));
         this.setState({
             isPopupVisible: true,
             popupComponentType: 'p-add-professor-button',
@@ -47,41 +44,25 @@ class DashboardProfessors extends Component<any, any> {
     }
 
     componentWillMount(){
-        this.props.fetchProfessors(this.courseId);
     }
 
     render() {
-        const professorItemComponents = this.props.professors.map((professor: any) => {
-            this.props.fetchProfessorProfile(professor.id);
-            return (
-                <tr key={professor.id}>
-                    <DashboardProfessorItem professor={this.props.professorProfile} courseId={this.courseId}
-                                            professorId={professor.id}/>
-                </tr>
-            )
-        });
         return(
             <div>
-                <table className="p-professors-basic-table">
+                <table className="student-title">
                     <tr>
-                        <button className="p-add-prof-button" onClick={this.openAddProfessorPopup}>Add professor</button>
+                        <button className="p-add-student-to-course-btn" onClick={this.openAddProfessorPopup}>Add professor</button>
                     </tr>
-                    <tr>
-                        <th className="p-professors-basic-table-header">ProfessorName</th>
-                    </tr>
-                    {professorItemComponents}
                 </table>
-                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={1}/>
+                <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={this.props.courseId}/>
         </div>
         );
     }
 }
 
 const mapStateToProps = (state: any) => ({
-    professors: state.professorReducer.items,
-    professorProfile: state.professorReducer.professorProfile
 });
 
 
 
-export default connect(mapStateToProps, { fetchProfessors, fetchProfessorProfile })(DashboardProfessors);
+export default connect(mapStateToProps, )(DashboardProfessors);

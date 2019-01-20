@@ -95,7 +95,7 @@ class AddStudent extends Component<any, any>{
                     <div className="p-search-professor">
                         Search student:
                     </div>
-                    <div>
+                    <div  className='p-search-bar-container'>
                         <input type="text" placeholder="Search by name" className="p-search-bar" onChange={this.handleOnChange}/>
                         <img src={searchLogo} onClick={this.getFilteredStudents} className="p-search-logo"/>
                     </div>
