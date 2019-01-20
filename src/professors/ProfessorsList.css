@@ -15,7 +15,7 @@
 }
 
 .p-add-prof-button {
-    background-color: rgb(141, 212, 248, 0.5);
+    background-color: #8dd4f880;
     border: 0.05;
     color: #2E91C3;
     font-size: 12px; 
@@ -33,4 +33,14 @@
     display: -ms-flexbox;
     display: flex;
     margin: auto;
+}
+
+.p-add-professor-to-course-btn {
+  margin:auto;
+  margin-left: 330px;
+  background-color: rgb(141, 212, 248, 0.9);
+  color:white;
+  border-radius: 20px;
+  font-size: 14px;
+  width: 150px;
 }

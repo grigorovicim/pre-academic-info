@@ -1,12 +1,10 @@
 .p-add-student-to-course-btn {
-    background-color: rgb(141, 212, 248, 0.5);
-    margin-right: 2px;
-    border: 0.05;
-    color: #2E91C3;
-    font-size: 12px; 
-    width: 190px;
-    border-radius: 0.5ch;
-    float:right;
+  margin:auto;
+  background-color: rgb(141, 212, 248, 0.9);
+  color:white;
+  border-radius: 20px;
+  font-size: 14px;
+  width: 250px;
   }
 .p-add-student-to-course-btn:hover {
     background-color: rgb(141, 212, 248, 0.9);

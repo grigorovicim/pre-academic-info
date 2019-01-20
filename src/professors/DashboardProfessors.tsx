@@ -51,7 +51,7 @@ class DashboardProfessors extends Component<any, any> {
             <div>
                 <table className="student-title">
                     <tr>
-                        <button className="p-add-student-to-course-btn" onClick={this.openAddProfessorPopup}>Add professor</button>
+                        <button className="p-add-professor-to-course-btn" onClick={this.openAddProfessorPopup}>Add professor</button>
                     </tr>
                 </table>
                 <Popup isVisible={this.state.isPopupVisible} onClose={this.closePopup} componentType={this.state.popupComponentType} courseId={this.props.courseId}/>

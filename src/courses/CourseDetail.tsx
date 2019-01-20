@@ -247,20 +247,19 @@ class CourseDetail extends Component<any, any> {
                 <h1 className="text-center" style={{fontWeight: 600}}>{this.props.course.name}</h1>
                 <h3 className="text-center" style={{color: "gray"}}>Course Configuration</h3>
                 <br/>
-                <br/>
 
                 <Row className="show-grid">
-                    <Col className="text-center" style={{fontSize: '1.5em', color: 'gray'}} md={4}>Description</Col>
-                    <Col style={{fontSize: '1em', color: 'gray'}} md={8}>
-                        <textarea className="form-control" defaultValue={this.state.description}
+                    <Col className="text-center" style={{fontSize: '18px', color: 'gray'}} md={4}>Description</Col>
+                    <Col style={{fontSize: '16px', color: 'gray'}} md={8}>
+                        <textarea className="form-control" style={{fontSize: '16px'}} defaultValue={this.state.description}
                                   onChange={this.onDescriptionChange}/>
                     </Col>
                 </Row>
 
                 <Row className="show-grid">
-                    <Col className="text-center" style={{fontSize: '1.5em', color: 'gray'}} md={4}>Rules</Col>
-                    <Col style={{fontSize: '1em', color: 'gray'}} md={8}>
-                        <textarea className="form-control" defaultValue={this.state.rules}
+                    <Col className="text-center" style={{fontSize: '18px', color: 'gray'}} md={4}>Rules</Col>
+                    <Col style={{fontSize: '16px', color: 'gray'}} md={8}>
+                        <textarea className="form-control" style={{fontSize: '16px'}} defaultValue={this.state.rules}
                                   onChange={this.onRulesChange}/>
                     </Col>
                 </Row>
@@ -268,29 +267,29 @@ class CourseDetail extends Component<any, any> {
                     <Col md={2}>
                         <input type="checkbox" defaultChecked={this.state.hasLecture} onChange={() => {this.setState({hasLecture:!this.state.hasLecture});}}/>
                     </Col>
-                    <Col style={{fontSize: '1.5em', color: 'gray'}} md={5} className="text-left">
+                    <Col style={{fontSize: '18px', color: 'gray'}} md={5} className="text-left">
                         Course
                     </Col>
                     {this.state.hasLecture &&
-                    <Col style={{fontSize: '1em', color: 'gray'}} md={6}>
-                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Number:</Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                    <Col style={{fontSize: '16px', color: 'gray'}} md={6}>
+                        <Row style={{fontSize: '18px', color: 'gray'}}>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={6} className="text-left">Number:</Col>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={4}>
                                 <input type='text' value={this.state.numberOfLectures} onChange={this.onCourseNumberChange}/>
                             </Col>
                         </Row>
-                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Percentage: </Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                        <Row style={{fontSize: '18px', color: 'gray'}}>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={6} className="text-left">Percentage: </Col>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={4}>
                                 <input type='text' value={this.state.lectureGradePercentage} onChange={this.onCoursePercentageChange}/>
                             </Col>
                         </Row>
-                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Activities:</Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                        <Row style={{fontSize: '18px', color: 'gray'}}>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={6} className="text-left">Activities:</Col>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={4}>
                                 <input type='text' value={this.state.numberOfLectureTests} onChange={this.onCourseTestsChange}/>
                             </Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={1}>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={1}>
                                 <Button onClick={this.openCourseTestsPopup}>
                                     <i className="fa fa-cog" aria-hidden="true"/>
                                 </Button>
@@ -305,27 +304,27 @@ class CourseDetail extends Component<any, any> {
                     <Col md={2}>
                         <input type="checkbox" defaultChecked={this.state.hasLab} onChange={() => {this.setState({hasLab: !this.state.hasLab});}}/>
                     </Col>
-                    <Col className="text-left" style={{fontSize: '1.5em', color: 'gray'}} md={5}>Labs</Col>
+                    <Col className="text-left" style={{fontSize: '18px', color: 'gray'}} md={5}>Labs</Col>
                     {this.state.hasLab &&
-                    <Col style={{fontSize: '1em', color: 'gray'}} md={6}>
-                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Number:</Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                    <Col style={{fontSize: '16px', color: 'gray'}} md={6}>
+                        <Row style={{fontSize: '18px', color: 'gray'}}>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={6} className="text-left">Number:</Col>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={4}>
                                 <input type='text' value={this.state.numberOfLabs} onChange={this.onLabNumberChange}/>
                             </Col>
                         </Row>
-                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Percentage: </Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                        <Row style={{fontSize: '18px', color: 'gray'}}>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={6} className="text-left">Percentage: </Col>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={4}>
                                 <input type='text' value={this.state.labGradePercentage} onChange={this.onLabPercentageChange}/>
                             </Col>
                         </Row>
-                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Activities:</Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                        <Row style={{fontSize: '18px', color: 'gray'}}>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={6} className="text-left">Activities:</Col>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={4}>
                                 <input type='text' value={this.state.numberOfLabTests} onChange={this.onLabTestsChange}/>
                             </Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={1}><Button
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={1}><Button
                                 onClick={this.openLabTestsPopup}>
                                 <i className="fa fa-cog" aria-hidden="true"/>
                             </Button>
@@ -340,27 +339,27 @@ class CourseDetail extends Component<any, any> {
                     <Col md={2}>
                         <input type="checkbox" defaultChecked={this.state.hasSeminar} onChange={() => {this.setState({hasSeminar: !this.state.hasSeminar});}}/>
                     </Col>
-                    <Col className="text-left" style={{fontSize: '1.5em', color: 'gray'}} md={10}>Seminars</Col>
+                    <Col className="text-left" style={{fontSize: '18px', color: 'gray'}} md={10}>Seminars</Col>
                     {this.state.hasSeminar &&
-                    <Col style={{fontSize: '1em', color: 'gray'}} md={6}>
-                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Number:</Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                    <Col style={{fontSize: '16px', color: 'gray'}} md={6}>
+                        <Row style={{fontSize: '18px', color: 'gray'}}>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={6} className="text-left">Number:</Col>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={4}>
                                 <input type='text' value={this.state.numberOfSeminars} onChange={this.onSeminarNumberChange}/>
                             </Col>
                         </Row>
-                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Percentage: </Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                        <Row style={{fontSize: '18px', color: 'gray'}}>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={6} className="text-left">Percentage: </Col>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={4}>
                                 <input type='text' value={this.state.seminarGradePercentage} onChange={this.onSeminarPercentageChange}/>
                             </Col>
                         </Row>
-                        <Row style={{fontSize: '1.25em', color: 'gray'}}>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={6} className="text-left">Activities:</Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={4}>
+                        <Row style={{fontSize: '18px', color: 'gray'}}>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={6} className="text-left">Activities:</Col>
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={4}>
                                 <input type='text' value={this.state.numberOfSeminarTests} onChange={this.onSeminarTestsChange}/>
                             </Col>
-                            <Col style={{fontSize: '1em', color: 'gray'}} md={1}><Button
+                            <Col style={{fontSize: '16px', color: 'gray'}} md={1}><Button
                                 onClick={this.openSeminarTestsPopup}>
                                 <i className="fa fa-cog" aria-hidden="true"/>
                             </Button>
@@ -369,56 +368,44 @@ class CourseDetail extends Component<any, any> {
                     </Col>
                     }
                 </Row>
-                <Row className="show-grid text-center">
-                    <Col style={{fontSize: '1.5em', color: 'gray'}} md={4}>Written Exam</Col>
-                    <Col style={{fontSize: '1.25em', color: 'gray'}} md={4}>Percentage:</Col>
-                    <Col style={{fontSize: '1em', color: 'gray'}} md={1}>
+                <Row className="show-grid text-center" style={{padding:'10px'}}>
+                    <Col style={{fontSize: '18px', color: 'gray'}} md={4}>Written Exam</Col>
+                    <Col style={{fontSize: '16px', color: 'gray'}} md={4}>Percentage:</Col>
+                    <Col style={{fontSize: '16px', color: 'gray'}} md={1}>
                         <input type='text' value={this.state.examWrittenPercentage} onChange={this.onWrittenExamPercentageChange}/>
                     </Col>
                 </Row>
                 <br/>
                 <Row className="show-grid text-center">
-                    <Col style={{fontSize: '1.5em', color: 'gray'}} md={4}>Practical Exam</Col>
-                    <Col style={{fontSize: '1.25em', color: 'gray'}} md={4}>Percentage:</Col>
-                    <Col style={{fontSize: '1em', color: 'gray'}} md={1}>
+                    <Col style={{fontSize: '18px', color: 'gray'}} md={4}>Practical Exam</Col>
+                    <Col style={{fontSize: '16px', color: 'gray'}} md={4}>Percentage:</Col>
+                    <Col style={{fontSize: '16px', color: 'gray'}} md={1}>
                         <input type='text' value={this.state.examPracticalPercentage} onChange={this.onPracticalExamPercentageChange}/>
                     </Col>
                 </Row>
-
-                <br/>
-                <br/>
-                <br/>
                 <br/>
                 <Row className="show-grid text-center students-column">
-                    <Col style={{fontSize: '1.5em', color: 'gray'}} className="text-center">
+                    <Col style={{fontSize: '20px', color: 'gray'}} className="text-center">
                         Students
                     </Col>
                     <br/>
-                    <br/>
-                    <br/>
-                    <Col style={{fontSize: '1.25em', color: 'gray', display: "static"}}  className="text-center student-title">
+                    <Col style={{fontSize: '18px', color: 'gray', display: "static"}}  className="text-center student-title">
                         <StudentsList courseId={this.state.id}/>
                     </Col>
                 </Row>
                 <br/>
-                <br/>
-                <br/>
                 <Row className="show-grid text-center professor-column">
-                    <Col style={{fontSize: '1.5em', color: 'gray', width:'100px'}} className="text-center professor-title">
+                    <Col style={{fontSize: '20px', color: 'gray', width:'100px'}} className="text-center professor-title">
                         Professor
                     </Col>
                     <br/>
-                    <br/>
-                    <br/>
-                    <Col style={{fontSize: '1.25em', color: 'gray', display: "static"}}  className="text-center">
+                    <Col style={{fontSize: '18px', color: 'gray', display: "static"}}  className="text-center">
                         <DashboardProfessors courseId={this.state.id}/>
                     </Col>
                 </Row>
 
                 <br/>
-                <br/>
-                <br/>
-                <Button className="btn btn-success" onClick={this.submit}>Submit</Button>
+                <Button className="btn btn-.btn-success" style={{backgroundColor:'#8dd4f880', color: "#FFFFFF"}} onClick={this.submit}>Submit</Button>
                 <Popup isVisible={this.state.isCoursePopupVisible} sendToParent={this.getFromChildCourse}
                        onClose={this.closeCoursePopup} componentType={this.state.popupCourseComponentType}
                        tests={this.state.courseTests} percentages={this.state.coursePercentages}
@@ -431,7 +418,7 @@ class CourseDetail extends Component<any, any> {
                        onClose={this.closeLabPopup} componentType={this.state.popupLabComponentType}
                        tests={this.state.labTests} percentages={this.state.labPercentages} weeks={this.state.labWeeks}
                        refresh={this.onLabTestsChange}/>
-                <br/><br/>
+                <br/>
             </Grid>
 
         );
