@@ -15,7 +15,9 @@ export default class CatalogActions {
             .then(res => {
                 dispatch({
                     type: FETCH_ACTIVITIES,
-                    payload: res.data
+                    payload: {
+                       items: res.data
+                    }
                 })
             })
             .catch(error => {

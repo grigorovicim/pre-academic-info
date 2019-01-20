@@ -18,12 +18,13 @@ class ActivityDetail extends Component<any, any> {
         this.details = props.details;
 
         this.renderGroups = this.renderGroups.bind(this);
+        this.renderItems = this.renderItems.bind(this);
         this.filterByGroup = this.filterByGroup.bind(this);
         this.filterByClass = this.filterByClass.bind(this);
         this.fetchData();
     }
 
-    fetchData(){
+    fetchData() {
         const data = {
             courseid: this.details.id,
             studentstring: this.props.studentSubstring,
@@ -51,8 +52,23 @@ class ActivityDetail extends Component<any, any> {
         );
     }
 
+    renderItems(items: any[]) {
+        const tableRows: any = [];
+        items.forEach(item => {
+            tableRows.push(
+                <tr>
+                    <td className="p-input-student">{item.Profile.first_name + " " + item.Profile.last_name}</td>
+                    <td className="p-input-student">{item.Profile.first_name + " " + item.Profile.last_name}</td>
+                    <td className="p-input-student">{item.Profile.first_name + " " + item.Profile.last_name}</td>
+                    <td className="p-input-student"><button className="p-save-student-activity">Save</button></td>
+                </tr>
+            )
+        })
+        return tableRows;
+    }
+
     render() {
-        let {items} = this.props
+        let { items } = this.props
         const {
             //items,
             // group,
@@ -60,7 +76,8 @@ class ActivityDetail extends Component<any, any> {
             week,
             studentSubstring
         } = this.props;
-        if(!items){
+        console.log(this.props)
+        if (items === undefined) {
             items = []
         }
         return (
@@ -120,16 +137,7 @@ class ActivityDetail extends Component<any, any> {
                         </tr>
                     </thead>
                     <tbody>
-
-                        {
-                            items.map((item: any) =>
-                                // tslint:disable-next-line:jsx-key
-                                <tr>
-                                    <td className="p-input-student">{item.Profile.first_name + " " + item.Profile.last_name}</td>
-                                </tr>
-                            )
-                        }
-
+                        {this.renderItems(items)}
                     </tbody>
                 </Table>
             </Grid>
