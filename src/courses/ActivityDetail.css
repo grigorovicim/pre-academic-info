@@ -15,6 +15,7 @@
   color: #2E91C3;
   font-size: 14px; 
   border-radius: 0.5ch;
+  cursor: pointer;
 }
 .p-group-buttons .p-group-button:hover {
   background-color: rgb(141, 212, 248, 0.9);
@@ -29,6 +30,7 @@
   font-size: 12px; 
   width: 100px;
   border-radius: 0.5ch;
+  cursor: pointer;
 }
 .p-seminar-or-lab-button:hover {
   background-color: rgb(141, 212, 248, 0.9);

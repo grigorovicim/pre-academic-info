@@ -70,7 +70,7 @@ class Popup extends Component<any, any> {
     }  else if (this.props.componentType === "p-courses-detail-button"){
         component = <CourseDetail course={this.props.course}/>
     }  else if (this.props.componentType === "p-activity-detail-button"){
-        component = <ActivityDetail details={this.props.courseDetails} />
+        component = <ActivityDetail details={this.props.course} />
     } else if ( this.props.componentType === "p-add-new-student-button"){
         component = <AddNewStudentToCourse courseId={this.props.courseId} callback={this.handleClick}/>
     } else if (this.props.componentType === "p-lab-tests"){

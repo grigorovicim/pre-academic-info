@@ -1,186 +1,161 @@
 import * as React from "react";
-import {Component} from "react";
-
+import { Component } from "react";
 import './ActivityDetail.css';
+import { Grid, Row, Col, ButtonToolbar, Table } from 'react-bootstrap';
+import { connect } from "react-redux";
+import CatalogActions from "../actions/Catalog.actions";
+import ActivityElementRow from "../students/ActivityElementRow";
 
-import {Grid, Row, Col, ButtonToolbar, Table} from 'react-bootstrap';
-import {connect} from "react-redux";
-//import axios from "axios";
-//import {CREATE_FORM_OF_EVALUATION} from "../actions/types";
 
 class ActivityDetail extends Component<any, any> {
     private details: any;
-    private week: any;
-    private setWeekRef: any;
+    private groups = [15, 16, 17, 18, 19, 20];
 
     constructor(props: any) {
         super(props);
         this.details = props.details;
-        this.week = null;
+
         this.renderGroups = this.renderGroups.bind(this);
-        console.log(this.details);
+        this.renderItems = this.renderItems.bind(this);
+        this.handleGroupChange = this.handleGroupChange.bind(this);
+        this.filterByClass = this.filterByClass.bind(this);
+        this.handleWeekChange = this.handleWeekChange.bind(this);
+        this.handleStudentStringChange = this.handleStudentStringChange.bind(this);
 
-        this.state = {
-            selectedGroups: [],
-        };
-
-        this.setWeekRef = (element: any) => {
-          this.week = element;
-      };
-
+        this.fetchData();
     }
 
-    assignGroupToCourse = (event: any) => {
-        console.log(event)
-    };
-
-    insertblabla(){
-      this.week = this.week.value;
+    fetchData() {
+        const data = {
+            courseid: this.details.id,
+            studentstring: this.props.studentSubstring,
+            week: this.props.week,
+            groupid: this.props.group
+        }
+        this.props.dispatch(CatalogActions.fetchActivities(data))
     }
 
-    renderGroups() {
-        //assume a course is assigned to a year of study (as in the db)
-        let year = -1;
-        if (this.details.groups !== undefined && this.details.groups !== []) {
-            year = Math.trunc(this.details.groups[0] / 10) % 10;
-        }
-        if (year === -1) {
-            return (<p>The year is not valid</p>);
-        }
-        const groups : string[] = [];
-        switch (this.details.section.name) {
-            case 'Romanian':
-                for (let i = 1; i < this.details.section.nrGroups; i++) {
-                    groups.push('2' + year.toString() + i.toString())
-                }
-                break;
-
-            case 'English':
-                console.log(this.details.section.nrGroups);
-                for (let i = 1; i <= this.details.section.nrGroups; i++) {
-
-                    console.log('9' + year.toString() + i.toString());
-                    groups.push('9' + year.toString() + i.toString());
-                    console.log('english')
-                }
-                break;
-            case 'Hungarian':
-                for (let i = 1; i <= this.details.section.nrGroups; i++) {
-                    groups.push('5' + year.toString() + i.toString())
-
-                }
-                break;
-            case 'German':
-                for (let i = 1; i < this.details.section.nrGroups; i++) {
-                    groups.push('7' + year.toString() + i.toString())
-                }
-                break;
-        }
+    renderGroups(currentGroup) {
         const buttons: any = [];
-
-        groups.forEach(element => {
-            if (this.details.groups.indexOf(parseInt(element, 10)) > -1) {
-                buttons.push(
-                    <button className="p-group-button" onClick={this.assignGroupToCourse}>{element}</button>
-                )
-            } else {
-                buttons.push(
-                    <button className="p-group-button" onClick={this.assignGroupToCourse}>{element}</button>
-                )
-            }
-        });
-
+        this.groups.forEach(group => {
+            buttons.push(
+                <button className="p-group-button" onClick={this.handleGroupChange} style={currentGroup.toString() === group.toString() ? { backgroundColor: "#2e91c3", color: "#c6e9fb" } : {}}>{group + 916}</button>
+            )
+        })
         return (
             <ButtonToolbar className="p-group-buttons">{buttons}</ButtonToolbar>
         );
     }
 
+    renderItems(items: any[]) {
+        const tableRows: any = [];
+        items.forEach(item => {
+            tableRows.push(
+                <ActivityElementRow key={item.id} item={item} classType={this.props.classType} week={this.props.week} course_id={this.details.id}/>
+            )
+        })
+        return tableRows;
+    }
+
+    handleGroupChange = (event: any) => {
+        this.props.dispatch(CatalogActions.saveGroup(event.target.textContent))
+        setTimeout(() => {
+            this.fetchData();
+        }, 300)
+    };
+
+    filterByClass = (event: any) => {
+        this.props.dispatch(CatalogActions.saveClassType(event.target.textContent))
+        setTimeout(() => {
+
+        }, 300)
+    };
+
+    handleWeekChange(event) {
+        this.props.dispatch(CatalogActions.saveWeek(event.target.value))
+        setTimeout(() => {
+            this.fetchData();
+        }, 300)
+    }
+
+    handleStudentStringChange(event) {
+        this.props.dispatch(CatalogActions.saveStudentSubString(event.target.value))
+        setTimeout(() => {
+            this.fetchData();
+        }, 300)
+    }
+
     render() {
-      const listStudents = this.details.students;
+        let { items } = this.props
+        const {
+            group,
+            classType,
+            week,
+            studentSubstring
+        } = this.props;
+        if (items === undefined) {
+            items = []
+        }
         return (
             <Grid className="p-add-activity-popup">
-                <hr/>
-                <h1 className="p-title-add-activity-popup" style={{fontWeight: 600}}>{this.details.name}</h1>
+                <hr />
+                <h1 className="p-title-add-activity-popup" style={{ fontWeight: 600 }}>{this.details.name}</h1>
                 <Row className="show-grid text-center" >
-                     <Col className="center-block" style={{fontSize: '1.25em'}} md={12}>
-                         {this.renderGroups()}
-                     </Col>
+                    <Col className="center-block" style={{ fontSize: '1.25em' }} md={12}>
+                        {this.renderGroups(group)}
+                    </Col>
                 </Row>
                 <br></br>
                 <Row className="show-grid text-center" >
                     <Col md={3}></Col>
                     <Col md={6}>
-                      <ButtonToolbar>
-                        <button className="p-seminar-or-lab-button"onClick={this.assignGroupToCourse}>Courses</button>
-                        <button className="p-seminar-or-lab-button" onClick={this.assignGroupToCourse}>Seminars</button>
-                        <button className="p-seminar-or-lab-button"onClick={this.assignGroupToCourse}>Labs</button>
-                      </ButtonToolbar>
+                        <ButtonToolbar>
+                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass} style={classType.toString() === "Course" ? { backgroundColor: "#2e91c3", color: "#c6e9fb" } : {}}>Course</button>
+                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass} style={classType.toString() === "Seminar" ? { backgroundColor: "#2e91c3", color: "#c6e9fb" } : {}}>Seminar</button>
+                            <button className="p-seminar-or-lab-button" onClick={this.filterByClass} style={classType.toString() === "Lab" ? { backgroundColor: "#2e91c3", color: "#c6e9fb" } : {}}>Lab</button>
+                        </ButtonToolbar>
                     </Col>
-                    <Col md={3}></Col>
-                <br></br>
+                    <br></br>
                 </Row>
                 <br></br>
                 <Row className="show-grid text-center" >
                     <Col md={5}></Col>
                     <Row >
-                            <Col className="p-week-label-input"> Week:</Col>
-                            <Col ><input className="p-week-input" type='text' defaultValue={"1-14"} size={2}
-                                               ref={this.setWeekRef}/></Col>
-
+                        <Col className="p-week-label-input"> Week:</Col>
+                        <Col ><input className="p-week-input" type='text' size={2} value={week} onChange={this.handleWeekChange} /></Col>
                     </Row>
                 </Row>
-                <br/>
+                <br />
                 <Row className="show-grid text-center" >
                     <Col md={3}></Col>
                     <Col md={6}>
-                    <button className="p-done-button-add-activity">Done</button>
+                        <button className="p-done-button-add-activity">Done</button>
                     </Col>
-                    <Col md={3}></Col>
-                <br></br>
+                    <br></br>
                 </Row>
                 <br></br>
                 <Row className="text-center" >
-                  <Col md={1}></Col>
+                    <Col md={1}></Col>
                     <Row >
                         <Col className="p-search-students-label-input">Search student: </Col>
-                        <Col><input className="p-search-students-input" type='text' defaultValue={""} size = {34}
-                                               ref={this.setWeekRef}/></Col>
+                        <Col><input className="p-search-students-input" type='text' size={34} value={studentSubstring} onChange={this.handleStudentStringChange} /></Col>
                     </Row>
                     <Col md={1}></Col>
                 </Row>
                 <br></br>
                 <Table striped bordered condensed hover>
-                   <thead>
-                    <tr>
-                      <th className="p-header-add-activity">NAME</th>
-                      <th className="p-input-homework-header">Homework</th>
-                      <th className="p-input-presents-header">Present</th>
-                      <th className="p-header-add-activity">Total presents</th>
-                      <th className="p-header-add-activity">Exam</th>
-                      <th className="p-header-add-activity">Final grade</th>
-                      <th></th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th className="p-header-add-activity">NAME</th>
+                            <th className="p-input-presents-header">Present</th>
+                            <th className="p-header-add-activity">Activity Grade</th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tbody>
-                    
-                      {
-                        listStudents.map((student : any) => 
-                          // tslint:disable-next-line:jsx-key
-                          <tr>
-
-                              <td className="p-input-student"><div className="p-photo-student"></div>{student.name}</td>
-                              <td><input className="p-input-homework-student" placeholder={student.homework}></input></td>
-                              <td><input className="p-input-present-student" placeholder={student.present}></input></td>
-                              <td className="p-input-student">{student.totalPresents}</td>
-                              <td className="p-input-student">{student.exam}</td>
-                              <td className="p-input-student">{student.finalGrade}</td>
-                              <td className="p-input-student"><button className="p-save-student-activity">Save</button></td>
-                          </tr> 
-                      )
-                    }
-
+                        {this.renderItems(items)}
                     </tbody>
-                  </Table>
+                </Table>
             </Grid>
         );
     }
@@ -188,8 +163,11 @@ class ActivityDetail extends Component<any, any> {
 
 const mapStateToProps = (state: any) => {
     return {
-        items: state.formOfEvaluationReducer.items,
-        formOfEvaluation: state.courseReducer.formOfEvaluation,
+        items: state.catalogReducer.items,
+        group: state.catalogReducer.group,
+        classType: state.catalogReducer.classType,
+        week: state.catalogReducer.week,
+        studentSubstring: state.catalogReducer.studentSubstring,
     };
 };
 

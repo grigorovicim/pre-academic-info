@@ -226,7 +226,8 @@ class CourseDetail extends Component<any, any> {
         {
             //create
             const body = this.state;
-            axios.post('/courseconfig',body)
+            axios.post('/courseconfig',
+            {courseConfig:body})
                 .then(res =>{
                     console.log(res.data);
                     alert(res.data);
